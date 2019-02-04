@@ -46,4 +46,3 @@ yarn-error.*
 .nyc_output
 # ignore prettier testing file
 testingprettier.js 
-.node_repl_history
