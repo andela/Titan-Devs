@@ -4,7 +4,8 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "NODE_ENV=development nodemon index.js --exec babel-node --"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
@@ -23,6 +24,7 @@
     "mongoose": "^5.2.2",
     "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
+    "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
     "pg": "^7.8.0",
@@ -31,5 +33,9 @@
     "sequelize": "^4.42.0",
     "slug": "^0.9.1",
     "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2"
   }
 }
