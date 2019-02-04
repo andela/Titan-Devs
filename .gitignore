@@ -36,3 +36,7 @@ node_modules
 
 # dot env file
 .env
+
+# package json lock
+
+package-lock.json
