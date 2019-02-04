@@ -5,11 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development nodemon index.js --exec babel-node --"
+    "start": "NODE_ENV=development nodemon --exec babel-node index.js"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-airbnb": "^3.2.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^6.2.0",

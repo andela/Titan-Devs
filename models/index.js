@@ -5,6 +5,7 @@ import configPath from "../config/config";
 
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || "development";
+
 const config = configPath[env];
 
 const db = {};
