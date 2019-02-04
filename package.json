@@ -4,10 +4,14 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "NODE_ENV=test yarn run db:reset && NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:reset": "node_modules/.bin/sequelize db:migrate:undo:all"
+=======
+    "test": "NODE_ENV=test mocha ./tests --timeout=10000 --exit"
+>>>>>>> [ch-setup-unit-testing-#163518679]Configurate testing env and add assertion library
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
