@@ -17,7 +17,7 @@ export default (sequelize, DataTypes) => {
         allowNull: false
       }
     },
-    {}
+    { tableName: "users" }
   );
   user.associate = models => {
     // associations can be defined here

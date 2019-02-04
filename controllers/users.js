@@ -7,12 +7,14 @@ class UserController {
     const userId = req.params.userId;
     User.findOne({ where: { id: userId } })
       .then(result => {
-        if (result[0]) {
-          console.log(result);
-          res.status(200).json({ message: "User retrieved successfully" });
+        if (result) {
+          res.status(200).json({
+            message: "User retrieved successfully",
+            user: result.dataValues
+          });
         } else {
           res.status(404).json({
-            message: "Usetr not found "
+            message: "User not found "
           });
         }
       })
