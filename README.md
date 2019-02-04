@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs)
+
 Authors Haven - A Social platform for the creative at heart.
 =======
 
