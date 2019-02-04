@@ -4,7 +4,7 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "NODE_ENV=test mocha ./tests --timeout=10000 --exit"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
@@ -28,5 +28,10 @@
     "request": "^2.87.0",
     "slug": "^0.9.1",
     "underscore": "^1.9.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "mocha": "^5.2.0"
   }
 }
