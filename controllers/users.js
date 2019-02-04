@@ -3,7 +3,8 @@ import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
 import { sendEmail } from "../services/sendgrid";
-import resetPwdTamplage from "../helpers/EmailVerificationTamplate";
+import resetPwdTamplage from "../helpers/resetPasswordTamplate";
+import template from "../helpers/EmailVerificationTamplate";
 
 dotenv.config();
 const { User } = models;
