@@ -35,6 +35,7 @@ node_modules
 .node_repl_history
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 # dot env file
 .env
 
@@ -52,3 +53,8 @@ testingprettier.js
 =======
 yarn.lock
 >>>>>>> [ch-setup-unit-testing-#163518679]Configurate testing env and add assertion library
+=======
+#Test coverage directory
+coverage
+.nyc_output
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Remove test coverage and report from git
