@@ -3,3 +3,6 @@ node_js:
   - "stable"
 notifications:
   email: false
+before_script: 
+# yarn install is like npm install 
+  - yarn install
