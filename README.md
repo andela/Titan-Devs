@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs)
-
 Authors Haven - A Social platform for the creative at heart.
 =======
 
@@ -9,6 +7,14 @@ by leveraging the modern web.
 
 ---
 
+## Build status
+
+Build status of continuous integrations.
+
+[![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs)
+
+
+---
 ## API Spec
 The preferred JSON object to be returned by the API should be structured as follows:
 
