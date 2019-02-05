@@ -1,6 +1,8 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
-const mongoose = require('mongoose');
+import passport from 'passport';
+import psLocal from 'passport-local';
+import mongoose from 'mongoose';
+
+const { Strategy: LocalStrategy } = psLocal;
 
 const User = mongoose.model('User');
 
