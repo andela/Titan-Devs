@@ -32,7 +32,6 @@ node_modules
 .npm
 
 # Optional REPL history
-<<<<<<< HEAD
 .node_repl_history
 
 # dot env file
@@ -47,15 +46,4 @@ yarn-error.*
 .nyc_output
 
 # ignore prettier testing files
-<<<<<<< HEAD
 testingprettier.js 
-=======
-testingprettier.js 
-<<<<<<< HEAD
-=======
-yarn.lock
-=======
-.node_repl_history
->>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
->>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
->>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
