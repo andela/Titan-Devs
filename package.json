@@ -4,7 +4,7 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha ./tests --timeout=10000 --exit"
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha ./tests --timeout=10000 --exit"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
@@ -32,6 +32,8 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
-    "mocha": "^5.2.0"
+    "coveralls": "^3.0.2",
+    "mocha": "^5.2.0",
+    "nyc": "^13.2.0"
   }
 }
