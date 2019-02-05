@@ -33,7 +33,6 @@ node_modules
 
 # Optional REPL history
 .node_repl_history
-
 # dot env file
 .env
 
@@ -44,5 +43,3 @@ package-lock.json
 yarn.*
 yarn-error.*
 .nyc_output
-# ignore prettier testing file
-testingprettier.js 
