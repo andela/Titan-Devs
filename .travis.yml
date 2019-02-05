@@ -3,3 +3,5 @@ node_js:
   - "stable"
 notifications:
   email: false
+  slack: 
+    andela:m0fSBLRd944nk3Gme63A9OgD
