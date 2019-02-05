@@ -15,6 +15,15 @@ Build status of continuous integrations.
 
 
 ---
+## Code style 
+The style-guide is ESlint-airbnb, and it uses prettier for frommating code. To enable `VS Code + ESLint + prettier` follow the steps below:
+*  `cd root_directory`
+*  `yarn add -D prettier eslint eslint eslint-config-prettier eslint-plugin-prettier`
+*  Create `.eslintrc.json`:`{ "extends": "plugin:prettier/recommended" }`
+*  In VS Code, `Ctrl + Shift + X` 
+*  Search and install *ESLint*
+*  Search and install *Prettier Code Formatter*
+*  Restart VS Code. 
 ## API Spec
 The preferred JSON object to be returned by the API should be structured as follows:
 
