@@ -7,7 +7,7 @@ const addTwo = (a, b) => {
 };
 
 describe("/addTwo", () => {
-  it("It should return sum of two number ", done => {
+  it("It should return sum of two number", done => {
     const sum = addTwo(2, 4);
     equal(sum, 6);
     done();
