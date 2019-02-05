@@ -45,7 +45,7 @@ yarn.*
 yarn-error.*
 .nyc_output
 
-# ignore prettier testing file
+# ignore prettier testing files
 testingprettier.js 
 yarn.lock
 .node_repl_history
