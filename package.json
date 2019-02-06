@@ -50,10 +50,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsdoc": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
-<<<<<<< HEAD
     "jsdoc": "^3.5.5",
-=======
->>>>>>> [ft #[163518681]]  adding api for swagger documentation
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
     "prettier": "^1.16.4"
