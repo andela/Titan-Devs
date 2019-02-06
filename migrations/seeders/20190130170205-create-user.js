@@ -11,14 +11,20 @@ module.exports = {
           password: "password",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ft-user-signup-#163756426]Add test for  and attributes validation
           username: "luc",
 =======
           firstName: "User",
           lastName: "1",
 >>>>>>> [ft-user-signup-#163756426]Add test for  and attributes validation
+<<<<<<< HEAD
 =======
           username: "luc",
 >>>>>>> #163756426 Add eslint-plugin-jsdoc@latest
+=======
+>>>>>>> [ft-user-signup-#163756426]Add test for  and attributes validation
           createdAt: "2019-02-04T14:17:44.366Z",
           updatedAt: "2019-02-04T14:17:44.366Z"
         }
