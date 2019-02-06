@@ -1,3 +1,5 @@
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+
 Authors Haven - A Social platform for the creative at heart.
 =======
 
@@ -6,7 +8,15 @@ Create a community of like minded authors to foster inspiration and innovation
 by leveraging the modern web.
 
 ---
-
+## Code style 
+The style-guide is ESlint-airbnb, and it uses prettier for frommating code. To enable `VS Code + ESLint + prettier` follow the steps below:
+*  `cd root_directory`
+*  `yarn add -D prettier eslint eslint eslint-config-prettier eslint-plugin-prettier`
+*  Create `.eslintrc.json`:`{ "extends": "plugin:prettier/recommended" }`
+*  In VS Code, `Ctrl + Shift + X` 
+*  Search and install *ESLint*
+*  Search and install *Prettier Code Formatter*
+*  Restart VS Code. 
 ## API Spec
 The preferred JSON object to be returned by the API should be structured as follows:
 
