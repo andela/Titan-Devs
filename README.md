@@ -1,4 +1,5 @@
-[![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) 
+[![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs) [![Test Coverage](https://api.codeclimate.com/v1/badges/7e974cf3061ef7b98fcd/test_coverage)](https://codeclimate.com/github/andela/Titan-Devs/test_coverage)
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) [![Maintainability](https://api.codeclimate.com/v1/badges/7e974cf3061ef7b98fcd/maintainability)](https://codeclimate.com/github/andela/Titan-Devs/maintainability) 
 
 Authors Haven - A Social platform for the creative at heart.
 =======
