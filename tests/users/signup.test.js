@@ -35,12 +35,13 @@ describe("API end point for /users ", () => {
   it("it should fail if one of email, firstName, lastName, or password is empty", async () => {
     const response = await chai
       .request(app)
-      .post("/api/v1/users")
-      .send({ email: "", password: "", username: "" });
+      .post("/api/v1/auth/signup")
+      .send({ email: "", password: "", firstName: "", lastName: "" });
     expect(response.status).eql(400);
     expect(response.body.message).eql("User registration failed");
     expect(response.body.errors).to.deep.equal({
-      username: "Username is required",
+      firstName: "Firstname is required",
+      lastName: "Lastname is required",
       email: "Email is required",
       password: "Password is required"
     });
