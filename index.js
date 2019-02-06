@@ -5,6 +5,7 @@ import cors from "cors";
 import passport from "passport";
 import errorhandler from "errorhandler";
 import dotenv from "dotenv";
+import methodOverride from "method-override";
 import routers from "./routes";
 import morgan from "morgan";
 
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
-// app.use(methodOverride());
+app.use(methodOverride());
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
