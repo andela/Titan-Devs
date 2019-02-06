@@ -18,9 +18,11 @@ export default (sequelize, DataTypes) => {
         allowNull: false
       }
     },
-    // for postgres always set tables names in lower cases to avoid problems in the futures
+    // for postgres always set tables names in lower cases to avoid problems in the future
     { tableName: "users" }
   );
+
+  //eslint-disabled-next-line
   user.associate = models => {
     // associations can be defined here
   };

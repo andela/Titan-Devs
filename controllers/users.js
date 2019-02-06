@@ -4,7 +4,7 @@ const { User } = models;
 
 class UserController {
   static findOne(req, res, next) {
-    const userId = req.params.userId;
+    const { userId } = req.params;
     User.findOne({ where: { id: userId } })
       .then(result => {
         if (result) {
@@ -19,10 +19,9 @@ class UserController {
         }
       })
       .catch(error => {
-        console.log(error);
         res
           .status(500)
-          .json({ message: "An error occur please Try again later" });
+          .json({ error: "An error occur please Try again later", error });
       });
   }
 }

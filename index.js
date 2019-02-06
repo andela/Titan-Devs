@@ -2,12 +2,11 @@ import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
 import cors from "cors";
-import passport from "passport";
 import errorhandler from "errorhandler";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
-import routers from "./routes";
 import morgan from "morgan";
+import routers from "./routes";
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
@@ -23,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(morgan("dev"));
 
-app.use(express.static(__dirname + "/public"));
+app.use(express.static(`${__dirname}/public`));
 
 app.use(
   session({

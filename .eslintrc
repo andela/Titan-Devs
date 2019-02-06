@@ -39,6 +39,7 @@
           "ClassDeclaration": true
         }
       }
-    ]
+    ], 
+    "curly":"off"
   }
 }
