@@ -32,6 +32,19 @@ export default (sequelize, DataTypes) => {
       resetToken: {
         type: DataTypes.TEXT,
         defaultValue: null
+      },
+      firstName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      lastName: {
+        type: DataTypes.STRING,
+        allowNull: false
+      },
+      roleId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        default: 1
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future
