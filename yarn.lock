@@ -10,6 +10,9 @@
     "@babel/highlight" "^7.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/core@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.2.2.tgz#07adba6dde27bb5ad8d8672f15fde3e08184a687"
@@ -30,8 +33,11 @@
     semver "^5.4.1"
     source-map "^0.5.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/generator@^7.0.0", "@babel/generator@^7.2.2":
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.3.2.tgz#fff31a7b2f2f3dad23ef8e01be45b0d5c2fc0132"
@@ -44,6 +50,9 @@
     trim-right "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/helper-annotate-as-pure@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-annotate-as-pure/-/helper-annotate-as-pure-7.0.0.tgz#323d39dd0b50e10c7c06ca7d7638e6864d8c5c32"
@@ -93,8 +102,11 @@
     "@babel/traverse" "^7.1.0"
     "@babel/types" "^7.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/helper-function-name@^7.1.0":
   version "7.1.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-function-name/-/helper-function-name-7.1.0.tgz#a0ceb01685f73355d4360c1247f582bfafc8ff53"
@@ -112,6 +124,9 @@
     "@babel/types" "^7.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/helper-hoist-variables@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-hoist-variables/-/helper-hoist-variables-7.0.0.tgz#46adc4c5e758645ae7a45deb92bab0918c23bb88"
@@ -193,8 +208,11 @@
     "@babel/template" "^7.1.0"
     "@babel/types" "^7.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/helper-split-export-declaration@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-split-export-declaration/-/helper-split-export-declaration-7.0.0.tgz#3aae285c0311c2ab095d997b8c9a94cad547d813"
@@ -203,6 +221,9 @@
     "@babel/types" "^7.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/helper-wrap-function@^7.1.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/helper-wrap-function/-/helper-wrap-function-7.2.0.tgz#c4e0012445769e2815b55296ead43a958549f6fa"
@@ -222,8 +243,11 @@
     "@babel/traverse" "^7.1.5"
     "@babel/types" "^7.3.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/highlight@^7.0.0":
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/@babel/highlight/-/highlight-7.0.0.tgz#f710c38c8d458e6dd9a201afb637fcb781ce99e4"
@@ -234,6 +258,9 @@
     js-tokens "^4.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/node@^7.2.2":
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/node/-/node-7.2.2.tgz#1557dd23545b38d7b1d030a9c0e8fb225dbf70ab"
@@ -245,14 +272,20 @@
     lodash "^4.17.10"
     v8flags "^3.1.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/parser@^7.0.0", "@babel/parser@^7.2.2", "@babel/parser@^7.2.3":
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.3.2.tgz#95cdeddfc3992a6ca2a1315191c1679ca32c55cd"
   integrity sha512-QzNUC2RO1gadg+fs21fi0Uu0OuGNzRKEmgCxoLNzbCdoprLwjfmZwzUrpUNfJPaVRwBpDY47A17yYEGWyRelnQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@babel/plugin-proposal-async-generator-functions@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-async-generator-functions/-/plugin-proposal-async-generator-functions-7.2.0.tgz#b289b306669dce4ad20b0252889a15768c9d417e"
@@ -695,9 +728,12 @@
     source-map-support "^0.5.9"
 
 "@babel/template@^7.0.0", "@babel/template@^7.1.0", "@babel/template@^7.1.2", "@babel/template@^7.2.2":
+<<<<<<< HEAD
 =======
 "@babel/template@^7.0.0", "@babel/template@^7.1.0":
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "7.2.2"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.2.2.tgz#005b3fdf0ed96e88041330379e0da9a708eb2907"
   integrity sha512-zRL0IMM02AUDwghf5LMSSDEz7sBCO2YnNmpg3uWTZj/v1rcG2BmQUvaGU8GhU8BvfMh1k2KIAYZ7Ji9KXPUg7g==
@@ -707,10 +743,14 @@
     "@babel/types" "^7.2.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.1.5", "@babel/traverse@^7.2.2", "@babel/traverse@^7.2.3":
 =======
 "@babel/traverse@^7.0.0":
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+"@babel/traverse@^7.0.0", "@babel/traverse@^7.1.0", "@babel/traverse@^7.1.5", "@babel/traverse@^7.2.2", "@babel/traverse@^7.2.3":
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "7.2.3"
   resolved "https://registry.yarnpkg.com/@babel/traverse/-/traverse-7.2.3.tgz#7ff50cefa9c7c0bd2d81231fdac122f3957748d8"
   integrity sha512-Z31oUD/fJvEWVR0lNZtfgvVt512ForCTNKYcJBGbPb1QZfve4WGH8Wsy7+Mev33/45fhP/hwQtvgusNdcCMgSw==
@@ -726,10 +766,14 @@
     lodash "^4.17.10"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.2.2", "@babel/types@^7.3.0", "@babel/types@^7.3.2":
 =======
 "@babel/types@^7.0.0", "@babel/types@^7.2.2", "@babel/types@^7.3.2":
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+"@babel/types@^7.0.0", "@babel/types@^7.2.0", "@babel/types@^7.2.2", "@babel/types@^7.3.0", "@babel/types@^7.3.2":
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "7.3.2"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.3.2.tgz#424f5be4be633fff33fb83ab8d67e4a8290f5a2f"
   integrity sha512-3Y6H8xlUlpbGR+XvawiH0UXehqydTmNmEpozWcXymqwcrwYAl5KMvKtQ+TF6f6E08V6Jur7v/ykdDSF+WDEIXQ==
@@ -749,13 +793,19 @@
   integrity sha512-aRnpPa7ysx3aNW60hTiCtLHlQaIFsXFCgQlpakNgDNVFzbtusSY8PwjAQgRWfSk0ekNoBjO51eQRB6upA9uuyw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@types/geojson@^1.0.0":
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/@types/geojson/-/geojson-1.0.6.tgz#3e02972728c69248c2af08d60a48cbb8680fffdf"
   integrity sha512-Xqg/lIZMrUd0VRmSRbCAewtwGZiAk3mEUDvV4op1tGl+LvyPcb/MIOSxTl9z+9+J+R4/vpjiCAT4xeKzH9ji1w==
 
+<<<<<<< HEAD
 "@types/node@*", "@types/node@^10.11.7":
 =======
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "@types/node@*":
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
   version "10.12.21"
@@ -779,13 +829,19 @@
     "@types/node" "*"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 accepts@~1.3.3, accepts@~1.3.5:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/accepts/-/accepts-1.3.5.tgz#eb777df6011723a3b14e8a72c0805c8e86746bd2"
@@ -795,6 +851,9 @@ accepts@~1.3.3, accepts@~1.3.5:
     negotiator "0.6.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 acorn-jsx@^5.0.0:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.0.1.tgz#32a064fd925429216a09b141102bfdd185fae40e"
@@ -806,9 +865,12 @@ acorn@^6.0.2:
   integrity sha512-HNJNgE60C9eOTgn974Tlp3dpLZdUr+SoxxDwPaY9J/kDNOLQTkaDgwBUXAF4SSsrAwD9RpdxuHK/EbuF+W9Ahw==
 
 ajv@^6.5.3, ajv@^6.5.5, ajv@^6.6.1:
+<<<<<<< HEAD
 =======
 ajv@^6.5.5:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "6.8.1"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-6.8.1.tgz#0890b93742985ebf8973cd365c5b23920ce3cb20"
   integrity sha512-eqxCp82P+JfqL683wwsL73XmFs1eG6qjw+RD3YHx+Jll1r0jNd4dh8QG9NYAeNGA/hnZjeEDgtTskgJULbxpWQ==
@@ -819,6 +881,9 @@ ajv@^6.5.5:
     uri-js "^4.2.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 ansi-align@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-2.0.0.tgz#c36aeccba563b89ceb556f3690f0b1d9e3547f7f"
@@ -831,8 +896,11 @@ ansi-escapes@^3.2.0:
   resolved "https://registry.yarnpkg.com/ansi-escapes/-/ansi-escapes-3.2.0.tgz#8780b98ff9dbf5638152d1f1fe5c1d7b4442976b"
   integrity sha512-cBhpre4ma+U0T1oM5fXg7Dy1Jw7zzwv7lt/GoCpr+hDQJoYnKVPLL4dCvSEFMmQurOQvSrwT7SL/DAlhBI97RQ==
 
+<<<<<<< HEAD
 ansi-regex@^2.0.0, ansi-regex@^2.1.1:
 =======
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 ansi-regex@^2.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
   version "2.1.1"
@@ -845,15 +913,21 @@ ansi-regex@^3.0.0:
   integrity sha1-7QMXwyIGT3lGbAKWa922Bas32Zg=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 ansi-regex@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-4.0.0.tgz#70de791edf021404c3fd615aa89118ae0432e5a9"
   integrity sha512-iB5Dda8t/UqpPI/IjsejXu5jOGDrzn41wJyljwPH65VCIbk6+1BzFIMJGFwTNrYXT1CrD+B4l19U7awiQ8rk7w==
 
 ansi-styles@^3.2.0, ansi-styles@^3.2.1:
+<<<<<<< HEAD
 =======
 ansi-styles@^3.2.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-3.2.1.tgz#41fbb20243e50b12be0f04b8dedbf07520ce841d"
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
@@ -861,6 +935,9 @@ ansi-styles@^3.2.1:
     color-convert "^1.9.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 anymatch@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/anymatch/-/anymatch-2.0.0.tgz#bcb24b4f37934d9aa7ac17b4adaf89e7c76ef2eb"
@@ -869,8 +946,11 @@ anymatch@^2.0.0:
     micromatch "^3.1.4"
     normalize-path "^2.1.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 append-transform@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/append-transform/-/append-transform-1.0.0.tgz#046a52ae582a228bd72f58acfbe2967c678759ab"
@@ -879,19 +959,28 @@ append-transform@^1.0.0:
     default-require-extensions "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 aproba@^1.0.3:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/aproba/-/aproba-1.2.0.tgz#6802e6264efd18c790a1b0d517f0f2627bf2c94a"
   integrity sha512-Y9J6ZjXtoYh8RnXVCMOU/ttDmk1aBjunq9vO0ta5x85WDQiQfUF9sIPBITdbiiIVcBo03Hi3jMxigBtsddlXRw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 archy@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/archy/-/archy-1.0.0.tgz#f9c8c13757cc1dd7bc379ac77b2c62a5c2868c40"
   integrity sha1-+cjBN1fMHde8N5rHeyxipcKGjEA=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 are-we-there-yet@~1.1.2:
   version "1.1.5"
   resolved "https://registry.yarnpkg.com/are-we-there-yet/-/are-we-there-yet-1.1.5.tgz#4b35c2944f062a8bfcda66410760350fe9ddfc21"
@@ -900,8 +989,11 @@ are-we-there-yet@~1.1.2:
     delegates "^1.0.0"
     readable-stream "^2.0.6"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 argparse@^1.0.7:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/argparse/-/argparse-1.0.10.tgz#bcd6791ea5ae09725e17e5ad988134cd40b3d911"
@@ -910,6 +1002,9 @@ argparse@^1.0.7:
     sprintf-js "~1.0.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 arr-diff@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/arr-diff/-/arr-diff-4.0.0.tgz#d6461074febfec71e7e15235761a329a5dc7c520"
@@ -925,21 +1020,30 @@ arr-union@^3.1.0:
   resolved "https://registry.yarnpkg.com/arr-union/-/arr-union-3.1.0.tgz#e39b09aea9def866a8f206e288af63919bae39c4"
   integrity sha1-45sJrqne+Gao8gbiiK9jkZuuOcQ=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 array-flatten@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/array-flatten/-/array-flatten-1.1.1.tgz#9a5f699051b1e7073328f2a008968b64ea2955d2"
   integrity sha1-ml9pkFGx5wczKPKgCJaLZOopVdI=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 array-unique@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/array-unique/-/array-unique-0.3.2.tgz#a894b75d4bc4f6cd679ef3244a9fd8f46ae2d428"
   integrity sha1-qJS3XUvE9s1nnvMkSp/Y9Gri1Cg=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 arrify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
@@ -963,6 +1067,9 @@ assertion-error@^1.1.0:
   integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 assign-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/assign-symbols/-/assign-symbols-1.0.0.tgz#59667f41fadd4f20ccbc2bb96b8d4f7f78ec0367"
@@ -978,8 +1085,11 @@ async-each@^1.0.1:
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
   integrity sha1-GdOGodntxufByF04iu28xW0zYC0=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 async@2.6.1, async@^2.5.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.1.tgz#b245a23ca71930044ec53fa46aa00a3e87c6a610"
@@ -998,13 +1108,19 @@ asynckit@^0.4.0:
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 atob@^2.1.1:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 aws-sign2@~0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
@@ -1016,6 +1132,9 @@ aws4@^1.8.0:
   integrity sha512-ReZxvNHIOv88FlT7rxcXIIC0fPt4KZqZbOlivyWtXLt8ESx84zd3kMC6iK5jVeS2qt+g7ftS7ye4fi06X5rtRQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 babel-plugin-transform-react-remove-prop-types@^0.4.18:
   version "0.4.24"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-remove-prop-types/-/babel-plugin-transform-react-remove-prop-types-0.4.24.tgz#f2edaf9b4c6a5fbe5c1d678bfb531078c1555f3a"
@@ -1048,7 +1167,11 @@ babel-preset-airbnb@^3.2.0:
     "@babel/preset-react" "^7.0.0"
     babel-plugin-transform-react-remove-prop-types "^0.4.18"
 
+<<<<<<< HEAD
 babel-runtime@^6.23.0, babel-runtime@^6.26.0:
+=======
+babel-runtime@^6.26.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
   integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
@@ -1056,14 +1179,20 @@ babel-runtime@^6.23.0, babel-runtime@^6.26.0:
     core-js "^2.4.0"
     regenerator-runtime "^0.11.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/balanced-match/-/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
   integrity sha1-ibTRmasr7kneFk6gK4nORi1xt2c=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 base@^0.11.1:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/base/-/base-0.11.2.tgz#7bde5ced145b6d551a90db87f83c558b4eb48a8f"
@@ -1077,8 +1206,11 @@ base@^0.11.1:
     mixin-deep "^1.2.0"
     pascalcase "^0.1.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 basic-auth@~2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/basic-auth/-/basic-auth-2.0.1.tgz#b998279bf47ce38344b4f3cf916d4679bbf51e3a"
@@ -1094,6 +1226,7 @@ bcrypt-pbkdf@^1.0.0:
     tweetnacl "^0.14.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bcrypt@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-3.0.3.tgz#7d1e9e5d533c5ea060e6ac8834942c004dbffe9c"
@@ -1102,26 +1235,38 @@ bcrypt@^3.0.3:
     nan "2.12.1"
     node-pre-gyp "0.12.0"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 binary-extensions@^1.0.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.13.0.tgz#9523e001306a32444b907423f1de2164222f6ab1"
   integrity sha512-EgmjVLMn22z7eGGv3kcnHwSnJXmFHjISTY9E/S5lIcTD3Oxw05QTcBLNkJFzcb3cNueUdF/IN4U+d78V0zO8Hw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 bluebird@3.5.1:
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
   integrity sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3:
+=======
+bluebird@^3.4.6, bluebird@^3.5.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 body-parser@1.18.3, body-parser@^1.18.3:
   version "1.18.3"
   resolved "https://registry.yarnpkg.com/body-parser/-/body-parser-1.18.3.tgz#5b292198ffdd553b3a0f20ded0592b956955c8b4"
@@ -1139,6 +1284,9 @@ body-parser@1.18.3, body-parser@^1.18.3:
     type-is "~1.6.16"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 boxen@^1.2.1:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/boxen/-/boxen-1.3.0.tgz#55c6c39a8ba58d9c61ad22cd877532deb665a20b"
@@ -1152,8 +1300,11 @@ boxen@^1.2.1:
     term-size "^1.2.0"
     widest-line "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -1163,6 +1314,9 @@ brace-expansion@^1.1.7:
     concat-map "0.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 braces@^2.3.1, braces@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/braces/-/braces-2.3.2.tgz#5979fd3f14cd531565e5fa2df1abfff1dfaee729"
@@ -1179,14 +1333,20 @@ braces@^2.3.1, braces@^2.3.2:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 browser-stdout@1.3.1:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/browser-stdout/-/browser-stdout-1.3.1.tgz#baa559ee14ced73452229bad7326467c61fabd60"
   integrity sha512-qhAVI1+Av2X7qelOfAIYwXONood6XlZE/fXaBSmW/T5SzLAmCgzi+eiWE7fUvbHaeNBQH13UftjpXxsfLkMpgw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 browserslist@^4.3.4:
   version "4.4.1"
   resolved "https://registry.yarnpkg.com/browserslist/-/browserslist-4.4.1.tgz#42e828954b6b29a7a53e352277be429478a69062"
@@ -1196,8 +1356,11 @@ browserslist@^4.3.4:
     electron-to-chromium "^1.3.103"
     node-releases "^1.1.3"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 bson@^1.1.0, bson@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/bson/-/bson-1.1.0.tgz#bee57d1fb6a87713471af4e32bcae36de814b5b0"
@@ -1209,6 +1372,9 @@ buffer-equal-constant-time@1.0.1:
   integrity sha1-+OcRMvf/5uAaXJaXpMbz5I1cyBk=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 buffer-from@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/buffer-from/-/buffer-from-1.1.1.tgz#32713bc028f75c02fdb710d7c7bcec1f2c6070ef"
@@ -1219,8 +1385,11 @@ buffer-writer@2.0.0:
   resolved "https://registry.yarnpkg.com/buffer-writer/-/buffer-writer-2.0.0.tgz#ce7eb81a38f7829db09c873f2fbb792c0c98ec04"
   integrity sha512-a7ZpuTZU1TRtnwyCNW3I5dc0wWNC3VR9S++Ewyk2HHZdrO3CQJqSpd+95Us590V6AL7JqUAH2IwZ/398PmNFgw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 builtin-modules@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
@@ -1232,6 +1401,9 @@ bytes@3.0.0:
   integrity sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 cache-base@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/cache-base/-/cache-base-1.0.1.tgz#0a7f46416831c8b662ee36fe4e7c59d76f666ab2"
@@ -1247,8 +1419,11 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 caching-transform@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/caching-transform/-/caching-transform-3.0.1.tgz#1df89e850803ad15f68dafb2abe9a8b866016c7d"
@@ -1260,6 +1435,9 @@ caching-transform@^3.0.1:
     write-file-atomic "^2.3.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 callsites@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.0.0.tgz#fb7eb569b72ad7a45812f93fd9430a3e410b3dd3"
@@ -1270,14 +1448,20 @@ camelcase@^4.0.0:
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-4.1.0.tgz#d545635be1e33c542649c69173e5de6acfae34dd"
   integrity sha1-1UVjW+HjPFQmScaRc+Xeas+uNN0=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 camelcase@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/camelcase/-/camelcase-5.0.0.tgz#03295527d58bd3cd4aa75363f35b2e8d97be2f42"
   integrity sha512-faqwZqnWxbxn+F1d399ygeamQNy3lPp/H9H6rNrqYh4FSVCtcY+3cub1MxA8o9mDd55mM8Aghuu/kuyYA6VTsA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 caniuse-lite@^1.0.30000929:
   version "1.0.30000935"
   resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000935.tgz#d1b59df00b46f4921bb84a8a34c1d172b346df59"
@@ -1288,8 +1472,11 @@ capture-stack-trace@^1.0.0:
   resolved "https://registry.yarnpkg.com/capture-stack-trace/-/capture-stack-trace-1.0.1.tgz#a6c0bbe1f38f3aa0b92238ecb6ff42c344d4135d"
   integrity sha512-mYQLZnx5Qt1JgB1WEiMCf2647plpGeQ2NMR/5L0HNZzGQo4fuSPnK+wjfPnKZV0aiJDgzmWqqkV/g7JD+DW0qw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 caseless@~0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
@@ -1321,10 +1508,14 @@ chai@^4.2.0:
     type-detect "^4.0.5"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.2:
 =======
 chalk@^2.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+chalk@^2.0.0, chalk@^2.0.1, chalk@^2.1.0, chalk@^2.4.2:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
   integrity sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==
@@ -1430,11 +1621,87 @@ cli-width@^2.0.0:
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
 
+chardet@^0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
+  integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+
 check-error@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/check-error/-/check-error-1.0.2.tgz#574d312edd88bb5dd8912e9286dd6c0aed4aac82"
   integrity sha1-V00xLt2Iu13YkS6Sht1sCu1KrII=
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+
+chokidar@^2.0.4:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-2.1.0.tgz#5fcb70d0b28ebe0867eb0f09d5f6a08f29a1efa0"
+  integrity sha512-5t6G2SH8eO6lCvYOoUpaRnF5Qfd//gd7qJAkwRUw9qlGVkiQ13uwQngqbWWaurOsaAm9+kUGbITADxt6H0XFNQ==
+  dependencies:
+    anymatch "^2.0.0"
+    async-each "^1.0.1"
+    braces "^2.3.2"
+    glob-parent "^3.1.0"
+    inherits "^2.0.3"
+    is-binary-path "^1.0.0"
+    is-glob "^4.0.0"
+    normalize-path "^3.0.0"
+    path-is-absolute "^1.0.0"
+    readdirp "^2.2.1"
+    upath "^1.1.0"
+  optionalDependencies:
+    fsevents "^1.2.7"
+
+chownr@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/chownr/-/chownr-1.1.1.tgz#54726b8b8fff4df053c42187e801fb4412df1494"
+  integrity sha512-j38EvO5+LHX84jlo6h4UzmOwi0UgW61WRyPtJz4qaadK5eY3BTS5TY/S1Stc3Uk2lIM6TPevAlULiEJwie860g==
+
+ci-info@^1.5.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/ci-info/-/ci-info-1.6.0.tgz#2ca20dbb9ceb32d4524a683303313f0304b1e497"
+  integrity sha512-vsGdkwSCDpWmP80ncATX7iea5DWQemg1UgCW5J8tqjU3lYw4FBYuj89J0CTVomA7BEfvSZd84GmHko+MxFQU2A==
+
+circular-json@^0.3.1:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/circular-json/-/circular-json-0.3.3.tgz#815c99ea84f6809529d2f45791bdf82711352d66"
+  integrity sha512-UZK3NBx2Mca+b5LsG7bY183pHWt5Y1xts4P3Pz7ENTwGVnJOUWbRb3ocjvX7hx9tq/yTAdclXm9sZ38gNuem4A==
+
+class-utils@^0.3.5:
+  version "0.3.6"
+  resolved "https://registry.yarnpkg.com/class-utils/-/class-utils-0.3.6.tgz#f93369ae8b9a7ce02fd41faad0ca83033190c463"
+  integrity sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==
+  dependencies:
+    arr-union "^3.1.0"
+    define-property "^0.2.5"
+    isobject "^3.0.0"
+    static-extend "^0.1.1"
+
+cli-boxes@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/cli-boxes/-/cli-boxes-1.0.0.tgz#4fa917c3e59c94a004cd61f8ee509da651687143"
+  integrity sha1-T6kXw+WclKAEzWH47lCdplFocUM=
+
+cli-cursor@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/cli-cursor/-/cli-cursor-2.1.0.tgz#b35dac376479facc3e94747d41d0d0f5238ffcb5"
+  integrity sha1-s12sN2R5+sw+lHR9QdDQ9SOP/LU=
+  dependencies:
+    restore-cursor "^2.0.0"
+
+cli-table3@^0.5.0:
+  version "0.5.1"
+  resolved "https://registry.yarnpkg.com/cli-table3/-/cli-table3-0.5.1.tgz#0252372d94dfc40dbd8df06005f48f31f656f202"
+  integrity sha512-7Qg2Jrep1S/+Q3EceiZtQcDPWxhAvBw+ERf1162v4sikJrvojMHFqXt8QIVha8UlH9rgU0BeWPytZ9/TzYqlUw==
+  dependencies:
+    object-assign "^4.1.0"
+    string-width "^2.1.1"
+  optionalDependencies:
+    colors "^1.1.2"
+
+cli-width@^2.0.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
+  integrity sha1-/xnt6Kml5XkyQUewwR8PvLq+1jk=
 
 cliui@^4.0.0:
   version "4.1.0"
@@ -1446,6 +1713,9 @@ cliui@^4.0.0:
     wrap-ansi "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 cls-bluebird@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/cls-bluebird/-/cls-bluebird-2.1.0.tgz#37ef1e080a8ffb55c2f4164f536f1919e7968aee"
@@ -1454,14 +1724,20 @@ cls-bluebird@^2.1.0:
     is-bluebird "^1.0.2"
     shimmer "^1.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 code-point-at@^1.0.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 collection-visit@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/collection-visit/-/collection-visit-1.0.0.tgz#4bc0373c164bc3291b4d368c829cf1a80a59dca0"
@@ -1470,8 +1746,11 @@ collection-visit@^1.0.0:
     map-visit "^1.0.0"
     object-visit "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 color-convert@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-1.9.3.tgz#bb71850690e1f136567de629d2d5471deda4c1e8"
@@ -1485,13 +1764,19 @@ color-name@1.1.3:
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 colors@^1.1.2:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/colors/-/colors-1.3.3.tgz#39e005d546afe01e01f9c4ca8fa50f686a01205d"
   integrity sha512-mmGt/1pZqYRjMxB1axhTo16/snVZ5krrKkcmMeVKxzECMMXoCgnvTPp10QgHfcbQZw8Dq2jMNG6je4JlWU0gWg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 combined-stream@^1.0.6, combined-stream@~1.0.6:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.7.tgz#2d1d24317afb8abe95d6d2c0b07b57813539d828"
@@ -1505,13 +1790,20 @@ commander@2.15.1:
   integrity sha512-VlfT9F3V0v+jr4yxPc5gg9s62/fIVWsd2Bk2iD435um1NlGMYdVCq+MjcXnhYq2icNOizHr1kK+5TI6H0Hy0ag==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 commander@^2.19.0, commander@^2.8.1:
+=======
+commander@^2.8.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.19.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
   integrity sha512-6tvAOO+D6OENvRAh524Dh9jcfKTYDQAqvqezbCW82xj5X0pSrcpxtvRKHLG0yBY6SD7PSDrJaj+0AiOcKVd1Xg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
@@ -1523,10 +1815,14 @@ commondir@^1.0.1:
   integrity sha1-3dgA2gxmEnOTzKWVDqloo6rxJTs=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 component-emitter@^1.2.0, component-emitter@^1.2.1:
 =======
 component-emitter@^1.2.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+component-emitter@^1.2.0, component-emitter@^1.2.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/component-emitter/-/component-emitter-1.2.1.tgz#137918d6d78283f7df7a6b7c5a63e140e69425e6"
   integrity sha1-E3kY1teCg/ffemt8WmPhQOaUJeY=
@@ -1537,6 +1833,7 @@ concat-map@0.0.1:
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 config-chain@^1.1.12:
   version "1.1.12"
   resolved "https://registry.yarnpkg.com/config-chain/-/config-chain-1.1.12.tgz#0fde8d091200eb5e808caf25fe618c02f48e4efa"
@@ -1545,6 +1842,8 @@ config-chain@^1.1.12:
     ini "^1.3.4"
     proto-list "~1.2.1"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 configstore@^3.0.0:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/configstore/-/configstore-3.1.2.tgz#c6f25defaeef26df12dd33414b001fe81a543f8f"
@@ -1567,8 +1866,11 @@ contains-path@^0.1.0:
   resolved "https://registry.yarnpkg.com/contains-path/-/contains-path-0.1.0.tgz#fe8cf184ff6670b6baef01a9d4861a5cbec4120a"
   integrity sha1-/ozxhP9mcLa67wGp1IYaXL7EEgo=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 content-disposition@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/content-disposition/-/content-disposition-0.5.2.tgz#0cf68bb9ddf5f2be7961c3a85178cb85dba78cb4"
@@ -1580,10 +1882,14 @@ content-type@~1.0.4:
   integrity sha512-hIP3EEPs8tB9AT1L+NUqtwOAps4mk2Zob89MWXMHjHWg9milF/j4osnnQLXBCBFBk/tvIG/tUc9mOUJiPBhPXA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 convert-source-map@^1.1.0, convert-source-map@^1.6.0:
 =======
 convert-source-map@^1.6.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+convert-source-map@^1.1.0, convert-source-map@^1.6.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.6.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.6.0.tgz#51b537a8c43e0f04dec1993bffcdd504e758ac20"
   integrity sha512-eFu7XigvxdZ1ETfbgPBohgyQ/Z++C0eEhTor0qRwBw9unw+L0/6V8wkSuGgzdThkiS5lSpdptOQPD8Ak40a+7A==
@@ -1606,6 +1912,9 @@ cookiejar@^2.1.0, cookiejar@^2.1.1:
   integrity sha512-Mw+adcfzPxcPeI+0WlvRrr/3lGVO0bD75SxX6811cxSh1Wbxx7xZBGK1eVtDf6si8rg2lhnUjsVLMFMfbRIuwA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
@@ -1616,8 +1925,11 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.3.tgz#4b70938bdffdaf64931e66e2db158f0892289c49"
   integrity sha512-l00tmFFZOBHtYhN4Cz7k32VM7vTn3rE2ANjQDxdEN6zmXZ/xq1jQuutnmHvMG1ZJ7xd72+TA5YpUK8wz3rWsfQ==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
@@ -1649,6 +1961,9 @@ crc@3.4.4:
   integrity sha1-naHpgOO9RPxck79as9ozeNheRms=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 create-error-class@^3.0.0:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/create-error-class/-/create-error-class-3.0.2.tgz#06be7abef947a3f14a30fd610671d401bca8b7b6"
@@ -1656,8 +1971,11 @@ create-error-class@^3.0.0:
   dependencies:
     capture-stack-trace "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 cross-spawn@^4:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-4.0.2.tgz#7b9247621c23adfdd3856004a823cbe397424d41"
@@ -1667,6 +1985,9 @@ cross-spawn@^4:
     which "^1.2.9"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 cross-spawn@^5.0.1:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-5.1.0.tgz#e8bd0efee58fcff6f8f94510a0a554bbfa235449"
@@ -1677,9 +1998,12 @@ cross-spawn@^5.0.1:
     which "^1.2.9"
 
 cross-spawn@^6.0.0, cross-spawn@^6.0.5:
+<<<<<<< HEAD
 =======
 cross-spawn@^6.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
   integrity sha512-eTVLrBSt7fjbDygz805pMnstIs2VTBNkRm0qxZd+M7A5XDdxVRWO5MxGBXZhjY4cqLYLdtrGqRf8mBPmzwSpWQ==
@@ -1691,11 +2015,15 @@ cross-spawn@^6.0.0:
     which "^1.2.9"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 crypto-random-string@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/crypto-random-string/-/crypto-random-string-1.0.0.tgz#a230f64f568310e1498009940790ec99545bca7e"
   integrity sha1-ojD2T1aDEOFJgAmUB5DsmVRbyn4=
 
+<<<<<<< HEAD
 d@1:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/d/-/d-1.0.0.tgz#754bb5bfe55451da69a58b94d45f4c5b0462d58f"
@@ -1705,6 +2033,8 @@ d@1:
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 dashdash@^1.12.0:
   version "1.14.1"
   resolved "https://registry.yarnpkg.com/dashdash/-/dashdash-1.14.1.tgz#853cfa0f7cbe2fed5de20326b8dd581035f6e2f0"
@@ -1713,10 +2043,14 @@ dashdash@^1.12.0:
     assert-plus "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
 =======
 debug@2.6.9:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+debug@2.6.9, debug@^2.1.2, debug@^2.2.0, debug@^2.3.3, debug@^2.6.8, debug@^2.6.9:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.6.9"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
   integrity sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==
@@ -1738,10 +2072,14 @@ debug@^3.1.0:
     ms "^2.1.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
 =======
 debug@^4.1.0, debug@^4.1.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-4.1.1.tgz#3b72260255109c6b589cee050f1d516139664791"
   integrity sha512-pYAIzeRo8J6KPEaJ0VWOh5Pzkbw/RetuzehGM7QRRX5he4fPHx2rdKMB256ehJCkX+XRQm16eZLqLNS8RSZXZw==
@@ -1754,13 +2092,19 @@ decamelize@^1.2.0:
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 decode-uri-component@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/decode-uri-component/-/decode-uri-component-0.2.0.tgz#eb3913333458775cb84cd1a1fae062106bb87545"
   integrity sha1-6zkTMzRYd1y4TNGh+uBiEGu4dUU=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 deep-eql@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/deep-eql/-/deep-eql-3.0.1.tgz#dfc9404400ad1c8fe023e7da1df1c147c4b444df"
@@ -1769,6 +2113,9 @@ deep-eql@^3.0.1:
     type-detect "^4.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 deep-extend@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/deep-extend/-/deep-extend-0.6.0.tgz#c4fa7c95404a17a9c3e8ca7e1537312b736330ac"
@@ -1779,8 +2126,11 @@ deep-is@~0.1.3:
   resolved "https://registry.yarnpkg.com/deep-is/-/deep-is-0.1.3.tgz#b369d6fb5dbc13eecf524f91b070feedc357cf34"
   integrity sha1-s2nW+128E+7PUk+RsHD+7cNXzzQ=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 default-require-extensions@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/default-require-extensions/-/default-require-extensions-2.0.0.tgz#f5f8fbb18a7d6d50b21f641f649ebb522cfe24f7"
@@ -1789,6 +2139,9 @@ default-require-extensions@^2.0.0:
     strip-bom "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 define-properties@^1.1.2, define-properties@^1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/define-properties/-/define-properties-1.1.3.tgz#cf88da6cbee26fe6db7094f61d870cbd84cee9f1"
@@ -1818,23 +2171,32 @@ define-property@^2.0.2:
     is-descriptor "^1.0.2"
     isobject "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
   integrity sha1-3zrhmayt+31ECqrgsp4icrJOxhk=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
   integrity sha1-hMbhWbgZBP3KWaDvRM2HDTElD5o=
 
 depd@^1.1.0, depd@~1.1.1, depd@~1.1.2:
+<<<<<<< HEAD
 =======
 depd@~1.1.1, depd@~1.1.2:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/depd/-/depd-1.1.2.tgz#9bcd52e14c097763e749b274c4346ed2e560b5a9"
   integrity sha1-m81S4UwJd2PnSbJ0xDRu0uVgtak=
@@ -1845,19 +2207,28 @@ destroy@~1.0.4:
   integrity sha1-l4hXRCxEdJ5CBmE+N5RiBYJqvYA=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 detect-libc@^1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 diff@3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/diff/-/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
   integrity sha512-A46qtFgd+g7pDZinpnwiRJtxbC1hpgf0uzP3iG89scHk0AUC7A1TGxf5OiiOUv/JMZR8GOt8hL900hV0bOy5xA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 doctrine@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-1.5.0.tgz#379dce730f6166f76cefa4e6707a159b02c5a6fa"
@@ -1881,14 +2252,20 @@ dot-prop@^4.1.0:
     is-obj "^1.0.0"
 
 dotenv@^6.2.0:
+<<<<<<< HEAD
 =======
 dotenv@^6.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 dottie@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/dottie/-/dottie-2.0.1.tgz#697ad9d72004db7574d21f892466a3c285893659"
@@ -1899,8 +2276,11 @@ duplexer3@^0.1.4:
   resolved "https://registry.yarnpkg.com/duplexer3/-/duplexer3-0.1.4.tgz#ee01dd1cac0ed3cbc7fdbea37dc0a8f1ce002ce2"
   integrity sha1-7gHdHKwO08vH/b6jfcCo8c4ALOI=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 ecc-jsbn@~0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/ecc-jsbn/-/ecc-jsbn-0.1.2.tgz#3a83a904e54353287874c564b7549386849a98c9"
@@ -1942,13 +2322,19 @@ ejs@^2.6.1:
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 electron-to-chromium@^1.3.103:
   version "1.3.113"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.113.tgz#b1ccf619df7295aea17bc6951dc689632629e4a9"
   integrity sha512-De+lPAxEcpxvqPTyZAXELNpRZXABRxf+uL/rSykstQhzj/B0l1150G/ExIIxKc16lI89Hgz81J0BHAcbTqK49g==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 encodeurl@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/encodeurl/-/encodeurl-1.0.2.tgz#ad3ff4c86ec2d029322f5a02c3a9a606c95b3f59"
@@ -1962,10 +2348,14 @@ end-of-stream@^1.1.0:
     once "^1.4.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 error-ex@^1.2.0, error-ex@^1.3.1:
 =======
 error-ex@^1.3.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+error-ex@^1.2.0, error-ex@^1.3.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/error-ex/-/error-ex-1.3.2.tgz#b4ac40648107fdcdcfae242f428bea8a14d4f1bf"
   integrity sha512-7dFHNmqeFSEt2ZBsCriorKnn3Z2pj+fd9kmI6QoWw4//DL+icEBfc0U7qJCisqrTsKTjw4fNFy2pW9OqStD84g==
@@ -1981,6 +2371,9 @@ errorhandler@^1.5.0:
     escape-html "~1.0.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 es-abstract@^1.12.0:
   version "1.13.0"
   resolved "https://registry.yarnpkg.com/es-abstract/-/es-abstract-1.13.0.tgz#ac86145fdd5099d8dd49558ccba2eaf9b88e24e9"
@@ -2002,6 +2395,7 @@ es-to-primitive@^1.2.0:
     is-date-object "^1.0.1"
     is-symbol "^1.0.2"
 
+<<<<<<< HEAD
 es5-ext@^0.10.14, es5-ext@^0.10.35, es5-ext@^0.10.45, es5-ext@^0.10.46, es5-ext@^0.10.9, es5-ext@~0.10.14, es5-ext@~0.10.2, es5-ext@~0.10.46:
   version "0.10.47"
   resolved "https://registry.yarnpkg.com/es5-ext/-/es5-ext-0.10.47.tgz#d24232e1380daad5449a817be19bde9729024a11"
@@ -2013,6 +2407,8 @@ es5-ext@^0.10.14, es5-ext@^0.10.35, es5-ext@^0.10.45, es5-ext@^0.10.46, es5-ext@
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 es6-error@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/es6-error/-/es6-error-4.1.1.tgz#9e3af407459deed47e9a91f9b885a84eb05c561d"
@@ -2059,6 +2455,9 @@ escape-string-regexp@1.0.5, escape-string-regexp@^1.0.5:
   integrity sha1-G2HAViGQqN/2rjuyzwIAyhMLhtQ=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 eslint-config-airbnb-base@^13.1.0:
   version "13.1.0"
   resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-13.1.0.tgz#b5a1b480b80dfad16433d6c4ad84e6605052c05c"
@@ -2188,14 +2587,20 @@ espree@^5.0.0:
     acorn-jsx "^5.0.0"
     eslint-visitor-keys "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 esprima@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/esprima/-/esprima-4.0.1.tgz#13b04cdb3e6c5d19df91ab6987a8695619b0aa71"
   integrity sha512-eGuFFw7Upda+g4p+QHvnW0RyTX/SVeJBDM/gCtMARO0cLuT2HcEKnTPvhjV6aGeqrCB/sbNop0Kszm0jsaWU4A==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 esquery@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/esquery/-/esquery-1.0.1.tgz#406c51658b1f5991a5f9b62b1dc25b00e3e5c708"
@@ -2216,9 +2621,12 @@ estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1:
   integrity sha1-De4/7TH81GlhjOc0IJn8GvoL2xM=
 
 esutils@^2.0.0, esutils@^2.0.2:
+<<<<<<< HEAD
 =======
 esutils@^2.0.2:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
@@ -2229,6 +2637,7 @@ etag@~1.8.1:
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 event-emitter@^0.3.5:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/event-emitter/-/event-emitter-0.3.5.tgz#df8c69eef1647923c7157b9ce83840610b02cc39"
@@ -2237,6 +2646,8 @@ event-emitter@^0.3.5:
     d "1"
     es5-ext "~0.10.14"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 execa@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-0.7.0.tgz#944becd34cc41ee32a63a9faf27ad5a65fc59777"
@@ -2250,8 +2661,11 @@ execa@^0.7.0:
     signal-exit "^3.0.0"
     strip-eof "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 execa@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/execa/-/execa-1.0.0.tgz#c6236a5bb4df6d6f15e88e7f017798216749ddd8"
@@ -2266,6 +2680,9 @@ execa@^1.0.0:
     strip-eof "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 expand-brackets@^2.1.4:
   version "2.1.4"
   resolved "https://registry.yarnpkg.com/expand-brackets/-/expand-brackets-2.1.4.tgz#b77735e315ce30f6b6eff0f83b04151a22449622"
@@ -2279,8 +2696,11 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 express-jwt@^5.3.1:
   version "5.3.1"
   resolved "https://registry.yarnpkg.com/express-jwt/-/express-jwt-5.3.1.tgz#66f05c7dddb5409c037346a98b88965bb10ea4ae"
@@ -2348,6 +2768,9 @@ express@^4.16.3:
     vary "~1.1.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 extend-shallow@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/extend-shallow/-/extend-shallow-2.0.1.tgz#51af7d614ad9a9f610ea1bafbb989d6b1c56890f"
@@ -2363,14 +2786,20 @@ extend-shallow@^3.0.0, extend-shallow@^3.0.2:
     assign-symbols "^1.0.0"
     is-extendable "^1.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 extend@^3.0.0, extend@~3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.2.tgz#f8b1136b4071fbd8eb140aff858b1019ec2915fa"
   integrity sha512-fjquC59cD7CyW6urNXK0FBufkZcoiGG80wTuPujX590cB5Ttln20E2UB4S/WARVqhXffZl2LNgS+gQdPIIim/g==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 external-editor@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/external-editor/-/external-editor-3.0.3.tgz#5866db29a97826dbe4bf3afd24070ead9ea43a27"
@@ -2394,8 +2823,11 @@ extglob@^2.0.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 extsprintf@1.3.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.3.0.tgz#96918440e3041a7a414f8c52e3c574eb3c3e1e05"
@@ -2412,19 +2844,28 @@ fast-deep-equal@^2.0.1:
   integrity sha1-ewUhjd+WZ79/Nwv3/bLLFf3Qqkk=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fast-diff@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/fast-diff/-/fast-diff-1.2.0.tgz#73ee11982d86caaf7959828d519cfe927fac5f03"
   integrity sha512-xJuoT5+L99XlZ8twedaRf6Ax2TgQVxvgZOYoPKqZufmJib0tL2tegPBOZb1pVNgIhlqDlA0eO0c3wBvQcmzx4w==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fast-json-stable-stringify@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/fast-json-stable-stringify/-/fast-json-stable-stringify-2.0.0.tgz#d5142c0caee6b1189f87d3a76111064f86c8bbf2"
   integrity sha1-1RQsDK7msRifh9OnYREGT4bIu/I=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fast-levenshtein@~2.0.4:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/fast-levenshtein/-/fast-levenshtein-2.0.6.tgz#3d8a5c66883a16a30ca8643e851f19baa7797917"
@@ -2455,8 +2896,11 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 finalhandler@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/finalhandler/-/finalhandler-1.1.1.tgz#eebf4ed840079c83f4249038c9d703008301b105"
@@ -2471,6 +2915,9 @@ finalhandler@1.1.1:
     unpipe "~1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 find-cache-dir@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-1.0.0.tgz#9288e3e9e3cc3748717d39eade17cf71fc30ee6f"
@@ -2480,8 +2927,11 @@ find-cache-dir@^1.0.0:
     make-dir "^1.0.0"
     pkg-dir "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 find-cache-dir@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/find-cache-dir/-/find-cache-dir-2.0.0.tgz#4c1faed59f45184530fb9d7fa123a4d04a98472d"
@@ -2492,6 +2942,9 @@ find-cache-dir@^2.0.0:
     pkg-dir "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 find-up@^2.0.0, find-up@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-2.1.0.tgz#45d1b7e506c717ddd482775a2b77920a3c0c57a7"
@@ -2499,8 +2952,11 @@ find-up@^2.0.0, find-up@^2.1.0:
   dependencies:
     locate-path "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 find-up@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/find-up/-/find-up-3.0.0.tgz#49169f1d7993430646da61ecc5ae355c21c97b73"
@@ -2509,6 +2965,9 @@ find-up@^3.0.0:
     locate-path "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 flat-cache@^1.2.1:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/flat-cache/-/flat-cache-1.3.4.tgz#2c2ef77525cc2929007dfffa1dd314aa9c9dee6f"
@@ -2524,8 +2983,11 @@ for-in@^1.0.2:
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 foreground-child@^1.5.6:
   version "1.5.6"
   resolved "https://registry.yarnpkg.com/foreground-child/-/foreground-child-1.5.6.tgz#4fd71ad2dfde96789b980a5c0a295937cb2f5ce9"
@@ -2559,6 +3021,9 @@ forwarded@~0.1.2:
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fragment-cache@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/fragment-cache/-/fragment-cache-0.2.1.tgz#4290fad27f13e89be7f33799c6bc5a0abfff0d19"
@@ -2566,13 +3031,17 @@ fragment-cache@^0.2.1:
   dependencies:
     map-cache "^0.2.2"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fresh@0.5.2:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/fresh/-/fresh-0.5.2.tgz#3d8cadd90d976569fa835ab1f8e4b23a105605a7"
   integrity sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 fs-extra@^7.0.1:
   version "7.0.1"
@@ -2583,6 +3052,8 @@ fs-extra@^7.0.1:
     jsonfile "^4.0.0"
     universalify "^0.1.0"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fs-minipass@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
@@ -2590,14 +3061,20 @@ fs-minipass@^1.2.5:
   dependencies:
     minipass "^2.2.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
   integrity sha1-FQStJSMVjKpA20onh8sBQRmU6k8=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 fsevents@^1.2.7:
   version "1.2.7"
   resolved "https://registry.yarnpkg.com/fsevents/-/fsevents-1.2.7.tgz#4851b664a3783e52003b3c66eb0eee1074933aa4"
@@ -2635,8 +3112,11 @@ generic-pool@^3.4.0:
   resolved "https://registry.yarnpkg.com/generic-pool/-/generic-pool-3.6.0.tgz#34e3124d9af754c8bfee7c15906e7347dc543afc"
   integrity sha512-9tRjIJzgW+ZyYeFBhfLRUefnQwF+IFfEsUkdZB5o75/gb4OZWnYb4ZjPcZc1bl9ofhWCN2rGhXa0SQwF64jTLw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 get-caller-file@^1.0.1:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/get-caller-file/-/get-caller-file-1.0.3.tgz#f978fa4c90d1dfe7ff2d6beda2a515e713bdcf4a"
@@ -2648,6 +3128,9 @@ get-func-name@^2.0.0:
   integrity sha1-6td0q+5y4gQJQzoGY2YCPdaIekE=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 get-stdin@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-6.0.0.tgz#9e09bf712b360ab9225e812048f71fde9c89657b"
@@ -2658,8 +3141,11 @@ get-stream@^3.0.0:
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-3.0.0.tgz#8e943d1358dc37555054ecbe2edb05aa174ede14"
   integrity sha1-jpQ9E1jcN1VQVOy+LtsFqhdO3hQ=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 get-stream@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/get-stream/-/get-stream-4.1.0.tgz#c1b255575f3dc21d59bfc79cd3d2b46b1c3a54b5"
@@ -2668,13 +3154,19 @@ get-stream@^4.0.0:
     pump "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
   integrity sha1-3BXKHGcjh8p2vTesCjlbogQqLCg=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 getpass@^0.1.1:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/getpass/-/getpass-0.1.7.tgz#5eff8e3e684d569ae4cb2b1282604e8ba62149fa"
@@ -2683,6 +3175,9 @@ getpass@^0.1.1:
     assert-plus "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 glob-parent@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-3.1.0.tgz#9e6af6299d8d3bd2bd40430832bd113df906c5ae"
@@ -2691,8 +3186,11 @@ glob-parent@^3.1.0:
     is-glob "^3.1.0"
     path-dirname "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 glob@7.1.2:
   version "7.1.2"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.2.tgz#c19c9df9a028702d678612384a6552404c636d15"
@@ -2706,10 +3204,14 @@ glob@7.1.2:
     path-is-absolute "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 glob@^7.1.2, glob@^7.1.3:
 =======
 glob@^7.1.3:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+glob@^7.1.2, glob@^7.1.3:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/glob/-/glob-7.1.3.tgz#3960832d3f1574108342dafd3a67b332c0969df1"
   integrity sha512-vcfuiIxogLV4DlGBHIUOwI0IbrJ8HWPc4MU7HzviGeNho/UJDfi6B5p3sHeWIQ0KGIU0Jpxi5ZHxemQfLkkAwQ==
@@ -2722,6 +3224,9 @@ glob@^7.1.3:
     path-is-absolute "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 global-dirs@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/global-dirs/-/global-dirs-0.1.1.tgz#b319c0dd4607f353f3be9cca4c72fc148c49f445"
@@ -2730,14 +3235,20 @@ global-dirs@^0.1.0:
     ini "^1.3.4"
 
 globals@^11.1.0, globals@^11.7.0:
+<<<<<<< HEAD
 =======
 globals@^11.1.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "11.10.0"
   resolved "https://registry.yarnpkg.com/globals/-/globals-11.10.0.tgz#1e09776dffda5e01816b3bb4077c8b59c24eaa50"
   integrity sha512-0GZF1RiPKU97IHUO5TORo9w1PwrH/NBPl+fS7oMLdaTRiYmYbwK4NWoZWrAdd0/abG9R2BU+OiwyQpTpE6pdfQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.yarnpkg.com/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -2755,8 +3266,11 @@ got@^6.7.1:
     unzip-response "^2.0.1"
     url-parse-lax "^1.0.0"
 
+<<<<<<< HEAD
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
 =======
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
   version "4.1.15"
@@ -2798,6 +3312,9 @@ has-flag@^3.0.0:
   integrity sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 has-symbols@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/has-symbols/-/has-symbols-1.0.0.tgz#ba1a8f1af2a0fc39650f5c850367704122063b44"
@@ -2846,8 +3363,11 @@ has@^1.0.1, has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 hasha@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/hasha/-/hasha-3.0.0.tgz#52a32fab8569d41ca69a61ff1a214f8eb7c8bd39"
@@ -2861,6 +3381,9 @@ he@1.1.1:
   integrity sha1-k0EP0hsAlzUVH4howvJx80J+I/0=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 home-or-tmp@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/home-or-tmp/-/home-or-tmp-3.0.0.tgz#57a8fe24cf33cdd524860a15821ddc25c86671fb"
@@ -2873,8 +3396,11 @@ homedir-polyfill@^1.0.1:
   dependencies:
     parse-passwd "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 hosted-git-info@^2.1.4:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
@@ -2952,19 +3478,62 @@ iconv-lite@0.4.23:
     safer-buffer ">= 2.1.2 < 3"
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
 
+iconv-lite@^0.4.24, iconv-lite@^0.4.4:
+  version "0.4.24"
+  resolved "https://registry.yarnpkg.com/iconv-lite/-/iconv-lite-0.4.24.tgz#2022b4b25fbddc21d2f524974a474aafe733908b"
+  integrity sha512-v3MXnZAcvnywkTUEZomIActle7RXXeedOR31wwl7VlyoXO4Qi9arvSenNQWne1TcRwhCL1HwLI21bEqdpj8/rA==
+  dependencies:
+    safer-buffer ">= 2.1.2 < 3"
+
+ignore-by-default@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ignore-by-default/-/ignore-by-default-1.0.1.tgz#48ca6d72f6c6a3af00a9ad4ae6876be3889e2b09"
+  integrity sha1-SMptcvbGo68Aqa1K5odr44ieKwk=
+
+ignore-walk@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/ignore-walk/-/ignore-walk-3.0.1.tgz#a83e62e7d272ac0e3b551aaa82831a19b69f82f8"
+  integrity sha512-DTVlMx3IYPe0/JJcYP7Gxg7ttZZu3IInhuEhbchuqneY9wWe5Ojy2mXLBaQFUQmo0AW2r3qG7m1mg86js+gnlQ==
+  dependencies:
+    minimatch "^3.0.4"
+
+ignore@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
+  integrity sha512-cyFDKrqc/YdcWFniJhzI42+AzS+gNwmUzOSFcRCQYwySuBBBy/KjuxWLZ/FHEH6Moq1NizMOBWyTcv8O4OZIMg==
+
+import-fresh@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/import-fresh/-/import-fresh-3.0.0.tgz#a3d897f420cab0e671236897f75bc14b4885c390"
+  integrity sha512-pOnA9tfM3Uwics+SaBLCNyZZZbK+4PTu0OPZtLlMIrv17EdBoC15S9Kn8ckJ9TZTyKb3ywNE5y1yeDxxGA7nTQ==
+  dependencies:
+    parent-module "^1.0.0"
+    resolve-from "^4.0.0"
+
+import-lazy@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/import-lazy/-/import-lazy-2.1.0.tgz#05698e3d45c88e8d7e9d92cb0584e77f096f3e43"
+  integrity sha1-BWmOPUXIjo1+nZLLBYTnfwlvPkM=
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
   integrity sha1-khi5srkoojixPcT7a21XbyMUU+o=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 inflection@1.12.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/inflection/-/inflection-1.12.0.tgz#a200935656d6f5f6bc4dc7502e1aecb703228416"
   integrity sha1-ogCTVlbW9fa8TcdQLhrstwMihBY=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 inflight@^1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/inflight/-/inflight-1.0.6.tgz#49bd6331d7d02d0c09bc910a1075ba8165b56df9"
@@ -2974,15 +3543,22 @@ inflight@^1.0.4:
     wrappy "1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 inherits@2, inherits@2.0.3, inherits@^2.0.3, inherits@~2.0.3:
 =======
 inherits@2, inherits@2.0.3, inherits@~2.0.3:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+inherits@2, inherits@2.0.3, inherits@^2.0.3, inherits@~2.0.3:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
   integrity sha1-Yzwsg+PaQqUC9SRmAiSA9CCCYd4=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 ini@^1.3.4, ini@~1.3.0:
   version "1.3.5"
   resolved "https://registry.yarnpkg.com/ini/-/ini-1.3.5.tgz#eee25f56db1c9ec6085e0c22778083f596abf927"
@@ -3014,8 +3590,11 @@ invariant@^2.2.2:
   dependencies:
     loose-envify "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 invert-kv@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/invert-kv/-/invert-kv-2.0.0.tgz#7393f5afa59ec9ff5f67a27620d11c226e3eec02"
@@ -3032,6 +3611,9 @@ ipaddr.js@1.8.0:
   integrity sha1-6qM9bd16zo9/b+DJygRA5wZzix4=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-accessor-descriptor@^0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/is-accessor-descriptor/-/is-accessor-descriptor-0.1.6.tgz#a9e12cb3ae8d876727eeef3843f8a0897b5c98d6"
@@ -3046,14 +3628,20 @@ is-accessor-descriptor@^1.0.0:
   dependencies:
     kind-of "^6.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
   integrity sha1-d8mYQFJ6qOyxqLppe4BkWnqSap0=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-binary-path@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-binary-path/-/is-binary-path-1.0.1.tgz#75f16642b480f187a711c814161fd3a4a7655898"
@@ -3071,8 +3659,11 @@ is-buffer@^1.1.5:
   resolved "https://registry.yarnpkg.com/is-buffer/-/is-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha512-NcdALwpXkTm5Zvvbk7owOUSvVvBKDgKP5/ewfXEznmQFfs4ZRmanOeKBTjRVjka3QFoN6XJ+9F3USqfHqTaU5w==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-builtin-module@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-builtin-module/-/is-builtin-module-1.0.0.tgz#540572d34f7ac3119f8f76c30cbc1b1e037affbe"
@@ -3081,6 +3672,9 @@ is-builtin-module@^1.0.0:
     builtin-modules "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-callable@^1.1.4:
   version "1.1.4"
   resolved "https://registry.yarnpkg.com/is-callable/-/is-callable-1.1.4.tgz#1e1adf219e1eeb684d691f9d6a05ff0d30a24d75"
@@ -3147,8 +3741,11 @@ is-extglob@^2.1.0, is-extglob@^2.1.1:
   resolved "https://registry.yarnpkg.com/is-extglob/-/is-extglob-2.1.1.tgz#a88c02535791f02ed37c76a1b9ea9773c833f8c2"
   integrity sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-fullwidth-code-point@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-1.0.0.tgz#ef9e31386f031a7f0d643af82fde50c457ef00cb"
@@ -3162,6 +3759,9 @@ is-fullwidth-code-point@^2.0.0:
   integrity sha1-o7MKXE8ZkYMWeqq5O+764937ZU8=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-glob@^3.1.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/is-glob/-/is-glob-3.1.0.tgz#7ba5ae24217804ac70707b96922567486cc3e84a"
@@ -3184,8 +3784,11 @@ is-installed-globally@^0.1.0:
     global-dirs "^0.1.0"
     is-path-inside "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-ip@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/is-ip/-/is-ip-2.0.0.tgz#68eea07e8a0a0a94c2d080dd674c731ab2a461ab"
@@ -3194,6 +3797,9 @@ is-ip@^2.0.0:
     ip-regex "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-npm@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-npm/-/is-npm-1.0.0.tgz#f2fb63a65e4905b406c86072765a1a4dc793b9f4"
@@ -3225,7 +3831,11 @@ is-plain-object@^2.0.1, is-plain-object@^2.0.3, is-plain-object@^2.0.4:
   dependencies:
     isobject "^3.0.1"
 
+<<<<<<< HEAD
 is-promise@^2.1, is-promise@^2.1.0:
+=======
+is-promise@^2.1.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/is-promise/-/is-promise-2.1.0.tgz#79a2a9ece7f096e80f36d2b2f3bc16c1ff4bf3fa"
   integrity sha1-eaKp7OfwlugPNtKy87wWwf9L8/o=
@@ -3248,14 +3858,20 @@ is-retry-allowed@^1.0.0:
   integrity sha1-EaBgVotnM5REAz0BJaYaINVk+zQ=
 
 is-stream@^1.0.0, is-stream@^1.0.1, is-stream@^1.1.0:
+<<<<<<< HEAD
 =======
 is-stream@^1.0.1, is-stream@^1.1.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/is-stream/-/is-stream-1.1.0.tgz#12d4a3dd4e68e0b79ceb8dbc84173ae80d91ca44"
   integrity sha1-EtSj3U5o4Lec6428hBc66A2RykQ=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-symbol@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-symbol/-/is-symbol-1.0.2.tgz#a055f6ae57192caee329e7a860118b497a950f38"
@@ -3263,23 +3879,32 @@ is-symbol@^1.0.2:
   dependencies:
     has-symbols "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/is-typedarray/-/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 is-windows@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/is-windows/-/is-windows-1.0.2.tgz#d1850eb9791ecd18e6182ce12a30f396634bb19d"
   integrity sha512-eXK1UInq2bPmjyX6e3VHIzMLobc4J94i4AWn+Hpq3OU5KkrRC96OAcR3PRJ/pGu6m8TRnBHP9dkXQVsT/COVIA==
 
 isarray@1.0.0, isarray@^1.0.0, isarray@~1.0.0:
+<<<<<<< HEAD
 =======
 isarray@~1.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/isarray/-/isarray-1.0.0.tgz#bb935d48582cba168c06834957a54a3e07124f11"
   integrity sha1-u5NdSFgsuhaMBoNJV6VKPgcSTxE=
@@ -3290,6 +3915,9 @@ isexe@^2.0.0:
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"
@@ -3302,8 +3930,11 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
@@ -3362,6 +3993,7 @@ istanbul-reports@^2.1.0:
     handlebars "^4.0.11"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 js-beautify@^1.8.8:
   version "1.8.9"
   resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.8.9.tgz#08e3c05ead3ecfbd4f512c3895b1cda76c87d523"
@@ -3373,24 +4005,33 @@ js-beautify@^1.8.8:
     mkdirp "~0.5.0"
     nopt "~4.0.1"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 js-levenshtein@^1.1.3:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/js-levenshtein/-/js-levenshtein-1.1.6.tgz#c6cee58eb3550372df8deb85fad5ce66ce01d59d"
   integrity sha512-X2BB11YZtrRqY4EnQcLX5Rh373zbK4alC1FW7D7MBhL2gtcC17cTnr6DmfHZeS0s2rTHjUTMMHfG7gO8SSdw+g==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
+<<<<<<< HEAD
 =======
 js-tokens@^4.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 js-yaml@^3.11.0, js-yaml@^3.12.0:
 =======
 js-yaml@^3.11.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+js-yaml@^3.11.0, js-yaml@^3.12.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "3.12.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.1.tgz#295c8632a18a23e054cf5c9d3cecafe678167600"
   integrity sha512-um46hB9wNOKlwkHgiuyEVAybXBjwFUV0Z/RaHJblRd9DXltue9FTYvzCr9ErQrK9Adz5MU4gHWVaNUfdmrC8qA==
@@ -3409,13 +4050,19 @@ jsesc@^2.5.1:
   integrity sha512-OYu7XEzjkCQ3C5Ps3QIZsQfNpqoJyZZA99wd9aWd05NCtC5pWOkShK2mkL6HXQR6/Cy2lbNdPlZBpuQHXE63gA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 jsesc@~0.5.0:
   version "0.5.0"
   resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-0.5.0.tgz#e7dee66e35d6fc16f710fe91d5cf69f70f08911d"
   integrity sha1-597mbjXW/Bb3EP6R1c9p9w8IkR0=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 json-parse-better-errors@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/json-parse-better-errors/-/json-parse-better-errors-1.0.2.tgz#bb867cfb3450e69107c131d1c514bab3dc8bcaa9"
@@ -3432,19 +4079,28 @@ json-schema@0.2.3:
   integrity sha1-tIDIkuWaLwWVTOcnvT8qTogvnhM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 json-stable-stringify-without-jsonify@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/json-stable-stringify-without-jsonify/-/json-stable-stringify-without-jsonify-1.0.1.tgz#9db7b59496ad3f3cfef30a75142d2d930ad72651"
   integrity sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 json5@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/json5/-/json5-2.1.0.tgz#e7a0c62c48285c628d20a10b85c89bb807c32850"
@@ -3452,6 +4108,7 @@ json5@^2.1.0:
   dependencies:
     minimist "^1.2.0"
 
+<<<<<<< HEAD
 jsonfile@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/jsonfile/-/jsonfile-4.0.0.tgz#8771aae0799b64076b76640fca058f9c10e33ecb"
@@ -3461,6 +4118,8 @@ jsonfile@^4.0.0:
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 jsonwebtoken@^8.1.0, jsonwebtoken@^8.3.0:
   version "8.4.0"
   resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.4.0.tgz#8757f7b4cb7440d86d5e2f3becefa70536c8e46a"
@@ -3509,6 +4168,9 @@ kareem@2.3.0:
   integrity sha512-6hHxsp9e6zQU8nXsP+02HGWXwTkOEw6IROhF2ZA28cYbUk4eJ6QbtZvdqZOdD9YPKghG3apk5eOCvs+tLl3lRg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 kind-of@^3.0.2, kind-of@^3.0.3, kind-of@^3.2.0:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/kind-of/-/kind-of-3.2.2.tgz#31ea21a734bab9bbb0f32466d893aea51e4a3c64"
@@ -3540,8 +4202,11 @@ latest-version@^3.0.0:
   dependencies:
     package-json "^4.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 lcid@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/lcid/-/lcid-2.0.0.tgz#6ef5d2df60e52f82eb228a4c373e8d1f397253cf"
@@ -3555,6 +4220,9 @@ lcov-parse@^0.0.10:
   integrity sha1-GwuP+ayceIklBYK3C3ExXZ2m2aM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 levn@^0.3.0, levn@~0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/levn/-/levn-0.3.0.tgz#3b09924edf9f083c0490fdd4c0bc4421e04764ee"
@@ -3573,8 +4241,11 @@ load-json-file@^2.0.0:
     pify "^2.0.0"
     strip-bom "^3.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 load-json-file@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-4.0.0.tgz#2f5f45ab91e33216234fd53adab668eb4ec0993b"
@@ -3586,6 +4257,9 @@ load-json-file@^4.0.0:
     strip-bom "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 locate-path@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-2.0.0.tgz#2b568b265eec944c6d9c0de9c3dbbbca0354cd8e"
@@ -3594,8 +4268,11 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -3660,10 +4337,14 @@ lodash.set@^4.0.0:
   integrity sha1-2HV7HagH3eJIFrDWqEvqGnYjCyM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
 =======
 lodash@^4.17.10:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+lodash@^4.17.1, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.5:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "4.17.11"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
@@ -3674,6 +4355,9 @@ log-driver@^1.2.7:
   integrity sha512-U7KCmLdqsGHBLeWqYlFA0V0Sl6P08EE1ZrmA9cxjUE0WVqT9qnyVDPz1kzpFEP0jdJuFnasWIfSd7fsaNXkpbg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 loose-envify@^1.0.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/loose-envify/-/loose-envify-1.4.0.tgz#71ee51fa7be4caec1a63839f7e682d8132d30caf"
@@ -3686,8 +4370,11 @@ lowercase-keys@^1.0.0:
   resolved "https://registry.yarnpkg.com/lowercase-keys/-/lowercase-keys-1.0.1.tgz#6f9e30b47084d971a7c820ff15a6c5167b74c26f"
   integrity sha512-G2Lj61tXDnVFFOi8VZds+SoQjtQC3dgokKdDG2mTm1tx4m50NUHBOZSBwQQHyy0V12A0JTG4icfZQH+xPyh8VA==
 
+<<<<<<< HEAD
 lru-cache@^4.0.1, lru-cache@^4.1.3:
 =======
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 lru-cache@^4.0.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
   version "4.1.5"
@@ -3722,6 +4409,9 @@ map-age-cleaner@^0.1.1:
     p-defer "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 map-cache@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/map-cache/-/map-cache-0.2.2.tgz#c32abd0bd6525d9b051645bb4f26ac5dc98a0dbf"
@@ -3734,8 +4424,11 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -3800,6 +4493,9 @@ methods@^1.1.1, methods@^1.1.2, methods@~1.1.2:
   integrity sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 micromatch@^3.1.10, micromatch@^3.1.4:
   version "3.1.10"
   resolved "https://registry.yarnpkg.com/micromatch/-/micromatch-3.1.10.tgz#70859bc95c9840952f359a068a3fc49f9ecfac23"
@@ -3819,8 +4515,11 @@ micromatch@^3.1.10, micromatch@^3.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.2"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 mime-db@~1.37.0:
   version "1.37.0"
   resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.37.0.tgz#0b6a0ce6fdbe9576e25f1f2d2fde8830dc0ad0d8"
@@ -3871,6 +4570,9 @@ minimist@~0.0.1:
   integrity sha1-3j+YVD2/lggr5IrRoMfNqDYwHc8=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 minipass@^2.2.1, minipass@^2.3.4:
   version "2.3.5"
   resolved "https://registry.yarnpkg.com/minipass/-/minipass-2.3.5.tgz#cacebe492022497f656b0f0f51e2682a9ed2d848"
@@ -3894,10 +4596,14 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+<<<<<<< HEAD
 mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
 =======
 mkdirp@0.5.1, mkdirp@^0.5.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
@@ -3922,6 +4628,9 @@ mocha@^5.2.0:
     supports-color "5.4.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 moment-timezone@^0.5.14:
   version "0.5.23"
   resolved "https://registry.yarnpkg.com/moment-timezone/-/moment-timezone-0.5.23.tgz#7cbb00db2c14c71b19303cb47b0fb0a6d8651463"
@@ -3934,8 +4643,11 @@ moment-timezone@^0.5.14:
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.24.0.tgz#0d055d53f5052aa653c9f6eb68bb5d12bf5c2b5b"
   integrity sha512-bV7f+6l2QigeBBZSM/6yTNq4P2fNpSWj/0e7jQcy87A8e7o2nAfP/34/2ky5Vw4B9S446EtIhodAzkFCcR4dQg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 mongodb-core@3.1.9:
   version "3.1.9"
   resolved "https://registry.yarnpkg.com/mongodb-core/-/mongodb-core-3.1.9.tgz#c31ee407bf932b0149eaed775c17ee09974e4ca3"
@@ -4024,12 +4736,19 @@ ms@^2.1.1:
   integrity sha512-tgp+dl5cGk28utYktBsrFqA7HKgrhgPsg6Z/EfhWI4gl1Hwq8B/GmY/0oXZ6nF8hDVesS/FpnYaD/kOWhYQvyg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 mute-stream@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   integrity sha1-MHXOk7whuPq0PhvE2n6BFe0ee6s=
 
+<<<<<<< HEAD
 nan@2.12.1, nan@^2.9.2:
+=======
+nan@^2.9.2:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha512-JY7V6lRkStKcKTvHO5NVSQRv+RV+FIL5pvDoLiAtSL9pKlC5x9PKQcZDsq7m4FO4d57mkhC6Z+QhAh3Jdk5JFw==
@@ -4065,8 +4784,11 @@ needle@^2.2.1:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 negotiator@0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/negotiator/-/negotiator-0.6.1.tgz#2b327184e8992101177b28563fb5e7102acd0ca9"
@@ -4086,11 +4808,15 @@ nice-try@^1.0.4:
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 node-modules-regexp@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/node-modules-regexp/-/node-modules-regexp-1.0.0.tgz#8d9dbe28964a4ac5712e9131642107c71e90ec40"
   integrity sha1-jZ2+KJZKSsVxLpExZCEHxx6Q7EA=
 
+<<<<<<< HEAD
 node-pre-gyp@0.12.0:
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.12.0.tgz#39ba4bb1439da030295f899e3b520b7785766149"
@@ -4107,6 +4833,8 @@ node-pre-gyp@0.12.0:
     semver "^5.3.0"
     tar "^4"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 node-pre-gyp@^0.10.0:
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.10.3.tgz#3070040716afdc778747b61b6887bf78880b80fc"
@@ -4146,7 +4874,11 @@ nodemon@^1.18.9:
     undefsafe "^2.0.2"
     update-notifier "^2.5.0"
 
+<<<<<<< HEAD
 nopt@^4.0.1, nopt@~4.0.1:
+=======
+nopt@^4.0.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/nopt/-/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
   integrity sha1-0NRoWv1UFRk8jHUFYC0NF81kR00=
@@ -4161,8 +4893,11 @@ nopt@~1.0.10:
   dependencies:
     abbrev "1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 normalize-package-data@^2.3.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/normalize-package-data/-/normalize-package-data-2.4.2.tgz#6b2abd85774e51f7936f1395e45acb905dc849b2"
@@ -4174,6 +4909,9 @@ normalize-package-data@^2.3.2:
     validate-npm-package-license "^3.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 normalize-path@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/normalize-path/-/normalize-path-2.1.1.tgz#1ab28b556e198363a8c1a6f7e6fa20137fe6aed9"
@@ -4199,8 +4937,11 @@ npm-packlist@^1.1.6:
     ignore-walk "^3.0.1"
     npm-bundled "^1.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 npm-run-path@^2.0.0:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
@@ -4209,6 +4950,9 @@ npm-run-path@^2.0.0:
     path-key "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 npmlog@^4.0.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
@@ -4219,8 +4963,11 @@ npmlog@^4.0.2:
     gauge "~2.7.3"
     set-blocking "~2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
@@ -4262,15 +5009,22 @@ oauth-sign@~0.9.0:
   integrity sha512-fexhUFFPTGV8ybAtSIGbV6gOkSv8UtRbDBnAyLQw4QPKkgNlsH2ByPGtMUqdWkos6YCRmAqViwgZrJc/mRDzZQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0:
 =======
 object-assign@^4:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+object-assign@^4, object-assign@^4.0.1, object-assign@^4.1.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
   integrity sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 object-copy@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/object-copy/-/object-copy-0.1.0.tgz#7e7d858b781bd7c991a41ba975ed3812754e998c"
@@ -4319,8 +5073,11 @@ object.pick@^1.3.0:
   dependencies:
     isobject "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 on-finished@~2.3.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/on-finished/-/on-finished-2.3.0.tgz#20f1336481b083cd75337992a16971aa2d906947"
@@ -4341,6 +5098,9 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
     wrappy "1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 onetime@^2.0.0:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/onetime/-/onetime-2.0.1.tgz#067428230fd67443b2794b22bba528b6867962d4"
@@ -4348,8 +5108,11 @@ onetime@^2.0.0:
   dependencies:
     mimic-fn "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 optimist@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
@@ -4359,6 +5122,9 @@ optimist@^0.6.1:
     wordwrap "~0.0.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 optionator@^0.8.2:
   version "0.8.2"
   resolved "https://registry.yarnpkg.com/optionator/-/optionator-0.8.2.tgz#364c5e409d3f4d6301d6c0b4c05bba50180aeb64"
@@ -4372,9 +5138,12 @@ optionator@^0.8.2:
     wordwrap "~1.0.0"
 
 os-homedir@^1.0.0, os-homedir@^1.0.1:
+<<<<<<< HEAD
 =======
 os-homedir@^1.0.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
   integrity sha1-/7xJiDNuDoM94MFox+8VISGqf7M=
@@ -4389,6 +5158,9 @@ os-locale@^3.0.0:
     mem "^4.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 os-tmpdir@^1.0.0, os-tmpdir@~1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
@@ -4402,8 +5174,11 @@ osenv@^0.1.4:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-defer@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-defer/-/p-defer-1.0.0.tgz#9f6eb182f6c9aa8cd743004a7d4f96b196b0fb0c"
@@ -4420,6 +5195,9 @@ p-is-promise@^2.0.0:
   integrity sha512-pzQPhYMCAgLAKPWD2jC3Se9fEfrD9npNos0y150EeqZll7akhEgGhTW/slB6lHku8AvYGiJ+YJ5hfHKePPgFWg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-limit@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-1.3.0.tgz#b86bd5f0c25690911c7590fcbfc2010d54b3ccb8"
@@ -4427,8 +5205,11 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-limit@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.1.0.tgz#1d5a0d20fb12707c758a655f6bbc4386b5930d68"
@@ -4437,6 +5218,9 @@ p-limit@^2.0.0:
     p-try "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-locate@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-2.0.0.tgz#20a0103b222a70c8fd39cc2e580680f3dde5ec43"
@@ -4444,8 +5228,11 @@ p-locate@^2.0.0:
   dependencies:
     p-limit "^1.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-locate@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-3.0.0.tgz#322d69a05c0264b25997d9f40cd8a891ab0064a4"
@@ -4454,13 +5241,19 @@ p-locate@^3.0.0:
     p-limit "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-try@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-1.0.0.tgz#cbc79cdbaf8fd4228e13f621f2b1a237c1b207b3"
   integrity sha1-y8ec26+P1CKOE/Yh8rGiN8GyB7M=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 p-try@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/p-try/-/p-try-2.0.0.tgz#85080bb87c64688fa47996fe8f7dfbe8211760b1"
@@ -4477,6 +5270,9 @@ package-hash@^3.0.0:
     release-zalgo "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 package-json@^4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/package-json/-/package-json-4.0.1.tgz#8869a0401253661c4c4ca3da6c2121ed555f5eed"
@@ -4506,8 +5302,11 @@ parse-json@^2.2.0:
   dependencies:
     error-ex "^1.2.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 parse-json@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/parse-json/-/parse-json-4.0.0.tgz#be35f5425be1f7f6c747184f98a788cb99477ee0"
@@ -4517,26 +5316,38 @@ parse-json@^4.0.0:
     json-parse-better-errors "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 parse-passwd@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/parse-passwd/-/parse-passwd-1.0.0.tgz#6d5b934a456993b23d37f40a382d6f1666a8e5c6"
   integrity sha1-bVuTSkVpk7I9N/QKOC1vFmao5cY=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 parseurl@~1.3.2:
   version "1.3.2"
   resolved "https://registry.yarnpkg.com/parseurl/-/parseurl-1.3.2.tgz#fc289d4ed8993119460c156253262cdc8de65bf3"
   integrity sha1-/CidTtiZMRlGDBViUyYs3I3mW/M=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 pascalcase@^0.1.1:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/pascalcase/-/pascalcase-0.1.1.tgz#b363e55e8006ca6fe21784d2db22bd15d7917f14"
   integrity sha1-s2PlXoAGym/iF4TS2yK9FdeRfxQ=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 passport-local@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/passport-local/-/passport-local-1.0.0.tgz#1fe63268c92e75606626437e3b906662c15ba6ee"
@@ -4558,13 +5369,19 @@ passport@^0.4.0:
     pause "0.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-dirname@^1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-dirname/-/path-dirname-1.0.2.tgz#cc33d24d525e099a5388c0336c6e32b9160609e0"
   integrity sha1-zDPSTVJeCZpTiMAzbG4yuRYGCeA=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-exists@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/path-exists/-/path-exists-3.0.0.tgz#ce0ebeaa5f78cb18925ea7d810d7b59b010fd515"
@@ -4576,32 +5393,47 @@ path-is-absolute@^1.0.0:
   integrity sha1-F0uSaHNVNP+8es5r9TpanhtcX18=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-is-inside@^1.0.1, path-is-inside@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/path-is-inside/-/path-is-inside-1.0.2.tgz#365417dede44430d1c11af61027facf074bdfc53"
   integrity sha1-NlQX3t5EQw0cEa9hAn+s8HS9/FM=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-key@^2.0.0, path-key@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
   integrity sha512-GSmOT2EbHrINBf9SR7CDELwlJ8AENk3Qn7OikK4nFYAu3Ote2+JYNVvkpAEQm3/TLNEJFD/xZJjzyxg3KBWOzw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
   integrity sha1-32BBeABfUi8V60SQ5yR6G/qmf4w=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-type@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-2.0.0.tgz#f012ccb8415b7096fc2daa1054c3d72389594c73"
@@ -4609,8 +5441,11 @@ path-type@^2.0.0:
   dependencies:
     pify "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 path-type@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/path-type/-/path-type-3.0.0.tgz#cef31dc8e0a1a3bb0d105c0cd97cf3bf47f4e36f"
@@ -4697,12 +5532,73 @@ pify@^2.0.0:
   integrity sha1-Ywn04OX6kT7BxpMHrjZLSzd8nns=
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
 
+pg-connection-string@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/pg-connection-string/-/pg-connection-string-0.1.3.tgz#da1847b20940e42ee1492beaf65d49d91b245df7"
+  integrity sha1-2hhHsglA5C7hSSvq9l1J2RskXfc=
+
+pg-hstore@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/pg-hstore/-/pg-hstore-2.3.2.tgz#f7ef053e7b9b892ae986af2f7cbe86432dfcf24f"
+  integrity sha1-9+8FPnubiSrphq8vfL6GQy388k8=
+  dependencies:
+    underscore "^1.7.0"
+
+pg-int8@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/pg-int8/-/pg-int8-1.0.1.tgz#943bd463bf5b71b4170115f80f8efc9a0c0eb78c"
+  integrity sha512-WCtabS6t3c8SkpDBUlb1kjOs7l66xsGdKpIPZsg4wR+B3+u9UAum2odSsF9tnvxg80h4ZxLWMy4pRjOsFIqQpw==
+
+pg-pool@^2.0.4:
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/pg-pool/-/pg-pool-2.0.6.tgz#7b561a482feb0a0e599b58b5137fd2db3ad8111c"
+  integrity sha512-hod2zYQxM8Gt482q+qONGTYcg/qVcV32VHVPtktbBJs0us3Dj7xibISw0BAAXVMCzt8A/jhfJvpZaxUlqtqs0g==
+
+pg-types@~2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/pg-types/-/pg-types-2.0.0.tgz#038ddc302a0340efcdb46d0581cc7caa2303cbba"
+  integrity sha512-THUD7gQll5tys+5eQ8Rvs7DjHiIC3bLqixk3gMN9Hu8UrCBAOjf35FoI39rTGGc3lM2HU/R+Knpxvd11mCwOMA==
+  dependencies:
+    pg-int8 "1.0.1"
+    postgres-array "~2.0.0"
+    postgres-bytea "~1.0.0"
+    postgres-date "~1.0.0"
+    postgres-interval "^1.1.0"
+
+pg@^7.8.0:
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/pg/-/pg-7.8.0.tgz#541c25b3323d85f67ce7d4501a77470976868ce9"
+  integrity sha512-yS3C9YD+ft0H7G47uU0eKajgTieggCXdA+Fxhm5G+wionY6kPBa8BEVDwPLMxQvkRkv3/LXiFEqjZm9gfxdW+g==
+  dependencies:
+    buffer-writer "2.0.0"
+    packet-reader "0.3.1"
+    pg-connection-string "0.1.3"
+    pg-pool "^2.0.4"
+    pg-types "~2.0.0"
+    pgpass "1.x"
+    semver "4.3.2"
+
+pgpass@1.x:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pgpass/-/pgpass-1.0.2.tgz#2a7bb41b6065b67907e91da1b07c1847c877b306"
+  integrity sha1-Knu0G2BltnkH6R2hsHwYR8h3swY=
+  dependencies:
+    split "^1.0.0"
+
+pify@^2.0.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
+  integrity sha1-7RQaasBDqEnqWISY59yosVMw6Qw=
+
 pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
   integrity sha1-5aSs0sEB/fPZpNB/DbxNtJ3SgXY=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 pirates@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/pirates/-/pirates-4.0.0.tgz#850b18781b4ac6ec58a43c9ed9ec5fe6796addbd"
@@ -4717,8 +5613,11 @@ pkg-dir@^2.0.0:
   dependencies:
     find-up "^2.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 pkg-dir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
@@ -4727,6 +5626,9 @@ pkg-dir@^3.0.0:
     find-up "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 posix-character-classes@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/posix-character-classes/-/posix-character-classes-0.1.1.tgz#01eac0fe3b5af71a2a6c02feabb8c1fef7e00eab"
@@ -4781,19 +5683,26 @@ private@^0.1.6:
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
   integrity sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 process-nextick-args@~2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.0.tgz#a37d732f4271b4ab1ad070d35508e8290788ffaa"
   integrity sha512-MtEC1TqN0EU5nephaJ4rAtThHtC86dNN9qCuEhtshvpVBkAW5ZO7BASN9REnF9eoXGcRub+pFuKEpOHE+HbEMw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 progress@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/progress/-/progress-2.0.3.tgz#7e8cf8d8f5b8f239c1bc68beb4eb78567d572ef8"
   integrity sha512-7PiHtLll5LdnKIMw100I+8xJXR5gW2QwWYkT6iJva0bXitZKa/XMrSbdmg3r2Xnaidz9Qumd0VPaMrZlF9V9sA==
 
+<<<<<<< HEAD
 proto-list@~1.2.1:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/proto-list/-/proto-list-1.2.4.tgz#212d5bfe1318306a420f6402b8e26ff39647a849"
@@ -4801,6 +5710,8 @@ proto-list@~1.2.1:
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 proxy-addr@~2.0.4:
   version "2.0.4"
   resolved "https://registry.yarnpkg.com/proxy-addr/-/proxy-addr-2.0.4.tgz#ecfc733bf22ff8c6f407fa275327b9ab67e48b93"
@@ -4820,13 +5731,19 @@ psl@^1.1.24:
   integrity sha512-/6pt4+C+T+wZUieKR620OpzN/LlnNKuWjy1iFLQ/UG35JqHlR/89MP1d96dUfkf6Dne3TuLQzOYEYshJ+Hx8mw==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 pstree.remy@^1.1.6:
   version "1.1.6"
   resolved "https://registry.yarnpkg.com/pstree.remy/-/pstree.remy-1.1.6.tgz#73a55aad9e2d95814927131fbf4dc1b62d259f47"
   integrity sha512-NdF35+QsqD7EgNEI5mkI/X+UwaxVEbQaz9f4IooEmMUv6ZPmlTQYGjBPJGgrlzNdjSvIy4MWMg6Q6vCgBO2K+w==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 pump@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/pump/-/pump-3.0.0.tgz#b4a2116815bde2f4e1ea602354e8c75565107a64"
@@ -4876,6 +5793,9 @@ raw-body@2.3.3:
     unpipe "1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 rc@^1.0.1, rc@^1.1.6, rc@^1.2.7:
   version "1.2.8"
   resolved "https://registry.yarnpkg.com/rc/-/rc-1.2.8.tgz#cd924bf5200a075b83c188cd6b9e211b7fc0d3ed"
@@ -4894,8 +5814,11 @@ read-pkg-up@^2.0.0:
     find-up "^2.0.0"
     read-pkg "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 read-pkg-up@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg-up/-/read-pkg-up-4.0.0.tgz#1b221c6088ba7799601c808f91161c66e58f8978"
@@ -4905,6 +5828,9 @@ read-pkg-up@^4.0.0:
     read-pkg "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 read-pkg@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-2.0.0.tgz#8ef1c0623c6a6db0dc6713c4bfac46332b2368f8"
@@ -4914,8 +5840,11 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 read-pkg@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/read-pkg/-/read-pkg-3.0.0.tgz#9cbc686978fee65d16c00e2b19c237fcf6e38389"
@@ -4926,10 +5855,14 @@ read-pkg@^3.0.0:
     path-type "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.3.5:
 =======
 readable-stream@^2.3.5:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.3.5:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.3.6"
   resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-2.3.6.tgz#b11c27d88b8ff1fbe070643cf94b0c79ae1b0aaf"
   integrity sha512-tQtKA9WIAhBF3+VLAseyMqZeBjW0AHJoxOtYqSUZNJxauErmLbVm2FW1y+J/YA9dUrAC39ITejlZWhVIwawkKw==
@@ -4943,6 +5876,9 @@ readable-stream@^2.3.5:
     util-deprecate "~1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 readdirp@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/readdirp/-/readdirp-2.2.1.tgz#0e87622a3325aa33e892285caf8b4e846529a525"
@@ -4994,14 +5930,20 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     extend-shallow "^3.0.2"
     safe-regex "^1.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 regexp-clone@0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/regexp-clone/-/regexp-clone-0.0.1.tgz#a7c2e09891fdbf38fbb10d376fb73003e68ac589"
   integrity sha1-p8LgmJH9vzj7sQ03b7cwA+aKxYk=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 regexp-tree@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/regexp-tree/-/regexp-tree-0.1.1.tgz#27b455f9b138ca2e84c090e9aff1ffe2a04d97fa"
@@ -5055,8 +5997,11 @@ regjsparser@^0.6.0:
   dependencies:
     jsesc "~0.5.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 release-zalgo@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/release-zalgo/-/release-zalgo-1.0.0.tgz#09700b7e5074329739330e535c5a90fb67851730"
@@ -5065,6 +6010,9 @@ release-zalgo@^1.0.0:
     es6-error "^4.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 remove-trailing-separator@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/remove-trailing-separator/-/remove-trailing-separator-1.1.0.tgz#c24bce2a283adad5bc3f58e0d48249b92379d8ef"
@@ -5080,8 +6028,11 @@ repeat-string@^1.6.1:
   resolved "https://registry.yarnpkg.com/repeat-string/-/repeat-string-1.6.1.tgz#8dcae470e1c88abc2d600fff4a776286da75e637"
   integrity sha1-jcrkcOHIirwtYA//Sndihtp15jc=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 request@^2.85.0, request@^2.87.0:
   version "2.88.0"
   resolved "https://registry.yarnpkg.com/request/-/request-2.88.0.tgz#9c2fca4f7d35b592efe57c7f0a55e81052124fef"
@@ -5137,6 +6088,9 @@ resolve-from@^4.0.0:
   integrity sha512-pb/MYmXstAkysRFx8piNI1tGFNQIFA3vkE3Gq4EuA1dF6gHp/+vgZqsCGJapvy8N3Q+4o7FwvquPJcnZ7RYy4g==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 resolve-url@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/resolve-url/-/resolve-url-0.2.1.tgz#2c637fe77c893afd2a663fe21aa9080068e2052a"
@@ -5171,9 +6125,12 @@ retry-as-promised@^2.3.2:
     debug "^2.6.9"
 
 rimraf@^2.6.1, rimraf@^2.6.2, rimraf@^2.6.3, rimraf@~2.6.2:
+<<<<<<< HEAD
 =======
 rimraf@^2.6.2, rimraf@^2.6.3:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.6.3"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.6.3.tgz#b2d104fe0d8fb27cf9e0a1cda8262dd3833c6cab"
   integrity sha512-mwqeW5XsA2qAejG46gYdENaxXjx9onRNCfn7L0duuP4hCuTIi/QO7PDK07KJfp1d+izWPrzEJDcSqBa0OZQriA==
@@ -5181,6 +6138,9 @@ rimraf@^2.6.2, rimraf@^2.6.3:
     glob "^7.1.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 run-async@^2.2.0:
   version "2.3.0"
   resolved "https://registry.yarnpkg.com/run-async/-/run-async-2.3.0.tgz#0371ab4ae0bdd720d4166d7dfda64ff7a445a6c0"
@@ -5195,14 +6155,20 @@ rxjs@^6.4.0:
   dependencies:
     tslib "^1.9.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.2.tgz#991ec69d296e0313747d59bdfd2b745c35f8828d"
   integrity sha512-Gd2UZBJDkXlY7GbJxfsE8/nvKkUEU1G38c1siN6QP6a9PT9MmHB8GnpscSmMJSoF8LOIrt8ud/wPtojys4G6+g==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 safe-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/safe-regex/-/safe-regex-1.1.0.tgz#40a3669f3b077d1e943d44629e157dd48023bf2e"
@@ -5210,8 +6176,11 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "safer-buffer@>= 2.1.2 < 3", safer-buffer@^2.0.2, safer-buffer@^2.1.0, safer-buffer@~2.1.0:
   version "2.1.2"
   resolved "https://registry.yarnpkg.com/safer-buffer/-/safer-buffer-2.1.2.tgz#44fa161b0187b9549dd84bb91802f9bd8385cd6a"
@@ -5225,6 +6194,9 @@ saslprep@^1.0.0:
     sparse-bitfield "^3.0.3"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
@@ -5237,22 +6209,32 @@ semver-diff@^2.0.0:
   dependencies:
     semver "^5.0.3"
 
+<<<<<<< HEAD
 "semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1, semver@^5.6.0:
 =======
 "semver@2 || 3 || 4 || 5", semver@^5.1.0, semver@^5.5.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+"semver@2 || 3 || 4 || 5", semver@^5.0.3, semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0, semver@^5.5.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "5.6.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.6.0.tgz#7e74256fbaa49c75aa7c7a205cc22799cac80004"
   integrity sha512-RS9R6R35NYgQn++fkDWaOmqGoj4Ek9gGs+DPxNUZKuwE183xjJroKvyo1IzVFeXvUrvmALy6FWD5xrdJT25gMg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 semver@4.3.2:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/semver/-/semver-4.3.2.tgz#c7a07158a80bedd052355b770d82d6640f803be7"
   integrity sha1-x6BxWKgL7dBSNVt3DYLWZA+AO+c=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 send@0.16.2:
   version "0.16.2"
   resolved "https://registry.yarnpkg.com/send/-/send-0.16.2.tgz#6ecca1e0f8c156d141597559848df64730a6bbc1"
@@ -5273,6 +6255,7 @@ send@0.16.2:
     statuses "~1.4.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 sequelize-cli@^5.4.0:
   version "5.4.0"
   resolved "https://registry.yarnpkg.com/sequelize-cli/-/sequelize-cli-5.4.0.tgz#6a2c2af331466414d8b2ecb6912e24d2de0d04b5"
@@ -5287,6 +6270,8 @@ sequelize-cli@^5.4.0:
     umzug "^2.1.0"
     yargs "^12.0.5"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 sequelize@^4.42.0:
   version "4.42.0"
   resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.42.0.tgz#439467ba7bfe7d5afcc56d62b3e091860fbf18f3"
@@ -5310,8 +6295,11 @@ sequelize@^4.42.0:
     validator "^10.4.0"
     wkx "^0.4.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 serve-static@1.13.2:
   version "1.13.2"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.13.2.tgz#095e8472fd5b46237db50ce486a43f4b86c6cec1"
@@ -5323,15 +6311,22 @@ serve-static@1.13.2:
     send "0.16.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 set-blocking@^2.0.0, set-blocking@~2.0.0:
 =======
 set-blocking@^2.0.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+set-blocking@^2.0.0, set-blocking@~2.0.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
   integrity sha1-BF+XgtARrppoA93TgrJDkrPYkPc=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 set-value@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/set-value/-/set-value-0.4.3.tgz#7db08f9d3d22dc7f78e53af3c3bf4666ecdfccf1"
@@ -5352,8 +6347,11 @@ set-value@^2.0.0:
     is-plain-object "^2.0.3"
     split-string "^3.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 setprototypeof@1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.0.tgz#d0bd85536887b6fe7c0d818cb962d9d91c54e656"
@@ -5372,11 +6370,15 @@ shebang-regex@^1.0.0:
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 shimmer@^1.1.0:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/shimmer/-/shimmer-1.2.1.tgz#610859f7de327b587efebf501fb43117f9aff337"
   integrity sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==
 
+<<<<<<< HEAD
 sigmund@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
@@ -5384,12 +6386,17 @@ sigmund@^1.0.1:
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 slice-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-2.1.0.tgz#cacd7693461a637a5788d92a7dd4fba068e81636"
@@ -5399,8 +6406,11 @@ slice-ansi@^2.0.0:
     astral-regex "^1.0.0"
     is-fullwidth-code-point "^2.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 sliced@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/sliced/-/sliced-1.0.1.tgz#0b3a662b5d04c3177b1926bea82b03f837a2ef41"
@@ -5414,6 +6424,9 @@ slug@^0.9.1:
     unicode ">= 0.3.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -5469,18 +6482,25 @@ source-map-url@^0.4.0:
   integrity sha1-PpNdfd1zYxuXZZlW1VEo6HtQhKM=
 
 source-map@^0.5.0, source-map@^0.5.6:
+<<<<<<< HEAD
 =======
 source-map@^0.5.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "0.5.7"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.5.7.tgz#8a039d2d1021d22d1ea14c80d8ea468ba2ef3fcc"
   integrity sha1-igOdLRAh0i0eoUyA2OpGi6LvP8w=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
 =======
 source-map@^0.6.1, source-map@~0.6.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
@@ -5531,6 +6551,9 @@ spdx-license-ids@^3.0.0:
   integrity sha512-uBIcIl3Ih6Phe3XHK1NqboJLdGfwr1UN3k6wSD1dZpmPsIkb8AGNbZYJ1fOBk834+Gxy8rpfDxrS6XLEMZMY2g==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 split-string@^3.0.1, split-string@^3.0.2:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/split-string/-/split-string-3.1.0.tgz#7cb09dda3a86585705c64b39a6466038682e8fe2"
@@ -5545,8 +6568,11 @@ split@^1.0.0:
   dependencies:
     through "2"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
@@ -5568,6 +6594,9 @@ sshpk@^1.7.0:
     tweetnacl "~0.14.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 static-extend@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/static-extend/-/static-extend-0.1.2.tgz#60809c39cbff55337226fd5e0b520f341f1fb5c6"
@@ -5576,8 +6605,11 @@ static-extend@^0.1.1:
     define-property "^0.2.5"
     object-copy "^0.1.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "statuses@>= 1.4.0 < 2":
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/statuses/-/statuses-1.5.0.tgz#161c7dac177659fd9811f43771fa99381478628c"
@@ -5598,10 +6630,14 @@ string-width@^1.0.1:
     strip-ansi "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 "string-width@^1.0.2 || 2", string-width@^2.0.0, string-width@^2.1.0, string-width@^2.1.1:
 =======
 string-width@^2.0.0, string-width@^2.1.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+"string-width@^1.0.2 || 2", string-width@^2.0.0, string-width@^2.1.0, string-width@^2.1.1:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-2.1.1.tgz#ab93f27a8dc13d28cac815c462143a6d9012ae9e"
   integrity sha512-nOqH59deCq9SRHlxq1Aw85Jnt4w6KvLKqWVik6oA9ZklXLNIOlqg4F2yrT1MVaTjAqvVwdfeZ7w7aCvJD7ugkw==
@@ -5631,6 +6667,9 @@ strip-ansi@^4.0.0:
     ansi-regex "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 strip-ansi@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/strip-ansi/-/strip-ansi-5.0.0.tgz#f78f68b5d0866c20b2c9b8c61b5298508dc8756f"
@@ -5638,8 +6677,11 @@ strip-ansi@^5.0.0:
   dependencies:
     ansi-regex "^4.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 strip-bom@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/strip-bom/-/strip-bom-3.0.0.tgz#2334c18e9c759f7bdd56fdef7e9ae3d588e68ed3"
@@ -5651,13 +6693,19 @@ strip-eof@^1.0.0:
   integrity sha1-u0P/VZim6wXYm1n80SnJgzE2Br8=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 superagent@^3.7.0:
   version "3.8.3"
   resolved "https://registry.yarnpkg.com/superagent/-/superagent-3.8.3.tgz#460ea0dbdb7d5b11bc4f78deba565f86a178e128"
@@ -5682,10 +6730,14 @@ supports-color@5.4.0:
     has-flag "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 supports-color@^5.2.0, supports-color@^5.3.0:
 =======
 supports-color@^5.3.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+supports-color@^5.2.0, supports-color@^5.3.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-5.5.0.tgz#e2e69a44ac8772f78a1ec0b35b689df6530efc8f"
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
@@ -5700,6 +6752,9 @@ supports-color@^6.0.0:
     has-flag "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 table@^5.0.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/table/-/table-5.2.2.tgz#61d474c9e4d8f4f7062c98c7504acb3c08aa738f"
@@ -5745,8 +6800,11 @@ terraformer@~1.0.5:
   optionalDependencies:
     "@types/geojson" "^1.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 test-exclude@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/test-exclude/-/test-exclude-5.1.0.tgz#6ba6b25179d2d38724824661323b73e03c0c1de1"
@@ -5758,6 +6816,9 @@ test-exclude@^5.1.0:
     require-main-filename "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 text-table@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/text-table/-/text-table-0.2.0.tgz#7f5ee823ae805207c00af2df4a84ec3fcfa570b4"
@@ -5773,6 +6834,7 @@ timed-out@^4.0.0:
   resolved "https://registry.yarnpkg.com/timed-out/-/timed-out-4.0.1.tgz#f32eacac5a175bea25d7fab565ab3ed8741ef56f"
   integrity sha1-8y6srFoXW+ol1/q1Zas+2HQe9W8=
 
+<<<<<<< HEAD
 timers-ext@^0.1.5:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/timers-ext/-/timers-ext-0.1.7.tgz#6f57ad8578e07a3fb9f91d9387d65647555e25c6"
@@ -5781,6 +6843,8 @@ timers-ext@^0.1.5:
     es5-ext "~0.10.46"
     next-tick "1"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 tmp@^0.0.33:
   version "0.0.33"
   resolved "https://registry.yarnpkg.com/tmp/-/tmp-0.0.33.tgz#6d34335889768d21b2bcda0aa277ced3b1bfadf9"
@@ -5788,14 +6852,20 @@ tmp@^0.0.33:
   dependencies:
     os-tmpdir "~1.0.2"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
   integrity sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 to-object-path@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/to-object-path/-/to-object-path-0.3.0.tgz#297588b7b0e7e0ac08e04e672f85c1f4999e17af"
@@ -5833,8 +6903,11 @@ touch@^3.1.0:
   dependencies:
     nopt "~1.0.10"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 tough-cookie@~2.4.3:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.4.3.tgz#53f36da3f47783b0925afa06ff9f3b165280f781"
@@ -5849,13 +6922,19 @@ trim-right@^1.0.1:
   integrity sha1-yy4SAwZ+DI3h9hQJS5/kVwTqYAM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 tslib@^1.9.0:
   version "1.9.3"
   resolved "https://registry.yarnpkg.com/tslib/-/tslib-1.9.3.tgz#d7e4dd79245d85428c4d7e4822a79917954ca286"
   integrity sha512-4krF8scpejhaOgqzBEcGM7yDIEfi0/8+8zDRZhNZZ2kjmHJ4hv3zCbQWxoJGz1iw5U0Jl0nma13xzHXcncMavQ==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 tunnel-agent@^0.6.0:
   version "0.6.0"
   resolved "https://registry.yarnpkg.com/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
@@ -5869,6 +6948,9 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 type-check@~0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/type-check/-/type-check-0.3.2.tgz#5884cab512cf1d355e3fb784f30804b2b520db72"
@@ -5876,8 +6958,11 @@ type-check@~0.3.2:
   dependencies:
     prelude-ls "~1.1.2"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 type-detect@^4.0.0, type-detect@^4.0.5:
   version "4.0.8"
   resolved "https://registry.yarnpkg.com/type-detect/-/type-detect-4.0.8.tgz#7646fb5f18871cfbb7749e69bd39a6388eb7450c"
@@ -5907,6 +6992,7 @@ uid-safe@~2.1.5:
     random-bytes "~1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 umzug@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/umzug/-/umzug-2.2.0.tgz#6160bdc1817e4a63a625946775063c638623e62e"
@@ -5915,6 +7001,8 @@ umzug@^2.1.0:
     babel-runtime "^6.23.0"
     bluebird "^3.5.3"
 
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 undefsafe@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/undefsafe/-/undefsafe-2.0.2.tgz#225f6b9e0337663e0d8e7cfd686fc2836ccace76"
@@ -5923,14 +7011,20 @@ undefsafe@^2.0.2:
     debug "^2.2.0"
 
 underscore@^1.7.0, underscore@^1.9.1:
+<<<<<<< HEAD
 =======
 underscore@^1.9.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "1.9.1"
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
   integrity sha512-5/4etnCkd9c8gwgowi5/om/mYO5ajCaOgdzj/oW+0eQV9WxKBDZw5+ycmKmeaTXjInS/W0BzpGLo2xR2aBwZdg==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 unicode-canonical-property-names-ecmascript@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/unicode-canonical-property-names-ecmascript/-/unicode-canonical-property-names-ecmascript-1.0.4.tgz#2619800c4c825800efdd8343af7dd9933cbe2818"
@@ -5954,14 +7048,20 @@ unicode-property-aliases-ecmascript@^1.0.4:
   resolved "https://registry.yarnpkg.com/unicode-property-aliases-ecmascript/-/unicode-property-aliases-ecmascript-1.0.4.tgz#5a533f31b4317ea76f17d807fa0d116546111dd0"
   integrity sha512-2WSLa6OdYd2ng8oqiGIWnJqyFArvhn+5vgx5GTxMbUYjCYKUcuKS62YLFF0R/BDGlB1yzXjQOLtPAfHsgirEpg==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "unicode@>= 0.3.1":
   version "11.0.1"
   resolved "https://registry.yarnpkg.com/unicode/-/unicode-11.0.1.tgz#735bd422ec75cf28d396eb224d535d168d5f1db6"
   integrity sha512-+cHtykLb+eF1yrSLWTwcYBrqJkTfX7Quoyg7Juhe6uylF43ZbMdxMuSHNYlnyLT8T7POAvavgBthzUF9AIaQvQ==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 union-value@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/union-value/-/union-value-1.0.0.tgz#5c71c34cb5bad5dcebe3ea0cd08207ba5aa1aea4"
@@ -5979,6 +7079,7 @@ unique-string@^1.0.0:
   dependencies:
     crypto-random-string "^1.0.0"
 
+<<<<<<< HEAD
 universalify@^0.1.0:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-0.1.2.tgz#b646f69be3942dabcecc9d6639c80dc105efaa66"
@@ -5986,12 +7087,17 @@ universalify@^0.1.0:
 
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 unpipe@1.0.0, unpipe@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unpipe/-/unpipe-1.0.0.tgz#b2bf4ee8514aae6165b4817829d21b2ef49904ec"
   integrity sha1-sr9O6FFKrmFltIF4KdIbLvSZBOw=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 unset-value@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/unset-value/-/unset-value-1.0.0.tgz#8376873f7d2335179ffb1e6fc3a8ed0dfc8ab559"
@@ -6026,8 +7132,11 @@ update-notifier@^2.5.0:
     semver-diff "^2.0.0"
     xdg-basedir "^3.0.0"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 uri-js@^4.2.2:
   version "4.2.2"
   resolved "https://registry.yarnpkg.com/uri-js/-/uri-js-4.2.2.tgz#94c540e1ff772956e2299507c010aea6c8838eb0"
@@ -6036,6 +7145,9 @@ uri-js@^4.2.2:
     punycode "^2.1.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 urix@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/urix/-/urix-0.1.0.tgz#da937f7a62e21fec1fd18d49b35c2935067a6c72"
@@ -6053,8 +7165,11 @@ use@^3.1.0:
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -6066,15 +7181,22 @@ utils-merge@1.0.1:
   integrity sha1-n5VxD1CiZ5R7LMwSR0HBAoQn5xM=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 uuid@^3.2.1, uuid@^3.3.2:
 =======
 uuid@^3.3.2:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+uuid@^3.2.1, uuid@^3.3.2:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.2.tgz#1b4af4955eb3077c501c23872fc6513811587131"
   integrity sha512-yXJmeNaw3DnnKAOKJE51sL/ZaYfWJRl1pK9dr19YFCu0ObS231AB1/LbqTKRAQ5kw8A90rA6fr4riOUpTZvQZA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 v8flags@^3.1.1:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/v8flags/-/v8flags-3.1.2.tgz#fc5cd0c227428181e6c29b2992e4f8f1da5e0c9f"
@@ -6082,8 +7204,11 @@ v8flags@^3.1.1:
   dependencies:
     homedir-polyfill "^1.0.1"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 validate-npm-package-license@^3.0.1:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/validate-npm-package-license/-/validate-npm-package-license-3.0.4.tgz#fc91f6b9c7ba15c857f4cb2c5defeec39d4f410a"
@@ -6093,13 +7218,19 @@ validate-npm-package-license@^3.0.1:
     spdx-expression-parse "^3.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 validator@^10.4.0:
   version "10.11.0"
   resolved "https://registry.yarnpkg.com/validator/-/validator-10.11.0.tgz#003108ea6e9a9874d31ccc9e5006856ccd76b228"
   integrity sha512-X/p3UZerAIsbBfN/IwahhYaBbY68EN/UQBWHtsbXGT5bfrH/p4NQzUCG1kF/rtKaNpnJ7jAu6NGTdSNtyNIXMw==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 vary@^1, vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
@@ -6127,6 +7258,9 @@ which@^1.2.9, which@^1.3.0:
     isexe "^2.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 wide-align@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/wide-align/-/wide-align-1.1.3.tgz#ae074e6bdc0c14a431e804e624549c633b000457"
@@ -6148,21 +7282,30 @@ wkx@^0.4.1:
   dependencies:
     "@types/node" "*"
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 wordwrap@~0.0.2:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-0.0.3.tgz#a3d5da6cd5c0bc0008d37234bbaf1bed63059107"
   integrity sha1-o9XabNXAvAAI03I0u68b7WMFkQc=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 wordwrap@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/wordwrap/-/wordwrap-1.0.0.tgz#27584810891456a4171c8d0226441ade90cbcaeb"
   integrity sha1-J1hIEIkUVqQXHI0CJkQa3pDLyus=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 wrap-ansi@^2.0.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/wrap-ansi/-/wrap-ansi-2.1.0.tgz#d8fc3d284dd05794fe84973caecdd1cf824fdd85"
@@ -6177,10 +7320,14 @@ wrappy@1:
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 write-file-atomic@^2.0.0, write-file-atomic@^2.3.0:
 =======
 write-file-atomic@^2.3.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+write-file-atomic@^2.0.0, write-file-atomic@^2.3.0:
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/write-file-atomic/-/write-file-atomic-2.4.2.tgz#a7181706dfba17855d221140a9c06e15fcdd87b9"
   integrity sha512-s0b6vB3xIVRLWywa6X9TOMA7k9zio0TMOsl9ZnDkliA/cfJlpHXAscj0gbHVJiTdIuAYpIyqS5GW91fqm6gG5g==
@@ -6190,6 +7337,9 @@ write-file-atomic@^2.3.0:
     signal-exit "^3.0.2"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 write@^0.2.1:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/write/-/write-0.2.1.tgz#5fc03828e264cea3fe91455476f7a3c566cb0757"
@@ -6207,8 +7357,11 @@ xtend@^4.0.0:
   resolved "https://registry.yarnpkg.com/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
   integrity sha1-pcbVMr5lbiPbgg77lDofBJmNY68=
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 "y18n@^3.2.1 || ^4.0.0":
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/y18n/-/y18n-4.0.0.tgz#95ef94f85ecc81d007c264e190a120f0a3c8566b"
@@ -6220,13 +7373,19 @@ yallist@^2.1.2:
   integrity sha1-HBH5IY8HYImkfdUS+TxmmaaoHVI=
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 yallist@^3.0.0, yallist@^3.0.2:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-3.0.3.tgz#b4b049e314be545e3ce802236d6cd22cd91c3de9"
   integrity sha512-S+Zk8DEWE6oKpV+vI3qWkaK+jSbIK86pCwe2IF/xwIpQ8jEuxpw9NyaGjmp9+BoJv5FV2piqCDcoCtStppiq2A==
 
+<<<<<<< HEAD
 =======
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
+=======
+>>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
 yargs-parser@^11.1.1:
   version "11.1.1"
   resolved "https://registry.yarnpkg.com/yargs-parser/-/yargs-parser-11.1.1.tgz#879a0865973bca9f6bab5cbdf3b1c67ec7d3bcf4"

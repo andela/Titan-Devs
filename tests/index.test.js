@@ -1,5 +1,7 @@
-const secret = require("../config/index").secret;
-const equal = require("chai").assert.equal;
+import { assert } from "chai";
+import config from "../config/index";
+const { equal } = assert;
+
 const addTwo = (a, b) => {
   return parseFloat(a) + parseFloat(b);
 };
@@ -11,7 +13,7 @@ describe("/addTwo", () => {
     done();
   });
   it("It should return secret", done => {
-    equal(secret, "secret");
+    equal(config.secret, "secret");
     done();
   });
 });
