@@ -34,10 +34,13 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
-#Test coverage directory
-coverage
-.nyc_output
+# dot env file
+.env
 
+# package json lock
+
+package-lock.json
 #ignore yarn files
 yarn.*
 yarn-error.*
+.nyc_output

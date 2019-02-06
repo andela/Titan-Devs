@@ -4,14 +4,16 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha ./tests --timeout=10000 --exit"
+    "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha ./tests --timeout=10000 --exit",
+    "start": "NODE_ENV=development nodemon --exec babel-node index.js"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
+    "babel-preset-airbnb": "^3.2.0",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
-    "dotenv": "^6.0.0",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "errorhandler": "^1.5.0",
     "express": "^4.16.3",
@@ -23,9 +25,13 @@
     "mongoose": "^5.2.2",
     "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
+    "nodemon": "^1.18.9",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
+    "pg": "^7.8.0",
+    "pg-hstore": "^2.3.2",
     "request": "^2.87.0",
+    "sequelize": "^4.42.0",
     "slug": "^0.9.1",
     "underscore": "^1.9.1"
   },
@@ -35,6 +41,8 @@
     "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
     "eslint": "^5.13.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.0.0",
