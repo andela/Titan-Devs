@@ -5,3 +5,6 @@ notifications:
   email: false
   slack: 
     andela:m0fSBLRd944nk3Gme63A9OgD
+before_script: 
+# yarn install is like npm install 
+  - yarn install

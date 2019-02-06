@@ -34,6 +34,13 @@ node_modules
 # Optional REPL history
 .node_repl_history
 
+# dot env file
+.env
+
+# package json lock
+
+package-lock.json
 #ignore yarn files
 yarn.*
 yarn-error.*
+.nyc_output
