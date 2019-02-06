@@ -8,8 +8,6 @@ Create a community of like minded authors to foster inspiration and innovation
 by leveraging the modern web.
 
 ---
-
----
 ## Code style 
 The style-guide is ESlint-airbnb, and it uses prettier for frommating code. To enable `VS Code + ESLint + prettier` follow the steps below:
 *  `cd root_directory`
