@@ -33,6 +33,7 @@
     "request": "^2.87.0",
     "sequelize": "^4.42.0",
     "slug": "^0.9.1",
+    "swagger-ui-express": "^4.0.2",
     "underscore": "^1.9.1"
   },
   "devDependencies": {
@@ -49,7 +50,10 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsdoc": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
+<<<<<<< HEAD
     "jsdoc": "^3.5.5",
+=======
+>>>>>>> [ft #[163518681]]  adding api for swagger documentation
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
     "prettier": "^1.16.4"
