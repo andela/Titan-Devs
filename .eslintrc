@@ -1,7 +1,7 @@
 {
   "root": true,
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "jsdoc"],
   "env": {
     "node": true,
     "es6": true,
@@ -21,15 +21,25 @@
     "comma-dangle": 0,
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
-    "valid-jsdoc": [
-      "error",
-      {
-        "requireReturn": true,
-        "requireReturnType": true,
-        "requireParamDescription": false,
-        "requireReturnDescription": true
-      }
-    ],
-    "curly":"off"
+    "curly": "off",
+    "jsdoc/check-examples": 1,
+    "jsdoc/check-param-names": 1,
+    "jsdoc/check-tag-names": 1,
+    "jsdoc/check-types": 1,
+    "jsdoc/newline-after-description": false,
+    "jsdoc/no-undefined-types": 1,
+    "jsdoc/require-description": 1,
+    "jsdoc/require-description-complete-sentence": 1,
+    "jsdoc/require-example": 0,
+    "jsdoc/require-hyphen-before-param-description": 1,
+    "jsdoc/require-param": 1,
+    "jsdoc/require-param-description": 1,
+    "jsdoc/require-param-name": 1,
+    "jsdoc/require-param-type": 1,
+    "jsdoc/require-returns": 1,
+    "jsdoc/require-returns-check": 1,
+    "jsdoc/require-returns-description": 1,
+    "jsdoc/require-returns-type": 1,
+    "jsdoc/valid-types": 1
   }
 }
