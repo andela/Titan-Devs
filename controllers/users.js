@@ -3,7 +3,7 @@ import models from "../models";
 const { User } = models;
 
 class UserController {
-  static findOne(req, res, next) {
+  static findOne(req, res) {
     const { userId } = req.params;
     User.findOne({ where: { id: userId } })
       .then(result => {
@@ -21,7 +21,7 @@ class UserController {
       .catch(error => {
         res
           .status(500)
-          .json({ error: "An error occur please Try again later", error });
+          .json({ message: "An error occur please Try again later", error });
       });
   }
 }
