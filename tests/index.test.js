@@ -1,4 +1,3 @@
-
 const secret = require("../config/index").secret;
 const equal = require("chai").assert.equal;
 const addTwo = (a, b) => {
