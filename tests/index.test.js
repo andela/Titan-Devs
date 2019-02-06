@@ -12,7 +12,7 @@ describe("/addTwo", () => {
     equal(sum, 6);
     done();
   });
-  it("It should return secret", done => {
+  it("It should return secret ", done => {
     equal(config.secret, "secret");
     done();
   });
