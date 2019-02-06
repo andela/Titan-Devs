@@ -37,3 +37,7 @@ node_modules
 #Test coverage directory
 coverage
 .nyc_output
+
+#ignore yarn files
+yarn.*
+yarn-error.*
