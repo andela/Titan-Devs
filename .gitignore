@@ -43,3 +43,7 @@ package-lock.json
 yarn.*
 yarn-error.*
 .nyc_output
+yarn.lock
+
+# ignore prettier testing file
+testingprettier.js 
