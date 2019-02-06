@@ -43,3 +43,4 @@ package-lock.json
 #ignore yarn files
 yarn.*
 yarn-error.*
+.nyc_output
