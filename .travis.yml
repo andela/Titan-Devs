@@ -5,9 +5,6 @@ notifications:
   email: false
   slack: 
     andela:m0fSBLRd944nk3Gme63A9OgD
-env:
-  global:
-    - CC_TEST_REPORTER_ID=97b70dada289f07ea85b3a24ebcb83f91886f7f73c448df84071430fb75b9af6
 rvm:
   - 2.2.0
 before_script:
