@@ -32,8 +32,6 @@ node_modules
 .npm
 
 # Optional REPL history
-<<<<<<< HEAD
-<<<<<<< HEAD
 .node_repl_history
 
 # dot env file
@@ -45,29 +43,14 @@ package-lock.json
 #ignore yarn files
 yarn.*
 yarn-error.*
-<<<<<<< HEAD
-.nyc_output
-=======
 .nyc_output
 yarn.lock
 
 # ignore prettier testing file
 testingprettier.js 
 yarn.lock
-<<<<<<< HEAD
->>>>>>> [ch-setup-unit-testing-#163518679]Configurate testing env and add assertion library
-=======
-=======
-.node_repl_history
->>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
-<<<<<<< HEAD
->>>>>>> [ch-integrate-coveralls-code-#163518680]Add code coverage and coverage reporter
-=======
-=======
 .node_repl_history
 
 #Test coverage directory
 coverage
-.nyc_output
->>>>>>> [ch-integrate-coveralls-code-#163518680]Remove test coverage and report from git
->>>>>>> [ch-integrate-coveralls-code-#163518680]Remove test coverage and report from git
+
