@@ -22,7 +22,7 @@ export default (sequelize, DataTypes) => {
     { tableName: "users" }
   );
 
-  //eslint-disabled-next-line
+  //eslint-disabled-next-line no-use-before-define
   user.associate = models => {
     // associations can be defined here
   };
