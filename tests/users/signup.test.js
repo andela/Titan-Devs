@@ -7,6 +7,7 @@ const dammyUser = {
   password: "password",
   username: "luc2017"
 };
+
 chai.use(chaiHttp);
 should();
 
