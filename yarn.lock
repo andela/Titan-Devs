@@ -791,10 +791,21 @@
     "@types/tough-cookie" "*"
 =======
 "@types/node@*", "@types/node@^10.11.7":
+<<<<<<< HEAD
   version "10.12.24"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.24.tgz#b13564af612a22a20b5d95ca40f1bffb3af315cf"
   integrity sha512-GWWbvt+z9G5otRBW8rssOFgRY87J9N/qbhqfjMZ+gUuL6zoL+Hm6gP/8qQBG4jjimqdaNLCehcVapZ/Fs2WjCQ==
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
+
+"@types/semver@^5.5.0":
+  version "5.5.0"
+  resolved "https://registry.yarnpkg.com/@types/semver/-/semver-5.5.0.tgz#146c2a29ee7d3bae4bf2fcb274636e264c813c45"
+  integrity sha512-41qEJgBH/TWgo5NFSvBCJ1qkoi3Q6ONSF2avrHq1LVEZfYpdHmj0y9SuTK+u9ZhG1sYQKBL1AWXKyLWP4RaUoQ==
+=======
+  version "10.12.21"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.21.tgz#7e8a0c34cf29f4e17a36e9bd0ea72d45ba03908e"
+  integrity sha512-CBgLNk4o3XMnqMc0rhb6lc77IwShMEglz05deDcn2lQxyXEZivfwgYJu7SMha9V5XcrP6qZuevTHV/QrN2vjKQ==
+>>>>>>> #163756426 Add user registration endpoint
 
 "@types/semver@^5.5.0":
   version "5.5.0"
@@ -1131,10 +1142,17 @@ bluebird@3.5.1:
   integrity sha512-MKiLiV+I1AA596t9w1sQJ8jkiSr5+ZKi0WKrYGUn6d1Fx+Ij4tIj+m2WMQSGczs5jZVxV339chE8iwk6F64wjA==
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3:
 =======
 bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3, bluebird@~3.5.0:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
+=======
+bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3, bluebird@~3.5.0:
+=======
+bluebird@^3.4.6, bluebird@^3.5.0, bluebird@^3.5.3:
+>>>>>>> #163756426 Add user registration endpoint
+>>>>>>> #163756426 Add user registration endpoint
   version "3.5.3"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.5.3.tgz#7d01c6f9616c9a51ab0f8c549a79dfe6ec33efa7"
   integrity sha512-/qKPUQlaW1OyR51WeCPBvRnAlnZFUJkCSG5HzGnuIqhgyJtF+T94lFnn33eiazjRm2LAHVy2guNnaq48X9SJuw==
@@ -2642,10 +2660,17 @@ got@^6.7.1:
     url-parse-lax "^1.0.0"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
 =======
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
+=======
+graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
+=======
+graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
+>>>>>>> #163756426 Add user registration endpoint
+>>>>>>> #163756426 Add user registration endpoint
   version "4.1.15"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.15.tgz#ffb703e1066e8a0eeaa4c8b80ba9253eeefbfb00"
   integrity sha512-6uHUhOPEBgQ24HM+r6b/QwWfZq+yiFcipKFrOFiBEnWdy5sdzYoi+pJeQaPI5qOLRFqWmAXUPQNsielzdLoecA==
@@ -3202,6 +3227,7 @@ istanbul-reports@^2.1.0:
   dependencies:
     handlebars "^4.0.11"
 
+<<<<<<< HEAD
 joi@^14.3.1:
   version "14.3.1"
   resolved "https://registry.yarnpkg.com/joi/-/joi-14.3.1.tgz#164a262ec0b855466e0c35eea2a885ae8b6c703c"
@@ -3211,6 +3237,8 @@ joi@^14.3.1:
     isemail "3.x.x"
     topo "3.x.x"
 
+=======
+>>>>>>> #163756426 Add user registration endpoint
 js-beautify@^1.8.8:
   version "1.8.9"
   resolved "https://registry.yarnpkg.com/js-beautify/-/js-beautify-1.8.9.tgz#08e3c05ead3ecfbd4f512c3895b1cda76c87d523"
@@ -3752,10 +3780,17 @@ mixin-deep@^1.2.0:
     is-extendable "^1.0.1"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
 =======
 mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
 >>>>>>> [ch-integrate-coveralls-code-#163518680]Configured mocha to use ES6 with babel
+=======
+mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
+=======
+mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
+>>>>>>> #163756426 Add user registration endpoint
+>>>>>>> #163756426 Add user registration endpoint
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=

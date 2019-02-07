@@ -37,21 +37,13 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future
     { tableName: "users" }
   );
 
-  // eslint-disabled-next-line no-use-before-define
+  // eslint-disable-next-line no-unused-vars
   user.associate = models => {
     // associations can be defined here
   };
