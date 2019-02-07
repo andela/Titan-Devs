@@ -13,10 +13,18 @@ class UserController {
         parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
       );
       const hashPassword = await hashSync(password, salt);
-      const user = await User.create({ username, email, password: hashPassword });
+      const user = await User.create({
+        username,
+        email,
+        password: hashPassword
+      });
       return res.json({
         message: "User registered successfully",
-        user: { id: user.id, email: user.email, username: user.username }
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username
+        }
       });
     } catch (error) {
       if (error.name === "SequelizeUniqueConstraintError") {
