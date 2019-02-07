@@ -31,7 +31,6 @@ class UserController {
         }
       });
     } catch (error) {
-      console.log(error);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;
@@ -41,7 +40,7 @@ class UserController {
           errorMessage = "The username is already taken";
         return res.status(409).json({ message: errorMessage });
       }
-      return res.status(500).json({
+      res.status(500).json({
         message: "User registration failed, try again later!",
         errors: error.stack
       });
