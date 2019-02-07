@@ -16,7 +16,7 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({ ...dammyUser });
-    expect(response.status).eql(200);
+    expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
     expect(response.body.message).to.be.equals("User registered successfully");
@@ -63,7 +63,7 @@ describe("API end point for auth/signup ", () => {
         password: "12345",
         username: "jean786"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The email is already taken");
   });
@@ -75,7 +75,7 @@ describe("API end point for auth/signup ", () => {
         ...dammyUser,
         email: "jean@andela.com"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The username is already taken");
   });

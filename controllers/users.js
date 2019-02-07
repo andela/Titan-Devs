@@ -18,7 +18,7 @@ class UserController {
         email,
         password: hashPassword
       });
-      return res.json({
+      return res.status(201).json({
         message: "User registered successfully",
         user: {
           id: user.id,
@@ -34,7 +34,7 @@ class UserController {
           errorMessage = "The email is already taken";
         if (message === "username must be unique")
           errorMessage = "The username is already taken";
-        return res.status(400).json({ message: errorMessage });
+        return res.status(409).json({ message: errorMessage });
       }
       res.status(500).json({
         message: "User registration failed, try again later!",
