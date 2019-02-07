@@ -16,7 +16,7 @@ describe("POSt /api/v1/users/login", () => {
   // create a script that delete the user after test suites.
   it("It should return a token", done => {
     const user = {
-      email: "test@ah.com",
+      email: "luc.bayo@gmail.com",
       password: "password"
     };
     chai
@@ -95,7 +95,7 @@ describe("POSt /api/v1/users/login", () => {
   });
   it("It should test a wrong password error", done => {
     const user = {
-      email: "test@ah.com",
+      email: "luc.bayo@gmail.com",
       password: "passwor"
     };
     chai
@@ -111,7 +111,7 @@ describe("POSt /api/v1/users/login", () => {
   });
   it("It should test a non-existing user error", done => {
     const user = {
-      email: "user@user.com",
+      email: "test@test.com",
       password: "user@user"
     };
     chai
