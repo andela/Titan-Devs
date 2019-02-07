@@ -20,7 +20,7 @@ describe("API end point for /users", () => {
         truncate: true
       });
     });
-    it("it is should register user with corret details", async () => {
+    it("it is should register user with corret details ", async () => {
       const response = await chai
         .request(app)
         .post("/api/v1/users")
