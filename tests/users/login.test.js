@@ -26,7 +26,7 @@ describe("POSt /api/v1/users/login", () => {
       .end((error, res) => {
         if (error) done(error.message);
         res.body.should.have.property("message").eql("Logged in successffully");
-        res.body.should.have.property("token").which.is.a("object");
+        res.body.should.have.property("token").which.is.a("string");
         done();
       });
   });
