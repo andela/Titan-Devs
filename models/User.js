@@ -17,18 +17,17 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false
       },
-      firstName: {
+      username: {
         type: DataTypes.STRING,
-        allowNull: false
-      },
-      lastName: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
-      roleId: {
-        type: DataTypes.INTEGER,
         allowNull: false,
-        default: 1
+        unique: true
+      },
+      bio: {
+        type: DataTypes.STRING(500)
+      },
+      image: {
+        type: DataTypes.STRING(100),
+        defaultValue: null
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future

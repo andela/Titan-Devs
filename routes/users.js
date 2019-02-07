@@ -1,7 +1,14 @@
 import { Router } from "express";
-import userController from "../controllers/users";
+import UserController from "../controllers/users";
+// middelwares
+import SignupValidation from "../middlewares/validators/signup.validator";
 
 const userRouters = Router();
 
-userRouters.get("/users/:userId", userController.findOne);
+userRouters.post(
+  "/users",
+  SignupValidation.allAttributes,
+  SignupValidation.validateEmail,
+  UserController.signUp
+);
 export default userRouters;

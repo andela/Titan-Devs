@@ -10,18 +10,12 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
     return Promise.all([
-      queryInterface.addColumn("users", "firstName", {
-        type: Sequelize.STRING,
-        allowNull: false
+      queryInterface.addColumn("users", "bio", {
+        type: Sequelize.STRING(500)
       }),
-      queryInterface.addColumn("users", "lastName", {
-        type: Sequelize.STRING,
-        allowNull: false
-      }),
-      queryInterface.addColumn("users", "roleId", {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        defaultValue: 1
+      queryInterface.addColumn("users", "image", {
+        type: Sequelize.STRING(100),
+        defaultValue: null
       })
     ]);
   },
@@ -34,5 +28,9 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
+    return Promise.all([
+      queryInterface.removeColumn("users", "image"),
+      queryInterface.removeColumn("users", "bio")
+    ]);
   }
 };
