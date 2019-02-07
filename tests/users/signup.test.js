@@ -82,6 +82,7 @@ describe("API end point for auth/signup ", () => {
 
   it("It should return GetAlls", async () => {
     const response = await chai.request(app).get("/api/v1/users");
+    console.log("response from test", response);
     expect(response.body.message).to.be.equal("Hello world");
   });
 });

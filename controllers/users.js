@@ -38,6 +38,7 @@ class UserController {
     }
   }
   static async findAll(req, res) {
+    console.log("accessed the end point");
     res.json({ message: "Hello world" });
   }
 }
