@@ -16,7 +16,7 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({ ...dammyUser });
-    expect(response.status).eql(200);
+    expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
     expect(response.body.message).to.be.equals("User registered successfully");
