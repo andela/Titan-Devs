@@ -39,6 +39,7 @@ class UserController {
         }
       });
     } catch (error) {
+      console.log(error);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;
