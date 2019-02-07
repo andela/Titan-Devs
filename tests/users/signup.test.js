@@ -20,7 +20,6 @@ describe("API end point for /users", () => {
       .request(app)
       .post("/api/v1/users")
       .send({ ...userDamie });
-    console.log(response.body);
     expect(response.status).eql(200);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
