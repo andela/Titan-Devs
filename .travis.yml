@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "stable"
+services:
+  - postgresql
 notifications:
   email: false
   slack: andela:m0fSBLRd944nk3Gme63A9OgD
