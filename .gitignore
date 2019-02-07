@@ -45,4 +45,3 @@ yarn-error.*
 
 # ignore prettier testing file
 testingprettier.js 
-yarn.lock
