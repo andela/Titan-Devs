@@ -29,7 +29,12 @@ class UserController {
     } catch (error) {
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
-        return res.status(400).json({ message });
+        let errorMessage = message;
+        if (message === "email must be unique")
+          errorMessage = "The email is already taken";
+        if (message === "username must be unique")
+          errorMessage = "The username is already taken";
+        return res.status(400).json({ message: errorMessage });
       }
       res.status(500).json({
         message: "User registration failed, try again later!",
