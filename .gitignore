@@ -50,6 +50,3 @@ testingprettier.js
 yarn.lock
 .node_repl_history
 
-#Test coverage directory
-coverage
-
