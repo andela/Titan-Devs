@@ -45,6 +45,9 @@ describe("Function for checking valid email", () => {
       "someone@127.0.0.1",
       "wo..oly@example.com",
       `test@@gmail.come.com`,
+
+      `test@@gmail.com.com`,
+      `test  @gmail.com`,
       `test@@gmail.com.com`,
       `test  @gmail.com`
     ];
