@@ -9,7 +9,7 @@ const { dummyUser } = data;
 chai.use(chaiHttp);
 should();
 
-describe("API end point for /users ", () => {
+describe("API end point for /users", () => {
   const { dummyUser3 } = data;
   chai.use(chaiHttp);
   should();
