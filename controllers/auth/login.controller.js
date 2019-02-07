@@ -14,16 +14,20 @@ class Login {
       return res.status(400).json({ message: err.message });
     }
     /** Find if the user exists */
-    User.findOne({ where: { email }, attributes: ["email", "password", "id"] })
+    User.findOne({
+      where: { email },
+      attributes: ["email", "password", "username", "id"]
+    })
       .then(result => {
         if (!result) {
           return res.status(404).json({ message: "Invalid email or password!" });
         }
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
+            let { email, username, id } = result.dataValues;
             return res.status(200).send({
               message: "Logged in successffully",
-              token: result.dataValues
+              token: { email, username, id }
             });
           }
           return res
