@@ -1,4 +1,4 @@
-import { isEmpty } from "../../helpers/funcValidators";
+import { isEmpty, isEmailValid } from "../../helpers/funcValidators";
 
 export default class SignupValidator {
   static allAttributes(req, res, next) {
@@ -12,5 +12,12 @@ export default class SignupValidator {
     return isEmpty(errors)
       ? next()
       : res.status(400).json({ message: "User registration failed", errors });
+  }
+
+  static validateEmail(req, res, next) {
+    const { email } = req.body;
+    return isEmailValid(email)
+      ? next()
+      : res.status(400).json({ message: "Invalid email" });
   }
 }

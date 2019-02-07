@@ -42,12 +42,12 @@ describe("API end point for auth/signup ", () => {
   it("it should fail if user provide invalid email", async () => {
     const response = await chai
       .request(app)
-      .post("/ap/v1/auth/signup")
+      .post("/api/v1/auth/signup")
       .send({
         ...userDamie,
-        email: "abalkjd.com"
+        email: "luc@@gmail.com.com"
       });
-    expect(response.status).to.be.eql(400);
+    expect(response.status).eql(400);
     expect(response.body.message).to.be.equal("Invalid email");
   });
 
