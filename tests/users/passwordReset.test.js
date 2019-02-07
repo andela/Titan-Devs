@@ -21,7 +21,7 @@ describe("/API end point /users/rese_password", () => {
     });
   });
 
-  it("/POST get password reset link", async () => {
+  it("/POST get password reset link ", async () => {
     const results = await chai
       .request(app)
       .post("/api/v1/users/reset_password")
