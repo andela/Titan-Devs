@@ -8,7 +8,7 @@ const { dummyUser } = data;
 chai.use(chaiHttp);
 should();
 
-describe("API end point for /users ", () => {
+describe("API end point for /users", () => {
   after(async () => {
     await models.User.destroy({
       where: {},
