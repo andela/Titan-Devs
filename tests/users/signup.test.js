@@ -16,7 +16,6 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({ ...userDamie });
-    console.log(response.body);
     expect(response.status).eql(200);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -66,7 +65,7 @@ describe("API end point for auth/signup ", () => {
       });
     expect(response.status).equal(400);
     expect(response.body).to.be.an("object");
-    expect(response.body.message).eql("email must be unique");
+    expect(response.body.message).equals("email must be unique");
   });
   it("It should fail if email already exist", async () => {
     const response = await chai
@@ -79,5 +78,10 @@ describe("API end point for auth/signup ", () => {
     expect(response.status).equal(400);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("username must be unique");
+  });
+
+  it("It should return GetAlls", async () => {
+    const response = await chai.request(app).get("/api/v1/users");
+    expect(response.body.message).to.be.equal("Hello world");
   });
 });

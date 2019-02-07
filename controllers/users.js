@@ -33,9 +33,12 @@ class UserController {
       }
       res.status(500).json({
         message: "User registration failed, try again later!",
-        errors: error
+        errors: error.stack
       });
     }
+  }
+  static async findAll(req, res) {
+    res.json({ message: "Hello world" });
   }
 }
 
