@@ -5,6 +5,11 @@ import app from "../../index";
 import { data } from "../../helpers/data";
 const { dummyUser } = data;
 
+const dammyUser = {
+  email: "luc.bayo@gmail.com",
+  password: "password",
+  username: "luc2017"
+};
 chai.use(chaiHttp);
 should();
 
@@ -19,7 +24,7 @@ describe("API end point for /users", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dummyUser });
+      .send({ ...dammyUser });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
