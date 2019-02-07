@@ -1,5 +1,6 @@
 import { Router } from "express";
-import UserController from "../controllers/users";
+import UserController from "../controllers/users.js";
+import Login from "../controllers/auth/login.controller";
 // middelwares
 import SignupValidation from "../middlewares/validators/signup.validator";
 
@@ -11,12 +12,8 @@ userRouters.post(
   SignupValidation.validateEmail,
   UserController.signUp
 );
-import userController from "../controllers/users";
-import Login from "../controllers/auth/login.controller";
 
-const userRouters = Router();
-
-userRouters.get("/users/:userId", userController.findOne);
+//userRouters.get("/users/:userId", UserController.findOne);
 /** define login route */
 userRouters.post("/users/login", Login.authenticate);
 

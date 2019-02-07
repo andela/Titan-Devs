@@ -1,5 +1,6 @@
 import models from "../../models";
 import validate from "../../helpers/validators/login.validation";
+import bcrypt from "bcrypt";
 
 const { User } = models;
 /** Define class for handling user login */
@@ -18,12 +19,17 @@ class Login {
         if (!result) {
           return res.status(404).json({ message: "Invalid email or password!" });
         }
-        if (result.dataValues.password === password) {
+        bcrypt.compare(password, result.dataValues.password, (erro, response) => {
+          if (response) {
+            return res.status(200).send({
+              message: "Logged in successffully",
+              token: result.dataValues
+            });
+          }
           return res
-            .status(200)
-            .send({ message: "Logged in successffully", token: result.dataValues });
-        }
-        return res.status(400).json({ message: "Invalid email or password!" });
+            .status(400)
+            .json({ message: "Invalid email or password!", erro });
+        });
       })
       .catch(error => {
         return res.status(500).json({ error: error.message });
