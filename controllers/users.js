@@ -107,8 +107,12 @@ class UserController {
             req.body.password,
             response.password
           );
-          if(newPWdMatchCurrent){
-            return res.status(400).json({message:"Your new password was the same as your current one"})
+          if (newPWdMatchCurrent) {
+            return res
+              .status(400)
+              .json({
+                message: "Your new password was the same as your current one"
+              });
           }
           await response.update({ password, resetToken: null });
           return res.json({ message: "Password updated" });
