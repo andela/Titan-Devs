@@ -13,7 +13,7 @@ const invalidToken =
 const wrongToken =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0MzM0YTA4LTMyMWEtNDdhYS1iMGVmLTQ5ODZmMWYyN2Q0OSIsImlhdCI6MTU1MDA1MzIzN30.O2QZO576DJ-iLc1ge7yU-jHdoAlQq9CK9Kc6QGqRuic";
 
-describe("/API end point /users/confirmation/:auth_token ", () => {
+describe("/API end point /users/confirmation/:auth_token", () => {
   before(async () => {
     await models.User.destroy({
       where: { email: "fabrice.niyomwungeri@andela.com" },
