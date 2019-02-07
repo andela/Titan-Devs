@@ -46,11 +46,7 @@ class UserController {
           errorMessage = "The email is already taken";
         if (message === "username must be unique")
           errorMessage = "The username is already taken";
-<<<<<<< HEAD
         return res.status(409).json({ message: errorMessage });
-=======
-        return res.status(400).json({ message: errorMessage });
->>>>>>> #163756426 Change error messages
       }
       res.status(500).json({
         message: "User registration failed, try again later!",
