@@ -45,11 +45,13 @@ describe("Function for checking valid email", () => {
       "someone@127.0.0.1",
       "wo..oly@example.com",
       `test@@gmail.come.com`,
-      `test@@gmail.com.com`
+      `test@@gmail.com.com`,
+      `test  @gmail.com`
     ];
     expect(isEmailValid(emails[0])).eql(false);
     expect(isEmailValid(emails[1])).eql(false);
     expect(isEmailValid(emails[2])).eql(false);
     expect(isEmailValid(emails[3])).eql(false);
+    expect(isEmailValid(emails[4])).eql(false);
   });
 });
