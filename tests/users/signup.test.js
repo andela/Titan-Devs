@@ -63,7 +63,7 @@ describe("API end point for /users ", () => {
       expect(response.body.message).to.be.equal("Invalid email");
     });
 
-    it("It should fail if email already exist", async () => {
+    it("It should fail if email already exist ", async () => {
       const response = await chai
         .request(app)
         .post("/api/v1/users")
