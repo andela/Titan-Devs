@@ -44,3 +44,4 @@ package-lock.json
 yarn.*
 yarn-error.*
 .nyc_output
+yarn.lock
