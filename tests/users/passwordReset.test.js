@@ -9,7 +9,7 @@ const { dummyUser2 } = data;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
-describe("/API end point /users/rese_password", () => {
+describe("/API end point /users/rese_password ", () => {
   before(async () => {
     await chai
       .request(app)
