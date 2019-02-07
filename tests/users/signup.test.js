@@ -22,14 +22,6 @@ describe("API end point for /users ", () => {
       .send({ ...dummyUser });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
-    expect(response.body).to.have.property("message");
-    expect(response.body.message).to.be.equals("User registered successfully");
-    expect(response.body.user).to.be.an("object");
-    expect(Object.keys(response.body.user)).to.include.members([
-      "id",
-      "email",
-      "username"
-    ]);
   });
 
   it("it should fail if one of email, firstName, lastName, or password is empty", async () => {
