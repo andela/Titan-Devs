@@ -37,7 +37,6 @@ node_modules
 .env
 
 # package json lock
-
 package-lock.json
 #ignore yarn files
 yarn.*
