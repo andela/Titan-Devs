@@ -47,6 +47,9 @@ yarn-error.*
 
 # ignore prettier testing files
 testingprettier.js 
+<<<<<<< HEAD
 yarn.lock
 .node_repl_history
+=======
+>>>>>>> #163518684 Remove yarn.lock duplicate
 
