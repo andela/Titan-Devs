@@ -4,13 +4,16 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register ./tests --timeout=10000 --exit",
-    "start": "NODE_ENV=development nodemon --exec babel-node index.js"
+    "test": "NODE_ENV=test yarn run db:reset && NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
+    "start": "NODE_ENV=development nodemon --exec babel-node index.js",
+    "db:migrate": "node_modules/.bin/sequelize db:migrate",
+    "db:reset": "node_modules/.bin/sequelize db:migrate:undo:all"
   },
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
     "babel-preset-airbnb": "^3.2.0",
+    "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^6.2.0",
@@ -32,6 +35,7 @@
     "pg-hstore": "^2.3.2",
     "request": "^2.87.0",
     "sequelize": "^4.42.0",
+    "sequelize-cli": "^5.4.0",
     "slug": "^0.9.1",
     "swagger-ui-express": "^4.0.2",
     "underscore": "^1.9.1"
