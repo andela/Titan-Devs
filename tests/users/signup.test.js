@@ -5,11 +5,6 @@ import app from "../../index";
 import { data } from "../../helpers/data";
 const { dummyUser } = data;
 
-const dammyUser = {
-  email: "luc.bayo@gmail.com",
-  password: "password",
-  username: "luc2017"
-};
 chai.use(chaiHttp);
 should();
 
