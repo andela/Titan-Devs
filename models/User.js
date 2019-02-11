@@ -42,9 +42,8 @@ export default (sequelize, DataTypes) => {
   // eslint-disable-next-line no-unused-vars
   user.associate = models => {
     // associations can be defined here
-    user.hasOne(models.VericationToken, {
-      foreignKey: "user_token_fk",
-      as: "user"
+    user.hasOne(models.VerificationToken, {
+      foreignKey: "userId"
     });
   };
   return user;
