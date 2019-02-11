@@ -10,11 +10,11 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
    return Promise.all([
-    queryInterface.addColumn(
-      "users", 
-      "isVerified", 
-      Sequelize.BOOLEAN,
-    ),
+    queryInterface.addColumn("users", "isVerified", {
+      allowNull: false,
+      type: Sequelize.BOOLEAN,
+      defaultValue: false
+    }),
   ]);
   },
 

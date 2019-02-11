@@ -29,10 +29,6 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.STRING(100),
         defaultValue: null
       },
-      resetToken: {
-        type: DataTypes.TEXT,
-        defaultValue: null
-      },
       isVerified: {
         allowNull: false,
         type: DataTypes.BOOLEAN,
@@ -46,6 +42,10 @@ export default (sequelize, DataTypes) => {
   // eslint-disable-next-line no-unused-vars
   user.associate = models => {
     // associations can be defined here
+    user.hasOne(models.VericationToken, {
+      foreignKey: "user_token_fk",
+      as: "user"
+    });
   };
   return user;
 };
