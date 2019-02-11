@@ -12,6 +12,7 @@
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "babel-preset-airbnb": "^3.2.0",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",

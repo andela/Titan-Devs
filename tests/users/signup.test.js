@@ -1,16 +1,13 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
+import { data } from "../../helpers/data";
+const { dammyUser } = data;
 
-const dammyUser = {
-  email: "luc.bayo@gmail.com",
-  password: "password",
-  username: "luc2017"
-};
 chai.use(chaiHttp);
 should();
 
-describe("API end point for auth/signup ", () => {
+describe("API end point for /users ", () => {
   it("it is should register user with corret details", async () => {
     const response = await chai
       .request(app)
