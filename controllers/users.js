@@ -79,7 +79,7 @@ class UserController {
         }
       });
     } catch (error) {
-      res.status(500).json({ message: "Sending email failed", errors: error.stack });
+      res.status(500).json({ message: "Unknown error occurred" });
     }
   }
 
