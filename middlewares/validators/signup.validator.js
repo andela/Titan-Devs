@@ -1,12 +1,21 @@
 import { isEmpty, isEmailValid, isAlphanumeric } from "../../helpers/funcValidators";
 
 export default class SignupValidator {
+<<<<<<< HEAD
   static async allAttributes(req, res, next) {
     const { email, password, username } = req.body;
+=======
+  static allAttributes(req, res, next) {
+    const { email, password, username, isVerified } = req.body;
+>>>>>>> [ft #[163518683]] fix Sequilize not defined issues
     const errors = {};
     if (isEmpty(email)) errors.email = "Email is required";
     if (isEmpty(password)) errors.password = "Password is required";
     if (isEmpty(username)) errors.username = "Username is required";
+<<<<<<< HEAD
+=======
+    if (isEmpty(!isVerified)) errors.isVerified = "Your account has not been verified"
+>>>>>>> [ft #[163518683]] fix Sequilize not defined issues
     return isEmpty(errors)
       ? next()
       : res.status(400).json({ message: "User registration failed", errors });
