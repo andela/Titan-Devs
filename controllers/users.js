@@ -44,9 +44,6 @@ class UserController {
       });
     }
   }
-  static async resendToken(req, res){
-
-  }
 }
 
 export default UserController;

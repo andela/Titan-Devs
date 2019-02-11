@@ -11,8 +11,4 @@ userRouters.post(
   SignupValidation.validateEmail,
   UserController.signUp
 );
-userRouters.post(
-  "/resend", 
-  userController.resendToken
-  );
 export default userRouters;
