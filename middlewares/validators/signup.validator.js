@@ -1,4 +1,4 @@
-import { isEmpty, isEmailValid } from "../../helpers/funcValidators";
+import { isEmpty, isEmailValid, isAlphanumeric } from "../../helpers/funcValidators";
 
 export default class SignupValidator {
   static allAttributes(req, res, next) {
@@ -18,5 +18,26 @@ export default class SignupValidator {
     return isEmailValid(email)
       ? next()
       : res.status(400).json({ message: "Invalid email" });
+  }
+
+  static validatePassword(req, res, next) {
+    const { password } = req.body;
+    const isPassword = isAlphanumeric(password) && password.trim().length >= 8;
+    return isPassword
+      ? next()
+      : res.status(400).json({
+          message:
+            "The password should be an alphanumeric with at least 8 characters"
+        });
+  }
+
+  static validateUsername(req, res, next) {
+    const { username } = req.body;
+    return isAlphanumeric(username) && /[a-z]/i.test(username.trim()[0])
+      ? next()
+      : res.status(400).json({
+          message:
+            "The username must begin with letter and only contains alphabet and numbers not symbols"
+        });
   }
 }
