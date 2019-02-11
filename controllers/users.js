@@ -2,7 +2,10 @@ import dotenv from "dotenv";
 import { hashSync, genSaltSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
+<<<<<<< HEAD
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
+=======
+>>>>>>> #163518685 Add password reset email tamplate
 import { sendEmail } from "../services/sendgrid";
 
 dotenv.config();
