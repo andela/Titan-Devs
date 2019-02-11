@@ -1,59 +1,73 @@
-import chia, { expect, should } from "chai";
-import chaiHTTP from "chai-http";
-import { dammyUser } from "../../helpers/data";
+import chaiHttp from "chai-http";
+import chai, { expect, should } from "chai";
 import app from "../../index";
-chai.use(chaiHTTP);
+import models from "../../models";
+import { data } from "../../helpers/data";
+const { dammyUser2 } = data;
+
+chai.use(chaiHttp);
 should();
 let pwdResetToken;
 describe("/API end point /users/rese_password", () => {
-  describe("/POST get password reset link", async () => {
+  before(async () => {
+    await models.User.create({
+      ...dammyUser2
+    });
+  });
+  after(async () => {
+    await models.User.destroy({
+      where: {},
+      truncate: true
+    });
+  });
+  it("/POST get password reset link", async () => {
     const results = await chai
       .request(app)
-      .post("/users/reset_password")
+      .post("/api/v1/users/reset_password")
       .send({
-        email: dammyUser.email
+        email: dammyUser2.email
       });
     pwdResetToken = results.body.token;
-    expect(results.status).eql(200);
+    expect(results.status).equal(200);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
-      .eql("Mail delivered");
+      .eql("Password rest link sent");
     expect(results.body).to.have.property("token");
   });
-  describe("/POST get password reset link", async () => {
+  it("/POST user not found on non existing user", async () => {
     const results = await chai
       .request(app)
-      .post("/users/reset_password")
+      .post("/api/v1/users/reset_password")
       .send({
         email: "yves@gmail.com"
       });
-    expect(results.status).eql(404);
+    expect(results.status).equal(404);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
       .eql("User not found");
   });
 
-  describe("/PUT update password /users/:token/password", async () => {
+  it("/PUT update password", async () => {
     const results = await chai
       .request(app)
-      .put(`/users/${pwdResetToken}/password`)
+      .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
         password: "password"
       });
-    expect(results.status).eql(200);
+    expect(results.status).equal(200);
     expect(results.body.message).eql("Password updated");
   });
 
-  describe("/PUT update password /users/:token/password", async () => {
+  it("/PUT invalid token", async () => {
     const results = await chai
       .request(app)
-      .put(`/users/${"kldfjdkjahfdkjh"}/password`)
+      .put(`/api/v1/users/${"kldfjdkjahfdkjh"}/password`)
       .send({
         password: "password"
       });
-    expect(results.status).eql(404);
-    expect(results.body.message).eql("User not found");
+    expect(results.status).equal(400);
+    expect(results.body.message).eql("Invalid or experied token provided");
   });
 });
