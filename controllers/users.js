@@ -122,23 +122,5 @@ class UserController {
     }
   }
 }
-const sendVerificationEmail = async (user) => {
-  try {
-    const salt = await genSaltSync(
-      parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
-    );
-     //create hashed verification token
-     const verificationToken = await hashSync(user.dataValues.id, salt);
-     // saving token in db
-     await VerificationToken.create({
-      token: verificationToken,
-       userId: user.dataValues.id
-     });
-     // send email
-     
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 export default UserController;
