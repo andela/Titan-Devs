@@ -7,7 +7,7 @@ const { User } = models;
 /** Define class for handling user login */
 
 class Login {
-  static authenticate(req, res) {
+  static signIn(req, res) {
     const { email, password } = req.body;
     /** Validate the email and password before any action */
     const err = validate(email, password);

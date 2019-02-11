@@ -14,9 +14,24 @@ describe("POSt /api/v1/users/login", () => {
    * @const user = { email:'test@test.com, password:'password'}
    */
   // create a script that delete the user after test suites.
+  before("Create a user in database", done => {
+    const user = {
+      email: "luc.bay@gmail.com",
+      password: "password",
+      username: "luc2018"
+    };
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(user)
+      .end((error, result) => {
+        if (error) done(error);
+        done();
+      });
+  });
   it("It should return a token", done => {
     const user = {
-      email: "luc.bayo@gmail.com",
+      email: "luc.bay@gmail.com",
       password: "password"
     };
     chai
@@ -95,7 +110,7 @@ describe("POSt /api/v1/users/login", () => {
   });
   it("It should test a wrong password error", done => {
     const user = {
-      email: "luc.bayo@gmail.com",
+      email: "luc.bay@gmail.com",
       password: "passwor"
     };
     chai
