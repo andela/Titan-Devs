@@ -3,19 +3,29 @@ import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
+<<<<<<< HEAD
 const { dummyUser2 } = data;
+=======
+const { dammyUser2 } = data;
+>>>>>>> #163518685 Add mailer for password rest
 
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
 describe("/API end point /users/rese_password", () => {
   before(async () => {
+<<<<<<< HEAD
     await chai
       .request(app)
       .post("/api/v1/users")
       .send({
         ...dummyUser2
       });
+=======
+    await models.User.create({
+      ...dammyUser2
+    });
+>>>>>>> #163518685 Add mailer for password rest
   });
   after(async () => {
     await models.User.destroy({
@@ -23,22 +33,36 @@ describe("/API end point /users/rese_password", () => {
       truncate: true
     });
   });
+<<<<<<< HEAD
 
+=======
+>>>>>>> #163518685 Add mailer for password rest
   it("/POST get password reset link", async () => {
     const results = await chai
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({
+<<<<<<< HEAD
         email: dummyUser2.email
       });
     pwdResetToken = results.body.user.resetToken;
+=======
+        email: dammyUser2.email
+      });
+    pwdResetToken = results.body.token;
+>>>>>>> #163518685 Add mailer for password rest
     expect(results.status).equal(200);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
+<<<<<<< HEAD
       .eql("Mail delivered");
     expect(results.body.user).to.be.an("object");
     expect(results.body.user).to.have.property("resetToken");
+=======
+      .eql("Password rest link sent");
+    expect(results.body).to.have.property("token");
+>>>>>>> #163518685 Add mailer for password rest
   });
   it("/POST user not found on non existing user", async () => {
     const results = await chai
@@ -54,7 +78,11 @@ describe("/API end point /users/rese_password", () => {
       .eql("User not found");
   });
 
+<<<<<<< HEAD
   it("/PUT faild for short non alphanumeric password", async () => {
+=======
+  it("/PUT update password", async () => {
+>>>>>>> #163518685 Add mailer for password rest
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
