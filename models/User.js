@@ -34,7 +34,7 @@ export default (sequelize, DataTypes) => {
         defaultValue: null
       },isVerified: {
         allowNull: false,
-        type: Sequelize.BOOLEAN,
+        type: DataTypes.BOOLEAN,
         defaultValue: false
       }
     },
