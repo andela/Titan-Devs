@@ -1,6 +1,7 @@
 import dotenv from "dotenv";
 import { hashSync, genSaltSync } from "bcrypt";
 import models from "../models";
+import { sendEmail } from "../services/sendgrid";
 
 dotenv.config();
 const { User } = models;
@@ -44,7 +45,8 @@ class UserController {
   }
 
   static async resetPassword(req, res) {
-    res.json({ message: "pwd reset end point" });
+    const results = await sendEmail();
+    res.json({ message: "pwd reset end point", results });
   }
 
   static async updatePassword(req, res) {
