@@ -55,7 +55,17 @@ const resetPasswordTamplate = token => {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> #163518685 Add mailer for password rest
                     href=${process.env.SERVER_HOST}/users/${token}/password
+=======
+                    href="#"
+>>>>>>> #163518685 Add password reset email tamplate
+=======
+                    href=${process.env.SERVER_HOST}/users/${token}/password
+>>>>>>> #163518685 Add mailer for password rest
+<<<<<<< HEAD
 =======
                     href="#"
 >>>>>>> #163518685 Add password reset email tamplate
@@ -69,17 +79,13 @@ const resetPasswordTamplate = token => {
                     href=${process.env.SERVER_HOST}/users/${token}/password
 >>>>>>> #163518685 Add mailer for password rest
 =======
+                    href=${process.env.SERVER_HOST}/users/${token}/password
+=======
                     href="#"
 >>>>>>> #163518685 Add password reset email tamplate
+>>>>>>> #163518685 Add password reset email tamplate
 =======
-                    href=${process.env.SERVER_HOST}/users/${token}/password
 >>>>>>> #163518685 Add mailer for password rest
-=======
-                    href=${process.env.SERVER_HOST}/users/${token}/password
-=======
-                    href="#"
->>>>>>> #163518685 Add password reset email tamplate
->>>>>>> #163518685 Add password reset email tamplate
                     target="_blank"
                     style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid rgb(0,47,255); display: inline-block; text-align: center"
                     >

@@ -96,39 +96,36 @@ class UserController {
   }
 
   static async resetPassword(req, res) {
-    if (!req.body.email) {
+    const { email } = req.body;
+    if (!email) {
       return res.status(400).json({ message: "Email is required" });
     }
     try {
-      User.findOne({
+      const user = await User.findOne({
         where: {
-          email: req.body.email
-        }
-      }).then(async response => {
-        if (!response) {
-          return res.status(404).json({ message: "User not found" });
-        }
-        const token = await jwt.sign(req.body.email, process.env.SECRET_OR_KEY);
-        const user = await response.update(
-          { resetToken: token },
-          { returining: true }
-        );
-        const { id, email, resetToken } = user.dataValues;
-        const emailBody = await resetPwdTamplage(token);
-        const emailResponse = await sendEmail(email, "Password Reset", emailBody);
-        if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
-          res.json({
-            message: "Mail delivered",
-            user: { id, email, resetToken }
-          });
-        } else {
-          res
-            .status(500)
-            .json({ message: "Error while sending email", data: emailResponse });
+          email
         }
       });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      const token = await jwt.sign(email, process.env.SECRET_OR_KEY);
+      const emailBody = await resetPwdTamplage(token);
+      const emailResponse = await sendEmail(email, "Password Reset", emailBody);
+      if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
+        res.json({ message: "Password rest link sent", token });
+      } else {
+        res
+          .status(500)
+          .json({ message: "Error while sending email", data: emailResponse });
+      }
     } catch (error) {
+<<<<<<< HEAD
       res.status(500).json({ message: "Sending email failed", errors: error.stack });
+=======
+      console.log(error);
+      res.status(500).json({ message: "Unknown error occurred" });
+>>>>>>> #163518685 Add mailer for password rest
     }
   }
 
@@ -137,17 +134,22 @@ class UserController {
     try {
       await jwt.verify(token, process.env.SECRET_OR_KEY, async (error, email) => {
         if (error) {
-          return res.status(400).json({ message: "Invalid or expired link" });
+          return res
+            .status(400)
+            .json({ message: "Invalid or experied token provided" });
         }
         const salt = await genSaltSync(
           parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
         );
         const password = await hashSync(req.body.password, salt);
-        User.findOne({
-          where: {
-            email,
-            resetToken: token
+        const user = await User.update(
+          { password },
+          {
+            where: {
+              email
+            }
           }
+<<<<<<< HEAD
         }).then(async response => {
           if (!response) {
             return res.status(400).json({ message: "Link expired" });
@@ -164,6 +166,13 @@ class UserController {
           await response.update({ password, resetToken: null });
           return res.json({ message: "Password updated" });
         });
+=======
+        );
+        if (!user) {
+          return res.status(404).json({ message: "User not found" });
+        }
+        return res.json({ message: "Password updated" });
+>>>>>>> #163518685 Add mailer for password rest
       });
     } catch (error) {
       res
@@ -172,4 +181,8 @@ class UserController {
     }
   }
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> #163518685 Add mailer for password rest
 export default UserController;
