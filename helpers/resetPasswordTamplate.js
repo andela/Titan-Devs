@@ -36,7 +36,7 @@ const resetPasswordTamplate = token => {
                 style="background-color:rgb(0,47,255); border-radius: 3px; text-align: center; border-radius: 30px"
                 >
                 <a
-                    href="#"
+                    href=${process.env.SERVER_HOST}/users/${token}/password
                     target="_blank"
                     style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid rgb(0,47,255); display: inline-block; text-align: center"
                     >
