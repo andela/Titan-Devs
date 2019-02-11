@@ -3,7 +3,7 @@ import { hashSync, genSaltSync } from "bcrypt";
 import models from "../models";
 
 dotenv.config();
-const { User } = models;
+const { User, VerificationToken } = models;
 
 class UserController {
   static async signUp(req, res) {
@@ -18,8 +18,7 @@ class UserController {
         email,
         password: hashPassword
       });
-      // implement email message
-
+      sendVerificationEmail(user.id);
       return res.status(201).json({
         message: "User registered successfully",
         user: {
@@ -40,9 +39,26 @@ class UserController {
       }
       res.status(500).json({
         message: "User registration failed, try again later!",
-        errors: error
+        errors: error.stack
       });
     }
+  }
+}
+const sendVerificationEmail = async (user) => {
+  try {
+    const salt = await genSaltSync(
+      parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
+    );
+     //create hashed verification token
+     const verificationToken = await hashSync(user, salt);
+     // saving token in db
+     const verification = await VerificationToken.create({
+       token: verificationToken,
+       userId: user
+     });
+     console.log(verification);
+  } catch (error) {
+    console.log(error.stack);
   }
 }
 
