@@ -2,8 +2,8 @@ import dotenv from "dotenv";
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
-import { sendEmail } from "../services/sendgrid";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
+import { sendEmail } from "../services/sendgrid";
 import template from "../helpers/EmailVerificationTamplate";
 
 dotenv.config();
