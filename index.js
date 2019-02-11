@@ -6,7 +6,9 @@ import errorhandler from "errorhandler";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
 import morgan from "morgan";
+import swaggerUi from "swagger-ui-express";
 import routers from "./routes";
+import swaggerDocument from "./swagger.json";
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
@@ -37,6 +39,7 @@ if (!isProduction) {
   app.use(errorhandler());
 }
 
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/", routers);
 
 // catch 404 and forward to error handler
