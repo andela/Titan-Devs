@@ -2,7 +2,7 @@ import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
 
-const userDamie = {
+const dammyUser = {
   email: "luc.bayo@gmail.com",
   password: "password",
   username: "luc2017"
@@ -15,8 +15,8 @@ describe("API end point for auth/signup ", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...userDamie });
-    expect(response.status).eql(200);
+      .send({ ...dammyUser });
+    expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
     expect(response.body.message).to.be.equals("User registered successfully");
@@ -47,7 +47,7 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...userDamie,
+        ...dammyUser,
         email: "luc@@gmail.com.com"
       });
     expect(response.status).eql(400);
@@ -63,20 +63,20 @@ describe("API end point for auth/signup ", () => {
         password: "12345",
         username: "jean786"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
-    expect(response.body.message).eql("email must be unique");
+    expect(response.body.message).eql("The email is already taken");
   });
   it("It should fail if email already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...userDamie,
+        ...dammyUser,
         email: "jean@andela.com"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
-    expect(response.body.message).eql("username must be unique");
+    expect(response.body.message).eql("The username is already taken");
   });
 });
