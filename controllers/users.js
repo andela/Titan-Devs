@@ -47,6 +47,7 @@ class UserController {
   }
 
   static async resetPassword(req, res) {
+<<<<<<< HEAD
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
     }
@@ -81,6 +82,10 @@ class UserController {
     } catch (error) {
       res.status(500).json({ message: "Sending email failed", errors: error.stack });
     }
+=======
+    const results = await sendEmail();
+    res.json({ message: "pwd reset end point", results });
+>>>>>>> #163518685 Add password reset email tamplate
   }
 
   static async updatePassword(req, res) {
