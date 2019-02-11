@@ -28,6 +28,11 @@ export default (sequelize, DataTypes) => {
       image: {
         type: DataTypes.STRING(100),
         defaultValue: null
+      },
+      isVerified: {
+        allowNull: false,
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future
@@ -37,6 +42,10 @@ export default (sequelize, DataTypes) => {
   // eslint-disabled-next-line no-use-before-define
   user.associate = models => {
     // associations can be defined here
+    user.hasOne(models.VericationToken, {
+      foreignKey: 'user_token_fk',
+      as: 'user',
+    });
   };
   return user;
 };

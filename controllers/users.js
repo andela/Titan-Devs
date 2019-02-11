@@ -18,6 +18,8 @@ class UserController {
         email,
         password: hashPassword
       });
+      // implement email message
+
       return res.status(201).json({
         message: "User registered successfully",
         user: {
@@ -41,6 +43,9 @@ class UserController {
         errors: error
       });
     }
+  }
+  static async resendToken(req, res){
+
   }
 }
 
