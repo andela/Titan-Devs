@@ -42,6 +42,14 @@ class UserController {
       });
     }
   }
+
+  static async resetPassword(req, res) {
+    res.json({ message: "pwd reset end point" });
+  }
+
+  static async updatePassword(req, res) {
+    res.json({ message: "update pwd end point" });
+  }
 }
 
 export default UserController;
