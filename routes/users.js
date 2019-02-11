@@ -10,6 +10,8 @@ userRouters.post(
   "/users",
   SignupValidation.allAttributes,
   SignupValidation.validateEmail,
+  SignupValidation.validatePassword,
+  SignupValidation.validateUsername,
   UserController.signUp
 );
 
