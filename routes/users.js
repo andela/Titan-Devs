@@ -15,5 +15,9 @@ userRouters
     UserController.signUp
   )
   .post("/users/reset_password", UserController.resetPassword)
-  .put("/users/:token/password", UserController.updatePassword);
+  .put(
+    "/users/:token/password",
+    SignupValidation.validatePassword,
+    UserController.updatePassword
+  );
 export default userRouters;
