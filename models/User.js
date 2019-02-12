@@ -46,7 +46,8 @@ export default (sequelize, DataTypes) => {
   user.associate = models => {
     // associations can be defined here
     user.hasOne(models.VerificationToken, {
-      foreignKey: 'userId'
+      foreignKey: 'user_token_fk',
+      as: 'user',
     });
   };
   return user;

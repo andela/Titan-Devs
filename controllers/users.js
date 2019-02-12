@@ -21,7 +21,7 @@ class UserController {
         email,
         password: hashPassword
       });
-      sendVerificationEmail(user.id);
+      sendVerificationEmail(user);
       return res.status(201).json({
         message: "User registered successfully",
         user: {
@@ -128,15 +128,16 @@ const sendVerificationEmail = async (user) => {
       parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
     );
      //create hashed verification token
-     const verificationToken = await hashSync(user, salt);
+     const verificationToken = await hashSync(user.dataValues.id, salt);
      // saving token in db
-     const verification = await VerificationToken.create({
-       token: verificationToken,
-       userId: user
+     await VerificationToken.create({
+      token: verificationToken,
+       userId: user.dataValues.id
      });
-     console.log(verification);
+     // send email
+     
   } catch (error) {
-    console.log(error.stack);
+    console.log(error);
   }
 }
 
