@@ -24,6 +24,7 @@ describe("/API end point /users/rese_password", () => {
       truncate: true
     });
   });
+
   it("/POST get password reset link", async () => {
     const results = await chai
       .request(app)
@@ -66,7 +67,6 @@ describe("/API end point /users/rese_password", () => {
       "The password should be an alphanumeric with at least 8 characters"
     );
   });
-
   it("/PUT if password is the same as current one", async () => {
     const results = await chai
       .request(app)
@@ -107,7 +107,7 @@ describe("/API end point /users/rese_password", () => {
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
-        password: "245452"
+        password: "245452hello"
       });
     expect(results.status).equal(400);
     expect(results.body.message).eql("Link expired");

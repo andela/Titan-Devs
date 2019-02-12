@@ -129,9 +129,12 @@ class UserController {
       });
     } catch (error) {
 <<<<<<< HEAD
+<<<<<<< HEAD
       res.status(500).json({ message: "Sending email failed", errors: error.stack });
 =======
       console.log(error);
+=======
+>>>>>>> #163518685 Add password validation on reset password
       res.status(500).json({ message: "Unknown error occurred" });
 >>>>>>> #163518685 Add mailer for password rest
     }
