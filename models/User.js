@@ -32,7 +32,8 @@ export default (sequelize, DataTypes) => {
       resetToken: {
         type: DataTypes.TEXT,
         defaultValue: null
-      },isVerified: {
+      },
+      isVerified: {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
@@ -46,8 +47,8 @@ export default (sequelize, DataTypes) => {
   user.associate = models => {
     // associations can be defined here
     user.hasOne(models.VerificationToken, {
-      foreignKey: 'user_token_fk',
-      as: 'user',
+      foreignKey: "user_token_fk",
+      as: "user"
     });
   };
   return user;
