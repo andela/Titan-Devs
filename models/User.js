@@ -49,7 +49,10 @@ export default (sequelize, DataTypes) => {
         defaultValue: null
       },
       address: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.STRING(100)
+      },
+      resetToken: {
+        type: DataTypes.TEXT,
         defaultValue: null
       }
     },

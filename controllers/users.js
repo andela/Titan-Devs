@@ -47,29 +47,37 @@ class UserController {
   }
 
   static async resetPassword(req, res) {
-    const { email } = req.body;
-    if (!email) {
+    if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
     }
     try {
-      const user = await User.findOne({
+      User.findOne({
         where: {
-          email
+          email: req.body.email
+        }
+      }).then(async response => {
+        if (!response) {
+          return res.status(404).json({ message: "User not found" });
+        }
+        const token = await jwt.sign(req.body.email, process.env.SECRET_OR_KEY);
+        const user = await response.update(
+          { resetToken: token },
+          { returining: true }
+        );
+        const { id, email, resetToken } = user.dataValues;
+        const emailBody = await resetPwdTamplage(token);
+        const emailResponse = await sendEmail(email, "Password Reset", emailBody);
+        if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
+          res.json({
+            message: "Mail delivered",
+            user: { id, email, resetToken }
+          });
+        } else {
+          res
+            .status(500)
+            .json({ message: "Error while sending email", data: emailResponse });
         }
       });
-      if (!user) {
-        return res.status(404).json({ message: "User not found" });
-      }
-      const token = await jwt.sign(email, process.env.SECRET_OR_KEY);
-      const emailBody = await resetPwdTamplage(token);
-      const emailResponse = await sendEmail(email, "Password Reset", emailBody);
-      if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
-        res.json({ message: "Password rest link sent", token });
-      } else {
-        res
-          .status(500)
-          .json({ message: "Error while sending email", data: emailResponse });
-      }
     } catch (error) {
       console.log(error);
       res.status(500).json({ message: "Unknown error occurred" });
@@ -81,26 +89,24 @@ class UserController {
     try {
       await jwt.verify(token, process.env.SECRET_OR_KEY, async (error, email) => {
         if (error) {
-          return res
-            .status(400)
-            .json({ message: "Invalid or experied token provided" });
+          return res.status(400).json({ message: "Invalid or expired link" });
         }
         const salt = await genSaltSync(
           parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
         );
         const password = await hashSync(req.body.password, salt);
-        const user = await User.update(
-          { password },
-          {
-            where: {
-              email
-            }
+        User.findOne({
+          where: {
+            email,
+            resetToken: token
           }
-        );
-        if (!user) {
-          return res.status(404).json({ message: "User not found" });
-        }
-        return res.json({ message: "Password updated" });
+        }).then(async response => {
+          if (!response) {
+            return res.status(400).json({ message: "Link expired" });
+          }
+          await response.update({ password, resetToken: null });
+          return res.json({ message: "Password updated" });
+        });
       });
     } catch (error) {
       res
