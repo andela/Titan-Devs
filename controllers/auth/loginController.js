@@ -29,7 +29,10 @@ class Login {
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
             let { email, username, id } = result.dataValues;
-            const token = jwt.sign({ email, username, id }, process.env.SECRET_KEY);
+            const token = jwt.sign(
+              { email, username, id },
+              process.env.SECRET_OR_KEY
+            );
             return res.status(200).send({
               message: "Logged in successffully",
               token
