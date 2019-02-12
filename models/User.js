@@ -28,6 +28,10 @@ export default (sequelize, DataTypes) => {
       image: {
         type: DataTypes.STRING(100),
         defaultValue: null
+      },
+      resetToken: {
+        type: DataTypes.TEXT,
+        defaultValue: null
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future

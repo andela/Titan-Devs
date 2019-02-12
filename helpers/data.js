@@ -5,7 +5,7 @@ export const data = {
     username: "luc2017"
   },
   dammyUser2: {
-    email: "jean.abayo@gmail.com",
+    email: "fake.email@gmail.com",
     password: "password",
     username: "jean786786"
   }
