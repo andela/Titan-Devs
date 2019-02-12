@@ -1,11 +1,12 @@
 import Router from "express";
+import checkAuth from "../middlewares/checkAuth";
 import Profile from "../controllers/profileController";
 const profileRouter = Router();
 
 profileRouter
-  .post("/profiles", Profile.create)
-  .put("/profiles/:username", Profile.update)
+  .put("/profiles/:username", checkAuth, Profile.update)
   .get("/profiles/:username", Profile.getProfile)
-  .delete("/profiles/:username", Profile.delete);
+  .get("/profiles", Profile.getAllProfiles)
+  .delete("/profiles/:username", checkAuth, Profile.delete);
 
 export default profileRouter;
