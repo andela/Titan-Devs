@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
 import cors from "cors";
+import helmet from 'helmet';
 import errorhandler from "errorhandler";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
@@ -14,6 +15,7 @@ dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
 
 const app = express();
+app.use(helmet());
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

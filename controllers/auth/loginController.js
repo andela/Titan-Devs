@@ -17,11 +17,14 @@ class Login {
     /** Find if the user exists */
     User.findOne({
       where: { email },
-      attributes: ["email", "password", "username", "id"]
+      attributes: ["email", "password", "username", "id", "isVerified"]
     })
       .then(result => {
         if (!result) {
           return res.status(404).json({ message: "Invalid email or password!" });
+        }
+        if (!result.dataValues.isVerified) {
+          return res.status(401).json({message: "User has not been verified, Please check your email" });
         }
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
@@ -41,6 +44,7 @@ class Login {
         return res.status(500).json({ error: error.message });
       });
   }
+
 }
 
 export default Login;

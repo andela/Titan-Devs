@@ -14,6 +14,6 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
-
+userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
 userRouters.post("/users/login", Login.signIn);
 export default userRouters;
