@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { hashSync, genSaltSync } from "bcrypt";
+import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
@@ -103,8 +103,21 @@ class UserController {
           if (!response) {
             return res.status(400).json({ message: "Link expired" });
           }
-          await response.update({ password, resetToken: null });
-          return res.json({ message: "Password updated" });
+          const newPWdMatchCurrent = await compareSync(
+            req.body.password,
+            response.password
+          );
+
+          if (newPWdMatchCurrent) {
+            console.log("passwordMatched");
+            return res.status(400).json({
+              message: "Your new password was the same as your current one"
+            });
+          } else {
+            console.log("passwordDid not match");
+            await response.update({ password, resetToken: null });
+            return res.json({ message: "Password updated" });
+          }
         });
       });
     } catch (error) {
