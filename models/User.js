@@ -33,10 +33,6 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      },
-      resetToken: {
-        type: DataTypes.TEXT,
-        defaultValue: null
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future
@@ -46,10 +42,6 @@ export default (sequelize, DataTypes) => {
   // eslint-disabled-next-line no-use-before-define
   user.associate = models => {
     // associations can be defined here
-    user.hasOne(models.VerificationToken, {
-      foreignKey: 'userId',
-      as: 'user',
-    });
   };
   return user;
 };
