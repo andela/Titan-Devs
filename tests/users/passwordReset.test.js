@@ -91,7 +91,7 @@ describe("/API end point /users/rese_password", () => {
     expect(results.body.message).eql("Password updated");
   });
 
-  it("/PUT invalid token", async () => {
+  it("/PUT invalid token ", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${"kldfjdkjahfdkjh"}/password`)
