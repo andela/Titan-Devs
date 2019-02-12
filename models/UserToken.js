@@ -1,31 +1,30 @@
-"use strict";
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const UserToken = sequelize.define(
     "UserToken",
     {
       id: {
         allowNull: false,
         primaryKey: true,
-        type: Sequelize.UUID,
-        defaultValue: Sequelize.UUIDV4
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
       passwordResetToken: {
-        type: Sequelize.TEXT
+        type: DataTypes.TEXT
       },
       userId: {
-        type: Sequelize.UUID,
+        type: DataTypes.UUID,
         allowNull: false
       },
       passwordUpdateAt: {
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: DataTypes.DATE
       }
     },
     {
