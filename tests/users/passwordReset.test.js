@@ -31,13 +31,14 @@ describe("/API end point /users/rese_password", () => {
       .send({
         email: dummyUser2.email
       });
-    pwdResetToken = results.body.token;
+    pwdResetToken = results.body.user.resetToken;
     expect(results.status).equal(200);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
-      .eql("Password rest link sent");
-    expect(results.body).to.have.property("token");
+      .eql("Mail delivered");
+    expect(results.body.user).to.be.an("object");
+    expect(results.body.user).to.have.property("resetToken");
   });
   it("/POST user not found on non existing user", async () => {
     const results = await chai
@@ -98,6 +99,17 @@ describe("/API end point /users/rese_password", () => {
         password: "password"
       });
     expect(results.status).equal(400);
-    expect(results.body.message).eql("Invalid or experied token provided");
+    expect(results.body.message).eql("Invalid or expired link");
+  });
+
+  it("/PUT update password", async () => {
+    const results = await chai
+      .request(app)
+      .put(`/api/v1/users/${pwdResetToken}/password`)
+      .send({
+        password: "245452"
+      });
+    expect(results.status).equal(400);
+    expect(results.body.message).eql("Link expired");
   });
 });
