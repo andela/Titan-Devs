@@ -37,6 +37,11 @@ export default (sequelize, DataTypes) => {
       resetToken: {
         type: DataTypes.TEXT,
         defaultValue: null
+      },
+      isVerified: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
     },
     // for postgres always set tables names in lower cases to avoid problems in the future
@@ -46,6 +51,7 @@ export default (sequelize, DataTypes) => {
   // eslint-disable-next-line no-unused-vars
   user.associate = models => {
     // associations can be defined here
+<<<<<<< HEAD
     user.hasOne(models.VerificationToken, {
 <<<<<<< HEAD
       foreignKey: "userId"
@@ -54,6 +60,8 @@ export default (sequelize, DataTypes) => {
       as: 'user',
 >>>>>>> [ft #163518683] udpate user and delete token.
     });
+=======
+>>>>>>> [ft #163518683] remove verification table logic
   };
   return user;
 };

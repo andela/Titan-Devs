@@ -4,10 +4,16 @@ import { hashSync, genSaltSync, compareSync } from "bcrypt";
 =======
 import jwt from "jsonwebtoken";
 import { hashSync, genSaltSync } from "bcrypt";
+<<<<<<< HEAD
 >>>>>>> [ft #163518683] udpate user and delete token.
+=======
+<<<<<<< HEAD
+>>>>>>> [ft #163518683] remove verification table logic
 import jwt from "jsonwebtoken";
 let ExtractJwt = require("passport-jwt").ExtractJwt;
 const sgMail = require("@sendgrid/mail");
+=======
+>>>>>>> [ft #163518683] remove verification table logic
 import models from "../models";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
@@ -29,12 +35,18 @@ class UserController {
         email,
         password: hashPassword
       });
+<<<<<<< HEAD
 
       const token = jwt.sign(
         { userId: user.dataValues.id, email: user.dataValues.email },
         process.env.SECRET_OR_KEY
       );
       await sendEmail(email, "Confirm your email", template(token));
+=======
+      //create hashed verification token
+      const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
+      await sendEmail(email, "Email Confirmation", template(token));
+>>>>>>> [ft #163518683] remove verification table logic
       return res.status(201).json({
         token,
         message: "User registered successfully",
@@ -46,6 +58,7 @@ class UserController {
         }
       });
     } catch (error) {
+      console.log(error.stack);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;
@@ -55,9 +68,10 @@ class UserController {
           errorMessage = "The username is already taken";
         return res.status(409).json({ message: errorMessage });
       }
-      res.status(500).json({
+      return res.status(500).json({
         message: "User registration failed, try again later!",
         errors: error.stack.Error
+<<<<<<< HEAD
       });
     }
   }
@@ -98,10 +112,47 @@ class UserController {
     } catch (error) {
       return res.status(500).json({
         message: error.stack
+=======
+>>>>>>> [ft #163518683] remove verification table logic
       });
     }
   }
 
+<<<<<<< HEAD
+=======
+  static confirmation(req, res) {
+    try {
+      jwt.verify(
+        req.params.auth_token,
+        process.env.SECRET_OR_KEY,
+        async (error, user) => {
+          if (error) {
+            return res.status(404).json({
+              error: error.stack,
+              message: "Token is Expired or Invalid signature"
+            });
+          }
+          const verifiedUser = await User.findOne({
+            where: { id: user.id }
+          });
+          if (!verifiedUser) {
+            return res.status(409).json({ message: "User verification failed" });
+          }
+          // update user
+          await User.update({ isVerified: true }, { where: { id: user.id } });
+          return res.status(200).json({
+            message: "Email confirmed successfully!"
+          });
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        message: error.stack
+      });
+    }
+  }
+>>>>>>> [ft #163518683] remove verification table logic
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -204,12 +255,19 @@ class UserController {
     }
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 =======
 =======
 };
 >>>>>>> [ft #163518683] udpate user and delete token.
+=======
+};
+=======
+}
+>>>>>>> [ft #163518683] remove verification table logic
+>>>>>>> [ft #163518683] remove verification table logic
 
 >>>>>>> #163518685 Add mailer for password rest
 export default UserController;
