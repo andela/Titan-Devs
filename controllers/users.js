@@ -4,6 +4,7 @@ import jwt from "jsonwebtoken";
 import models from "../models";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
+
 dotenv.config();
 const { User } = models;
 
