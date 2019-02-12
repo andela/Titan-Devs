@@ -121,6 +121,6 @@ class UserController {
         .json({ message: "Password update failed", errors: error.stack });
     }
   }
-}
+};
 
 export default UserController;
