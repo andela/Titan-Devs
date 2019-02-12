@@ -64,12 +64,26 @@ describe("/API end point /users/rese_password", () => {
     );
   });
 
+  // it("/PUT if password is the same as current one", async () => {
+  //   const results = await chai
+  //     .request(app)
+  //     .put(`/api/v1/users/${pwdResetToken}/password`)
+  //     .send({
+  //       password: dammyUser2.password
+  //     });
+  //   console.log(results.body);
+  //   expect(results.status).equal(400);
+  //   expect(results.body.message).eql(
+  //     "Your new password was the same as your current one"
+  //   );
+  // });
+
   it("/PUT update password", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
-        password: "password"
+        password: "password78t67"
       });
     expect(results.status).equal(200);
     expect(results.body.message).eql("Password updated");
