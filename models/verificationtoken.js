@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
   );
   VerificationToken.associate = function(models) {
     // associations can be defined here
-    VerificationToken.belongsTo(models.User);
+    VerificationToken.belongsTo(models.User,{
+      foreignKey: 'userId',
+    });
   };
   return VerificationToken;
 };

@@ -23,6 +23,9 @@ class Login {
         if (!result) {
           return res.status(404).json({ message: "Invalid email or password!" });
         }
+        if (!result.dataValues.isVerified) {
+          return res.status(401).json({message: "User has not been verified, Please check your email" });
+        }
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
 <<<<<<< HEAD
@@ -48,6 +51,7 @@ class Login {
         return res.status(500).json({ error: error.message });
       });
   }
+
 }
 
 export default Login;

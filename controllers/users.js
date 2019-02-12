@@ -1,6 +1,13 @@
 import dotenv from "dotenv";
+<<<<<<< HEAD
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
+=======
 import jwt from "jsonwebtoken";
+import { hashSync, genSaltSync } from "bcrypt";
+>>>>>>> [ft #163518683] udpate user and delete token.
+import jwt from "jsonwebtoken";
+let ExtractJwt = require("passport-jwt").ExtractJwt;
+const sgMail = require("@sendgrid/mail");
 import models from "../models";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
@@ -196,9 +203,13 @@ class UserController {
         .json({ message: "Password update failed", errors: error.stack });
     }
   }
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 =======
+=======
+};
+>>>>>>> [ft #163518683] udpate user and delete token.
 
 >>>>>>> #163518685 Add mailer for password rest
 export default UserController;
