@@ -46,10 +46,6 @@ export default (sequelize, DataTypes) => {
   // eslint-disabled-next-line no-use-before-define
   user.associate = models => {
     // associations can be defined here
-    user.hasOne(models.VerificationToken, {
-      foreignKey: 'userId',
-      as: 'user',
-    });
   };
   return user;
 };

@@ -4,9 +4,10 @@ import jwt from "jsonwebtoken";
 import models from "../models";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
+import template from "../helpers/EmailVerificationTamplate";
 
 dotenv.config();
-const { User, VerificationToken } = models;
+const { User } = models;
 
 class UserController {
   static async signUp(req, res) {
@@ -21,7 +22,9 @@ class UserController {
         email,
         password: hashPassword
       });
-      sendVerificationEmail(user);
+      //create hashed verification token
+      const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
+      await sendEmail(email, "Email Confirmation", template(token));
       return res.status(201).json({
         message: "User registered successfully",
         user: {
@@ -31,6 +34,7 @@ class UserController {
         }
       });
     } catch (error) {
+      console.log(error.stack);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;
@@ -40,13 +44,45 @@ class UserController {
           errorMessage = "The username is already taken";
         return res.status(409).json({ message: errorMessage });
       }
-      res.status(500).json({
+      return res.status(500).json({
         message: "User registration failed, try again later!",
-        errors: error.stack
+        errors: error.stack.Error
       });
     }
   }
 
+  static confirmation(req, res) {
+    try {
+      jwt.verify(
+        req.params.auth_token,
+        process.env.SECRET_OR_KEY,
+        async (error, user) => {
+          if (error) {
+            return res.status(404).json({
+              error: error.stack,
+              message: "Token is Expired or Invalid signature"
+            });
+          }
+          const verifiedUser = await User.findOne({
+            where: { id: user.id }
+          });
+          if (!verifiedUser) {
+            return res.status(409).json({ message: "User verification failed" });
+          }
+          // update user
+          await User.update({ isVerified: true }, { where: { id: user.id } });
+          return res.status(200).json({
+            message: "Email confirmed successfully!"
+          });
+        }
+      );
+    } catch (error) {
+      console.log(error);
+      return res.status(500).json({
+        message: error.stack
+      });
+    }
+  }
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
