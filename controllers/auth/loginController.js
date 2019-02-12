@@ -25,7 +25,11 @@ class Login {
         }
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
+<<<<<<< HEAD
             const { username, id } = result.dataValues;
+=======
+            let { email, username, id } = result.dataValues;
+>>>>>>> #163518685 Change SECRET_KEY to SECRET_OR_KEY
             const token = jwt.sign(
               { email, username, id },
               process.env.SECRET_OR_KEY
