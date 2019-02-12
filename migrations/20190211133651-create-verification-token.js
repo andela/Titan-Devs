@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('verificationTokens', {
+    return queryInterface.createTable("verificationTokens", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -18,6 +18,7 @@ module.exports = {
         references: {
           model: "users",
           key: "id",
+          as: "userId"
         }
       },
       createdAt: {
@@ -31,6 +32,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('verificationTokens');
+    return queryInterface.dropTable("verificationTokens");
   }
 };
