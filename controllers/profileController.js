@@ -1,5 +1,6 @@
 // import models from "../models/index";
 import models from "../models";
+import validation from "../middlewares/validators/updateProfileValidator";
 const { User } = models;
 console.log(User);
 
@@ -12,7 +13,6 @@ class Profile {
   static async update(req, res) {
     let usernameParameter = req.params.username;
     let usernameFromtoken = req.headers.username;
-
     let {
       username,
       firstname,
@@ -24,25 +24,27 @@ class Profile {
       phone,
       address
     } = req.body;
+    let newInfo = {
+      username,
+      firstname,
+      lastname,
+      image,
+      bio,
+      following,
+      gender,
+      phone,
+      address
+    };
+    let newUser = validation(newInfo);
     if (usernameFromtoken != usernameParameter) {
       return res.status(403).json({ error: "Not authorized" });
     }
 
     try {
-      let updatedProfile = await User.update(
-        {
-          username,
-          firstname,
-          lastname,
-          gender,
-          following,
-          phone,
-          address,
-          bio,
-          image
-        },
-        { returning: true, where: { username: usernameFromtoken } }
-      );
+      let updatedProfile = await User.update(newUser, {
+        returning: true,
+        where: { username: usernameFromtoken }
+      });
       let newProfile = updatedProfile[1][0];
       return res.status(200).json({ newProfile });
     } catch (error) {
