@@ -1,7 +1,7 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
   const VerificationToken = sequelize.define(
-    "verificationToken",
+    "VerificationToken",
     {
       id: {
         allowNull: false,
@@ -12,16 +12,17 @@ module.exports = (sequelize, DataTypes) => {
       token: {
         allowNull: false,
         type: DataTypes.STRING
+      },
+      userId: {
+        allowNull: false,
+        type: DataTypes.UUID
       }
     },
     { tableName: "verificationTokens" }
   );
-
   VerificationToken.associate = function(models) {
     // associations can be defined here
-    VerificationToken.belongsTo(models.User, {
-      foreignKey: 'UserId',
-    });
+    VerificationToken.belongsTo(models.User);
   };
   return VerificationToken;
 };
