@@ -12,7 +12,7 @@ class Profile {
   /** Define the function for updating the profile */
   static async update(req, res) {
     let usernameParameter = req.params.username;
-    let usernameFromtoken = req.headers.username;
+    let usernameFromtoken = req.user.username;
     let newUser = validation(req.body.profile);
     if (newUser.error) {
       return res.status(400).json({ error: newUser.error });
@@ -66,7 +66,7 @@ class Profile {
   /** Define the function for deleting a profile */
   static async delete(req, res) {
     let { username } = req.params;
-    let usernameFromToken = req.headers.username;
+    let usernameFromToken = req.user.username;
     if (username != usernameFromToken) {
       return res.status(403).json({ message: "Unauthorized request" });
     }
