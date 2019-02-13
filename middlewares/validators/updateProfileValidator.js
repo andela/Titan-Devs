@@ -1,5 +1,4 @@
 import Joi from "joi";
-import { join } from "path";
 
 const Schema = Joi.object().keys({
   username: Joi.string()
