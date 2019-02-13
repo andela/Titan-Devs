@@ -12,7 +12,6 @@ export default class PostController {
    * @param  {Object} res - The response object.
    * @return {Object} - It returns the request response object.
    */
-
   static async create(req, res) {
     try {
       const { tagsList = [], ...rest } = req.body;
@@ -27,7 +26,7 @@ export default class PostController {
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
             await ArticleTag.create({
-              articleId,
+              articleId: article.dataValues.id,
               tagId: tags[0].dataValues.id
             })
           );
@@ -36,13 +35,14 @@ export default class PostController {
           ? res.status(CREATED).json({
               status: CREATED,
               message: "Article created",
-              article: { ...article.dataValues, tagsList }
+              article: article.dataValues
             })
           : res
               .status(NOT_FOUND)
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
+      // console.log("DATABASE ERROR:", error);
       if (error.hasOwnProperty("details"))
         return res
           .status(BAD_REQUEST)
