@@ -3,12 +3,20 @@ import chai, { expect, should } from "chai";
 import models from "../../models";
 import app from "../../index";
 import { data } from "../../helpers/data";
+<<<<<<< HEAD
 const { dummyUser } = data;
 
 chai.use(chaiHttp);
 should();
 
 describe("API end point for /users", () => {
+=======
+const { dammyUser, dummyUser3  } = data;
+
+chai.use(chaiHttp);
+should();
+describe("API end point for /users ", () => {
+>>>>>>> [ft #[163518683] fix failed text
   after(async () => {
     await models.User.destroy({
       where: {},
@@ -19,7 +27,7 @@ describe("API end point for /users", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dammyUser });
+      .send({ ...dummyUser3 });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -63,8 +71,8 @@ describe("API end point for /users", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
-        password: "aabayo7876865",
+        email: "fabrice.niyomwungeri@andela.com",
+        password: "password98",
         username: "jean786"
       });
     expect(response.status).equal(409);
@@ -77,7 +85,7 @@ describe("API end point for /users", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
+        email: "fabrice.niyomwungeri@andela.com",
         password: "avjlk",
         username: "jean786"
       });
@@ -92,7 +100,7 @@ describe("API end point for /users", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
+        email: "fabrice.niyomwungeri@andela.com",
         password: "password",
         username: "7aba^>"
       });
@@ -108,8 +116,13 @@ describe("API end point for /users", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
+<<<<<<< HEAD
         ...dummyUser,
         email: "jean@andela.com"
+=======
+        ...dummyUser3,
+        email: "different.email@andela.com"
+>>>>>>> [ft #[163518683] fix failed text
       });
     expect(response.status).equal(409);
     expect(response.body).to.be.an("object");

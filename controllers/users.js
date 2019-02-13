@@ -2,7 +2,6 @@ import dotenv from "dotenv";
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
-import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
 import template from "../helpers/EmailVerificationTamplate";
 
@@ -22,9 +21,10 @@ class UserController {
         email,
         password: hashPassword
       });
-      //create hashed verification token
+
       const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
       await sendEmail(email, "Email Confirmation", template(token));
+      
       return res.status(201).json({
         message: "User registered successfully",
         user: {
@@ -34,7 +34,6 @@ class UserController {
         }
       });
     } catch (error) {
-      console.log(error.stack);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;

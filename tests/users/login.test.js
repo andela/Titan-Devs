@@ -1,7 +1,9 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-
+import models from "../../models";
+import { data } from "../../helpers/data";
+const { dummyUser3  } = data;
 chai.use(chaiHttp);
 const should = chai.should();
 
@@ -9,21 +11,16 @@ const should = chai.should();
  * @author Yves
  */
 
-describe("POSt /api/v1/users/login", () => {
+describe("POST /api/v1/users/login", () => {
   /** create a user in database with below credentials
    * @const user = { email:'test@test.com, password:'password'}
    */
   // create a script that delete the user after test suites.
   before("Create a user in database", done => {
-    const user = {
-      email: "luc.bay@gmail.com",
-      password: "password",
-      username: "luc2018"
-    };
     chai
       .request(app)
       .post("/api/v1/users")
-      .send(user)
+      .send(dummyUser3)
       .end((error, result) => {
         if (error) done(error);
         done();
@@ -31,8 +28,8 @@ describe("POSt /api/v1/users/login", () => {
   });
   it("It should return a token", done => {
     const user = {
-      email: "luc.bay@gmail.com",
-      password: "password"
+      email: "fabrice.niyomwungeri@andela.com",
+      password: "password98"
     };
     chai
       .request(app)
@@ -110,7 +107,7 @@ describe("POSt /api/v1/users/login", () => {
   });
   it("It should test a wrong password error", done => {
     const user = {
-      email: "luc.bay@gmail.com",
+      email: "fabrice.niyomwungeri@andela.com",
       password: "passwor"
     };
     chai
@@ -155,5 +152,11 @@ describe("POSt /api/v1/users/login", () => {
         res.body.should.have.property("message").eql("Invalid email format!");
         done();
       });
+  });
+  after(async () => {
+    await models.User.destroy({
+      where: {},
+      truncate: true
+    });
   });
 });
