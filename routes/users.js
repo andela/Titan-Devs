@@ -14,15 +14,15 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
-// userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.put("/users/resend", UserController.resendVerificationEmail);
 userRouters.post("/users/login", Login.signIn);
-userRouters
-  .post(
-    "/users",
-    SignupValidation.allAttributes,
-    SignupValidation.validateEmail,
-    SignupValidation.validatePassword,
-    SignupValidation.validateUsername,
-    UserController.signUp
-  )
+userRouters.post(
+  "/users",
+  SignupValidation.allAttributes,
+  SignupValidation.validateEmail,
+  SignupValidation.validatePassword,
+  SignupValidation.validateUsername,
+  UserController.signUp
+);
 export default userRouters;

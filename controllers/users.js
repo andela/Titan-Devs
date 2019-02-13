@@ -22,15 +22,19 @@ class UserController {
         password: hashPassword
       });
 
-      const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
-      await sendEmail(email, "Email Confirmation", template(token));
-      
+      const token = jwt.sign(
+        { userId: user.dataValues.id, email: user.dataValues.email },
+        process.env.SECRET_OR_KEY
+      );
+      // await sendEmail(email, "Confirm your email", template(token));
       return res.status(201).json({
+        token,
         message: "User registered successfully",
         user: {
           id: user.id,
           email: user.email,
-          username: user.username
+          username: user.username,
+          isVerified: user.isVerified
         }
       });
     } catch (error) {
@@ -46,6 +50,77 @@ class UserController {
       return res.status(500).json({
         message: "User registration failed, try again later!",
         errors: error.stack.Error
+      });
+    }
+  }
+
+  static async resendVerificationEmail(req, res) {
+    try {
+      const { email } = req.body;
+      const user = await User.findOne({
+        where: { email }
+      });
+      if (!user) {
+        return res.status(404).json({
+          message: "User not found"
+        });
+      }
+      if (user.dataValues.isVerified) {
+        return res.status(200).json({
+          message: "User already verified!"
+        });
+      }
+      const token = jwt.sign(
+        { userId: user.dataValues.id, email: user.dataValues.email },
+        process.env.SECRET_OR_KEY
+      );
+      await sendEmail(email, "Confirm your email", template(token));
+      return res.status(200).json({
+        message: "Email sent successufully"
+      });
+    } catch (error) {
+      return res.status(500).json({
+        messege: error
+      });
+    }
+  }
+
+  static async confirmation(req, res) {
+    try {
+      jwt.verify(
+        req.params.auth_token,
+        process.env.SECRET_OR_KEY,
+        async (error, user) => {
+          if (!user) {
+            return res.status(500).json({ message: "Token is invalid" });
+          }
+          const verifiedUser = await User.findOne({
+            where: { id: user.userId, email: user.email }
+          });
+          if (error) {
+            return res
+              .status(500)
+              .json({ message: "Token is invalid or expired, try again" });
+          }
+          if (!verifiedUser) {
+            return res
+              .status(404)
+              .json({ message: "User verification failed, User was not found" });
+          }
+          if (verifiedUser.dataValues.isVerified) {
+            return res.status(200).json({
+              message: "User already verified!"
+            });
+          }
+          await User.update({ isVerified: true }, { where: { id: user.id } });
+          return res.status(200).json({
+            message: "Email confirmed successfully!"
+          });
+        }
+      );
+    } catch (error) {
+      return res.status(500).json({
+        message: error
       });
     }
   }

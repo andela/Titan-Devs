@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import session from "express-session";
 import cors from "cors";
-import helmet from 'helmet';
+import helmet from "helmet";
 import errorhandler from "errorhandler";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
@@ -45,7 +45,7 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1/", routers);
 
 // catch 404 and forward to error handler
-app.use(next => {
+app.use((req, res, next) => {
   const err = new Error("Not Found");
   err.status = 404;
   next(err);
