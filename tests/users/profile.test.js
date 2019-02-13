@@ -1,9 +1,22 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
+import models from "../../models";
 import app from "../../index";
-
+const { User } = models;
 chai.use(chaiHttp);
-
+after("Destroy the database ", done => {
+  try {
+    const database = User.destroy({
+      where: {},
+      truncate: true
+    });
+    if (database) {
+      done();
+    }
+  } catch (error) {
+    done(error);
+  }
+});
 describe("Test /profiles", () => {
   let token;
   before("Login and return a token", done => {
