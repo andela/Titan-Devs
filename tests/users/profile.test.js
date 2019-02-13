@@ -37,7 +37,7 @@ describe("Test /profiles", () => {
       .request(app)
       .put("/api/v1/profiles/luc2018")
       .send(user)
-      .set({ authorization: `bearer ${token}` })
+      .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(200);
@@ -69,7 +69,7 @@ describe("Test /profiles", () => {
       .request(app)
       .put("/api/v1/profiles/Yves2013")
       .send(user)
-      .set({ authorization: `bearer ${token}` })
+      .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(403);
@@ -125,7 +125,7 @@ describe("Test /profiles", () => {
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
-      .set({ authorization: `bearer ${token}` })
+      .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(200);
@@ -140,13 +140,10 @@ describe("Test /profiles", () => {
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
-      .set({ authorization: `bearer ${token}` })
+      .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(400);
-        result.body.should.have
-          .property("message")
-          .which.is.eql("There no user with that username");
+        result.status.should.be.eql(401);
         done();
       });
   });
@@ -155,13 +152,10 @@ describe("Test /profiles", () => {
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
-      .set({ authorization: `bearer ${token}` })
+      .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(403);
-        result.body.should.have
-          .property("message")
-          .which.is.eql("Unauthorized request");
+        result.status.should.be.eql(401);
         done();
       });
   });
