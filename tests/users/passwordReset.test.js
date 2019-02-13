@@ -3,7 +3,7 @@ import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
-const { dammyUser2 } = data;
+const { dummyUser2 } = data;
 
 chai.use(chaiHttp);
 should();
@@ -11,7 +11,7 @@ let pwdResetToken;
 describe("/API end point /users/rese_password", () => {
   before(async () => {
     await chai.request(app).post('/api/v1/users').send({
-      ...dammyUser2
+      ...dummyUser2
     })
   });
   after(async () => {
@@ -26,7 +26,7 @@ describe("/API end point /users/rese_password", () => {
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({
-        email: dammyUser2.email
+        email: dummyUser2.email
       });
     pwdResetToken = results.body.user.resetToken;
     expect(results.status).equal(200);
@@ -69,9 +69,8 @@ describe("/API end point /users/rese_password", () => {
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
-        password: dammyUser2.password
+        password: dummyUser2.password
       });
-    console.log(results.body);
     expect(results.status).equal(400);
     expect(results.body.message).eql(
       "Your new password was the same as your current one"

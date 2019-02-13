@@ -1,10 +1,10 @@
 export const data = {
-  dammyUser: {
+  dummyUser: {
     email: "luc.bayo@gmail.com",
     password: "password",
     username: "luc2017"
   },
-  dammyUser2: {
+  dummyUser2: {
     email: "fake.email@gmail.com",
     password: "password",
     username: "jean786786"
