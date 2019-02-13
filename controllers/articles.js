@@ -47,11 +47,7 @@ export default class PostController {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
-<<<<<<< HEAD
       return res.status(500).send({ message: error.stack, status: 500 });
-=======
-      else return res.status(500).send({ message: error, status: 500 });
->>>>>>> fix rebase conflicts
     }
   }
 }
