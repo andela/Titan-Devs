@@ -3,11 +3,10 @@ import chai, { expect, should } from "chai";
 import models from "../../models";
 import app from "../../index";
 import { data } from "../../helpers/data";
-const { dammyUser } = data;
+const { dammyUser, dummyUser3  } = data;
 
 chai.use(chaiHttp);
 should();
-
 describe("API end point for /users ", () => {
   after(async () => {
     await models.User.destroy({
@@ -19,7 +18,7 @@ describe("API end point for /users ", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dammyUser });
+      .send({ ...dummyUser3 });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -63,8 +62,8 @@ describe("API end point for /users ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
-        password: "aabayo7876865",
+        email: "fabrice.niyomwungeri@andela.com",
+        password: "password98",
         username: "jean786"
       });
     expect(response.status).equal(409);
@@ -77,7 +76,7 @@ describe("API end point for /users ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
+        email: "fabrice.niyomwungeri@andela.com",
         password: "avjlk",
         username: "jean786"
       });
@@ -92,7 +91,7 @@ describe("API end point for /users ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
+        email: "fabrice.niyomwungeri@andela.com",
         password: "password",
         username: "7aba^>"
       });
@@ -103,13 +102,13 @@ describe("API end point for /users ", () => {
     );
   });
 
-  it("It should fail if email already exist", async () => {
+  it("It should fail if username already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dammyUser,
-        email: "jean@andela.com"
+        ...dummyUser3,
+        email: "different.email@andela.com"
       });
     expect(response.status).equal(409);
     expect(response.body).to.be.an("object");

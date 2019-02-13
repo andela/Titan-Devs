@@ -14,7 +14,7 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
-userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
+// userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
 userRouters.post("/users/login", Login.signIn);
 userRouters
   .post(
@@ -25,10 +25,4 @@ userRouters
     SignupValidation.validateUsername,
     UserController.signUp
   )
-  .post("/users/reset_password", UserController.resetPassword)
-  .put(
-    "/users/:token/password",
-    SignupValidation.validatePassword,
-    UserController.updatePassword
-  );
 export default userRouters;

@@ -5,7 +5,7 @@ const emailVerificationTamplate = token => {
   const tamplate = `
     <html>
         <head>
-            <title></title>
+            <title>Email verification</title>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -19,7 +19,7 @@ const emailVerificationTamplate = token => {
                 <h2
                 style="color:rgb(0,47,255); text-align: center; font-size: 20px; font-family: Helvetica, Arial, sans-serif;"
                 >
-                Titan Devs
+                Authors's Heaven
                 </h2>
                 <div
                 style="background-color: #fff ;padding: 0px 10px 0px 10px; text-align: center"
@@ -27,7 +27,7 @@ const emailVerificationTamplate = token => {
                 <p
                     style="padding: 24px; font-family: 'Source Sans Pro', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 24px; color: #000"
                 >
-                    One step away to become the best author in the world.
+                    One step away to become the best author in the world.<br>
                     Please verify your email.
                 </p>
                 </div>
