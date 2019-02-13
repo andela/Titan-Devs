@@ -26,7 +26,7 @@ class UserController {
         { userId: user.dataValues.id, email: user.dataValues.email },
         process.env.SECRET_OR_KEY
       );
-      // await sendEmail(email, "Confirm your email", template(token));
+      await sendEmail(email, "Confirm your email", template(token));
       return res.status(201).json({
         token,
         message: "User registered successfully",

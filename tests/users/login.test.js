@@ -16,7 +16,6 @@ describe("POST /api/v1/users/login", () => {
   /** create a user in database with below credentials
    * @const user = { email:'test@test.com, password:'password'}
    */
-  // create a script that delete the user after test suites.
   before("Create a user in database", done => {
     chai
       .request(app)
