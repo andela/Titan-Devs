@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/prefer-default-export
 export const data = {
   dummyUser: {
     email: "luc.bayo@gmail.com",
@@ -12,6 +13,12 @@ export const data = {
   dummyUser3: {
     email: "fabrice.niyomwungeri@andela.com",
     password: "password98",
-    username: "jean786786"
+    username: "fabrice92"
+  },
+  verifiedUser: {
+    email: "fabrice.niyomwungeri@andela.com",
+    password: "password98",
+    username: "fabrice92",
+    isVerified: true
   }
 };

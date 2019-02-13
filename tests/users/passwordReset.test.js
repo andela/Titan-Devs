@@ -3,6 +3,7 @@ import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
+
 const { dummyUser2 } = data;
 
 chai.use(chaiHttp);
@@ -10,9 +11,12 @@ should();
 let pwdResetToken;
 describe("/API end point /users/rese_password ", () => {
   before(async () => {
-    await chai.request(app).post('/api/v1/users').send({
-      ...dummyUser2
-    })
+    await chai
+      .request(app)
+      .post("/api/v1/users")
+      .send({
+        ...dummyUser2
+      });
   });
   after(async () => {
     await models.User.destroy({

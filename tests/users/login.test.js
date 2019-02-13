@@ -3,9 +3,10 @@ import chaiHttp from "chai-http";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
-const { dummyUser3  } = data;
+
+const { dummyUser3 } = data;
 chai.use(chaiHttp);
-const should = chai.should();
+chai.should();
 
 /**
  * @author Yves
@@ -21,7 +22,7 @@ describe("POST /api/v1/users/login", () => {
       .request(app)
       .post("/api/v1/users")
       .send(dummyUser3)
-      .end((error, result) => {
+      .end(error => {
         if (error) done(error);
         done();
       });

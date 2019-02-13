@@ -6,8 +6,9 @@ import SignupValidation from "../middlewares/validators/signup.validator";
 
 const userRouters = Router();
 
-<<<<<<< HEAD
-=======
+userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.put("/users/resend", UserController.resendVerificationEmail);
+userRouters.post("/users/login", Login.signIn);
 userRouters.post(
   "/users",
   SignupValidation.allAttributes,
@@ -16,16 +17,4 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
-// userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
->>>>>>> [ft #[163518683] fix failed text
-userRouters.post("/users/login", Login.signIn);
-userRouters
-  .post(
-    "/users",
-    SignupValidation.allAttributes,
-    SignupValidation.validateEmail,
-    SignupValidation.validatePassword,
-    SignupValidation.validateUsername,
-    UserController.signUp
-  )
 export default userRouters;
