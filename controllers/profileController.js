@@ -13,29 +13,10 @@ class Profile {
   static async update(req, res) {
     let usernameParameter = req.params.username;
     let usernameFromtoken = req.headers.username;
-    let {
-      username,
-      firstname,
-      lastname,
-      image,
-      bio,
-      following,
-      gender,
-      phone,
-      address
-    } = req.body;
-    let newInfo = {
-      username,
-      firstname,
-      lastname,
-      image,
-      bio,
-      following,
-      gender,
-      phone,
-      address
-    };
-    let newUser = validation(newInfo);
+    let newUser = validation(req.body.profile);
+    if (newUser.error) {
+      return res.status(400).json({ error: newUser.error });
+    }
     if (usernameFromtoken != usernameParameter) {
       return res.status(403).json({ error: "Not authorized" });
     }
@@ -46,7 +27,9 @@ class Profile {
         where: { username: usernameFromtoken }
       });
       let newProfile = updatedProfile[1][0];
-      return res.status(200).json({ newProfile });
+      return res
+        .status(200)
+        .json({ message: "Profile updated successfully", profile: newProfile });
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -58,8 +41,14 @@ class Profile {
       const profile = await User.findOne({
         where: { username }
       });
+      if (profile == null) {
+        throw new Error("No user with that name");
+      }
       return res.status(200).json({ profile });
     } catch (error) {
+      if (error.message == "No user with that name") {
+        return res.status(400).json({ message: "No user with that name" });
+      }
       return res.status(500).json({ message: "Error happened", error });
     }
   }
@@ -84,11 +73,16 @@ class Profile {
 
     try {
       const deletedUser = await User.destroy({
-        returning: true,
         where: { username }
       });
-      res.status(200).json({ message: "Profile deleted successfully", deletedUser });
+      if (deletedUser == 0) {
+        throw new Error("There no user with that username");
+      }
+      res.status(200).json({ message: "Profile deleted successfully" });
     } catch (error) {
+      if ((error.message = "There no user with that username")) {
+        return res.status(400).json({ message: `There no user with that username` });
+      }
       res.status(500).json({ message: "Error happened", error });
     }
   }

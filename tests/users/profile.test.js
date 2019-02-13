@@ -4,78 +4,115 @@ import app from "../../index";
 
 chai.use(chaiHttp);
 
-describe("Test profile creation", () => {
-  it("It should test creating a profile of a user", done => {
+describe("Test /profiles", () => {
+  let token;
+  before("Login and return a token", done => {
     const user = {
-      profile: {
-        username: "jake",
-        bio: "I work at statefarm",
-        image: "image-link",
-        following: false
-      }
+      email: "luc.bay@gmail.com",
+      password: "password"
     };
     chai
       .request(app)
-      .post("/profiles")
+      .post("/api/v1/users/login")
       .send(user)
-      .end((error, result) => {
-        if (error) done(error);
-        result.status.should.be.eql(201);
-        result.body.should.have.property("profile").which.is.a("object");
-
-        result.body.profile.should.have.property("image").eql("image-link");
-        result.body.profile.should.have.property("bio").eql("I work at statefarm");
-        result.body.profile.should.have.property("username").eql("jake");
+      .end((error, res) => {
+        if (error) done(error.message);
+        token = res.body.token;
         done();
       });
   });
   it("It should test updating a profile", done => {
     const user = {
       profile: {
-        username: "jake",
-        bio: "I am unemployed",
+        bio: "I am a software developer",
         image: "image-link",
-        following: false
+        firstname: "YvesIraguha",
+        lastname: "Iraguha",
+        gender: "Male",
+        phone: "07836378367373",
+        address: "Kigali city"
       }
     };
     chai
       .request(app)
-      .put("/profile/jake")
+      .put("/api/v1/profiles/luc2018")
       .send(user)
+      .set({ authorization: `bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(200);
-        result.body.should.have.property("username").eql("jake");
         result.body.should.have
           .property("message")
           .eql("Profile updated successfully");
         result.body.should.have.property("profile").which.is.a("object");
-        result.body.profile.should.have.property("bio").eql("I am unemployed");
+        result.body.profile.should.have
+          .property("bio")
+          .eql("I am a software developer");
         result.body.profile.should.have.property("image").eql("image-link");
+        result.body.profile.should.have.property("firstname").eql("YvesIraguha");
+        result.body.profile.should.have.property("lastname").eql("Iraguha");
+        result.body.profile.should.have.property("gender").eql("Male");
+        result.body.profile.should.have.property("phone").eql("07836378367373");
+        result.body.profile.should.have.property("address").eql("Kigali city");
+        done();
+      });
+  });
+  it("It should test unauthorized attempt", done => {
+    const user = {
+      profile: {
+        bio: "I am a software developer",
+        image: "image-link",
+        following: "false"
+      }
+    };
+    chai
+      .request(app)
+      .put("/api/v1/profiles/Yves2013")
+      .send(user)
+      .set({ authorization: `bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(403);
+        result.body.should.have.property("error").eql("Not authorized");
         done();
       });
   });
   it("It should test fetching a profile of a user", done => {
-    const username = "jake";
+    const username = "luc2018";
     chai
       .request(app)
-      .get("/api/v1/profiles/jake")
+      .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
 
         result.status.should.be.eql(200);
         result.body.should.have.property("profile").which.is.a("object");
-        result.body.profile.should.have.property("username").eql("jake");
-        result.body.profile.should.have.property("bio").eql("I work at statefarm");
+        result.body.profile.should.have.property("username").eql("luc2018");
+        result.body.profile.should.have
+          .property("bio")
+          .eql("I am a software developer");
         result.body.profile.should.have.property("image").eql("image-link");
         done();
       });
   });
-
+  it("It should test fetching a profile an non-existing user", done => {
+    const username = "Yves2018";
+    chai
+      .request(app)
+      .get(`/api/v1/profiles/${username}`)
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(400);
+        result.body.should.have
+          .property("message")
+          .which.is.eql("No user with that name");
+        done();
+      });
+  });
   it("It should test fetching all profiles", done => {
     chai
       .request(app)
-      .get("/api/v1/profiles/jake")
+      .get("/api/v1/profiles")
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(200);
@@ -84,10 +121,11 @@ describe("Test profile creation", () => {
       });
   });
   it("It should test deleting a user", done => {
-    const username = "jake";
+    const username = "luc2018";
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
+      .set({ authorization: `bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(200);
@@ -95,6 +133,36 @@ describe("Test profile creation", () => {
           .property("message")
           .eql("Profile deleted successfully");
         done(error);
+      });
+  });
+  it("It should test deleting an non-existing user", done => {
+    const username = "luc2018";
+    chai
+      .request(app)
+      .delete(`/api/v1/profiles/${username}`)
+      .set({ authorization: `bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(400);
+        result.body.should.have
+          .property("message")
+          .which.is.eql("There no user with that username");
+        done();
+      });
+  });
+  it("It should test deleting an unauthorized request", done => {
+    const username = "Yves2018";
+    chai
+      .request(app)
+      .delete(`/api/v1/profiles/${username}`)
+      .set({ authorization: `bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(403);
+        result.body.should.have
+          .property("message")
+          .which.is.eql("Unauthorized request");
+        done();
       });
   });
 });
