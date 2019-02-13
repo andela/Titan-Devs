@@ -3,7 +3,8 @@ import chai, { expect, should } from "chai";
 import models from "../../models";
 import app from "../../index";
 import { data } from "../../helpers/data";
-const { dammyUser, dummyUser3  } = data;
+
+const { dammyUser, dummyUser3 } = data;
 
 chai.use(chaiHttp);
 should();

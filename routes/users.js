@@ -19,6 +19,7 @@ userRouters.post(
   UserController.signUp
 );
 <<<<<<< HEAD
+<<<<<<< HEAD
 userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
 >>>>>>> [ft #163518683] udpate user and delete token.
 userRouters.post("/users/login", Login.signIn);
@@ -43,4 +44,17 @@ userRouters
     UserController.signUp
   )
 >>>>>>> [ft #[163518683] fix failed text
+=======
+userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.put("/users/resend", UserController.resendVerificationEmail);
+userRouters.post("/users/login", Login.signIn);
+userRouters.post(
+  "/users",
+  SignupValidation.allAttributes,
+  SignupValidation.validateEmail,
+  SignupValidation.validatePassword,
+  SignupValidation.validateUsername,
+  UserController.signUp
+);
+>>>>>>> [ft #163518683] add test to the endpoints
 export default userRouters;

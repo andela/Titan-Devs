@@ -6,6 +6,7 @@ import jwt from "jsonwebtoken";
 import { hashSync, genSaltSync } from "bcrypt";
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> [ft #163518683] udpate user and delete token.
 =======
 <<<<<<< HEAD
@@ -15,9 +16,13 @@ import { hashSync, genSaltSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 let ExtractJwt = require("passport-jwt").ExtractJwt;
 const sgMail = require("@sendgrid/mail");
+=======
+>>>>>>> [ft #163518683] add test to the endpoints
 import models from "../models";
 import { sendEmail } from "../services/sendgrid";
 import template from "../helpers/EmailVerificationTamplate";
+let ExtractJwt = require("passport-jwt").ExtractJwt;
+const sgMail = require("@sendgrid/mail");
 
 dotenv.config();
 const { User } = models;
@@ -50,10 +55,18 @@ class UserController {
 >>>>>>> [ft #163518683] remove verification table logic
 =======
 
+<<<<<<< HEAD
       const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
       await sendEmail(email, "Email Confirmation", template(token));
       
 >>>>>>> [ft #[163518683] fix failed text
+=======
+      const token = jwt.sign(
+        { userId: user.dataValues.id, email: user.dataValues.email },
+        process.env.SECRET_OR_KEY
+      );
+      // await sendEmail(email, "Confirm your email", template(token));
+>>>>>>> [ft #163518683] add test to the endpoints
       return res.status(201).json({
         token,
         message: "User registered successfully",
@@ -123,25 +136,34 @@ class UserController {
       });
     }
   }
+
   static confirmation(req, res) {
     try {
       jwt.verify(
         req.params.auth_token,
         process.env.SECRET_OR_KEY,
         async (error, user) => {
-          if (error) {
-            return res.status(404).json({
-              error: error.stack,
-              message: "Token is Expired or Invalid signature"
-            });
+          if (!user) {
+            return res.status(500).json({ message: "Token is invalid" });
           }
           const verifiedUser = await User.findOne({
-            where: { id: user.id }
+            where: { id: user.userId, email: user.email }
           });
-          if (!verifiedUser) {
-            return res.status(409).json({ message: "User verification failed" });
+          if (error) {
+            return res
+              .status(500)
+              .json({ message: "Token is invalid or expired, try again" });
           }
-          // update user
+          if (!verifiedUser) {
+            return res
+              .status(404)
+              .json({ message: "User verification failed, User was not found" });
+          }
+          if (verifiedUser.dataValues.isVerified) {
+            return res.status(200).json({
+              message: "User already verified!"
+            });
+          }
           await User.update({ isVerified: true }, { where: { id: user.id } });
           return res.status(200).json({
             message: "Email confirmed successfully!"
@@ -149,12 +171,12 @@ class UserController {
         }
       );
     } catch (error) {
-      console.log(error);
       return res.status(500).json({
         message: error.stack
       });
     }
   }
+
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -259,6 +281,7 @@ class UserController {
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 =======
@@ -276,4 +299,7 @@ class UserController {
 =======
 };
 >>>>>>> [ft #[163518683] fix failed text
+=======
+}
+>>>>>>> [ft #163518683] add test to the endpoints
 export default UserController;

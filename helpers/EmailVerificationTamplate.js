@@ -1,8 +1,12 @@
 import dotenv from "dotenv";
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> [ft #163518683] remove verification table logic
+=======
+
+>>>>>>> [ft #163518683] add test to the endpoints
 dotenv.config();
 
 const emailVerificationTamplate = token => {
@@ -69,10 +73,14 @@ const emailVerificationTamplate = token => {
                     style="font-size: 20px; font-family: Helvetica, Arial, sans-serif; color: #ffffff; text-decoration: none; color: #ffffff; text-decoration: none; padding: 15px 25px; border-radius: 2px; border: 1px solid rgb(0,47,255); display: inline-block; text-align: center"
                     >
 <<<<<<< HEAD
+<<<<<<< HEAD
                 Confirm my email
 =======
                 Email Confirmation
 >>>>>>> [ft #163518683] remove verification table logic
+=======
+                Confirm my email
+>>>>>>> [ft #163518683] add test to the endpoints
                 </a>
                 </div>
             </div>
