@@ -16,7 +16,11 @@ export default (req, res, next) => {
     const [bearer, token] = authorization.split(" ");
     if (bearer !== "Bearer")
       return res.status(INTERNAL_SERVER_ERROR).json({ message: "Access denied" });
+<<<<<<< HEAD
     req.user = jwt.verify(token, process.env.SECRET_OR_KEY);
+=======
+    req.user = jwt.verify(token, process.env.SECRET_KEY);
+>>>>>>> 6d2676b... feat(article): Create the new article
     next();
   } catch (error) {
     return res.status(UNAUTHORIZED).json({ message: "Access denied" });
