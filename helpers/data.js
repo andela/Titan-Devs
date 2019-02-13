@@ -13,6 +13,7 @@ export const data = {
   dummyUser3: {
     email: "fabrice.niyomwungeri@andela.com",
     password: "password98",
+<<<<<<< HEAD
     username: "fabrice92"
   },
   verifiedUser: {
@@ -20,5 +21,8 @@ export const data = {
     password: "password98",
     username: "fabrice92",
     isVerified: true
+=======
+    username: "jean786786"
+>>>>>>> [ft #[163518683] fix failed text
   }
 };

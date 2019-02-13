@@ -3,7 +3,6 @@ import chaiHttp from "chai-http";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
-
 const { dummyUser3 } = data;
 chai.use(chaiHttp);
 chai.should();

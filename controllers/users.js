@@ -5,17 +5,17 @@ import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import { hashSync, genSaltSync } from "bcrypt";
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> [ft #163518683] udpate user and delete token.
 =======
 <<<<<<< HEAD
 >>>>>>> [ft #163518683] remove verification table logic
+=======
+>>>>>>> [ft #[163518683] fix failed text
 import jwt from "jsonwebtoken";
 let ExtractJwt = require("passport-jwt").ExtractJwt;
 const sgMail = require("@sendgrid/mail");
-=======
->>>>>>> [ft #163518683] remove verification table logic
 import models from "../models";
-import resetPwdTamplage from "../helpers/resetPasswordTamplate";
 import { sendEmail } from "../services/sendgrid";
 import template from "../helpers/EmailVerificationTamplate";
 
@@ -36,6 +36,7 @@ class UserController {
         password: hashPassword
       });
 <<<<<<< HEAD
+<<<<<<< HEAD
 
       const token = jwt.sign(
         { userId: user.dataValues.id, email: user.dataValues.email },
@@ -47,6 +48,12 @@ class UserController {
       const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
       await sendEmail(email, "Email Confirmation", template(token));
 >>>>>>> [ft #163518683] remove verification table logic
+=======
+
+      const token = jwt.sign({ id: user.dataValues.id }, process.env.SECRET_OR_KEY);
+      await sendEmail(email, "Email Confirmation", template(token));
+      
+>>>>>>> [ft #[163518683] fix failed text
       return res.status(201).json({
         token,
         message: "User registered successfully",
@@ -58,7 +65,6 @@ class UserController {
         }
       });
     } catch (error) {
-      console.log(error.stack);
       if (error.name === "SequelizeUniqueConstraintError") {
         const { message } = error.errors[0];
         let errorMessage = message;
@@ -117,9 +123,6 @@ class UserController {
       });
     }
   }
-
-<<<<<<< HEAD
-=======
   static confirmation(req, res) {
     try {
       jwt.verify(
@@ -152,7 +155,6 @@ class UserController {
       });
     }
   }
->>>>>>> [ft #163518683] remove verification table logic
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -256,6 +258,7 @@ class UserController {
   }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 <<<<<<< HEAD
 =======
@@ -270,4 +273,7 @@ class UserController {
 >>>>>>> [ft #163518683] remove verification table logic
 
 >>>>>>> #163518685 Add mailer for password rest
+=======
+};
+>>>>>>> [ft #[163518683] fix failed text
 export default UserController;

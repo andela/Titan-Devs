@@ -3,12 +3,10 @@ import chai, { expect, should } from "chai";
 import models from "../../models";
 import app from "../../index";
 import { data } from "../../helpers/data";
-
-const { dummyUser } = data;
+const { dammyUser, dummyUser3  } = data;
 
 chai.use(chaiHttp);
 should();
-
 describe("API end point for /users ", () => {
   const { dummyUser3 } = data;
   chai.use(chaiHttp);
@@ -20,21 +18,35 @@ describe("API end point for /users ", () => {
         truncate: true
       });
     });
-    it("it is should register user with corret details", async () => {
-      const response = await chai
-        .request(app)
-        .post("/api/v1/users")
-        .send({ ...dummyUser3 });
-      expect(response.status).eql(201);
-      expect(response.body).to.be.an("object");
-      expect(response.body).to.have.property("message");
-      expect(response.body.message).to.be.equals("User registered successfully");
-      expect(response.body.user).to.be.an("object");
-      expect(Object.keys(response.body.user)).to.include.members([
-        "id",
-        "email",
-        "username"
-      ]);
+  });
+  it("it is should register user with corret details", async () => {
+    const response = await chai
+      .request(app)
+      .post("/api/v1/users")
+      .send({ ...dummyUser3 });
+    expect(response.status).eql(201);
+    expect(response.body).to.be.an("object");
+    expect(response.body).to.have.property("message");
+    expect(response.body.message).to.be.equals("User registered successfully");
+    expect(response.body.user).to.be.an("object");
+    expect(Object.keys(response.body.user)).to.include.members([
+      "id",
+      "email",
+      "username"
+    ]);
+  });
+
+  it("it should fail if one of email, firstName, lastName, or password is empty", async () => {
+    const response = await chai
+      .request(app)
+      .post("/api/v1/users")
+      .send({ email: "", password: "", username: "" });
+    expect(response.status).eql(400);
+    expect(response.body.message).eql("User registration failed");
+    expect(response.body.errors).to.deep.equal({
+      username: "Username is required",
+      email: "Email is required",
+      password: "Password is required"
     });
 
     it("it should fail if one of email, firstName, lastName, or password is empty", async () => {

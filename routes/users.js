@@ -18,6 +18,7 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
+<<<<<<< HEAD
 userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
 >>>>>>> [ft #163518683] udpate user and delete token.
 userRouters.post("/users/login", Login.signIn);
@@ -29,4 +30,17 @@ userRouters.post(
   SignupValidation.validateUsername,
   UserController.signUp
 );
+=======
+// userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.post("/users/login", Login.signIn);
+userRouters
+  .post(
+    "/users",
+    SignupValidation.allAttributes,
+    SignupValidation.validateEmail,
+    SignupValidation.validatePassword,
+    SignupValidation.validateUsername,
+    UserController.signUp
+  )
+>>>>>>> [ft #[163518683] fix failed text
 export default userRouters;
