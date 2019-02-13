@@ -1,4 +1,5 @@
 import chaiHttp from "chai-http";
+<<<<<<< HEAD
 import chai, { expect } from "chai";
 import app from "../../index";
 import { newArticle, user } from "../helpers/testData";
@@ -118,5 +119,22 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+=======
+import chai, { expect, should } from "chai";
+import app from "../../index";
+import { newArticle } from "../testData";
+
+newArticle.chai.use(chaiHttp);
+
+describe("# Articles endpoints", () => {
+  it("should return the success message", async done => {
+    const response = await chai
+      .request(app)
+      .post("/api/v1/articles")
+      .send(newArticle);
+    expect(response.status).to.equals(201);
+    expect(response.body.message).to.contain("Article created");
+    done();
+>>>>>>> feat(article): Create the new article
   });
 });

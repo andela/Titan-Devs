@@ -7,6 +7,7 @@ import checkAuth from "../middlewares/checkAuth";
 
 const router = Router();
 
+// PUBLIC ROUTES
 router.use(userRouters);
 router.use(profileRouter);
 
