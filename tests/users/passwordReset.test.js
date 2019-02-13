@@ -10,9 +10,9 @@ should();
 let pwdResetToken;
 describe("/API end point /users/rese_password", () => {
   before(async () => {
-    await models.User.create({
+    await chai.request(app).post('/api/v1/users').send({
       ...dammyUser2
-    });
+    })
   });
   after(async () => {
     await models.User.destroy({
@@ -64,19 +64,19 @@ describe("/API end point /users/rese_password", () => {
     );
   });
 
-  // it("/PUT if password is the same as current one", async () => {
-  //   const results = await chai
-  //     .request(app)
-  //     .put(`/api/v1/users/${pwdResetToken}/password`)
-  //     .send({
-  //       password: dammyUser2.password
-  //     });
-  //   console.log(results.body);
-  //   expect(results.status).equal(400);
-  //   expect(results.body.message).eql(
-  //     "Your new password was the same as your current one"
-  //   );
-  // });
+  it("/PUT if password is the same as current one", async () => {
+    const results = await chai
+      .request(app)
+      .put(`/api/v1/users/${pwdResetToken}/password`)
+      .send({
+        password: dammyUser2.password
+      });
+    console.log(results.body);
+    expect(results.status).equal(400);
+    expect(results.body.message).eql(
+      "Your new password was the same as your current one"
+    );
+  });
 
   it("/PUT update password", async () => {
     const results = await chai
