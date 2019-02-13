@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
-import resetPwdTamplage from "../helpers/resetPasswordTamplate";
+import resetPwdTemplate from "../helpers/resetPasswordTemplate";
 import { sendEmail } from "../services/sendgrid";
 
 dotenv.config();
@@ -62,10 +62,10 @@ class UserController {
         const token = await jwt.sign(req.body.email, process.env.SECRET_OR_KEY);
         const user = await response.update(
           { resetToken: token },
-          { returining: true }
+          { returning: true }
         );
         const { id, email, resetToken } = user.dataValues;
-        const emailBody = await resetPwdTamplage(token);
+        const emailBody = await resetPwdTemplate(token);
         const emailResponse = await sendEmail(email, "Password Reset", emailBody);
         if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
           res.json({
@@ -107,8 +107,10 @@ class UserController {
             req.body.password,
             response.password
           );
-          if(newPWdMatchCurrent){
-            return res.status(400).json({message:"Your new password was the same as your current one"})
+          if (newPWdMatchCurrent) {
+            return res.status(400).json({
+              message: "Your new password was the same as your current one"
+            });
           }
           await response.update({ password, resetToken: null });
           return res.json({ message: "Password updated" });
