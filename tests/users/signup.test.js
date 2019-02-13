@@ -19,7 +19,7 @@ describe("API end point for /users ", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dammyUser });
+      .send({ ...dummyUser });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
