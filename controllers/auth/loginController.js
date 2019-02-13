@@ -1,7 +1,7 @@
-import models from "../../models";
 import jwt from "jsonwebtoken";
-import validate from "../../helpers/validators/login.validation";
 import bcrypt from "bcrypt";
+import models from "../../models";
+import validate from "../../helpers/validators/login.validation";
 
 const { User } = models;
 /** Define class for handling user login */
@@ -25,7 +25,7 @@ class Login {
         }
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
-            let { email, username, id } = result.dataValues;
+            const { username, id } = result.dataValues;
             const token = jwt.sign(
               { email, username, id },
               process.env.SECRET_OR_KEY
@@ -44,7 +44,6 @@ class Login {
         return res.status(500).json({ error: error.message });
       });
   }
-
 }
 
 export default Login;
