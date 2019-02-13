@@ -19,7 +19,7 @@ const resetPasswordTamplate = token => {
                 <h2
                 style="color:rgb(0,47,255); text-align: center; font-size: 20px; font-family: Helvetica, Arial, sans-serif;"
                 >
-                Titan Devs
+                Author's Heaven
                 </h2>
                 <div
                 style="background-color: #fff ;padding: 0px 10px 0px 10px; text-align: center"
