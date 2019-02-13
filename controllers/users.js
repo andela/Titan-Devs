@@ -79,7 +79,8 @@ class UserController {
         }
       });
     } catch (error) {
-      res.status(500).json({ message: "Unknown error occurred" });
+      console.log(error)
+      res.status(500).json({ message: "Sending email failed", errors: error.stack });
     }
   }
 
@@ -107,17 +108,11 @@ class UserController {
             req.body.password,
             response.password
           );
-
-          if (newPWdMatchCurrent) {
-            console.log("passwordMatched");
-            return res.status(400).json({
-              message: "Your new password was the same as your current one"
-            });
-          } else {
-            console.log("passwordDid not match");
-            await response.update({ password, resetToken: null });
-            return res.json({ message: "Password updated" });
+          if(newPWdMatchCurrent){
+            return res.status(400).json({message:"Your new password was the same as your current one"})
           }
+          await response.update({ password, resetToken: null });
+          return res.json({ message: "Password updated" });
         });
       });
     } catch (error) {

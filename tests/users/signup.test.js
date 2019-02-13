@@ -103,7 +103,7 @@ describe("API end point for /users ", () => {
     );
   });
 
-  it("It should fail if email already exist", async () => {
+  it("It should fail if username already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
