@@ -7,10 +7,10 @@ const { User, Article, Tag, ArticleTag } = models;
 const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 
 export default class PostController {
-  /** This creates the new article
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the request response object
+  /** This creates the new article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the request response object.
    */
   static async create(req, res) {
     try {
@@ -22,11 +22,11 @@ export default class PostController {
       const user = await User.findOne({ where: { id: userId } });
       if (user && valid) {
         const article = await Article.create({ readTime, ...rest, userId });
-        for (let tag of tagsList) {
+        for (const tag of tagsList) {
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
             await ArticleTag.create({
-              articleId: article.dataValues.id,
+              articleId,
               tagId: tags[0].dataValues.id
             })
           );
@@ -35,7 +35,7 @@ export default class PostController {
           ? res.status(CREATED).json({
               status: CREATED,
               message: "Article created",
-              article: article.dataValues
+              article: { ...article.dataValues, tagsList }
             })
           : res
               .status(NOT_FOUND)
@@ -46,7 +46,7 @@ export default class PostController {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
-      else return res.status(500).send({ message: error.stack, status: 500 });
+      return res.status(500).send({ message: error.stack, status: 500 });
     }
   }
 }
