@@ -17,7 +17,8 @@ describe("/API end point /users/confirmation/:auth_token", () => {
   before(async () => {
     await models.User.destroy({
       where: { email: "fabrice.niyomwungeri@andela.com" },
-      truncate: true
+      truncate: true,
+      cascade: true
     });
   });
   it("it is should register user with corret details", async () => {

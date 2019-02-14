@@ -6,33 +6,8 @@ import SignupValidation from "../middlewares/validators/signup.validator";
 
 const userRouters = Router();
 
-<<<<<<< HEAD
 userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
 userRouters.put("/users/resend", UserController.resendVerificationEmail);
-=======
-userRouters.post(
-  "/users",
-  SignupValidation.allAttributes,
-  SignupValidation.validateEmail,
-  SignupValidation.validatePassword,
-  SignupValidation.validateUsername,
-  UserController.signUp
-);
-<<<<<<< HEAD
-<<<<<<< HEAD
-userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
->>>>>>> [ft #163518683] udpate user and delete token.
-userRouters.post("/users/login", Login.signIn);
-userRouters.post(
-  "/users",
-  SignupValidation.allAttributes,
-  SignupValidation.validateEmail,
-  SignupValidation.validatePassword,
-  SignupValidation.validateUsername,
-  UserController.signUp
-);
-=======
-// userRouters.post("/users/confirm/:auth_token", UserController.confirmation);
 userRouters.post("/users/login", Login.signIn);
 userRouters
   .post(
@@ -43,18 +18,10 @@ userRouters
     SignupValidation.validateUsername,
     UserController.signUp
   )
->>>>>>> [ft #[163518683] fix failed text
-=======
-userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
-userRouters.put("/users/resend", UserController.resendVerificationEmail);
-userRouters.post("/users/login", Login.signIn);
-userRouters.post(
-  "/users",
-  SignupValidation.allAttributes,
-  SignupValidation.validateEmail,
-  SignupValidation.validatePassword,
-  SignupValidation.validateUsername,
-  UserController.signUp
-);
->>>>>>> [ft #163518683] add test to the endpoints
+  .post("/users/reset_password", UserController.resetPassword)
+  .put(
+    "/users/:token/password",
+    SignupValidation.validatePassword,
+    UserController.updatePassword
+  );
 export default userRouters;
