@@ -11,7 +11,8 @@ module.exports = {
     */
     return Promise.all([
       queryInterface.addColumn("users", "firstname", {
-        type: Sequelize.STRING(500)
+        type: Sequelize.STRING(500),
+        defaultValue: null
       }),
       queryInterface.addColumn("users", "lastname", {
         type: Sequelize.STRING(100),

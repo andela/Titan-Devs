@@ -30,18 +30,28 @@ export default (sequelize, DataTypes) => {
         defaultValue: null
       },
       resetToken: {
-        type: DataTypes.TEXT,
-        defaultValue: null
+        type: DataTypes.TEXT
       },
-      firstName: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true
-      },
-      bio: {
+      firstname: {
         type: DataTypes.STRING(500)
       },
-      image: {
+      lastname: {
+        type: DataTypes.STRING(100),
+        defaultValue: null
+      },
+      gender: {
+        type: DataTypes.STRING(100),
+        defaultValue: null
+      },
+      following: {
+        type: DataTypes.STRING(100),
+        defaultValue: null
+      },
+      phone: {
+        type: DataTypes.STRING(100),
+        defaultValue: null
+      },
+      address: {
         type: DataTypes.STRING(100),
         defaultValue: null
       }
