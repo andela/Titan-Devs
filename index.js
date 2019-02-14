@@ -6,10 +6,11 @@ import errorhandler from "errorhandler";
 import dotenv from "dotenv";
 import methodOverride from "method-override";
 import morgan from "morgan";
-import swaggerUi from "swagger-ui-express";
 import passport from "passport";
+import swaggerUi from "swagger-ui-express";
 import routers from "./routes";
 import swaggerDocument from "./swagger.json";
+import joiValidator from "./middlewares/joiValidator";
 import passportConfig from "./middlewares/passport";
 
 dotenv.config();
@@ -45,7 +46,33 @@ if (!isProduction) {
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1", routers);
+app.use(joiValidator());
+app.use((req, resp, next) => {
+  const err = new Error("The page you are looking for cannot be found");
+  err.status = 404;
+  next(err);
+});
 
+if (!isProduction) {
+  // eslint-disable-next-line no-unused-vars
+  app.use((err, req, res, next) => {
+    // eslint-disable-next-line no-console
+    console.log(err.stack);
+    res.status(err.status || 500);
+
+    res.json({
+      message: err.message
+    });
+  });
+}
+
+// eslint-disable-next-line no-unused-vars
+app.use((err, req, res, next) => {
+  res.status(err.status || 500);
+  res.json({
+    message: err.message
+  });
+});
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${server.address().port}`);
 });

@@ -44,6 +44,10 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+    Article.hasMany(models.Rating, {
+      foreignKey: "articleId",
+      onDelete: "CASCADE"
+    });
     Article.hasMany(models.Comment, {
       foreignKey: "articleId",
       onDelete: "CASCADE",

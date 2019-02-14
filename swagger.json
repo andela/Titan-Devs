@@ -17,13 +17,21 @@
       "description": "API for users in the system"
     }
   ],
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/users": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Create new user in system",
         "parameters": [
           {
@@ -35,7 +43,9 @@
             }
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "New user is created",
@@ -46,7 +56,9 @@
         }
       },
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Get all users in system",
         "responses": {
           "200": {
@@ -69,7 +81,9 @@
         }
       ],
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Get user with given ID",
         "responses": {
           "200": {
@@ -82,7 +96,9 @@
       },
       "delete": {
         "summary": "Delete user with given ID",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "responses": {
           "200": {
             "description": "User is deleted",
@@ -94,7 +110,9 @@
       },
       "put": {
         "summary": "Update user with give ID",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "parameters": [
           {
             "name": "user",
@@ -117,7 +135,9 @@
     },
     "/users/confirm/{auth_token}": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Send email send email verification",
         "description": "This helps in verifying account created ",
         "parameters": [
@@ -197,7 +217,9 @@
     },
     "/users/resend": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Re-send email verification",
         "description": "This helps in resend email verification just in case email did not come.",
         "parameters": [
@@ -277,7 +299,9 @@
     },
     "/articles": {
       "post": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Create an article",
         "description": "This helps the user to create a new article",
         "parameters": [
@@ -302,7 +326,9 @@
     },
     "/articles/{slug}/bookmark": {
       "post": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Bookmark an article",
         "description": "This helps the user bookmark an article for reading it later",
         "parameters": [
@@ -328,7 +354,9 @@
     },
     "/article/{articleId}/share/fb": {
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Share article on facebook",
         "description": "This helps the user share their preferred article on facebook ",
         "parameters": [
@@ -360,7 +388,9 @@
     },
     "/article/{articleId}/share/email": {
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Share article on email",
         "description": "This helps the user share their preferred article on email ",
         "parameters": [
@@ -392,7 +422,9 @@
     },
     "/article/{articleId}/share/twitter": {
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Share article on twitter",
         "description": "This helps the user share their preferred article on twitter ",
         "parameters": [
@@ -421,7 +453,55 @@
           }
         }
       }
-    }
+    },
+    "/article/{slug}/rating": {
+      "parameters": [
+        {
+          "slug": "article slug",
+          "in": "path",
+          "required": true,
+          "description": "article id we want to rate",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Ratings"
+        ],
+        "summary": "Get the ratings for the given article",
+        "responses": {
+          "200": {
+            "description": "Rating retrieved",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update  a given rating ",
+        "tags": [
+          "Ratings"
+        ],
+        "parameters": [
+          {
+            "name": "rating",
+            "in": "body",
+            "description": "The rating for a blog post",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Article rating has been edited successfully",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        }
+      }
   },
   "definitions": {
     "User": {
@@ -473,4 +553,4 @@
       }
     }
   }
-}
+}}

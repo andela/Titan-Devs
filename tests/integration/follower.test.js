@@ -1,6 +1,5 @@
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
-import models from "../../models";
 import { users } from "../helpers/testData";
 import app from "../../index";
 
@@ -21,19 +20,6 @@ describe("User following", () => {
       .send({
         ...dummyUser2
       });
-  });
-
-  after(async () => {
-    await models.Follower.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-    await models.User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
   });
 
   describe("Followers controller", () => {

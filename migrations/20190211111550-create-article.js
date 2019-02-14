@@ -16,7 +16,6 @@ module.exports = {
         type: Sequelize.UUID,
         references: { model: "users", key: "id" }
       },
-      slug: { type: Sequelize.STRING, allowNull: false },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
