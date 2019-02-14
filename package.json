@@ -4,7 +4,7 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test yarn run db:reset && NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
+    "test": " NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:reset": "node_modules/.bin/sequelize db:migrate:undo:all"
@@ -12,6 +12,7 @@
   "author": "Andela Simulations Programme",
   "license": "MIT",
   "dependencies": {
+    "@sendgrid/mail": "^6.3.1",
     "babel-preset-airbnb": "^3.2.0",
     "bcrypt": "^3.0.3",
     "body-parser": "^1.18.3",
@@ -55,7 +56,6 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-jsdoc": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
-    "jsdoc": "^3.5.5",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
     "prettier": "^1.16.4"
