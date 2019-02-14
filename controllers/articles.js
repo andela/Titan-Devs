@@ -40,6 +40,7 @@ export default class PostController {
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
+      // console.log("DATABASE ERROR:", error);
       if (error.hasOwnProperty("details"))
         return res
           .status(BAD_REQUEST)

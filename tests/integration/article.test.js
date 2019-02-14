@@ -54,7 +54,7 @@ describe("# Articles endpoints", () => {
         .send(newArticle)
         .end((err, res) => {
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Please provide a token");
+          expect(res.body.message).to.contain("Access denied");
           done();
         });
     });
