@@ -10,11 +10,18 @@ should();
 let pwdResetToken;
 describe("/API end point /users/rese_password", () => {
   before(async () => {
-    await chai.request(app).post('/api/v1/users').send({
-      ...dummyUser2
-    })
+    await chai
+      .request(app)
+      .post("/api/v1/users")
+      .send({
+        ...dummyUser2
+      });
   });
   after(async () => {
+    await models.Follower.destroy({
+      where: {},
+      truncate: true
+    });
     await models.User.destroy({
       where: {},
       truncate: true
