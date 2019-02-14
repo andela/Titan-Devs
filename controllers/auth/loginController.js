@@ -23,7 +23,7 @@ class Login {
         if (!result) {
           return res.status(404).json({ message: "Invalid email or password!" });
         }
-        bcrypt.compare(password, result.dataValues.password, (error, response) => {
+        bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
             let { email, username, id } = result.dataValues;
             const token = jwt.sign(
@@ -31,13 +31,13 @@ class Login {
               process.env.SECRET_OR_KEY
             );
             return res.status(200).send({
-              message: "Logged in successfully",
+              message: "Logged in successffully",
               token
             });
           }
           return res
             .status(400)
-            .json({ message: "Invalid email or password!", error });
+            .json({ message: "Invalid email or password!", erro });
         });
       })
       .catch(error => {
