@@ -1,4 +1,4 @@
-import chai from "chai";
+import chai, { should } from "chai";
 import chaiHttp from "chai-http";
 import models from "../../models";
 import app from "../../index";
@@ -21,17 +21,27 @@ describe("Test /profiles", () => {
   let token;
   before("Login and return a token", done => {
     const user = {
-      email: "luc.bay@gmail.com",
-      password: "password"
+      email: "me@example.com",
+      password: "password",
+      username: "luc2018"
     };
     chai
       .request(app)
-      .post("/api/v1/users/login")
-      .send(user)
-      .end((error, res) => {
-        if (error) done(error.message);
-        token = res.body.token;
-        done();
+      .post("/api/v1/users")
+      .send({
+        ...user
+      })
+      .end((errors, response) => {
+        if (errors) done(errors.message);
+        chai
+          .request(app)
+          .post("/api/v1/users/login")
+          .send({ email: user.email, password: user.password })
+          .end((error, res) => {
+            if (error) done(error.message);
+            token = res.body.token;
+            done();
+          });
       });
   });
   it("It should test updating a profile", done => {

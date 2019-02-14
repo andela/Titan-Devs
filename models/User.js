@@ -63,15 +63,9 @@ export default (sequelize, DataTypes) => {
   // eslint-disabled-next-line no-use-before-define
   user.associate = models => {
     // associations can be defined here
-    user.belongsToMany(models.User, {
-      through: models.Follower,
-      as: "follower",
-      foreignKey: "userId"
-    });
-    user.belongsToMany(models.User, {
-      through: models.Follower,
-      as: "followings",
-      foreignKey: "followerId"
+    user.hasMany(models.Follower, {
+      foreignKey: "userId",
+      as: "followers"
     });
   };
   return user;

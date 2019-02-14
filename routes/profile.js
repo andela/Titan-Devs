@@ -1,6 +1,7 @@
 import Router from "express";
 import passport from "passport";
 import Profile from "../controllers/profileController";
+import FollowerController from "../controllers/followerController";
 const profileRouter = Router();
 
 profileRouter

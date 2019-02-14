@@ -5,19 +5,11 @@ module.exports = (sequelize, DataTypes) => {
     {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
-      followingId: {
-        type: DataTypes.UUID,
-        allNull: false
-      },
-      userId: {
-        type: DataTypes.UUID,
-        allNull: false
-      }
+      followerId: DataTypes.UUID
     },
     {
       tableName: "followers"
@@ -25,10 +17,8 @@ module.exports = (sequelize, DataTypes) => {
   );
   Follower.associate = function(models) {
     // associations can be defined here
-    Follower.belongsTo(models.User);
     Follower.belongsTo(models.User, {
-      as: "followers",
-      foreignId: "followingId"
+      foreignId: "userId"
     });
   };
   return Follower;
