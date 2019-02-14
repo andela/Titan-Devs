@@ -17,6 +17,14 @@ module.exports = {
         type: Sequelize.STRING(100),
         defaultValue: null
       }),
+      queryInterface.addColumn("users", "bio", {
+        type: Sequelize.STRING(100),
+        defaultValue: null
+      }),
+      queryInterface.addColumn("users", "image", {
+        type: Sequelize.STRING(100),
+        defaultValue: null
+      }),
       queryInterface.addColumn("users", "gender", {
         type: Sequelize.STRING(100),
         defaultValue: null
@@ -48,6 +56,8 @@ module.exports = {
       queryInterface.removeColumn("users", "firstname"),
       queryInterface.removeColumn("users", "lastname"),
       queryInterface.removeColumn("users", "gender"),
+      queryInterface.addColumn("users", "bio"),
+      queryInterface.addColumn("users", "image"),
       queryInterface.removeColumn("users", "following"),
       queryInterface.removeColumn("users", "phone"),
       queryInterface.removeColumn("users", "address")
