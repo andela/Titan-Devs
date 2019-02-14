@@ -40,7 +40,7 @@ describe("POSt /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.body.should.have.property("message").eql("Logged in successfully");
+        res.body.should.have.property("message").eql("Logged in successffully");
         res.body.should.have.property("token").which.is.a("string");
         done();
       });

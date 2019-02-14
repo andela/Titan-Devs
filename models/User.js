@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-  const User = sequelize.define(
+  const user = sequelize.define(
     "User",
     {
       id: {
@@ -30,29 +30,7 @@ export default (sequelize, DataTypes) => {
         defaultValue: null
       },
       resetToken: {
-        type: DataTypes.TEXT
-      },
-      firstname: {
-        type: DataTypes.STRING(500)
-      },
-      lastname: {
-        type: DataTypes.STRING(100),
-        defaultValue: null
-      },
-      gender: {
-        type: DataTypes.STRING(100),
-        defaultValue: null
-      },
-      following: {
-        type: DataTypes.STRING(100),
-        defaultValue: null
-      },
-      phone: {
-        type: DataTypes.STRING(100),
-        defaultValue: null
-      },
-      address: {
-        type: DataTypes.STRING(100),
+        type: DataTypes.TEXT,
         defaultValue: null
       }
     },
@@ -61,9 +39,8 @@ export default (sequelize, DataTypes) => {
   );
 
   // eslint-disabled-next-line no-use-before-define
-  User.associate = models => {
-    User.hasMany(models.Article, { onDelete: "CASCADE", hooks: true });
+  user.associate = models => {
     // associations can be defined here
   };
-  return User;
+  return user;
 };

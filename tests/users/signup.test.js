@@ -12,8 +12,7 @@ describe("API end point for /users ", () => {
   after(async () => {
     await models.User.destroy({
       where: {},
-      truncate: true,
-      cascade: true
+      truncate: true
     });
   });
   it("it is should register user with corret details", async () => {
