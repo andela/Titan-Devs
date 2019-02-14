@@ -8,20 +8,14 @@ const { dummyUser } = users;
 chai.use(chaiHttp);
 should();
 
-describe("SignUp", () => {
-  after(async () => {
-    await models.Follower.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-    await models.User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-  });
-  it("should register user with correct details", async () => {
+before(done => {
+  User.destroy({ where: { email: "luc.bayo@gmail.com" } })
+    .then(() => done())
+    .catch(err => done(err));
+});
+
+describe("API end point for auth/signup ", () => {
+  it("it is should register user with corret details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")

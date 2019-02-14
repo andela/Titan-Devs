@@ -11,10 +11,6 @@ module.exports = {
       title: { type: Sequelize.STRING, allowNull: false },
       description: { type: Sequelize.TEXT, allowNull: false },
       body: { type: Sequelize.TEXT, allowNull: false },
-      readTime: {
-        type: Sequelize.INTEGER,
-        allowNull: false
-      },
       userId: {
         allowNull: false,
         type: Sequelize.UUID,
