@@ -11,10 +11,6 @@ const emailVerificationTamplate = token => {
             <meta name="viewport" content="width=device-width, initial-scale=1" />
             <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         </head>
-<<<<<<< HEAD
-=======
-
->>>>>>> 05f7424ce44169d70ffc72d42eed94d635bfd2de
         <body style="background-color: #eee; padding:30px 0">
             <div
             style=" margin: 50px auto; width: 400px; background-color: white;padding: 20px;color: #f4f4f4; border-radius: 5px;box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.10); "
@@ -35,10 +31,6 @@ const emailVerificationTamplate = token => {
                     Please verify your email.
                 </p>
                 </div>
-<<<<<<< HEAD
-=======
-
->>>>>>> 05f7424ce44169d70ffc72d42eed94d635bfd2de
                 <div
                 style="background-color:rgb(0,47,255); border-radius: 3px; text-align: center; border-radius: 30px"
                 >
@@ -54,10 +46,6 @@ const emailVerificationTamplate = token => {
             </div>
         </body>
     </html>
-<<<<<<< HEAD
-=======
-
->>>>>>> 05f7424ce44169d70ffc72d42eed94d635bfd2de
   `;
   return tamplate;
 };
