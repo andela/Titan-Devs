@@ -1,26 +1,29 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
-import models from "../../models";
 import app from "../../index";
-import { data } from "../../helpers/data";
-const { dummyUser } = data;
+import models from "../../models";
 
+const { User } = models;
+const dammyUser = {
+  email: "luc.bayo@gmail.com",
+  password: "password",
+  username: "luc2017"
+};
 chai.use(chaiHttp);
 should();
 
-describe("API end point for /users ", () => {
-  after(async () => {
-    await models.User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-  });
+before(done => {
+  User.destroy({ where: { email: "luc.bayo@gmail.com" } })
+    .then(() => done())
+    .catch(err => done(err));
+});
+
+describe("API end point for auth/signup ", () => {
   it("it is should register user with corret details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dummyUser });
+      .send({ ...dammyUser });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -52,7 +55,7 @@ describe("API end point for /users ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dummyUser,
+        ...dammyUser,
         email: "luc@@gmail.com.com"
       });
     expect(response.status).eql(400);
@@ -104,12 +107,12 @@ describe("API end point for /users ", () => {
     );
   });
 
-  it("It should fail if username already exist", async () => {
+  it("It should fail if email already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dummyUser,
+        ...dammyUser,
         email: "jean@andela.com"
       });
     expect(response.status).equal(409);

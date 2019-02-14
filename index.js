@@ -9,6 +9,8 @@ import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
 import routers from "./routes";
 import swaggerDocument from "./swagger.json";
+import passport from "passport";
+import passportConfig from "./middlewares/passport";
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
@@ -25,6 +27,8 @@ app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 app.use(express.static(`${__dirname}/public`));
+app.use(passport.initialize());
+passportConfig(passport);
 
 app.use(
   session({

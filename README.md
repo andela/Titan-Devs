@@ -1,27 +1,67 @@
 [![Build Status](https://travis-ci.com/andela/Titan-Devs.svg?branch=ch-integrate-travisci-readme-163518672)](https://travis-ci.com/andela/Titan-Devs) [![Test Coverage](https://api.codeclimate.com/v1/badges/7e974cf3061ef7b98fcd/test_coverage)](https://codeclimate.com/github/andela/Titan-Devs/test_coverage)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) [![Maintainability](https://api.codeclimate.com/v1/badges/7e974cf3061ef7b98fcd/maintainability)](https://codeclimate.com/github/andela/Titan-Devs/maintainability) 
+[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com) [![Maintainability](https://api.codeclimate.com/v1/badges/7e974cf3061ef7b98fcd/maintainability)](https://codeclimate.com/github/andela/Titan-Devs/maintainability)
 
-Authors Haven - A Social platform for the creative at heart.
-=======
+# Authors Haven - A Social platform for the creative at heart.
 
 ## Vision
+
 Create a community of like minded authors to foster inspiration and innovation
 by leveraging the modern web.
 
 ---
-## Code style 
+
+## Code style
+
 The style-guide is ESlint-airbnb, and it uses prettier for frommating code. To enable `VS Code + ESLint + prettier` follow the steps below:
-*  `cd root_directory`
-*  `yarn add -D prettier eslint eslint eslint-config-prettier eslint-plugin-prettier`
-*  Create `.eslintrc.json`:`{ "extends": "plugin:prettier/recommended" }`
-*  In VS Code, `Ctrl + Shift + X` 
-*  Search and install *ESLint*
-*  Search and install *Prettier Code Formatter*
-*  Restart VS Code. 
+
+- `cd root_directory`
+- `yarn add -D prettier eslint eslint eslint-config-prettier eslint-plugin-prettier`
+- Create `.eslintrc.json`:`{ "extends": "plugin:prettier/recommended" }`
+- In VS Code, `Ctrl + Shift + X`
+- Search and install _ESLint_
+- Search and install _Prettier Code Formatter_
+- Restart VS Code.
+
+### Getting Started
+
+### Clone the latest version of the repository
+
+`git@github.com:andela/Titan-Devs.git` or `https://github.com/andela/Titan-Devs.git`
+
+### Change directory
+
+`cd into the project directory`
+
+### Update the environment variables in sample.env file and rename it to '.env'
+
+`cp sample.env ./.env`
+
+### Install the project's dependencies with
+
+`yarn` or `npm install`
+
+### Make sure to have the postgres database created for the project
+
+After setting up the database,
+
+- Install the `Sequelize CLI` ==> `https://www.npmjs.com/package/sequelize-cli`
+- Run the database migrations with the `db:migrate` command found in `package.json`
+
+### Testing CI/CD
+
+`yarn test` or `npm run test`
+
+### Start the application
+
+`yarn start`
+
 ## API Spec
+
 The preferred JSON object to be returned by the API should be structured as follows:
 
 ### Users (for authentication)
+
+Example of the response body:
 
 ```source-json
 {
@@ -34,7 +74,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   }
 }
 ```
+
 ### Profile
+
+Example of the response body:
+
 ```source-json
 {
   "profile": {
@@ -45,7 +89,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   }
 }
 ```
+
 ### Single Article
+
+Example of the response body:
+
 ```source-json
 {
   "article": {
@@ -67,7 +115,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   }
 }
 ```
+
 ### Multiple Articles
+
+Example of the response body:
+
 ```source-json
 {
   "articles":[{
@@ -107,7 +159,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   "articlesCount": 2
 }
 ```
+
 ### Single Comment
+
+Example of the response body:
+
 ```source-json
 {
   "comment": {
@@ -124,7 +180,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   }
 }
 ```
+
 ### Multiple Comments
+
+Example of the response body:
+
 ```source-json
 {
   "comments": [{
@@ -142,7 +202,11 @@ The preferred JSON object to be returned by the API should be structured as foll
   "commentsCount": 1
 }
 ```
+
 ### List of Tags
+
+Example of the response body:
+
 ```source-json
 {
   "tags": [
@@ -151,7 +215,9 @@ The preferred JSON object to be returned by the API should be structured as foll
   ]
 }
 ```
+
 ### Errors and Status Codes
+
 If a request fails any validations, expect errors in the following format:
 
 ```source-json
@@ -163,22 +229,22 @@ If a request fails any validations, expect errors in the following format:
   }
 }
 ```
+
 ### Other status codes:
+
 401 for Unauthorized requests, when a request requires authentication but it isn't provided
 
 403 for Forbidden requests, when a request may be valid but the user doesn't have permissions to perform the action
 
 404 for Not found requests, when a resource can't be found to fulfill the request
 
-
-Endpoints:
-----------
+## Endpoints:
 
 ### Authentication:
 
 `POST /api/users/login`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
@@ -197,7 +263,7 @@ Required fields: `email`, `password`
 
 `POST /api/users`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
@@ -223,7 +289,7 @@ Authentication required, returns a User that's the current user
 
 `PUT /api/user`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
@@ -309,7 +375,7 @@ No authentication required, will return single article
 
 `POST /api/articles`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
@@ -317,7 +383,7 @@ Example request body:
     "title": "How to train your dragon",
     "description": "Ever wonder how?",
     "body": "You have to believe",
-    "tagList": ["reactjs", "angularjs", "dragons"]
+    "tagsList": ["reactjs", "angularjs", "dragons"]
   }
 }
 ```
@@ -332,7 +398,7 @@ Optional fields: `tagList` as an array of Strings
 
 `PUT /api/articles/:slug`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
@@ -358,7 +424,7 @@ Authentication required
 
 `POST /api/articles/:slug/comments`
 
-Example request body:
+Example of the response body:
 
 ```source-json
 {
