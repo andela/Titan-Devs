@@ -3,7 +3,11 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
+<<<<<<< HEAD
       Add altering commands here
+=======
+      Add altering commands here.
+>>>>>>> 05f7424ce44169d70ffc72d42eed94d635bfd2de
       Return a promise to correctly handle asynchronicity.
 
       Example:

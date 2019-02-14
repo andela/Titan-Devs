@@ -26,7 +26,6 @@ class Login {
         bcrypt.compare(password, result.dataValues.password, (erro, response) => {
           if (response) {
             const { username, id } = result.dataValues;
-
             const token = jwt.sign(
               { email, username, id },
               process.env.SECRET_OR_KEY
