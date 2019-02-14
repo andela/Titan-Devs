@@ -9,7 +9,7 @@ after("Destroy the database ", done => {
     const database = User.destroy({
       where: {},
       truncate: true,
-      cascade:true
+      cascade: true
     });
     if (database) {
       done();
@@ -54,7 +54,7 @@ describe("Test /profiles", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(200);
+        result.status.should.be.eql(201);
         result.body.should.have
           .property("message")
           .eql("Profile updated successfully");

@@ -13,6 +13,13 @@ class Profile {
   static async update(req, res) {
     let usernameParameter = req.params.username;
     let usernameFromtoken = req.user.username;
+    /** Check if the request.body.profile is provided */
+    if (!req.body.profile) {
+      return res.status(400).json({
+        error: `The body of the request should be {profile:{field:'value'}}`
+      });
+    }
+
     let newUser = validation(req.body.profile);
     if (newUser.error) {
       return res.status(400).json({ error: newUser.error });
@@ -28,7 +35,7 @@ class Profile {
       });
       let newProfile = updatedProfile[1][0];
       return res
-        .status(200)
+        .status(201)
         .json({ message: "Profile updated successfully", profile: newProfile });
     } catch (error) {
       res.status(500).json({ error });
