@@ -4,17 +4,110 @@ const { User, Follower } = models;
 
 export default class FollowerController {
   static async followUser(req, res) {
-    const userId = "f319ac80-6695-4df6-809d-6860b7ce4508";
-    const followerId = "6b2024df-cb04-4ced-bf8a-07b42b38127d";
+    const { id } = req.user;
+    const { username } = req.params;
     try {
-      const results = await Follower.create({
-        userId,
-        followerId
+      const user = await User.findOne({
+        where: {
+          username
+        }
       });
-      return res.json({ message: "Follow success", data: { ...results } });
+      const results = await Follower.findOrCreate({
+        where: {
+          followingId: user.id,
+          followerId: id
+        }
+      }).spread((follower, created) => {
+        if (created) {
+          console.log(created);
+          return res.json({
+            message: "Follow success"
+          });
+        } else {
+          res.json({ message: "You already follow this author" });
+        }
+      });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Following user failed", errors: error.stack });
+    }
+  }
+
+  static async unFollow(req, res) {
+    const { id } = req.user;
+    const { username } = req.params;
+    try {
+      const user = await User.findOne({
+        where: {
+          username
+        }
+      });
+      await Follower.destroy({
+        where: {
+          followingId: id,
+          followerId: user.id
+        }
+      });
+      res.json({ message: "You have unfollowed this user " });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Unfollowing user failed", errors: error.stack });
+    }
+  }
+
+  static async getAllFollowers(req, res) {
+    const { username } = req.params;
+    try {
+      const user = await User.findOne({
+        where: {
+          username
+        }
+      });
+      const followers = await Follower.findAll({
+        where: {
+          followingId: user.id
+        },
+        include: [
+          {
+            model: User,
+            attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
+          }
+        ]
+      });
+      res.json({ followers });
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: "failed" });
+      res
+        .status(500)
+        .json({ message: "Unknown error occurred", errors: error.stack });
+    }
+  }
+
+  static async getFollowings(req, res) {
+    const { username } = req.params;
+    try {
+      const followings = await User.findOne({
+        where: {
+          username
+        },
+        attributes: ["id", "username"],
+        include: [
+          {
+            model: User,
+            as: "followings",
+            attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
+          }
+        ]
+      });
+
+      res.json({ followings });
+    } catch (error) {
+      console.log(error);
+      res
+        .status(500)
+        .json({ message: "Unknown error occurred", errors: error.stack });
     }
   }
 }

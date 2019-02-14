@@ -21,11 +21,13 @@ describe("/API end point /users/rese_password", () => {
   after(async () => {
     await models.Follower.destroy({
       where: {},
-      truncate: true
+      truncate: true,
+      cascade: true
     });
     await models.User.destroy({
       where: {},
-      truncate: true
+      truncate: true,
+      cascade: true
     });
   });
 
