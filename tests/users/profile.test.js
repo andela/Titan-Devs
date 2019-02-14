@@ -8,7 +8,8 @@ after("Destroy the database ", done => {
   try {
     const database = User.destroy({
       where: {},
-      truncate: true
+      truncate: true,
+      cascade: true
     });
     if (database) {
       done();

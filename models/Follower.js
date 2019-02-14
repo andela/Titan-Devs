@@ -9,16 +9,17 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
-      followerId: DataTypes.UUID
+      followerId: DataTypes.UUID,
+      followingId: DataTypes.UUID
     },
     {
       tableName: "followers"
     }
   );
-  Follower.associate = function(models) {
+  Follower.associate = models => {
     // associations can be defined here
     Follower.belongsTo(models.User, {
-      foreignId: "userId"
+      foreignKey: "followerId"
     });
   };
   return Follower;
