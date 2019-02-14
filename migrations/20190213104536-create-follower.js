@@ -8,13 +8,18 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      followingId: {
+      followerId: {
         type: Sequelize.UUID,
         allowNull: false
       },
       userId: {
         type: Sequelize.UUID,
-        allowNull: false
+        onDelete: "CASCADE",
+        references: {
+          model: "users",
+          key: "id",
+          as: "userId"
+        }
       },
       createdAt: {
         allowNull: false,

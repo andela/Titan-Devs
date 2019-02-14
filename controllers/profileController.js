@@ -1,7 +1,7 @@
 // import models from "../models/index";
 import models from "../models";
 import validation from "../middlewares/validators/updateProfileValidator";
-const { User } = models;
+const { User, Follower } = models;
 console.log(User);
 
 /** Define the class for creating the profile
