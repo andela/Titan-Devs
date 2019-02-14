@@ -12,6 +12,9 @@ export default class FollowerController {
           username
         }
       });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
       const results = await Follower.findOrCreate({
         where: {
           followingId: user.id,
@@ -19,12 +22,11 @@ export default class FollowerController {
         }
       }).spread((follower, created) => {
         if (created) {
-          console.log(created);
-          return res.json({
-            message: "Follow success"
+          return res.status(201).json({
+            message: "Follow successful"
           });
         } else {
-          res.json({ message: "You already follow this author" });
+          res.status(409).json({ message: "You are already following this author" });
         }
       });
     } catch (error) {
@@ -43,13 +45,22 @@ export default class FollowerController {
           username
         }
       });
-      await Follower.destroy({
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      const results = await Follower.destroy({
         where: {
-          followingId: id,
-          followerId: user.id
+          followingId: user.id,
+          followerId: id
         }
       });
-      res.json({ message: "You have unfollowed this user " });
+
+      if (results <= 0) {
+        return res
+          .status(404)
+          .json({ message: "You have already unfollowed this author" });
+      }
+      return res.status(202).json({ message: "You have unfollowed this author" });
     } catch (error) {
       res
         .status(500)
@@ -65,6 +76,9 @@ export default class FollowerController {
           username
         }
       });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
       const followers = await Follower.findAll({
         where: {
           followingId: user.id
@@ -88,7 +102,7 @@ export default class FollowerController {
   static async getFollowings(req, res) {
     const { username } = req.params;
     try {
-      const followings = await User.findOne({
+      const user = await User.findOne({
         where: {
           username
         },
@@ -101,8 +115,10 @@ export default class FollowerController {
           }
         ]
       });
-
-      res.json({ followings });
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+      res.json({ user });
     } catch (error) {
       console.log(error);
       res
