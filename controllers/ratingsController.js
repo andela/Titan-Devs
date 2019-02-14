@@ -41,6 +41,13 @@ class RatingController {
           })
           .catch(error => {
             if (
+              error.name === "SequelizeForeignKeyConstraintError" &&
+              error.index === "ratings_articleId_fkey"
+            ) {
+              res
+                .status(NOT_FOUND)
+                .json({ message: "Post you are looking for cannot be found" });
+            } else if (
               error.parent.code === "23505" &&
               error.name === "SequelizeUniqueConstraintError"
             ) {
@@ -63,25 +70,35 @@ class RatingController {
    * @return {Object} - It returns the response object.
    */
 
-  static async getAll(req, res) {
+  static async getAll(req, res, next) {
+    const { slug } = req.params;
+    const userId = req.user.id;
     const { article } = req;
 
-    try {
-      const results = await Rating.findAll({
-        raw: true,
-        where: { articleId: article.id }
-      });
-      const averageRating = await Rating.findAll({
-        attributes: [
-          [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
-        ],
-        raw: true,
-        where: { articleId: article.id }
-      });
-      res.status(OK).json({ ratings: results, averageRating: averageRating[0] });
-    } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({ message: "Please Try again later" });
-    }
+    joi.validate({ userId, slug }, ratingAll, async (err, _value) => {
+      if (err) {
+        next(err);
+      } else {
+        try {
+          const results = await Rating.findAll({
+            raw: true,
+            where: { articleId: article.id },
+            attributes: [
+              "id",
+              "rating",
+              [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
+            ],
+            group: ["Rating.id"]
+          });
+          res.status(OK).json({ ratings: results });
+        } catch (error) {
+          console.log(error);
+          res
+            .status(INTERNAL_SERVER_ERROR)
+            .json({ message: "Please Try again later" });
+        }
+      }
+    });
   }
 
   /**

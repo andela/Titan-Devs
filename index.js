@@ -3,10 +3,11 @@ import session from "express-session";
 import cors from "cors";
 import errorhandler from "errorhandler";
 import dotenv from "dotenv";
+import passport from "passport";
 import methodOverride from "method-override";
 import morgan from "morgan";
-import passport from "passport";
 import swaggerUi from "swagger-ui-express";
+import restify from "restify";
 import routers from "./routes";
 import swaggerDocument from "./swagger.json";
 import joiValidator from "./middlewares/joiValidator";
@@ -19,6 +20,7 @@ dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
 
 const app = express();
+app.use(restify.plugins.queryParser({ mapParams: false }));
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,7 +40,11 @@ app.use(
   })
 );
 
-if (!isProduction) app.use(errorhandler());
+app.use(passport.initialize());
+
+if (!isProduction) {
+  app.use(errorhandler());
+}
 
 app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1", routers);
@@ -52,9 +58,9 @@ app.use((req, resp, next) => {
 });
 
 if (!isProduction) {
+  // eslint-disable-next-line no-console
   // eslint-disable-next-line no-unused-vars
   app.use((err, req, res, next) => {
-    // eslint-disable-next-line no-console
     console.log(err.stack);
     res.status(err.status || INTERNAL_SERVER_ERROR);
 
@@ -63,7 +69,6 @@ if (!isProduction) {
     });
   });
 }
-
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
   res.status(err.status || INTERNAL_SERVER_ERROR);

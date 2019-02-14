@@ -15,11 +15,16 @@ export default (sequelize, DataTypes) => {
       },
       password: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: true
       },
       username: {
         type: DataTypes.STRING,
         allowNull: false,
+        unique: true
+      },
+      socialId: {
+        type: DataTypes.STRING,
+        allowNull: true,
         unique: true
       },
       bio: {
