@@ -11,7 +11,7 @@ module.exports = {
           password: "password",
           username: "luc",
           firstName: "User",
-          lastName: "1",:
+          lastName: "1",
           createdAt: "2019-02-04T14:17:44.366Z",
           updatedAt: "2019-02-04T14:17:44.366Z"
         }
