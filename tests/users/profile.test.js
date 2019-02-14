@@ -18,9 +18,25 @@ after("Destroy the database ", done => {
     done(error);
   }
 });
+
 describe("Test /profiles", () => {
   let token;
-  before("Login and return a token", done => {
+  before("Create a user and login to return a token", done => {
+    const user = {
+      email: "luc.bay@gmail.com",
+      password: "password",
+      username: "luc2018"
+    };
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(user)
+      .end((error, res) => {
+        if (error) done(error.message);
+        done();
+      });
+  });
+  before("Create a user and login to return a token", done => {
     const user = {
       email: "luc.bay@gmail.com",
       password: "password"

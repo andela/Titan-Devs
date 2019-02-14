@@ -1,6 +1,9 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
+import models from "../../models";
+const { User } = models;
+
 import { newArticle, user } from "../testData";
 import constants from "../../helpers/constants";
 
@@ -8,28 +11,82 @@ let token;
 
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
-
-before(done => {
-  const { email, password } = user;
+after("Destroy the database ", done => {
+  try {
+    const database = User.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
+    if (database) {
+      done();
+    }
+  } catch (error) {
+    done(error);
+  }
+});
+before("Create a user and login to return a token", done => {
+  const user = {
+    email: "luc.bay@gmail.com",
+    password: "password",
+    username: "luc2018"
+  };
   chai
     .request(app)
     .post("/api/v1/users")
     .send(user)
-    .end((error, result) => {
-      if (!error) {
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email, password })
-          .end((err, res) => {
-            if (!err) token = res.body.token;
-            done(err ? err : undefined);
-          });
-      }
+    .end((error, res) => {
+      if (error) done(error.message);
+      done();
+    });
+});
+before("Create a user and login to return a token", done => {
+  const user = {
+    email: "luc.bay@gmail.com",
+    password: "password"
+  };
+  chai
+    .request(app)
+    .post("/api/v1/users/login")
+    .send(user)
+    .end((error, res) => {
+      if (error) done(error.message);
+      token = res.body.token;
+      done();
     });
 });
 
 describe("# Articles endpoints", () => {
+  before("Create a user and login to return a token", done => {
+    const user = {
+      email: "luc.bay@gmail.com",
+      password: "password",
+      username: "luc2018"
+    };
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(user)
+      .end((error, res) => {
+        if (error) done(error.message);
+        done();
+      });
+  });
+  before("Create a user and login to return a token", done => {
+    const user = {
+      email: "luc.bay@gmail.com",
+      password: "password"
+    };
+    chai
+      .request(app)
+      .post("/api/v1/users/login")
+      .send(user)
+      .end((error, res) => {
+        if (error) done(error.message);
+        token = res.body.token;
+        done();
+      });
+  });
   describe("POST /articles", () => {
     it("should create the article and return the success message", done => {
       chai
