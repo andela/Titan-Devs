@@ -1,8 +1,12 @@
 import models from "../models";
 
 const { User, Follower } = models;
-
+/** Define the class for creating the profile
+ * @params request
+ * @params response
+ */
 export default class FollowerController {
+  /** Define the function user following an author */
   static async followUser(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -35,7 +39,7 @@ export default class FollowerController {
         .json({ message: "Following user failed", errors: error.stack });
     }
   }
-
+  /** Define the function for user unfollowing author */
   static async unFollow(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -67,7 +71,7 @@ export default class FollowerController {
         .json({ message: "Unfollowing user failed", errors: error.stack });
     }
   }
-
+  /** Define the function for fetching author's followers */
   static async getAllFollowers(req, res) {
     const { username } = req.params;
     try {
@@ -98,7 +102,7 @@ export default class FollowerController {
         .json({ message: "Unknown error occurred", errors: error.stack });
     }
   }
-
+  /** Define the function for fetching user's followings */
   static async getFollowings(req, res) {
     const { username } = req.params;
     try {
