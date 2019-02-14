@@ -4,14 +4,10 @@ import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
 
-const { dummyUser3 } = data;
+const { dummyUser3, invalidToken, wrongToken } = data;
 chai.use(chaiHttp);
 should();
 let userToken;
-const invalidToken =
-  "eyJhbGciOiJIUzJpZCI6ImI5ZjZjN2JiLWM1NTItNDUyNS04MTUwLWI0NTI5NjNkMTZiZiIsImlhdCI6MTU1MDAwODA4Mn0.xCpwywFSzqHXbikot0SzS8fUpPKsqMVMtgmpf4OD_l8";
-const wrongToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0MzM0YTA4LTMyMWEtNDdhYS1iMGVmLTQ5ODZmMWYyN2Q0OSIsImlhdCI6MTU1MDA1MzIzN30.O2QZO576DJ-iLc1ge7yU-jHdoAlQq9CK9Kc6QGqRuic";
 
 describe("/API end point /users/confirmation/:auth_token", () => {
   before(async () => {
