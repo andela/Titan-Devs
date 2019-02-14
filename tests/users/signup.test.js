@@ -1,21 +1,25 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
+import models from "../../models";
 import app from "../../index";
+import { data } from "../../helpers/data";
+const { dummyUser } = data;
 
-const dammyUser = {
-  email: "luc.bayo@gmail.com",
-  password: "password",
-  username: "luc2017"
-};
 chai.use(chaiHttp);
 should();
 
-describe("API end point for auth/signup ", () => {
+describe("API end point for /users ", () => {
+  after(async () => {
+    await models.User.destroy({
+      where: {},
+      truncate: true
+    });
+  });
   it("it is should register user with corret details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dammyUser });
+      .send({ ...dummyUser });
     expect(response.status).eql(201);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -47,7 +51,7 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dammyUser,
+        ...dummyUser,
         email: "luc@@gmail.com.com"
       });
     expect(response.status).eql(400);
@@ -99,12 +103,12 @@ describe("API end point for auth/signup ", () => {
     );
   });
 
-  it("It should fail if email already exist", async () => {
+  it("It should fail if username already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dammyUser,
+        ...dummyUser,
         email: "jean@andela.com"
       });
     expect(response.status).equal(409);
