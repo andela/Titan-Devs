@@ -22,8 +22,5 @@ userRouters
     SignupValidation.validatePassword,
     UserController.updatePassword
   );
-<<<<<<< HEAD
 // userRouters.get("/users/:userId", UserController.findOne);
-=======
->>>>>>> 500522295e008cd74b6cb73621031258d7f0fe6c
 export default userRouters;

@@ -3,20 +3,12 @@ import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
-<<<<<<< HEAD
 
 const { dummyUser2 } = data;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
 
-=======
-const { dummyUser2 } = data;
-
-chai.use(chaiHttp);
-should();
-let pwdResetToken;
->>>>>>> 500522295e008cd74b6cb73621031258d7f0fe6c
 describe("/API end point /users/rese_password", () => {
   before(async () => {
     await chai
