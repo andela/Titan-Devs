@@ -79,7 +79,10 @@ class UserController {
         }
       });
     } catch (error) {
+<<<<<<< HEAD
       console.log(error);
+=======
+>>>>>>> 500522295e008cd74b6cb73621031258d7f0fe6c
       res.status(500).json({ message: "Sending email failed", errors: error.stack });
     }
   }

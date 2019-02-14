@@ -11,8 +11,12 @@ module.exports = {
     */
     return Promise.all([
       queryInterface.addColumn("users", "firstname", {
+<<<<<<< HEAD
         type: Sequelize.STRING(500),
         defaultValue: null
+=======
+        type: Sequelize.STRING(500)
+>>>>>>> 500522295e008cd74b6cb73621031258d7f0fe6c
       }),
       queryInterface.addColumn("users", "lastname", {
         type: Sequelize.STRING(100),
