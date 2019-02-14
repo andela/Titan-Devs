@@ -10,6 +10,10 @@ should();
 
 describe("API end point for /users ", () => {
   after(async () => {
+    await models.Follower.destroy({
+      where: {},
+      truncate: true
+    });
     await models.User.destroy({
       where: {},
       truncate: true
