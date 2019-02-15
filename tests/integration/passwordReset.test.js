@@ -17,6 +17,12 @@ describe("Password controller", () => {
         ...dummyUser2
       });
   });
+  // after(async () => {
+  //   await models.User.destroy({
+  //     where: {},
+  //     truncate: true
+  //   });
+  // });
 
   it("should send password rest link", async () => {
     const results = await chai
