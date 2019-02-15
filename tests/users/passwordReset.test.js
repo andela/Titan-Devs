@@ -3,12 +3,13 @@ import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
 import { data } from "../../helpers/data";
-const { dummyUser2 } = data;
 
+const { dummyUser2 } = data;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
-describe("/API end point /users/rese_password", () => {
+
+describe("Password controller", () => {
   before(async () => {
     await chai
       .request(app)
@@ -18,6 +19,11 @@ describe("/API end point /users/rese_password", () => {
       });
   });
   after(async () => {
+    await models.Follower.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
     await models.User.destroy({
       where: {},
       truncate: true,
@@ -25,7 +31,7 @@ describe("/API end point /users/rese_password", () => {
     });
   });
 
-  it("/POST get password reset link", async () => {
+  it("should send password rest link", async () => {
     const results = await chai
       .request(app)
       .post("/api/v1/users/reset_password")
@@ -41,7 +47,7 @@ describe("/API end point /users/rese_password", () => {
     expect(results.body.user).to.be.an("object");
     expect(results.body.user).to.have.property("resetToken");
   });
-  it("/POST user not found on non existing user", async () => {
+  it("should not send the link to non existing user", async () => {
     const results = await chai
       .request(app)
       .post("/api/v1/users/reset_password")
@@ -54,8 +60,7 @@ describe("/API end point /users/rese_password", () => {
       .to.have.property("message")
       .eql("User not found");
   });
-
-  it("/PUT faild for short non alphanumeric password", async () => {
+  it("should fail on non alphanumeric password", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
@@ -67,8 +72,7 @@ describe("/API end point /users/rese_password", () => {
       "The password should be an alphanumeric with at least 8 characters"
     );
   });
-
-  it("/PUT if password is the same as current one", async () => {
+  it("should return error if new password is the same as current one", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
@@ -80,8 +84,7 @@ describe("/API end point /users/rese_password", () => {
       "Your new password was the same as your current one"
     );
   });
-
-  it("/PUT update password", async () => {
+  it("should update password", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
@@ -91,8 +94,7 @@ describe("/API end point /users/rese_password", () => {
     expect(results.status).equal(200);
     expect(results.body.message).eql("Password updated");
   });
-
-  it("/PUT invalid token", async () => {
+  it("should return an error on invalid token", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${"kldfjdkjahfdkjh"}/password`)
@@ -102,8 +104,7 @@ describe("/API end point /users/rese_password", () => {
     expect(results.status).equal(400);
     expect(results.body.message).eql("Invalid or expired link");
   });
-
-  it("/PUT update password", async () => {
+  it("should return an error on expired token", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)

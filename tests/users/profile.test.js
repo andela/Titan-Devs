@@ -114,7 +114,6 @@ describe("Test /profiles", () => {
       .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
-
         result.status.should.be.eql(200);
         result.body.should.have.property("profile").which.is.a("object");
         result.body.profile.should.have.property("username").eql("luc2018");
