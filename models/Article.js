@@ -11,7 +11,11 @@ export default (sequelize, DataTypes) => {
       },
       title: { type: DataTypes.STRING, allowNull: false },
       description: { type: DataTypes.TEXT, allowNull: false },
-      body: { type: DataTypes.TEXT, allowNull: false }
+      body: { type: DataTypes.TEXT, allowNull: false },
+      readTime: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      }
     },
     {
       tableName: "articles"

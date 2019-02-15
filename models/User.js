@@ -25,6 +25,21 @@ export default (sequelize, DataTypes) => {
       bio: {
         type: DataTypes.STRING(500)
       },
+      firstname: {
+        type: DataTypes.STRING(500)
+      },
+      lastname: {
+        type: DataTypes.STRING(500)
+      },
+      gender: {
+        type: DataTypes.STRING(500)
+      },
+      address: {
+        type: DataTypes.STRING(500)
+      },
+      phone: {
+        type: DataTypes.STRING(500)
+      },
       image: {
         type: DataTypes.STRING(100),
         defaultValue: null
