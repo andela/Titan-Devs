@@ -1,9 +1,12 @@
 import chai, { should } from "chai";
 import chaiHttp from "chai-http";
 import models from "../../models";
+
 import app from "../../index";
+
 const { User } = models;
 chai.use(chaiHttp);
+
 after("Destroy the database ", done => {
   try {
     const database = User.destroy({
@@ -18,9 +21,9 @@ after("Destroy the database ", done => {
     done(error);
   }
 });
-describe("Test /profiles", () => {
+describe("Profile controller", () => {
   let token;
-  before("Login and return a token", done => {
+  before("Login", done => {
     const user = {
       email: "me@example.com",
       password: "password",
@@ -45,7 +48,7 @@ describe("Test /profiles", () => {
           });
       });
   });
-  it("It should test updating a profile", done => {
+  it("should test updating a profile", done => {
     const user = {
       profile: {
         bio: "I am a software developer",
@@ -81,7 +84,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test unauthorized attempt", done => {
+  it("should test unauthorized attempt", done => {
     const user = {
       profile: {
         bio: "I am a software developer",
@@ -101,14 +104,13 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching a profile of a user", done => {
+  it("should test fetching a profile of a user", done => {
     const username = "luc2018";
     chai
       .request(app)
       .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
-
         result.status.should.be.eql(200);
         result.body.should.have.property("profile").which.is.a("object");
         result.body.profile.should.have.property("username").eql("luc2018");
@@ -119,7 +121,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching a profile an non-existing user", done => {
+  it("should test fetching a profile an non-existing user", done => {
     const username = "Yves2018";
     chai
       .request(app)
@@ -133,7 +135,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching all profiles", done => {
+  it("should test fetching all profiles", done => {
     chai
       .request(app)
       .get("/api/v1/profiles")
@@ -144,7 +146,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test deleting a user", done => {
+  it("should test deleting a user", done => {
     const username = "luc2018";
     chai
       .request(app)
@@ -159,7 +161,7 @@ describe("Test /profiles", () => {
         done(error);
       });
   });
-  it("It should test deleting an non-existing user", done => {
+  it("should test deleting an non-existing user", done => {
     const username = "luc2018";
     chai
       .request(app)
@@ -171,7 +173,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test deleting an unauthorized request", done => {
+  it("should test deleting an unauthorized request", done => {
     const username = "Yves2018";
     chai
       .request(app)

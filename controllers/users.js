@@ -3,12 +3,26 @@ import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
 import resetPwdTemplate from "../helpers/resetPasswordTemplate";
-import { sendEmail } from "../services/sendgrid";
 
+import { sendEmail } from "../services/sendgrid";
 dotenv.config();
+
 const { User } = models;
 
+/**
+ * UserController
+ *
+ * @class
+ */
 class UserController {
+  /**
+   *
+   * signUp
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async signUp(req, res) {
     const { email, password, username } = req.body;
     try {
@@ -46,6 +60,14 @@ class UserController {
     }
   }
 
+  /**
+   *
+   * resetPassword
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -79,11 +101,18 @@ class UserController {
         }
       });
     } catch (error) {
-      console.log(error);
       res.status(500).json({ message: "Sending email failed", errors: error.stack });
     }
   }
 
+  /**
+   *
+   * updatePassword
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async updatePassword(req, res) {
     const { token } = req.params;
     try {

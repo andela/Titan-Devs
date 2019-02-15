@@ -1,12 +1,20 @@
 import models from "../models";
 
 const { User, Follower } = models;
-/** Define the class for creating the profile
- * @params request
- * @params response
+/**
+ * FollowerController
+ *
+ * @class
  */
 export default class FollowerController {
-  /** Define the function user following an author */
+  /**
+   *
+   * followUser
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async followUser(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -39,7 +47,15 @@ export default class FollowerController {
         .json({ message: "Following user failed", errors: error.stack });
     }
   }
-  /** Define the function for user unfollowing author */
+
+  /**
+   *
+   * unFollow
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async unFollow(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -58,7 +74,6 @@ export default class FollowerController {
           followerId: id
         }
       });
-
       if (results <= 0) {
         return res
           .status(404)
@@ -71,7 +86,15 @@ export default class FollowerController {
         .json({ message: "Unfollowing user failed", errors: error.stack });
     }
   }
-  /** Define the function for fetching author's followers */
+
+  /**
+   *
+   * getAllFollowers
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async getAllFollowers(req, res) {
     const { username } = req.params;
     try {
@@ -96,13 +119,20 @@ export default class FollowerController {
       });
       res.json({ followers });
     } catch (error) {
-      console.log(error);
       res
         .status(500)
         .json({ message: "Unknown error occurred", errors: error.stack });
     }
   }
-  /** Define the function for fetching user's followings */
+
+  /**
+   *
+   * getFollowings
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async getFollowings(req, res) {
     const { username } = req.params;
     try {
@@ -124,7 +154,6 @@ export default class FollowerController {
       }
       res.json({ user });
     } catch (error) {
-      console.log(error);
       res
         .status(500)
         .json({ message: "Unknown error occurred", errors: error.stack });
