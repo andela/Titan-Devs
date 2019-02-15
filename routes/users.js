@@ -1,7 +1,7 @@
 import { Router } from "express";
 import Login from "../controllers/auth/loginController";
 import UserController from "../controllers/users";
-// middelwares
+
 import SignupValidation from "../middlewares/validators/signup.validator";
 
 const userRouters = Router();
@@ -22,5 +22,4 @@ userRouters
     SignupValidation.validatePassword,
     UserController.updatePassword
   );
-// userRouters.get("/users/:userId", UserController.findOne);
 export default userRouters;

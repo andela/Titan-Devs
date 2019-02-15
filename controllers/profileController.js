@@ -1,25 +1,24 @@
-// import models from "../models/index";
 import models from "../models";
 import validation from "../middlewares/validators/updateProfileValidator";
-const { User } = models;
-console.log(User);
+const { User, Follower } = models;
 
-/** Define the class for creating the profile
- * @params request
- * @params response
+/**
+ * Profile Class
+ *
+ * @class
  */
 class Profile {
-  /** Define the function for updating the profile */
+  /**
+   *
+   * Update profile
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async update(req, res) {
     let usernameParameter = req.params.username;
     let usernameFromtoken = req.user.username;
-    /** Check if the request.body.profile is provided */
-    if (!req.body.profile) {
-      return res.status(400).json({
-        error: `The body of the request should be {profile:{field:'value'}}`
-      });
-    }
-
     let newUser = validation(req.body.profile);
     if (newUser.error) {
       return res.status(400).json({ error: newUser.error });
@@ -35,7 +34,7 @@ class Profile {
       });
       let newProfile = updatedProfile[1][0];
       return res
-        .status(200)
+        .status(201)
         .json({ message: "Profile updated successfully", profile: newProfile });
     } catch (error) {
       res.status(500).json({ error });

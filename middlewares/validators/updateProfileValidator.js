@@ -12,13 +12,13 @@ const Schema = Joi.object().keys({
     .max(30),
   image: Joi.string()
     .min(3)
-    .max(200),
+    .max(30),
   bio: Joi.string()
     .min(3)
-    .max(200),
+    .max(30),
   following: Joi.string()
     .min(3)
-    .max(200),
+    .max(30),
   gender: Joi.string()
     .min(3)
     .max(30),
