@@ -1,8 +1,8 @@
-import randomString from "./randomString";
+// import randomString from "./randomString";
 const newArticle = {
   title: "How to train your dragon",
   description: "Ever wonder how?",
-  body: randomString,
+  body: "randomString",
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
 const user = {
