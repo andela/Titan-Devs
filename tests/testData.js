@@ -2,7 +2,7 @@
 const newArticle = {
   title: "How to train your dragon",
   description: "Ever wonder how?",
-  body: "randomString",
+  body: " a a a a a aaaaa aaaaaaaaaa aaaaaaaaaa",
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
 const user = {
