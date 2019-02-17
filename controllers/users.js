@@ -5,6 +5,7 @@ import models from "../models";
 import { sendEmail } from "../services/sendgrid";
 import template from "../helpers/EmailVerificationTamplate";
 import resetPwdTamplage from "../helpers/resetPasswordTamplate";
+import { isEmailValid } from "../helpers/funcValidators";
 
 dotenv.config();
 const { User } = models;
@@ -135,6 +136,9 @@ class UserController {
   static async resendVerificationEmail(req, res) {
     try {
       const { email } = req.body;
+      if (!email) return res.status(404).json({ message: "Email is required" });
+      if (!isEmailValid(email))
+        return res.status(404).json({ message: "Invalid email" });
       const user = await User.findOne({
         where: { email }
       });
