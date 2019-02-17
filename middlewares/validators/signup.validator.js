@@ -7,7 +7,8 @@ export default class SignupValidator {
     if (isEmpty(email)) errors.email = "Email is required";
     if (isEmpty(password)) errors.password = "Password is required";
     if (isEmpty(username)) errors.username = "Username is required";
-    if (isEmpty(!isVerified)) errors.isVerified = "Your account has not been verified"
+    if (isEmpty(!isVerified))
+      errors.isVerified = "Your account has not been verified";
     return isEmpty(errors)
       ? next()
       : res.status(400).json({ message: "User registration failed", errors });

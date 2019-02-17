@@ -23,7 +23,6 @@ class UserController {
         email,
         password: hashPassword
       });
-
       const token = jwt.sign(
         { userId: user.dataValues.id, email: user.dataValues.email },
         process.env.SECRET_OR_KEY
