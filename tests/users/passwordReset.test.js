@@ -18,6 +18,7 @@ describe("Password controller", () => {
         ...dummyUser2
       });
   });
+<<<<<<< HEAD
   after(async () => {
     await models.Follower.destroy({
       where: {},
@@ -30,6 +31,8 @@ describe("Password controller", () => {
       cascade: true
     });
   });
+=======
+>>>>>>> bc119bb... [Feature #163518689] Fix the rebase conflicts
 
   it("should send password rest link", async () => {
     const results = await chai

@@ -11,6 +11,7 @@ export default class PostController {
    * @param  {object} res - The response object
    * @return {object} - It returns the request response object
    */
+
   static async create(req, res) {
     try {
       const { tagsList = [], ...rest } = req.body;

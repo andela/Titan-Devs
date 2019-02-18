@@ -44,7 +44,7 @@ if (!isProduction) {
 }
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-app.use("/api/v1/", routers);
+app.use("/api/v1", routers);
 
 const server = app.listen(process.env.PORT || 3000, () => {
   console.log(`Listening on port ${server.address().port}`);
