@@ -45,7 +45,11 @@ class UserController {
         const { id, email, resetToken } = user.dataValues;
         const emailBody = await resetPwdTemplate(token);
         const emailResponse = await sendEmail(email, "Password Reset", emailBody);
-        if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
+
+        if (
+          (emailResponse.length > 0 && emailResponse[0].statusCode === 202) ||
+          emailResponse[emailResponse.length - 1].mockResponse
+        ) {
           res.json({
             message: "Mail delivered",
             user: { id, email, resetToken }
