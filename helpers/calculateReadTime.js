@@ -1,3 +1,10 @@
+/**
+ * Calculate the read time
+ *
+ * @param  {object} req -request to the route
+ * @returns {integer} - It returns the time period in minutes
+ */
+
 export default article => {
   let body = article.body.body;
   if (!body) {
