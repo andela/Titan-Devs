@@ -8,7 +8,6 @@ const { dummyUser } = users;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
-
 describe("Password controller", () => {
   before(async () => {
     await chai
