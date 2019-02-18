@@ -40,13 +40,10 @@ describe("# Articles endpoints", () => {
         .end((err, res) => {
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
-<<<<<<< HEAD
           expect(res.body).to.haveOwnProperty("article");
           expect(res.body.article).to.haveOwnProperty("createdAt");
           expect(res.body.article).to.haveOwnProperty("title");
           expect(res.body.article.title).to.contain(newArticle.title);
-=======
->>>>>>> [feature #163518699] refactor readtime testing
           expect(res.body.article.readTime).to.eql(1);
           done();
         });
