@@ -56,11 +56,8 @@ module.exports = {
       queryInterface.removeColumn("users", "firstname"),
       queryInterface.removeColumn("users", "lastname"),
       queryInterface.removeColumn("users", "gender"),
-<<<<<<< HEAD
       queryInterface.addColumn("users", "bio"),
       queryInterface.addColumn("users", "image"),
-=======
->>>>>>> 700e86c1524c7fec386eda01ed213a63ddca392d
       queryInterface.removeColumn("users", "following"),
       queryInterface.removeColumn("users", "phone"),
       queryInterface.removeColumn("users", "address")

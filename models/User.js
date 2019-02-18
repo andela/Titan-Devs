@@ -64,7 +64,7 @@ export default (sequelize, DataTypes) => {
   User.associate = models => {
     User.hasMany(models.Article, { onDelete: "CASCADE", hooks: true });
     // associations can be defined here
-    user.belongsToMany(models.User, {
+    User.belongsToMany(models.User, {
       through: models.Follower,
       as: "followings",
       foreignKey: "followerId",
