@@ -1,7 +1,7 @@
 import models from "../models";
 import constants from "../helpers/constants";
 import articleValidator from "../helpers/validators/article";
-import calculateReadTime from "../helpers/caculateReadTime";
+import calculateReadTime from "../helpers/calculateReadTime";
 
 const { User, Article, Tag, ArticleTag } = models;
 const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
