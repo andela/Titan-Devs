@@ -62,8 +62,22 @@ export default class CommentController {
    * @return {Object} - It returns the request response object.
    */
   static async like(req, res) {
+    const { commentId } = req.params;
     try {
-      const { commentId } = req.params;
+      const comments = await findAll({ where: { commentId } });
+      if (comments.length == 0) {
+        throw new Error("You are liking a non-existing comment");
+      }
+    } catch (error) {
+      if (error.message == "You are liking a non-existing comment") {
+        return res
+          .status(400)
+          .json({ message: "You are liking a non-existing comment" });
+      }
+      return res.status(500).json({ error: error.message });
+    }
+
+    try {
       const userId = req.user.id;
       const likes = await commentlike.findAll({ where: { commentId, userId } });
       if (likes.length == 0) {
@@ -92,6 +106,23 @@ export default class CommentController {
         .json({ message: "Comment unliked", unlikeComment, updateCommentLikes });
     } catch (error) {
       res.status(BAD_REQUEST).json({ error: error.message, stack: error.stack });
+    }
+  }
+
+  static async getLikingUsers(req, res) {
+    const commentId = req.body.commentId;
+    try {
+      const usersLikingComment = await Comment.findAll({
+        include: [{ model: Users, where: { state: sequelize.col("users.state") } }]
+      });
+      if (usersLikingComment.length >= 1) {
+        return res.status(200).json({ usersLikingComment });
+      }
+      return res
+        .status(200)
+        .json({ message: "No current user who is liking that comment" });
+    } catch (error) {
+      res.status(400).json({ message: error.message });
     }
   }
 }

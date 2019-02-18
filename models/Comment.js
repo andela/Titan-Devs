@@ -11,7 +11,8 @@ export default (sequelize, DataTypes) => {
       body: { type: DataTypes.TEXT, allowNull: false },
       likes: {
         allowNull: true,
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     { tableName: "comments" }
