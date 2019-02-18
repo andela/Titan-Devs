@@ -1,25 +1,24 @@
-// import models from "../models/index";
 import models from "../models";
 import validation from "../middlewares/validators/updateProfileValidator";
-const { User } = models;
-console.log(User);
+const { User, Follower } = models;
 
-/** Define the class for creating the profile
- * @params request
- * @params response
+/**
+ * Profile Class
+ *
+ * @class
  */
 class Profile {
-  /** Define the function for updating the profile */
+  /**
+   *
+   * Update profile
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async update(req, res) {
     let usernameParameter = req.params.username;
     let usernameFromtoken = req.user.username;
-    /** Check if the request.body.profile is provided */
-    if (!req.body.profile) {
-      return res.status(400).json({
-        error: `The body of the request should be {profile:{field:'value'}}`
-      });
-    }
-
     let newUser = validation(req.body.profile);
     if (newUser.error) {
       return res.status(400).json({ error: newUser.error });
@@ -35,13 +34,21 @@ class Profile {
       });
       let newProfile = updatedProfile[1][0];
       return res
-        .status(201)
+        .status(200)
         .json({ message: "Profile updated successfully", profile: newProfile });
     } catch (error) {
       res.status(500).json({ error });
     }
   }
-  /** Define the function for getting a profile of a specific user */
+
+  /**
+   *
+   * getProfile
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async getProfile(req, res) {
     let { username } = req.params;
     try {
@@ -59,8 +66,14 @@ class Profile {
       return res.status(500).json({ message: "Error happened", error });
     }
   }
-  /** Define the function for retrieving all profiles
-   * @params {} res
+
+  /**
+   *
+   * getAllProfiles
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
    */
   static async getAllProfiles(req, res) {
     try {
@@ -70,14 +83,21 @@ class Profile {
       res.status(400).json({ error });
     }
   }
-  /** Define the function for deleting a profile */
+
+  /**
+   *
+   * delete
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async delete(req, res) {
     let { username } = req.params;
     let usernameFromToken = req.user.username;
     if (username != usernameFromToken) {
       return res.status(403).json({ message: "Unauthorized request" });
     }
-
     try {
       const deletedUser = await User.destroy({
         where: { username }

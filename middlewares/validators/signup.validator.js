@@ -34,7 +34,7 @@ export default class SignupValidator {
     const { username } = req.body;
     return isAlphanumeric(username) && /[a-z]/i.test(username.trim()[0])
       ? next()
-      : res.status(400).json({
+      : res.status(409).json({
           message:
             "The username must begin with letter and only contains alphabet and numbers not symbols"
         });
