@@ -15,7 +15,7 @@ describe("User following", () => {
       .send({
         ...dummyUser
       });
-    const user2 = await await chai
+    const user2 = await chai
       .request(app)
       .post("/api/v1/users")
       .send({
