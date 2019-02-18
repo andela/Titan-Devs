@@ -3,14 +3,15 @@ export default (sequelize, DataTypes) => {
     "Comment",
     {
       id: {
-        type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
-      body: {
-        allowNull: false,
-        type: DataTypes.TEXT
+      body: { type: DataTypes.TEXT, allowNull: false },
+      likes: {
+        allowNull: true,
+        type: DataTypes.INTEGER
       }
     },
     { tableName: "comments" }

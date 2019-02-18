@@ -2,8 +2,8 @@ import Joi from "joi";
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { User, Article, Comment } = models;
-const { CREATED, BAD_REQUEST } = constants.statusCode;
+const { User, Article, Comment, commentlike } = models;
+const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 
 /**
  * @class CommentController
@@ -52,6 +52,46 @@ export default class CommentController {
           .send({ message: error.details[0].message, status: BAD_REQUEST });
       }
       return res.status(500).send({ message: error, status: 500 });
+    }
+  }
+
+  /**
+   * Like a comment.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the request response object.
+   */
+  static async like(req, res) {
+    try {
+      const { commentId } = req.params;
+      const userId = req.user.id;
+      const likes = await commentlike.findAll({ where: { commentId, userId } });
+      if (likes.length == 0) {
+        const likeComment = await commentlike.create({ commentId, userId });
+        const updateCommentLikes = await Comment.increment(
+          {
+            likes: 1
+          },
+          { where: { id: commentId } }
+        );
+        return res
+          .status(CREATED)
+          .json({ message: "Comment liked", likeComment, updateCommentLikes });
+      }
+      const unlikeComment = await commentlike.destroy({
+        where: { commentId, userId }
+      });
+      const updateCommentLikes = await Comment.decrement(
+        {
+          likes: 1
+        },
+        { where: { id: commentId } }
+      );
+      res
+        .status(CREATED)
+        .json({ message: "Comment unliked", unlikeComment, updateCommentLikes });
+    } catch (error) {
+      res.status(BAD_REQUEST).json({ error: error.message, stack: error.stack });
     }
   }
 }
