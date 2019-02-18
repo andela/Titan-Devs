@@ -1,21 +1,26 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
+import nock from "nock";
 import app from "../../index";
 import models from "../../models";
-import { data } from "../../helpers/data";
-const { dummyUser2 } = data;
+import { data, sendGridResponse } from "../../helpers/data";
+const { dummyUser } = data;
 
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
+
 describe("/API end point /users/rese_password", () => {
   before(async () => {
     await chai
       .request(app)
       .post("/api/v1/users")
       .send({
-        ...dummyUser2
+        ...dummyUser
       });
+    nock("https://api.sendgrid.com")
+      .post("/v3/mail/send")
+      .reply(200, { mockResponse: sendGridResponse });
   });
   after(async () => {
     await models.User.destroy({
@@ -30,7 +35,7 @@ describe("/API end point /users/rese_password", () => {
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({
-        email: dummyUser2.email
+        email: dummyUser.email
       });
     pwdResetToken = results.body.user.resetToken;
     expect(results.status).equal(200);
@@ -73,7 +78,7 @@ describe("/API end point /users/rese_password", () => {
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
-        password: dummyUser2.password
+        password: dummyUser.password
       });
     expect(results.status).equal(400);
     expect(results.body.message).eql(

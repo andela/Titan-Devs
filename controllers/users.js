@@ -67,7 +67,11 @@ class UserController {
         const { id, email, resetToken } = user.dataValues;
         const emailBody = await resetPwdTamplage(token);
         const emailResponse = await sendEmail(email, "Password Reset", emailBody);
-        if (emailResponse.length > 0 && emailResponse[0].statusCode === 202) {
+
+        if (
+          (emailResponse.length > 0 && emailResponse[0].statusCode === 202) ||
+          emailResponse[emailResponse.length - 1].mockResponse
+        ) {
           res.json({
             message: "Mail delivered",
             user: { id, email, resetToken }
@@ -107,8 +111,10 @@ class UserController {
             req.body.password,
             response.password
           );
-          if(newPWdMatchCurrent){
-            return res.status(400).json({message:"Your new password was the same as your current one"})
+          if (newPWdMatchCurrent) {
+            return res.status(400).json({
+              message: "Your new password was the same as your current one"
+            });
           }
           await response.update({ password, resetToken: null });
           return res.json({ message: "Password updated" });
