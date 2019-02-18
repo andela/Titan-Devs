@@ -3,8 +3,9 @@ import chai, { expect, should } from "chai";
 import nock from "nock";
 import app from "../../index";
 import models from "../../models";
-import { dummyUser, sendGridResponse } from "../../helpers/data";
+import { data, sendGridResponse } from "../../helpers/data";
 
+const {dummyUser} = data
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
