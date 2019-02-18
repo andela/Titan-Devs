@@ -1,9 +1,9 @@
 import faker from "faker";
 
 const newArticle = {
-  title: "How to train your dragon",
-  description: "Ever wonder how?",
-  body: "You have to believe",
+  title: faker.lorem.words(15),
+  description: faker.lorem.words(50),
+  body: faker.lorem.words(500),
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
 const newComment = {
