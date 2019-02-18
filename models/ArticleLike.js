@@ -3,12 +3,13 @@ module.exports = (sequelize, DataTypes) => {
     "ArticleLike",
     {
       userId: DataTypes.UUID,
-      articleId: DataTypes.UUID,
-      like: DataTypes.BOOLEAN
+      articleId: DataTypes.UUID
     },
-    {
-      tableName: "articleLikes"
-    }
+    {}
   );
+  ArticleLike.associate = models => {
+    ArticleLike.belongsTo(models.User);
+    ArticleLike.belongsTo(models.Article);
+  };
   return ArticleLike;
 };
