@@ -4,17 +4,26 @@ import validate from "../../helpers/validators/login.validation";
 import bcrypt from "bcrypt";
 
 const { User } = models;
-/** Define class for handling user login */
-
+/**
+ * Login Class
+ *
+ * @class
+ */
 class Login {
+  /**
+   *
+   * SignIn
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static signIn(req, res) {
     const { email, password } = req.body;
-    /** Validate the email and password before any action */
     const err = validate(email, password);
     if (err) {
       return res.status(400).json({ message: err.message });
     }
-    /** Find if the user exists */
     User.findOne({
       where: { email },
       attributes: ["email", "password", "username", "id"]

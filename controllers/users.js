@@ -2,13 +2,27 @@ import dotenv from "dotenv";
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
 import jwt from "jsonwebtoken";
 import models from "../models";
-import resetPwdTamplage from "../helpers/resetPasswordTamplate";
-import { sendEmail } from "../services/sendgrid";
+import resetPwdTemplate from "../helpers/resetPasswordTemplate";
 
+import { sendEmail } from "../services/sendgrid";
 dotenv.config();
+
 const { User } = models;
 
+/**
+ * UserController
+ *
+ * @class
+ */
 class UserController {
+  /**
+   *
+   * signUp
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async signUp(req, res) {
     const { email, password, username } = req.body;
     try {
@@ -46,6 +60,14 @@ class UserController {
     }
   }
 
+  /**
+   *
+   * resetPassword
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -62,10 +84,10 @@ class UserController {
         const token = await jwt.sign(req.body.email, process.env.SECRET_OR_KEY);
         const user = await response.update(
           { resetToken: token },
-          { returining: true }
+          { returning: true }
         );
         const { id, email, resetToken } = user.dataValues;
-        const emailBody = await resetPwdTamplage(token);
+        const emailBody = await resetPwdTemplate(token);
         const emailResponse = await sendEmail(email, "Password Reset", emailBody);
 
         if (
@@ -87,6 +109,14 @@ class UserController {
     }
   }
 
+  /**
+   *
+   * updatePassword
+   *
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the response object
+   */
   static async updatePassword(req, res) {
     const { token } = req.params;
     try {

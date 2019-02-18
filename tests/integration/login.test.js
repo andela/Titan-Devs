@@ -1,38 +1,39 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-
+import models from "../../models";
+import { data } from "../../helpers/data";
 chai.use(chaiHttp);
 const should = chai.should();
+const { dummyUser } = data;
 
-/**
- * @author Yves
- */
-
-describe("POSt /api/v1/users/login", () => {
-  /** create a user in database with below credentials
-   * @const user = { email:'test@test.com, password:'password'}
-   */
-  // create a script that delete the user after test suites.
+describe("POST /api/v1/users/login", () => {
+  after(async () => {
+    await models.Follower.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
+    const results = await models.User.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
+  });
   before("Create a user in database", done => {
-    const user = {
-      email: "luc.bay@gmail.com",
-      password: "password",
-      username: "luc2018"
-    };
     chai
       .request(app)
       .post("/api/v1/users")
-      .send(user)
+      .send({ ...dummyUser })
       .end((error, result) => {
         if (error) done(error);
         done();
       });
   });
-  it("It should return a token", done => {
+  it("should return a token", done => {
     const user = {
-      email: "luc.bay@gmail.com",
-      password: "password"
+      email: dummyUser.email,
+      password: dummyUser.password
     };
     chai
       .request(app)
@@ -45,10 +46,9 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-
-  it("It should return a missing email error ", done => {
+  it("should return a missing email error ", done => {
     const user = {
-      password: "password"
+      password: dummyUser.password
     };
     chai
       .request(app)
@@ -61,7 +61,7 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should return a missing password error", done => {
+  it("should return a missing password error", done => {
     const user = {
       email: "test@test.com"
     };
@@ -76,10 +76,10 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should return an empty email error", done => {
+  it("should return an empty email error", done => {
     const user = {
       email: " ",
-      password: "password"
+      password: dummyUser.password
     };
     chai
       .request(app)
@@ -92,7 +92,7 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should return an empty password error", done => {
+  it("should return an empty password error", done => {
     const user = {
       email: "test@test.com",
       password: " "
@@ -108,9 +108,9 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should test a wrong password error", done => {
+  it("should test a wrong password error", done => {
     const user = {
-      email: "luc.bay@gmail.com",
+      email: dummyUser.email,
       password: "passwor"
     };
     chai
@@ -124,7 +124,7 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should test a non-existing user error", done => {
+  it("should test a non-existing user error", done => {
     const user = {
       email: "test@test.com",
       password: "user@user"
@@ -140,10 +140,10 @@ describe("POSt /api/v1/users/login", () => {
         done();
       });
   });
-  it("It should test an email of wrong format", done => {
+  it("should test an email of wrong format", done => {
     const user = {
       email: "123.com",
-      password: "password"
+      password: dummyUser.password
     };
     chai
       .request(app)

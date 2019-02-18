@@ -3,20 +3,25 @@ import chai, { expect, should } from "chai";
 import models from "../../models";
 import app from "../../index";
 import { data } from "../../helpers/data";
-const { dummyUser } = data;
 
+const { dummyUser } = data;
 chai.use(chaiHttp);
 should();
 
-describe("API end point for /users ", () => {
+describe("SignUp", () => {
   after(async () => {
+    await models.Follower.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
     await models.User.destroy({
       where: {},
       truncate: true,
       cascade: true
     });
   });
-  it("it is should register user with corret details", async () => {
+  it("should register user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -32,8 +37,7 @@ describe("API end point for /users ", () => {
       "username"
     ]);
   });
-
-  it("it should fail if one of email, firstName, lastName, or password is empty", async () => {
+  it("should fail if one of email, firstName, lastName, or password is empty", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -46,8 +50,7 @@ describe("API end point for /users ", () => {
       password: "Password is required"
     });
   });
-
-  it("it should fail if user provide invalid email", async () => {
+  it("should fail if user provide invalid email", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -58,8 +61,7 @@ describe("API end point for /users ", () => {
     expect(response.status).eql(400);
     expect(response.body.message).to.be.equal("Invalid email");
   });
-
-  it("It should fail if email already exist", async () => {
+  it("should fail if email already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -72,8 +74,7 @@ describe("API end point for /users ", () => {
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The email is already taken");
   });
-
-  it("It should fail if provided password is less than 8 characters", async () => {
+  it("should fail if provided password is less than 8 characters", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -88,7 +89,7 @@ describe("API end point for /users ", () => {
       "The password should be an alphanumeric with at least 8 characters"
     );
   });
-  it("It should fail if provided username is not an alphanumeric start with alphabet", async () => {
+  it("should fail if provided username is not an alphanumeric character", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -97,14 +98,13 @@ describe("API end point for /users ", () => {
         password: "password",
         username: "7aba^>"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql(
       "The username must begin with letter and only contains alphabet and numbers not symbols"
     );
   });
-
-  it("It should fail if username already exist", async () => {
+  it("should fail if username already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")

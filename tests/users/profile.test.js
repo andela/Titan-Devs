@@ -18,40 +18,34 @@ after("Destroy the database ", done => {
     done(error);
   }
 });
-
-describe("Test /profiles", () => {
+describe("Profile controller", () => {
   let token;
-  before("Create a user and login to return a token", done => {
+  before("Login", done => {
     const user = {
-      email: "luc.bay@gmail.com",
+      email: "me@example.com",
       password: "password",
       username: "luc2018"
     };
     chai
       .request(app)
       .post("/api/v1/users")
-      .send(user)
-      .end((error, res) => {
-        if (error) done(error.message);
-        done();
+      .send({
+        ...user
+      })
+      .end((errors, response) => {
+        if (errors) done(errors.message);
+        chai
+          .request(app)
+          .post("/api/v1/users/login")
+          .send({ email: user.email, password: user.password })
+          .end((error, res) => {
+            if (error) done(error.message);
+            token = res.body.token;
+            done();
+          });
       });
   });
-  before("Create a user and login to return a token", done => {
-    const user = {
-      email: "luc.bay@gmail.com",
-      password: "password"
-    };
-    chai
-      .request(app)
-      .post("/api/v1/users/login")
-      .send(user)
-      .end((error, res) => {
-        if (error) done(error.message);
-        token = res.body.token;
-        done();
-      });
-  });
-  it("It should test updating a profile", done => {
+  it("should test updating a profile", done => {
     const user = {
       profile: {
         bio: "I am a software developer",
@@ -70,7 +64,7 @@ describe("Test /profiles", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(201);
+        result.status.should.be.eql(200);
         result.body.should.have
           .property("message")
           .eql("Profile updated successfully");
@@ -87,7 +81,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test unauthorized attempt", done => {
+  it("should test unauthorized attempt", done => {
     const user = {
       profile: {
         bio: "I am a software developer",
@@ -107,14 +101,13 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching a profile of a user", done => {
+  it("should test fetching a profile of a user", done => {
     const username = "luc2018";
     chai
       .request(app)
       .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
-
         result.status.should.be.eql(200);
         result.body.should.have.property("profile").which.is.a("object");
         result.body.profile.should.have.property("username").eql("luc2018");
@@ -125,7 +118,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching a profile an non-existing user", done => {
+  it("should test fetching a profile an non-existing user", done => {
     const username = "Yves2018";
     chai
       .request(app)
@@ -139,7 +132,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test fetching all profiles", done => {
+  it("should test fetching all profiles", done => {
     chai
       .request(app)
       .get("/api/v1/profiles")
@@ -150,7 +143,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test deleting a user", done => {
+  it("should test deleting a user", done => {
     const username = "luc2018";
     chai
       .request(app)
@@ -165,7 +158,7 @@ describe("Test /profiles", () => {
         done(error);
       });
   });
-  it("It should test deleting an non-existing user", done => {
+  it("should test deleting an non-existing user", done => {
     const username = "luc2018";
     chai
       .request(app)
@@ -177,7 +170,7 @@ describe("Test /profiles", () => {
         done();
       });
   });
-  it("It should test deleting an unauthorized request", done => {
+  it("should test deleting an unauthorized request", done => {
     const username = "Yves2018";
     chai
       .request(app)
