@@ -100,7 +100,7 @@ describe("API end point for auth/signup ", () => {
         password: "password",
         username: "7aba^>"
       });
-    expect(response.status).equal(400);
+    expect(response.status).equal(409);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql(
       "The username must begin with letter and only contains alphabet and numbers not symbols"
