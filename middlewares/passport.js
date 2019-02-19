@@ -1,5 +1,5 @@
-import models from "../models";
 import passport_jwt from "passport-jwt";
+import models from "../models";
 
 const JwtStrategy = passport_jwt.Strategy;
 const ExtractJwt = passport_jwt.ExtractJwt;
