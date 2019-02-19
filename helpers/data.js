@@ -1,16 +1,4 @@
-const newArticle = {
-  title: "How to train your dragon",
-  description: "Ever wonder how?",
-  body: "You have to believe",
-  tagsList: ["reactjs", "angularjs", "dragons"]
-};
-const user = {
-  email: "musigwa@email.com",
-  password: "1234pacifique",
-  username: "dkfdkfjdf934875"
-};
-
-const users = {
+export const data = {
   dummyUser: {
     email: "luc.bayo@gmail.com",
     password: "password",
@@ -23,7 +11,7 @@ const users = {
   }
 };
 
-const sendGridResponse = [
+export const sendGridResponse = [
   {
     statusCode: 202,
     headers: {
@@ -68,5 +56,3 @@ const sendGridResponse = [
   },
   null
 ];
-
-export { newArticle, user, users, sendGridResponse };
