@@ -1,10 +1,9 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
-import models from "../../models";
-import { data } from "../../helpers/data";
+import { users } from "../helpers/testData";
 
-const { dummyUser2 } = data;
+const { dummyUser2 } = users;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;

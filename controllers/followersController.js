@@ -9,11 +9,11 @@ const { User, Follower } = models;
 export default class FollowerController {
   /**
    *
-   * followUser
+   * FollowUser.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
    */
   static async followUser(req, res) {
     const { id } = req.user;
@@ -27,7 +27,7 @@ export default class FollowerController {
       if (!user) {
         return res.status(404).json({ message: "User not found" });
       }
-      const results = await Follower.findOrCreate({
+      await Follower.findOrCreate({
         where: {
           followingId: user.id,
           followerId: id
@@ -37,9 +37,10 @@ export default class FollowerController {
           return res.status(201).json({
             message: "Follow successful"
           });
-        } else {
-          res.status(409).json({ message: "You are already following this author" });
         }
+        return res
+          .status(409)
+          .json({ message: "You are already following this author" });
       });
     } catch (error) {
       res
@@ -50,11 +51,11 @@ export default class FollowerController {
 
   /**
    *
-   * unFollow
+   * UnFollow.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
    */
   static async unFollow(req, res) {
     const { id } = req.user;
@@ -89,11 +90,11 @@ export default class FollowerController {
 
   /**
    *
-   * getAllFollowers
+   * GetAllFollowers.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
    */
   static async getAllFollowers(req, res) {
     const { username } = req.params;
@@ -127,11 +128,11 @@ export default class FollowerController {
 
   /**
    *
-   * getFollowings
+   * GetFollowings.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
    */
   static async getFollowings(req, res) {
     const { username } = req.params;

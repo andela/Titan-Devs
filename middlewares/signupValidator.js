@@ -1,4 +1,4 @@
-import { isEmpty, isEmailValid, isAlphanumeric } from "../../helpers/funcValidators";
+import { isEmpty, isEmailValid, isAlphanumeric } from "../helpers/funcValidators";
 
 export default class SignupValidator {
   static async allAttributes(req, res, next) {

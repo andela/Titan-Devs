@@ -1,8 +1,8 @@
 import { Router } from "express";
 import Login from "../controllers/auth/loginController";
-import UserController from "../controllers/users";
-// middelwares
-import SignupValidation from "../middlewares/validators/signup.validator";
+import SignUpController from "../controllers/auth/signupController";
+import UserController from "../controllers/usersController";
+import SignupValidation from "../middlewares/signupValidator";
 
 const userRouters = Router();
 
@@ -14,7 +14,7 @@ userRouters
     SignupValidation.validateEmail,
     SignupValidation.validatePassword,
     SignupValidation.validateUsername,
-    UserController.signUp
+    SignUpController.signUp
   )
   .post("/users/reset_password", UserController.resetPassword)
   .put(

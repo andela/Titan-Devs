@@ -1,7 +1,10 @@
-import models from "../../models";
 import jwt from "jsonwebtoken";
-import validate from "../../helpers/validators/login.validation";
+import dotenv from "dotenv";
 import bcrypt from "bcrypt";
+import models from "../../models";
+import validate from "../../helpers/validators/loginValidators";
+
+dotenv.config();
 
 const { User } = models;
 /**
@@ -12,11 +15,11 @@ const { User } = models;
 class Login {
   /**
    *
-   * SignIn
+   * SignIn.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
    */
   static signIn(req, res) {
     const { email, password } = req.body;
@@ -34,9 +37,12 @@ class Login {
         }
         bcrypt.compare(password, result.dataValues.password, (error, response) => {
           if (response) {
-            let { email, username, id } = result.dataValues;
             const token = jwt.sign(
-              { email, username, id },
+              {
+                email: result.dataValues.email,
+                username: result.dataValues.username,
+                id: result.dataValues.id
+              },
               process.env.SECRET_OR_KEY
             );
             return res.status(200).send({

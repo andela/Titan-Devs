@@ -1,21 +1,21 @@
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import models from "../../models";
-import { data } from "../../helpers/data";
+import { users } from "../helpers/testData";
 import app from "../../index";
 
 chai.use(chaiHttp);
-const { dummyUser, dummyUser2 } = data;
+const { dummyUser, dummyUser2 } = users;
 
 describe("User following", () => {
   before(async () => {
-    const user1 = await chai
+    await chai
       .request(app)
       .post("/api/v1/users")
       .send({
         ...dummyUser
       });
-    const user2 = await chai
+    await chai
       .request(app)
       .post("/api/v1/users")
       .send({
@@ -36,7 +36,7 @@ describe("User following", () => {
   });
 
   describe("Followers controller", () => {
-    let token;
+    let userToken;
     before(async () => {
       const loggedInUser = await chai
         .request(app)
@@ -45,13 +45,14 @@ describe("User following", () => {
           email: dummyUser.email,
           password: dummyUser.password
         });
-      token = loggedInUser.body.token;
+      const { token } = loggedInUser.body;
+      userToken = token;
     });
     it("Return number of people a user is following", async () => {
       const results = await chai
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followings`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(200);
       expect(results.body).to.be.an("object");
       expect(results.body.user).to.be.an("object");
@@ -63,7 +64,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(201);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("Follow successful");
@@ -72,7 +73,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(409);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You are already following this author");
@@ -81,7 +82,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .post(`/api/v1/profiles/kamliWihene/follow`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(404);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("User not found");
@@ -90,7 +91,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .get(`/api/v1/profiles/${dummyUser2.username}/followers`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(200);
       expect(results.body).to.be.an("object");
       expect(results.body)
@@ -103,7 +104,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followers`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(200);
       expect(results.body).to.be.an("object");
       expect(results.body)
@@ -115,7 +116,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .delete(`/api/v1/profiles/${dummyUser2.username}/follow`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(202);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have unfollowed this author");
@@ -124,7 +125,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .delete(`/api/v1/profiles/${dummyUser2.username}/follow`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(404);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have already unfollowed this author");
@@ -133,7 +134,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followings`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(200);
       expect(results.body).to.be.an("object");
       expect(results.body.user).to.be.an("object");
@@ -145,7 +146,7 @@ describe("User following", () => {
       const results = await chai
         .request(app)
         .get(`/api/v1/profiles/${dummyUser2.username}/followers`)
-        .set({ Authorization: `Bearer ${token}` });
+        .set({ Authorization: `Bearer ${userToken}` });
       expect(results.status).eql(200);
       expect(results.body).to.be.an("object");
       expect(results.body)
