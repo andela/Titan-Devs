@@ -63,7 +63,7 @@ describe("User following", () => {
       expect(results.body.user.followings).length(0);
     });
 
-    it("It should allow a user to follow an existing author ", async () => {
+    it("It should allow a user to follow an existing author", async () => {
       const results = await chai
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
