@@ -19,11 +19,11 @@ const {
 chai.use(chaiHttp);
 
 before(done => {
-  const { email, password } = dummyUser;
+  const { email, password } = users;
   chai
     .request(app)
     .post("/api/v1/users")
-    .send(dummyUser)
+    .send(users)
     .end(error => {
       if (!error) {
         chai
