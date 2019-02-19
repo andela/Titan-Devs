@@ -85,4 +85,11 @@ const article = {
   description: faker.lorem.words(50),
   body: faker.lorem.words(500)
 };
-export { newArticle, newComment, users, tokenEmailVerication, sendGridResponse, article };
+export {
+  newArticle,
+  newComment,
+  users,
+  tokenEmailVerication,
+  sendGridResponse,
+  article
+};
