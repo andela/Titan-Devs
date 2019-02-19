@@ -139,6 +139,32 @@
           }
         }
       }
+    },
+    "/articles/{slug}/bookmark": {
+      "post": {
+        "tags": ["Articles"],
+        "summary": "Bookmark an article",
+        "description": "This helps the user bookmark an article for reading it later",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Article's slug",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
