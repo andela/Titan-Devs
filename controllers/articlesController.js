@@ -8,7 +8,6 @@ const {
   CREATED,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
-  UNAUTHORIZED,
   BAD_REQUEST,
   GONE
 } = constants.statusCode;
