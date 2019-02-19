@@ -105,6 +105,7 @@ export default class CommentController {
         .status(CREATED)
         .json({ message: "Comment unliked", unlikeComment, updateCommentLikes });
     } catch (error) {
+      console.log(error);
       res.status(BAD_REQUEST).json({ error: error.message, stack: error.stack });
     }
   }
@@ -120,7 +121,7 @@ export default class CommentController {
     try {
       const usersLikingComment = await Comment.findOne({
         where: { id: commentId },
-        include: [{ model: User, as: "likedBy" }]
+        include: [{ model: User, as: "likes" }]
       });
       if (usersLikingComment.length >= 1) {
         return res.status(200).json({ usersLikingComment });

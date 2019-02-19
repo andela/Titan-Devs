@@ -1,4 +1,5 @@
 import chaiHttp from "chai-http";
+import models from "../../models";
 import chai, { expect, should } from "chai";
 import app from "../../index";
 import { newArticle, newUser, newComment } from "../testData";
@@ -8,52 +9,58 @@ let token;
 let slug;
 let commentId;
 
+const { User } = models;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
-describe.only("# Comment's liking endpoint", () => {
-  // console.log("......................about to create a user in the database");
-  // before("Create a user", done => {
-  //   const { email, password } = newUser;
-  //   console.log(`.............new user ${newUser}`);
-  //   chai
-  //     .request(app)
-  //     .post("/api/v1/users")
-  //     .send(newUser)
-  //     .end((error, result) => {
-  //       if (!error) {
-  //         chai
-  //           .request(app)
-  //           .post("/api/v1/users/login")
-  //           .send({ email, password })
-  //           .end((err, res) => {
-  //             if (!err) {
-  //               token = res.body.token;
-  //               chai
-  //                 .request(app)
-  //                 .post("/api/v1/articles")
-  //                 .set("Authorization", `Bearer ${token}`)
-  //                 .send(newArticle)
-  //                 .end((err, res) => {
-  //                   if (!err) {
-  //                   }
-  //                   const { slug: artSlug } = res.body.article;
-  //                   slug = artSlug;
-  //                   chai
-  //                     .request(app)
-  //                     .post(`/api/v1/articles/${slug}/comments`)
-  //                     .set("Authorization", `Bearer ${token}`)
-  //                     .send({ body: "Hello people" })
-  //                     .end((err, res) => {
-  //                       if (!err) commentId = res.body.comment.id;
-  //                       done(err ? err : undefined);
-  //                     });
-  //                 });
-  //             }
-  //           });
-  //       }
-  //     });
-  //});
+describe("# Comment's liking endpoint", () => {
+  const { email, password } = newUser;
+  after("Delete a user from database", done => {
+    User.destroy({ where: { username }, truncate: "true", Cascade: "true" })
+      .then(result => done())
+      .catch(error => {
+        done(error);
+      });
+  });
+  before("Create a user", done => {
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(newUser)
+      .end((error, result) => {
+        if (!error) {
+          chai
+            .request(app)
+            .post("/api/v1/users/login")
+            .send({ email, password })
+            .end((err, res) => {
+              if (!err) {
+                token = res.body.token;
+                chai
+                  .request(app)
+                  .post("/api/v1/articles")
+                  .set("Authorization", `Bearer ${token}`)
+                  .send(newArticle)
+                  .end((err, res) => {
+                    if (!err) {
+                    }
+                    const { slug: artSlug } = res.body.article;
+                    slug = artSlug;
+                    chai
+                      .request(app)
+                      .post(`/api/v1/articles/${slug}/comments`)
+                      .set("Authorization", `Bearer ${token}`)
+                      .send({ body: "Hello people" })
+                      .end((err, res) => {
+                        if (!err) commentId = res.body.comment.id;
+                        done(err ? err : undefined);
+                      });
+                  });
+              }
+            });
+        }
+      });
+  });
   describe("POST /articles/:slug/comments/:commentId", () => {
     it("should like the comment and return the comment liked message", done => {
       chai
@@ -106,7 +113,7 @@ describe.only("# Comment's liking endpoint", () => {
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
-          expect(res.status).equals(401);
+          expect(res.status).equals(UNAUTHORIZED);
           expect(res.body.message).to.contain(
             "Please provide a token to perform this action"
           );

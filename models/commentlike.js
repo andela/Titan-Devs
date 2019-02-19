@@ -20,12 +20,12 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "userId",
       onDelete: "CASCADE",
       hooks: true
-    }),
-      Commentlike.belongsTo(models.Comment, {
-        foreignKey: "commentId",
-        onDelete: "CASCADE",
-        hooks: true
-      });
+    });
+    Commentlike.belongsTo(models.Comment, {
+      foreignKey: "commentId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
   };
   return Commentlike;
 };

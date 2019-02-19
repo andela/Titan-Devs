@@ -29,7 +29,8 @@ export default (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Comment.belongsToMany(models.User, { through: "commentlikes", as: "likedBy" });
+    Comment.hasMany(models.CommentLike, { as: "likes", foreignKey: "commentId" });
+    // associations can be defined here
   };
   return Comment;
 };
