@@ -64,8 +64,8 @@ export default class CommentController {
   static async like(req, res) {
     const { commentId } = req.params;
     try {
-      const comments = await Comment.findAll({ where: { id: commentId } });
-      if (comments.length == 0) {
+      const comments = await Comment.findOne({ where: { id: commentId } });
+      if (!comments) {
         throw new Error("You are liking a non-existing comment");
       }
     } catch (error) {
@@ -84,7 +84,7 @@ export default class CommentController {
         const likeComment = await commentlike.create({ commentId, userId });
         const updateCommentLikes = await Comment.increment(
           {
-            likes: 1
+            like: 1
           },
           { where: { id: commentId } }
         );
@@ -97,7 +97,7 @@ export default class CommentController {
       });
       const updateCommentLikes = await Comment.decrement(
         {
-          likes: 1
+          like: 1
         },
         { where: { id: commentId } }
       );
@@ -117,14 +117,23 @@ export default class CommentController {
    * @returns {object} - returns the comment object
    */
   static async getLikingUsers(req, res) {
-    const commentId = req.body.commentId;
+    const { commentId } = req.params;
     try {
-      const usersLikingComment = await Comment.findOne({
-        where: { id: commentId },
-        include: [{ model: User, as: "likes" }]
+      let comment = await Comment.findOne({
+        where: { id: commentId }
       });
-      if (usersLikingComment.length >= 1) {
-        return res.status(200).json({ usersLikingComment });
+      if (comment) {
+        comment = comment.toJSON();
+        comment["likedBy"] = [];
+        const likes = await commentlike.findAll({
+          where: { commentId: comment.id },
+          include: [{ model: User, as: "likedBy" }]
+        });
+
+        likes.map(like => {
+          comment.likedBy.push(like.likedBy);
+        });
+        return res.status(200).json({ comment });
       }
       return res
         .status(200)

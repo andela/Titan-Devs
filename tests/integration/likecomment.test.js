@@ -2,27 +2,26 @@ import chaiHttp from "chai-http";
 import models from "../../models";
 import chai, { expect, should } from "chai";
 import app from "../../index";
-import { newArticle, newUser, newComment } from "../testData";
+import { newArticle, newComment } from "../testData";
 import constants from "../../helpers/constants";
 
 let token;
 let slug;
 let commentId;
 
+let newUser = {
+  email: "yves.iraguha@gmail.com",
+  password: "password",
+  username: "Nick2019"
+};
+
 const { User } = models;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
-describe("# Comment's liking endpoint", () => {
-  const { email, password } = newUser;
-  after("Delete a user from database", done => {
-    User.destroy({ where: { username }, truncate: "true", Cascade: "true" })
-      .then(result => done())
-      .catch(error => {
-        done(error);
-      });
-  });
-  before("Create a user", done => {
+describe("API end points /comments/commentId/likes", () => {
+  const { email, password, username } = newUser;
+  before("Create a user, article, and comment", done => {
     chai
       .request(app)
       .post("/api/v1/users")
@@ -50,7 +49,7 @@ describe("# Comment's liking endpoint", () => {
                       .request(app)
                       .post(`/api/v1/articles/${slug}/comments`)
                       .set("Authorization", `Bearer ${token}`)
-                      .send({ body: "Hello people" })
+                      .send({ body: "hello there " })
                       .end((err, res) => {
                         if (!err) commentId = res.body.comment.id;
                         done(err ? err : undefined);
@@ -72,9 +71,9 @@ describe("# Comment's liking endpoint", () => {
 
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Comment liked");
-          expect(res.body).to.haveOwnProperty("commentId");
-          expect(res.body.comment).to.haveOwnProperty("createdAt");
-          expect(res.body.comment).to.haveOwnProperty("userId");
+          expect(res.body.likeComment).to.haveOwnProperty("commentId");
+          expect(res.body.likeComment).to.haveOwnProperty("createdAt");
+          expect(res.body.likeComment).to.haveOwnProperty("userId");
           done();
         });
     });
@@ -82,21 +81,22 @@ describe("# Comment's liking endpoint", () => {
       chai
         .request(app)
         .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
-        .set("Authorization", `Bear ${token}`)
+        .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
-          expect(res.status).equals(200);
+          expect(res.status).equals(201);
           expect(res.body.message).to.contain("Comment unliked");
-          expect(res.body.comment.likes).equals(0);
           done();
         });
     });
   });
 
-  it("should throw an error of liking a non-exising", done => {
+  it("should throw an error of liking a non-existing", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments/agdhjadghahd/likes`)
+      .post(
+        `/api/v1/articles/${slug}/comments/192c2ff1-5622-419f-aa4b-6a4d7ad89dd4/likes`
+      )
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
@@ -106,28 +106,28 @@ describe("# Comment's liking endpoint", () => {
       });
   });
   it("should throw an unauthorized error", done => {
-    (token = "hahahdha"),
-      chai
-        .request(app)
-        .post(`/api/v1/articles/${slug}/comments/${commendId}/likes`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain(
-            "Please provide a token to perform this action"
-          );
-          done();
-        });
+    chai
+      .request(app)
+      .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+      .set("Authorization", `Bearer hellopeople`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).equals(UNAUTHORIZED);
+        expect(res.body.message).to.contain(
+          "Please provide a token to perform this action"
+        );
+        done();
+      });
   });
   it("should fetch all users who liked a comment in form of array", done => {
     chai
       .request(app)
-      .get(`/api/v1/articles/${slag}/comments/${commentId}/likes`)
+      .get(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+      .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).equals(200);
-        expect(res.body.likedBy).to.be.an("array");
+        expect(res.body.comment.likedBy).to.be.an("array");
         done();
       });
   });

@@ -10,7 +10,7 @@ module.exports = {
       return queryInterface.createTable('users', { id: Sequelize.INTEGER });
     */
     return Promise.all([
-      queryInterface.addColumn("comments", "likes", {
+      queryInterface.addColumn("comments", "like", {
         type: Sequelize.INTEGER,
         allowNull: true,
         defaultValue: 0
@@ -26,6 +26,6 @@ module.exports = {
       Example:
       return queryInterface.dropTable('users');
     */
-    return Promise.all([queryInterface.removeColumn("comments", "likes")]);
+    return Promise.all([queryInterface.removeColumn("comments", "like")]);
   }
 };
