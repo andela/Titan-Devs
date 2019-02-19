@@ -1,5 +1,4 @@
-"use strict";
-module.exports = (sequelize, DataTypes) => {
+export default (sequelize, DataTypes) => {
   const ArticleTag = sequelize.define(
     "ArticleTag",
     {
@@ -12,8 +11,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "articleTags" }
   );
-  ArticleTag.associate = function(models) {
-    // associations can be defined here
-  };
+
   return ArticleTag;
 };

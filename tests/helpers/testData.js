@@ -4,10 +4,8 @@ const newArticle = {
   body: "You have to believe",
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
-const user = {
-  email: "musigwa@email.com",
-  password: "1234pacifique",
-  username: "dkfdkfjdf934875"
+const newComment = {
+  body: "I like this article however, You should rename the title"
 };
 
 const users = {
@@ -69,4 +67,4 @@ const sendGridResponse = [
   null
 ];
 
-export { newArticle, user, users, sendGridResponse };
+export { newArticle, newComment, users, sendGridResponse };

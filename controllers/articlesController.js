@@ -22,9 +22,14 @@ export default class PostController {
       const readTime = calculateReadTime(req);
       const user = await User.findOne({ where: { id: userId } });
       if (user && valid) {
-        const article = await Article.create({ readTime, ...rest, userId });
+        const article = await Article.create({
+          readTime,
+          ...rest,
+          slug: "",
+          userId
+        });
         const { id: articleId } = article.dataValues;
-        for (const tag of tagsList) {
+        await tagsList.map(async tag => {
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
             await ArticleTag.create({
@@ -32,7 +37,7 @@ export default class PostController {
               tagId: tags[0].dataValues.id
             })
           );
-        }
+        });
         return refs
           ? res.status(CREATED).json({
               status: CREATED,
@@ -44,7 +49,7 @@ export default class PostController {
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
-      if (error.hasOwnProperty("details"))
+      if (error.details)
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
