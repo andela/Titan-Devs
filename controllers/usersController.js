@@ -167,7 +167,7 @@ class UserController {
               .json({ message: "User verification failed, User was not found" });
           }
           if (verifiedUser.dataValues.isVerified) {
-            return res.status(200).json({
+            return res.status(202).json({
               message: "User already verified!"
             });
           }

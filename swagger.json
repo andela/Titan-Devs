@@ -115,6 +115,166 @@
         }
       }
     },
+    "/users/confirm/{auth_token}": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Send email send email verification",
+        "description": "This helps in verifying account created ",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User properties"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Email confirmed successfully!"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 200
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User already verified!"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 202
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Token is invalid or expired, try again"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 401
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User verification failed, User was not found"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 404
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/resend": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Re-send email verification",
+        "description": "This helps in resend email verification just in case email did not come.",
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "description": "User properties"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Email confirmed successfully!"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 200
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User already verified!"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 202
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Token is invalid or expired, try again"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 401
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "User verification failed, User was not found"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 404
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/articles": {
       "post": {
         "tags": ["Articles"],
