@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 should();
 let pwdResetToken;
 
-describe("Password controller", () => {
+describe("Reset Password", () => {
   before(async () => {
     await chai
       .request(app)
