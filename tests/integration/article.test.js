@@ -1,7 +1,7 @@
 import chaiHttp from "chai-http";
-import chai, { expect, should } from "chai";
+import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, user } from "../testData";
+import { newArticle, user } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
@@ -22,8 +22,8 @@ before(done => {
           .post("/api/v1/users/login")
           .send({ email, password })
           .end((err, res) => {
-            if (!err) token = res.body.token;
-            done(err ? err : undefined);
+            if (!err) ({ token } = res.body);
+            done(err || undefined);
           });
       }
     });

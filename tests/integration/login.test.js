@@ -2,10 +2,10 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
 import models from "../../models";
-import { data } from "../../helpers/data";
+import { users } from "../helpers/testData";
+
 chai.use(chaiHttp);
-const should = chai.should();
-const { dummyUser } = data;
+const { dummyUser } = users;
 
 describe("POST /api/v1/users/login", () => {
   after(async () => {
@@ -14,7 +14,7 @@ describe("POST /api/v1/users/login", () => {
       truncate: true,
       cascade: true
     });
-    const results = await models.User.destroy({
+    await models.User.destroy({
       where: {},
       truncate: true,
       cascade: true

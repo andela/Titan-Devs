@@ -2,6 +2,7 @@ import chai from "chai";
 import chaiHttp from "chai-http";
 import models from "../../models";
 import app from "../../index";
+
 const { User } = models;
 chai.use(chaiHttp);
 after("Destroy the database ", done => {
@@ -40,7 +41,7 @@ describe("Profile controller", () => {
           .send({ email: user.email, password: user.password })
           .end((error, res) => {
             if (error) done(error.message);
-            token = res.body.token;
+            ({ token } = res.body);
             done();
           });
       });

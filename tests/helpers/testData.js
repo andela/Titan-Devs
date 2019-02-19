@@ -10,4 +10,17 @@ const user = {
   username: "dkfdkfjdf934875"
 };
 
-export { newArticle, user };
+const users = {
+  dummyUser: {
+    email: "luc.bayo@gmail.com",
+    password: "password",
+    username: "luc2017"
+  },
+  dummyUser2: {
+    email: "fake.email@gmail.com",
+    password: "password",
+    username: "jean786786"
+  }
+};
+
+export { newArticle, user, users };
