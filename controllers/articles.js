@@ -1,25 +1,14 @@
-
+import dotenv from "dotenv";
 import opn from "opn";
 import models from "../models";
 import constants from "../helpers/constants";
 import articleValidator from "../helpers/validators/articleValidators";
-import calculateReadTime from "../helpers/calculateReadTime";
 
-const { User, Article, Tag, ArticleTag, Bookmark } = models;
-const {
-  CREATED,
-  NOT_FOUND,
-  INTERNAL_SERVER_ERROR,
-  BAD_REQUEST,
-  GONE
-} = constants.statusCode;
-
-/**
- * @class PostController
- */
+const { User, Article, Tag, ArticleTag } = models;
+const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
+dotenv.config();
 export default class PostController {
-  /**
-   * @description This helps the authorized user to create a new article
+  /** This creates the new article
    * @param  {object} req - The request object
    * @param  {object} res - The response object
    * @return {object} - It returns the request response object
@@ -31,25 +20,22 @@ export default class PostController {
       const { id: userId } = req.user;
       const refs = [];
       const valid = await articleValidator(req.body);
-      const readTime = calculateReadTime(req);
       const user = await User.findOne({ where: { id: userId } });
       if (user && valid) {
-        const article = await Article.create({
-          readTime,
-          ...rest,
-          slug: "",
-          userId
-        });
+        const article = await Article.create({ ...rest, userId });
         const { id: articleId } = article.dataValues;
-        await tagsList.map(async tag => {
+        // eslint-disable-next-line no-restricted-syntax
+        for (const tag of tagsList) {
+          // eslint-disable-next-line no-await-in-loop
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
+            // eslint-disable-next-line no-await-in-loop
             await ArticleTag.create({
               articleId,
               tagId: tags[0].dataValues.id
             })
           );
-        });
+        }
         return refs
           ? res.status(CREATED).json({
               status: CREATED,
@@ -61,64 +47,12 @@ export default class PostController {
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
-      if (error.details) {
+      // eslint-disable-next-line no-prototype-builtins
+      if (error.hasOwnProperty("details"))
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
-      }
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: error, status: INTERNAL_SERVER_ERROR });
-    }
-  }
-
-  /**
-   * @description It helps the user to bookmark the article for reading it later.
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the request response object
-   */
-
-  static async bookmark(req, res) {
-    try {
-      const { id: userId } = req.user;
-      const { slug } = req.params;
-      const user = await User.findOne({ where: { id: userId } });
-      const article = await Article.findOne({ where: { slug } });
-      if (!article || !user) {
-        return res.status(NOT_FOUND).json({
-          status: NOT_FOUND,
-          message: `The article with this slug ${slug} doesn't exist`
-        });
-      }
-      const { id: articleId } = article.dataValues;
-      const bookmark = await Bookmark.findOne({ where: { userId, articleId } });
-      if (!bookmark) {
-        const bookmarked = await Bookmark.create({ userId, articleId });
-        if (bookmarked) {
-          return res.status(CREATED).json({
-            message: "Article bookmarked",
-            bookmark: bookmarked.dataValues,
-            status: CREATED
-          });
-        }
-        return res.status(GONE).json({
-          message: "Error while bookmarking the article",
-          status: INTERNAL_SERVER_ERROR
-        });
-      }
-      const { id } = bookmark.dataValues;
-      const deleted = Bookmark.destroy({ where: { id } });
-      return deleted
-        ? res.status(GONE).json({ message: "Bookmark deleted", status: GONE })
-        : res.status(INTERNAL_SERVER_ERROR).json({
-            message: "Error while discarding the bookmark",
-            status: INTERNAL_SERVER_ERROR
-          });
-    } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: error, status: INTERNAL_SERVER_ERROR });
+      return res.status(500).send({ message: error, status: 500 });
     }
   }
 
@@ -144,15 +78,10 @@ export default class PostController {
       const article = await Article.findOne({
         where: { id: articleId }
       });
-      if (!article) {
-        return res.status(400).json({
-          message: "Article doesn't exist"
-        });
-      }
       opn(
-        `mailto:?subject=${article.dataValues.title}&body=${
+        `mailto:?subject=${article.dataValues.title}&amp;body=${
           process.env.SERVER_HOST
-        }/article/${articleId}`
+        }/article/${article}`
       );
       return res.status(200).json({
         message: "Article ready to be posted on Email"
@@ -199,30 +128,6 @@ export default class PostController {
       );
       return res.status(200).json({
         message: "Article ready to be posted on twitter"
-      });
-    } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Article was NOT posted, Server error" });
-    }
-  }
-
-  static async shareOnLinkedin(req, res) {
-    try {
-      const { articleId } = req.params;
-      if (process.env === "production") {
-        opn(
-          `https://www.linkedin.com/sharing/share-offsite/?url=${
-            process.env.SERVER_HOST
-          }/article/${articleId}`
-        );
-      } else {
-        opn(
-          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${articleId}`
-        );
-      }
-      return res.status(200).json({
-        message: "Article ready to be posted on linkedIn"
       });
     } catch (error) {
       return res
