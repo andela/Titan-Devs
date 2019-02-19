@@ -6,6 +6,8 @@ import SignupValidation from "../middlewares/signupValidator";
 
 const userRouters = Router();
 
+userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.put("/users/resend", UserController.resendVerificationEmail);
 userRouters.post("/users/login", Login.signIn);
 userRouters
   .post(
