@@ -4,6 +4,7 @@ import models from "../../models";
 import app from "../../index";
 import { users } from "../helpers/testData";
 
+const { User } = models;
 const { dummyUser } = users;
 chai.use(chaiHttp);
 should();
