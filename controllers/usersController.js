@@ -194,7 +194,7 @@ class UserController {
           if (error) {
             return res
               .status(UNAUTHORIZED)
-              .json({ message: "Token is invalid or expired, try again" });
+              .json({ message: "Token is invalid or expired, try again " });
           }
           if (!verifiedUser) {
             return res
