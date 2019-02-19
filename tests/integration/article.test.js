@@ -5,8 +5,8 @@ import { newArticle, user } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
-
-const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
+let validArticleId;
+const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK } = constants.statusCode;
 chai.use(chaiHttp);
 
 before(done => {
@@ -15,7 +15,7 @@ before(done => {
     .request(app)
     .post("/api/v1/users")
     .send(user)
-    .end((error, result) => {
+    .end(error => {
       if (!error) {
         chai
           .request(app)
@@ -38,6 +38,7 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(newArticle)
         .end((err, res) => {
+          validArticleId = res.body.article.id;
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
           expect(res.body).to.haveOwnProperty("article");
@@ -118,5 +119,42 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+  });
+});
+describe("Share Articles endpoints", () => {
+  it("should be ready to be posted on twitter", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/article/${validArticleId}/share/twitter`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on twitter");
+        done();
+      });
+  });
+  it("should be ready to be posted on facebook", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/article/${validArticleId}/share/fb`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on facebook"
+        );
+        done();
+      });
+  });
+  it("should be ready to be posted on email", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/article/${validArticleId}/share/email`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on Email");
+        done();
+      });
   });
 });

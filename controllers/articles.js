@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import opn from "opn";
 import models from "../models";
 import constants from "../helpers/constants";
@@ -5,7 +6,7 @@ import articleValidator from "../helpers/validators/articleValidators";
 
 const { User, Article, Tag, ArticleTag } = models;
 const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
-
+dotenv.config();
 export default class PostController {
   /** This creates the new article
    * @param  {object} req - The request object
@@ -23,9 +24,12 @@ export default class PostController {
       if (user && valid) {
         const article = await Article.create({ ...rest, userId });
         const { id: articleId } = article.dataValues;
+        // eslint-disable-next-line no-restricted-syntax
         for (const tag of tagsList) {
+          // eslint-disable-next-line no-await-in-loop
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
+            // eslint-disable-next-line no-await-in-loop
             await ArticleTag.create({
               articleId,
               tagId: tags[0].dataValues.id
@@ -43,6 +47,7 @@ export default class PostController {
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
+      // eslint-disable-next-line no-prototype-builtins
       if (error.hasOwnProperty("details"))
         return res
           .status(BAD_REQUEST)
@@ -73,15 +78,10 @@ export default class PostController {
       const article = await Article.findOne({
         where: { id: articleId }
       });
-      if (!article) {
-        return res.status(400).json({
-          message: "Article doesn't exist"
-        });
-      }
       opn(
-        `mailto:?subject=${article.dataValues.title}&body=${
+        `mailto:?subject=${article.dataValues.title}&amp;body=${
           process.env.SERVER_HOST
-        }/article/${articleId}`
+        }/article/${article}`
       );
       return res.status(200).json({
         message: "Article ready to be posted on Email"

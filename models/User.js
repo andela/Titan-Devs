@@ -62,7 +62,11 @@ export default (sequelize, DataTypes) => {
 
   // eslint-disabled-next-line no-use-before-define
   User.associate = models => {
-    User.hasMany(models.Article, { onDelete: "CASCADE", hooks: true });
+    User.hasMany(models.Article, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
     // associations can be defined here
     User.belongsToMany(models.User, {
       through: models.Follower,
