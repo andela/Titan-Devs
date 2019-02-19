@@ -49,6 +49,7 @@ describe("# Articles endpoints", () => {
         .send(newArticle)
         .end((err, res) => {
           createdArticle = res.body;
+          validArticleId = res.body.article.id;
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
           expect(res.body).to.haveOwnProperty("article");
@@ -211,19 +212,6 @@ describe("Share Articles endpoints", () => {
         expect(res.status).equals(OK);
         expect(res.body.message).to.contain(
           "Article ready to be posted on facebook"
-        );
-        done();
-      });
-  });
-  it("should be ready to be posted on facebook", done => {
-    chai
-      .request(app)
-      .get(`/api/v1/article/${validArticleId}/share/linkedIn`)
-      .set("Authorization", `Bearer ${token}`)
-      .end((err, res) => {
-        expect(res.status).equals(OK);
-        expect(res.body.message).to.contain(
-          "Article ready to be posted on linkedIn"
         );
         done();
       });
