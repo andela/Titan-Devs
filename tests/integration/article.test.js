@@ -44,6 +44,7 @@ describe("# Articles endpoints", () => {
           expect(res.body.article).to.haveOwnProperty("createdAt");
           expect(res.body.article).to.haveOwnProperty("title");
           expect(res.body.article.title).to.contain(newArticle.title);
+          expect(res.body.article.readTime).equals(1);
           done();
         });
     });
