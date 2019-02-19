@@ -9,7 +9,7 @@ export default (sequelize, DataTypes) => {
         defaultValue: DataTypes.UUIDV4
       },
       body: { type: DataTypes.TEXT, allowNull: false },
-      likes: {
+      like: {
         allowNull: true,
         type: DataTypes.INTEGER,
         defaultValue: 0
@@ -29,7 +29,7 @@ export default (sequelize, DataTypes) => {
       hooks: true
     });
 
-    Comment.hasMany(models.CommentLike, { as: "likes", foreignKey: "commentId" });
+    Comment.hasMany(models.commentlike, { as: "likes", foreignKey: "commentId" });
     // associations can be defined here
   };
   return Comment;
