@@ -20,16 +20,6 @@ export default (sequelize, DataTypes) => {
     },
     {
       tableName: "articles"
-      // hooks: {
-      //   beforeCreate(newUser) {
-      //     const hash = Bcrypt.hashSync(
-      //       newUser.password,
-      //       Bcrypt.genSaltSync(process.env.SALTROUNDS),
-      //       null
-      //     );
-      //     newUser.password = hash;
-      //   }
-      // }
     }
   );
   Article.associate = models => {
