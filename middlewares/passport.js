@@ -12,7 +12,7 @@ export default passport => {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         secretOrKey: process.env.SECRET_KEY
       },
-      function(jwt_payload, done) {
+      (jwt_payload, done) => {
         User.findOne({
           where: {
             id: jwt_payload.id
