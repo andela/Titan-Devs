@@ -51,7 +51,7 @@ describe("# Articles endpoints", () => {
         });
     });
 
-    it("should deny the request if no access-token provided", done => {
+    it("should deny the request if no access-token provided ", done => {
       chai
         .request(app)
         .post("/api/v1/articles")
