@@ -11,48 +11,49 @@ let commentId;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
-before(done => {
-  const { email, password } = newUser;
-  chai
-    .request(app)
-    .post("/api/v1/users")
-    .send(newUser)
-    .end((error, result) => {
-      if (!error) {
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email, password })
-          .end((err, res) => {
-            if (!err) {
-              token = res.body.token;
-              chai
-                .request(app)
-                .post("/api/v1/articles")
-                .set("Authorization", `Bearer ${token}`)
-                .send(newArticle)
-                .end((err, res) => {
-                  if (!err) {
-                  }
-                  const { slug: artSlug } = res.body.article;
-                  slug = artSlug;
-                  chai
-                    .request(app)
-                    .post(`/api/v1/articles/${slug}/comments`)
-                    .set("Authorization", `Bearer ${token}`)
-                    .send({ body: "Hello people" })
-                    .end((err, res) => {
-                      if (!err) commentId = res.body.comment.id;
-                      done(err ? err : undefined);
-                    });
-                });
-            }
-          });
-      }
-    });
-});
-
-describe("# Comment's liking endpoint", () => {
+describe.only("# Comment's liking endpoint", () => {
+  // console.log("......................about to create a user in the database");
+  // before("Create a user", done => {
+  //   const { email, password } = newUser;
+  //   console.log(`.............new user ${newUser}`);
+  //   chai
+  //     .request(app)
+  //     .post("/api/v1/users")
+  //     .send(newUser)
+  //     .end((error, result) => {
+  //       if (!error) {
+  //         chai
+  //           .request(app)
+  //           .post("/api/v1/users/login")
+  //           .send({ email, password })
+  //           .end((err, res) => {
+  //             if (!err) {
+  //               token = res.body.token;
+  //               chai
+  //                 .request(app)
+  //                 .post("/api/v1/articles")
+  //                 .set("Authorization", `Bearer ${token}`)
+  //                 .send(newArticle)
+  //                 .end((err, res) => {
+  //                   if (!err) {
+  //                   }
+  //                   const { slug: artSlug } = res.body.article;
+  //                   slug = artSlug;
+  //                   chai
+  //                     .request(app)
+  //                     .post(`/api/v1/articles/${slug}/comments`)
+  //                     .set("Authorization", `Bearer ${token}`)
+  //                     .send({ body: "Hello people" })
+  //                     .end((err, res) => {
+  //                       if (!err) commentId = res.body.comment.id;
+  //                       done(err ? err : undefined);
+  //                     });
+  //                 });
+  //             }
+  //           });
+  //       }
+  //     });
+  //});
   describe("POST /articles/:slug/comments/:commentId", () => {
     it("should like the comment and return the comment liked message", done => {
       chai

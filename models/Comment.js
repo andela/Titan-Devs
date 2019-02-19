@@ -28,6 +28,8 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+
+    Comment.belongsToMany(models.User, { through: "commentlikes", as: "likedBy" });
   };
   return Comment;
 };
