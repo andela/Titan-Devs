@@ -11,6 +11,7 @@ export default class PostController {
    * @param  {object} res - The response object
    * @return {object} - It returns the request response object
    */
+
   static async create(req, res) {
     try {
       const { tagsList = [], ...rest } = req.body;
@@ -20,11 +21,12 @@ export default class PostController {
       const user = await User.findOne({ where: { id: userId } });
       if (user && valid) {
         const article = await Article.create({ ...rest, userId });
+        const { id: articleId } = article.dataValues;
         for (let tag of tagsList) {
           const tags = await Tag.findOrCreate({ where: { name: tag } });
           refs.push(
             await ArticleTag.create({
-              articleId: article.dataValues.id,
+              articleId,
               tagId: tags[0].dataValues.id
             })
           );
@@ -33,14 +35,13 @@ export default class PostController {
           ? res.status(CREATED).json({
               status: CREATED,
               message: "Article created",
-              article: article.dataValues
+              article: { ...article.dataValues, tagsList }
             })
           : res
               .status(NOT_FOUND)
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
-      // console.log("DATABASE ERROR:", error);
       if (error.hasOwnProperty("details"))
         return res
           .status(BAD_REQUEST)

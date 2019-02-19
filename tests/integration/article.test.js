@@ -1,9 +1,6 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
-import models from "../../models";
-const { User } = models;
-
 import { newArticle, user } from "../testData";
 import constants from "../../helpers/constants";
 
@@ -11,82 +8,28 @@ let token;
 
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
-after("Destroy the database ", done => {
-  try {
-    const database = User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-    if (database) {
-      done();
-    }
-  } catch (error) {
-    done(error);
-  }
-});
-before("Create a user and login to return a token", done => {
-  const user = {
-    email: "luc.bay@gmail.com",
-    password: "password",
-    username: "luc2018"
-  };
+
+before(done => {
+  const { email, password } = user;
   chai
     .request(app)
     .post("/api/v1/users")
     .send(user)
-    .end((error, res) => {
-      if (error) done(error.message);
-      done();
-    });
-});
-before("Create a user and login to return a token", done => {
-  const user = {
-    email: "luc.bay@gmail.com",
-    password: "password"
-  };
-  chai
-    .request(app)
-    .post("/api/v1/users/login")
-    .send(user)
-    .end((error, res) => {
-      if (error) done(error.message);
-      token = res.body.token;
-      done();
+    .end((error, result) => {
+      if (!error) {
+        chai
+          .request(app)
+          .post("/api/v1/users/login")
+          .send({ email, password })
+          .end((err, res) => {
+            if (!err) token = res.body.token;
+            done(err ? err : undefined);
+          });
+      }
     });
 });
 
 describe("# Articles endpoints", () => {
-  before("Create a user and login to return a token", done => {
-    const user = {
-      email: "luc.bay@gmail.com",
-      password: "password",
-      username: "luc2018"
-    };
-    chai
-      .request(app)
-      .post("/api/v1/users")
-      .send(user)
-      .end((error, res) => {
-        if (error) done(error.message);
-        done();
-      });
-  });
-  before("Create a user and login to return a token", done => {
-    const user = {
-      email: "luc.bay@gmail.com",
-      password: "password"
-    };
-    chai
-      .request(app)
-      .post("/api/v1/users/login")
-      .send(user)
-      .end((error, res) => {
-        if (error) done(error.message);
-        token = res.body.token;
-        done();
-      });
-  });
   describe("POST /articles", () => {
     it("should create the article and return the success message", done => {
       chai
@@ -95,9 +38,12 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(newArticle)
         .end((err, res) => {
-          // console.log("=======>RESPONSE:", res);
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
+          expect(res.body).to.haveOwnProperty("article");
+          expect(res.body.article).to.haveOwnProperty("createdAt");
+          expect(res.body.article).to.haveOwnProperty("title");
+          expect(res.body.article.title).to.contain(newArticle.title);
           done();
         });
     });
@@ -108,12 +54,40 @@ describe("# Articles endpoints", () => {
         .send(newArticle)
         .end((err, res) => {
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Access denied");
+          expect(res.body.message).to.contain("Please provide a token");
           done();
         });
     });
 
-    it("should decline creating the article and return a bad-request error", done => {
+    it("should decline creating the article if no title provided", done => {
+      const { title, ...rest } = newArticle;
+      chai
+        .request(app)
+        .post("/api/v1/articles")
+        .set("Authorization", `Bearer ${token}`)
+        .send(rest)
+        .end((err, res) => {
+          expect(res.status).equals(BAD_REQUEST);
+          expect(res.body.message).to.contain('"title" is required');
+          done();
+        });
+    });
+
+    it("should decline creating the article if no body provided", done => {
+      const { body, ...rest } = newArticle;
+      chai
+        .request(app)
+        .post("/api/v1/articles")
+        .set("Authorization", `Bearer ${token}`)
+        .send(rest)
+        .end((err, res) => {
+          expect(res.status).equals(BAD_REQUEST);
+          expect(res.body.message).to.contain('"body" is required');
+          done();
+        });
+    });
+
+    it("should decline creating the article if no description provided", done => {
       const { description, ...rest } = newArticle;
       chai
         .request(app)
@@ -123,6 +97,24 @@ describe("# Articles endpoints", () => {
         .end((err, res) => {
           expect(res.status).equals(BAD_REQUEST);
           expect(res.body.message).to.contain('"description" is required');
+          done();
+        });
+    });
+
+    it("should create an article with no tagsList", done => {
+      const { tagsList, ...rest } = newArticle;
+      chai
+        .request(app)
+        .post("/api/v1/articles")
+        .set("Authorization", `Bearer ${token}`)
+        .send(rest)
+        .end((err, res) => {
+          expect(res.status).equals(CREATED);
+          expect(res.body.message).to.contain("Article created");
+          expect(res.body).to.haveOwnProperty("article");
+          expect(res.body.article).to.haveOwnProperty("createdAt");
+          expect(res.body.article).to.haveOwnProperty("title");
+          expect(res.body.article.title).to.contain(newArticle.title);
           done();
         });
     });

@@ -13,7 +13,19 @@ export default (sequelize, DataTypes) => {
       description: { type: DataTypes.TEXT, allowNull: false },
       body: { type: DataTypes.TEXT, allowNull: false }
     },
-    { tableName: "articles" }
+    {
+      tableName: "articles"
+      // hooks: {
+      //   beforeCreate(newUser) {
+      //     const hash = Bcrypt.hashSync(
+      //       newUser.password,
+      //       Bcrypt.genSaltSync(process.env.SALTROUNDS),
+      //       null
+      //     );
+      //     newUser.password = hash;
+      //   }
+      // }
+    }
   );
   Article.associate = models => {
     /**
