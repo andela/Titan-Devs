@@ -2,6 +2,7 @@ import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import nock from "nock";
 import app from "../../index";
+import models from "../../models";
 import { users, sendGridResponse } from "../helpers/testData";
 
 const { dummyUser } = users;
@@ -20,7 +21,13 @@ describe("Password controller", () => {
       .post("/v3/mail/send")
       .reply(200, { mockResponse: sendGridResponse });
   });
-
+  after(async () => {
+    await models.User.destroy({
+      where: {},
+      truncate: true,
+      cascade: true
+    });
+  });
   it("should send password rest link", async () => {
     const results = await chai
       .request(app)
