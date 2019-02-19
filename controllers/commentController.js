@@ -15,7 +15,6 @@ export default class CommentController {
    * @param  {Object} res - The response object.
    * @returns {Object} - It returns the request response object.
    */
-
   static async create(req, res) {
     try {
       const { body } = req.body;
@@ -47,10 +46,11 @@ export default class CommentController {
         });
       }
     } catch (error) {
-      if (error.details)
+      if (error.details) {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
+      }
       return res.status(500).send({ message: error, status: 500 });
     }
   }
