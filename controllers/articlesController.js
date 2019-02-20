@@ -269,4 +269,28 @@ export default class PostController {
         .json({ message: "Article was NOT posted, Server error" });
     }
   }
+
+  static async reportArticle(req, res) {
+    try {
+      const { articleId } = req.params;
+      const { id: userId } = req.user;
+      const { description } = req.body;
+      if (!description || undefined) {
+        return res.status(BAD_REQUEST).json({ message: "Please, give a reason" });
+      }
+      const reportArticle = await ReportArticle.create({
+        articleId,
+        userId,
+        description
+      });
+      return res.status(OK).json({
+        message: "Article reported",
+        article: reportArticle
+      });
+    } catch (error) {
+      return res.status(BAD_REQUEST).json({
+        message: "Server Error"
+      });
+    }
+  }
 }

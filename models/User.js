@@ -81,7 +81,10 @@ export default (sequelize, DataTypes) => {
       as: "likedBy",
       foreignKey: "userId"
     });
+<<<<<<< HEAD
 
+=======
+>>>>>>> [#163518702] add article reporting
     User.belongsToMany(models.User, {
       through: models.Follower,
       as: "followings",
@@ -94,6 +97,11 @@ export default (sequelize, DataTypes) => {
       through: models.ArticleLike,
       as: "likes",
       foreignKey: "userId"
+    });
+    User.hasMany(models.ReportArticle, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      hooks: true
     });
   };
   return User;

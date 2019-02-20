@@ -1,5 +1,6 @@
 import { Router } from "express";
 import Article from "../controllers/articlesController";
+import shareValidator from "../middlewares/shareValidator";
 
 import ArticleLikeController from "../controllers/articleLikesController";
 import checkAuth from "../middlewares/checkAuth";
@@ -35,5 +36,10 @@ article
   )
   .get("/articles/:slug/share/email", checkAuth, Article.shareOnEmail)
   .get("/articles/:slug", Article.findOneArticle);
+article.put(
+  "/article/:articleId/report",
+  shareValidator.validateArticle,
+  Article.reportArticle
+);
 
 export default article;
