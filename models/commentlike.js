@@ -1,7 +1,6 @@
-"use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Commentlike = sequelize.define(
-    "commentlike",
+  const CommentLike = sequelize.define(
+    "CommentLike",
     {
       id: {
         allowNull: false,
@@ -12,22 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       commentId: DataTypes.UUID,
       userId: DataTypes.UUID
     },
-    {}
+    {
+      tableName: "commentlikes"
+    }
   );
-  Commentlike.associate = function(models) {
-    // associations can be defined here
-    Commentlike.belongsTo(models.User, {
-      foreignKey: "userId",
-      as: "likedBy",
-      onDelete: "CASCADE",
-      hooks: true
-    });
-    Commentlike.belongsTo(models.Comment, {
-      foreignKey: "commentId",
-      as: "likes",
-      onDelete: "CASCADE",
-      hooks: true
-    });
-  };
-  return Commentlike;
+  return CommentLike;
 };

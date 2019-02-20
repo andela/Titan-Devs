@@ -26,11 +26,14 @@ export default (sequelize, DataTypes) => {
     Comment.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
+      as: "author"
     });
-
-    Comment.hasMany(models.commentlike, { as: "likes", foreignKey: "commentId" });
-    // associations can be defined here
+    Comment.belongsToMany(models.User, {
+      through: models.CommentLike,
+      as: "likes",
+      foreignKey: "commentId"
+    });
   };
   return Comment;
 };

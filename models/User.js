@@ -73,8 +73,15 @@ export default (sequelize, DataTypes) => {
     User.hasMany(models.Comment, {
       foreignKey: "userId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
+      as: "comments"
     });
+    User.belongsToMany(models.Comment, {
+      through: models.CommentLike,
+      as: "likedBy",
+      foreignKey: "userId"
+    });
+
     User.belongsToMany(models.User, {
       through: models.Follower,
       as: "followings",

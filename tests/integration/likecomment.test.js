@@ -126,7 +126,7 @@ describe("Liking a comment", () => {
       .end((error, res) => {
         if (error) done(error);
         expect(res.status).equals(OK);
-        expect(res.body.comment.likedBy).to.be.an("array");
+        expect(res.body.comment.likes).to.be.an("array");
         done();
       });
   });

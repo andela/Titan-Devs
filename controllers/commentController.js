@@ -2,7 +2,7 @@ import Joi from "joi";
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { User, Article, Comment, commentlike } = models;
+const { User, Article, Comment, CommentLike } = models;
 const { CREATED, BAD_REQUEST } = constants.statusCode;
 
 /**
@@ -72,7 +72,7 @@ export default class CommentController {
         throw new Error("You are liking a non-existing comment");
       }
     } catch (error) {
-      if (error.message == "You are liking a non-existing comment") {
+      if (error.message === "You are liking a non-existing comment") {
         return res
           .status(400)
           .json({ message: "You are liking a non-existing comment" });
@@ -82,9 +82,9 @@ export default class CommentController {
 
     try {
       const userId = req.user.id;
-      const likes = await commentlike.findAll({ where: { commentId, userId } });
-      if (likes.length == 0) {
-        const likeComment = await commentlike.create({ commentId, userId });
+      const likes = await CommentLike.findAll({ where: { commentId, userId } });
+      if (likes.length === 0) {
+        const likeComment = await CommentLike.create({ commentId, userId });
         const updateCommentLikes = await Comment.increment(
           {
             like: 1
@@ -97,7 +97,7 @@ export default class CommentController {
           updatedComment: updateCommentLikes[0][0]
         });
       }
-      const unlikeComment = await commentlike.destroy({
+      const unlikeComment = await CommentLike.destroy({
         where: { commentId, userId }
       });
       const updateCommentLikes = await Comment.decrement(
@@ -124,26 +124,30 @@ export default class CommentController {
    * @returns {Object} - Returns the comment object.
    */
 
-  static async getLikingUsers(req, res) {
+  static async getCommentLikes(req, res) {
     const { commentId } = req.params;
     try {
-      let comment = await Comment.findOne({
-        where: { id: commentId }
+      const comment = await Comment.findOne({
+        where: { id: commentId },
+        include: [
+          {
+            model: User,
+            as: "likes",
+            attributes: ["id", "firstname", "username"]
+          },
+          {
+            model: User,
+            as: "author",
+            attributes: ["id", "firstname", "username"]
+          }
+        ]
       });
-      if (comment) {
-        comment = comment.toJSON();
-        comment.likedBy = [];
-        const likes = await commentlike.findAll({
-          where: { commentId: comment.id },
-          include: [{ model: User, as: "likedBy", attributes: ["username"] }]
-        });
-
-        likes.map(like => {
-          comment.likedBy.push(like.likedBy);
-        });
-        return res.status(200).json({ comment });
+      if (!comment) {
+        res
+          .status(BAD_REQUEST)
+          .json({ message: "There is no comment with that id" });
       }
-      return res.status(200).json({ message: "No comment with that id" });
+      res.status(200).json({ comment });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
