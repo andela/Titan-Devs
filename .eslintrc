@@ -1,34 +1,33 @@
 {
   "root": true,
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier", "jsdoc"],
   "env": {
     "node": true,
     "es6": true,
     "mocha": true
   },
+  "plugins": ["prettier"],
   "rules": {
-    "no-extra-parents": "off",
-    "prettier/prettier": ["error"],
+    "parserOptions": {
+      "allowImportExportEverywhere": true,
+      "sourceType": "module"
+    },
+    "eol-last": ["error", "always"],
+    "import/prefer-default-export": "off",
+    "import/resolver": {
+      "node": {
+        "extensions": [".js"]
+      }
+    },
     "one-var": 0,
     "one-var-declaration-per-line": 0,
     "new-cap": 0,
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
-    "import/no-unresolved": [
-      2,
-      {
-        "commonjs": true
-      }
-    ],
-    "no-shadow": [
-      "error",
-      {
-        "allow": ["req", "res", "err"]
-      }
-    ],
-    "curly": "off",
+    "curly": ["error", "multi-line"],
+    "import/no-unresolved": [2, { "commonjs": true }],
+    "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
     "valid-jsdoc": [
       "error",
       {
