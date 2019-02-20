@@ -60,9 +60,9 @@ export default class PostController {
       }
     } catch (error) {
       if (error.details)
-        return res
+        {return res
           .status(BAD_REQUEST)
-          .send({ message: error.details[0].message, status: BAD_REQUEST });
+          .send({ message: error.details[0].message, status: BAD_REQUEST });}
       return res
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
@@ -83,10 +83,10 @@ export default class PostController {
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
       if (!article || !user)
-        return res.status(NOT_FOUND).json({
+        {return res.status(NOT_FOUND).json({
           status: NOT_FOUND,
           message: `The article with this slug ${slug} doesn't exist`
-        });
+        });}
       const { id: articleId } = article.dataValues;
       const bookmark = await Bookmark.findOne({ where: { userId, articleId } });
       if (!bookmark) {
@@ -115,48 +115,6 @@ export default class PostController {
       return res
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
-    }
-  }
-
-  /**
-   * @description - fetch one article
-   * @param {object} -res The response object
-   * @returns {object} - returns the response object
-   */
-
-  static async getArticle(req, res) {
-    const { slug } = req.params;
-    try {
-      const article = await Article.findOne({
-        where: {
-          slug
-        },
-        include: [
-          {
-            model: User,
-            as: "likes",
-            attributes: [
-              "id",
-              "username",
-              "email",
-              "firstname",
-              "lastname",
-              "bio",
-              "image"
-            ]
-          }
-        ]
-      });
-      if (!article) {
-        return res.status(404).json({ message: "Article not found" });
-      }
-
-      res.json({ article });
-    } catch (err) {
-      res.status(500).json({
-        message: "Unknown error",
-        errors: err.stack
-      });
     }
   }
 }

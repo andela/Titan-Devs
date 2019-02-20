@@ -50,7 +50,7 @@ describe("ArticleLike Controller", () => {
           });
       });
 
-      it("should dislike article when user try to like article twice", done => {
+      it("should remove like when user try to like article twice", done => {
         chai
           .request(app)
           .post(`/api/v1/articles/${slug}/likes`)
@@ -59,10 +59,10 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(202);
+            expect(response.status).eql(200);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Successfully disliked");
+            expect(response.body.message).to.be.eql("Unliked successfully");
             done();
           });
       });
@@ -103,10 +103,10 @@ describe("ArticleLike Controller", () => {
     });
 
     describe("Dislike", () => {
-      it("should allow  user to like an article", done => {
+      it("should allow  user to dislike an article", done => {
         chai
           .request(app)
-          .post(`/api/v1/articles/${slug}/likes`)
+          .post(`/api/v1/articles/${slug}/dislikes`)
           .set({ Authorization: `Bearer ${token}` })
           .end((err, response) => {
             if (err) {
@@ -115,24 +115,24 @@ describe("ArticleLike Controller", () => {
             expect(response.status).eql(201);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Successfully liked");
+            expect(response.body.message).to.be.eql("Successfully disliked");
             done();
           });
       });
 
-      it("should allow  user to deslike an article", done => {
+      it("should remove dislike if user try to hit dislike twice", done => {
         chai
           .request(app)
-          .delete(`/api/v1/articles/${slug}/likes`)
+          .post(`/api/v1/articles/${slug}/dislikes`)
           .set({ Authorization: `Bearer ${token}` })
           .end((err, response) => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(202);
+            expect(response.status).eql(200);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Successfully disliked");
+            expect(response.body.message).to.be.eql("Successfully removed dislike");
             done();
           });
       });
@@ -140,7 +140,7 @@ describe("ArticleLike Controller", () => {
       it("should fail on non existing slug", done => {
         chai
           .request(app)
-          .delete(`/api/v1/articles/${slug}i97/likes`)
+          .post(`/api/v1/articles/${slug}i97/dislikes`)
           .set({
             Authorization: `Bearer ${token}`
           })
@@ -160,7 +160,7 @@ describe("ArticleLike Controller", () => {
       it("should if user is not authenticated", done => {
         chai
           .request(app)
-          .delete(`/api/v1/articles/${slug}/likes`)
+          .post(`/api/v1/articles/${slug}/dislikes`)
           .set({ Authorization: `Bear ${token}yi` })
           .end((err, response) => {
             if (err) {
@@ -176,7 +176,7 @@ describe("ArticleLike Controller", () => {
       it("should retrieve article with likes", done => {
         chai
           .request(app)
-          .get(`/api/v1/articles/${slug}`)
+          .get(`/api/v1/articles/${slug}/likes`)
           .set({ Authorization: `Bearer ${token}` })
           .end((err, response) => {
             if (err) {
@@ -199,7 +199,7 @@ describe("ArticleLike Controller", () => {
       it("should return not found on non existing slug", done => {
         chai
           .request(app)
-          .get(`/api/v1/articles/${slug}i97`)
+          .get(`/api/v1/articles/${slug}i97/likes`)
           .set({
             Authorization: `Bearer ${token}`
           })
@@ -219,7 +219,7 @@ describe("ArticleLike Controller", () => {
         chai
           .request(app)
           .get(`/api/v1/articles/${slug}`)
-          .set({ Authorization: `Bear ${token}yi` })
+          .set({ Authorization: `Bear ${token}yi/likes` })
           .end((err, response) => {
             if (err) {
               return done(err);
