@@ -152,13 +152,7 @@ export default class PostController {
       if (!article) {
         return res.status(404).json({ message: "Article not found" });
       }
-
-      res.json({ article });
-    } catch (err) {
-      res.status(500).json({
-        message: "Unknown error",
-        errors: err.stack
-      });
+      return res.status(500).send({ message: error, status: 500 });
     }
   }
 }
