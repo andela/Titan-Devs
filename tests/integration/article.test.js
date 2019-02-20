@@ -41,7 +41,7 @@ before(done => {
 describe("# Articles endpoints", () => {
   let createdArticle;
   describe("Create a new article", () => {
-    it("should create the article and return the success message ", done => {
+    it("should create the article and return the success message", done => {
       chai
         .request(app)
         .post("/api/v1/articles")
