@@ -57,13 +57,13 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${wrongToken}`);
-    expect(results.status).equal(404);
+    expect(results.status).equal(401);
   });
   it("/PUT it should fail with invalid token", async () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${invalidToken}`);
-    expect(results.status).equal(404);
+    expect(results.status).equal(401);
   });
   it("/PUT it should fail with invalid email", async () => {
     const results = await chai

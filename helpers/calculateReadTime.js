@@ -6,7 +6,7 @@
  */
 
 export default article => {
-  const body = article.body.body;
+  const { body } = article.body;
   if (!body) {
     return 0;
   }
