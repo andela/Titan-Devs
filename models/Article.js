@@ -61,6 +61,11 @@ export default (sequelize, DataTypes) => {
       foreignKey: "articleId"
 >>>>>>> [#163518692]Enable user to like or dislike an article
     });
+    Article.belongsToMany(models.User, {
+      through: models.ArticleLike,
+      as: "likes",
+      foreignKey: "articleId"
+    });
   };
   return Article;
 };
