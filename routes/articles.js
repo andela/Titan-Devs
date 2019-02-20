@@ -46,5 +46,4 @@ article.put(
   shareValidator.validateArticle,
   Article.reportArticle
 );
-
 export default article;
