@@ -4,19 +4,16 @@ import validation from "../middlewares/updateProfileValidator";
 const { User } = models;
 
 /**
- * Profile Class
- *
- * @class
+ * @class Profile
  */
 class Profile {
   /**
-   *
-   * Update profile.
-   *
+   * @description It updates the user's profile.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
-   * @return {Object} - It returns the response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async update(req, res) {
     const usernameParameter = req.params.username;
     const usernameFromToken = req.user.username;
@@ -43,13 +40,12 @@ class Profile {
   }
 
   /**
-   *
-   * GetProfile.
-   *
+   * @description Gets the user's profile
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
-   * @return {Object} - It returns the response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async getProfile(req, res) {
     const { username } = req.params;
     try {
@@ -69,13 +65,12 @@ class Profile {
   }
 
   /**
-   *
-   * GetAllProfiles.
-   *
+   * @description Gets profiles of all users.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
-   * @return {Object} - It returns the response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async getAllProfiles(req, res) {
     try {
       const profiles = await User.findAll();
@@ -86,13 +81,12 @@ class Profile {
   }
 
   /**
-   *
-   * Delete.
-   *
+   * @description It deletes a particular user's profile.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
-   * @return {Object} - It returns the response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async delete(req, res) {
     const { username } = req.params;
     const usernameFromToken = req.user.username;

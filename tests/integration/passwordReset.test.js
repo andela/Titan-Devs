@@ -22,6 +22,7 @@ describe("Reset Password", () => {
       .post("/v3/mail/send")
       .reply(200, { mockResponse: sendGridResponse });
   });
+
   after(async () => {
     await models.User.destroy({
       where: {},
@@ -29,6 +30,7 @@ describe("Reset Password", () => {
       cascade: true
     });
   });
+
   it("should send password rest link", async () => {
     const results = await chai
       .request(app)
@@ -45,6 +47,7 @@ describe("Reset Password", () => {
     expect(results.body.user).to.be.an("object");
     expect(results.body.user).to.have.property("resetToken");
   });
+
   it("should not send the link to non existing user", async () => {
     const results = await chai
       .request(app)
@@ -58,6 +61,7 @@ describe("Reset Password", () => {
       .to.have.property("message")
       .eql("User not found");
   });
+
   it("should fail on non alphanumeric password", async () => {
     const results = await chai
       .request(app)
@@ -70,6 +74,7 @@ describe("Reset Password", () => {
       "The password should be an alphanumeric with at least 8 characters"
     );
   });
+
   it("should return error if new password is the same as current one", async () => {
     const results = await chai
       .request(app)
@@ -82,6 +87,7 @@ describe("Reset Password", () => {
       "Your new password was the same as your current one"
     );
   });
+
   it("should update password", async () => {
     const results = await chai
       .request(app)
@@ -92,6 +98,7 @@ describe("Reset Password", () => {
     expect(results.status).equal(200);
     expect(results.body.message).eql("Password updated");
   });
+
   it("should return an error on invalid token", async () => {
     const results = await chai
       .request(app)
@@ -102,6 +109,7 @@ describe("Reset Password", () => {
     expect(results.status).equal(400);
     expect(results.body.message).eql("Invalid or expired link");
   });
+
   it("should return an error on expired token", async () => {
     const results = await chai
       .request(app)

@@ -11,19 +11,16 @@ dotenv.config();
 const { User } = models;
 
 /**
- * UserController
- *
- * @class
+ * @class UserController
  */
 class UserController {
   /**
-   *
-   * ResetPassword.
-   *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @description It resets the user's password.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async resetPassword(req, res) {
     if (!req.body.email) {
       return res.status(400).json({ message: "Email is required" });
@@ -66,13 +63,12 @@ class UserController {
   }
 
   /**
-   *
-   * UpdatePassword.
-   *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @return {object} - It returns the response object
+   * @description It updates a reset password.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async updatePassword(req, res) {
     const { token } = req.params;
     try {

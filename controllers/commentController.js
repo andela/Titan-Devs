@@ -5,13 +5,17 @@ import constants from "../helpers/constants";
 const { User, Article, Comment } = models;
 const { CREATED, BAD_REQUEST } = constants.statusCode;
 
+/**
+ * @class CommentController
+ */
 export default class CommentController {
   /**
-   * @description This creates the new article's comment.
+   * @description Allows users to comment on an article.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @returns {Object} - It returns the request response object.
    */
+
   static async create(req, res) {
     try {
       const { body } = req.body;

@@ -22,6 +22,7 @@ describe("User following", () => {
         ...dummyUser2
       });
   });
+
   after(async () => {
     await models.Follower.destroy({
       where: {},
@@ -48,6 +49,7 @@ describe("User following", () => {
       const { token } = loggedInUser.body;
       userToken = token;
     });
+
     it("Return number of people a user is following", async () => {
       const results = await chai
         .request(app)
@@ -60,6 +62,7 @@ describe("User following", () => {
       expect(results.body.user.followings).to.be.an("array");
       expect(results.body.user.followings).length(0);
     });
+
     it("It should allow a user to follow an existing author", async () => {
       const results = await chai
         .request(app)
@@ -69,6 +72,7 @@ describe("User following", () => {
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("Follow successful");
     });
+
     it("shouldn't allow a user to follow an author more than once", async () => {
       const results = await chai
         .request(app)
@@ -78,6 +82,7 @@ describe("User following", () => {
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You are already following this author");
     });
+
     it("should only allow following of existing user", async () => {
       const results = await chai
         .request(app)
@@ -87,6 +92,7 @@ describe("User following", () => {
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("User not found");
     });
+
     it("should return number of followers when there are existing followers", async () => {
       const results = await chai
         .request(app)
@@ -112,6 +118,7 @@ describe("User following", () => {
         .to.be.an("array");
       expect(results.body.followers).length(0);
     });
+
     it("should allow a user to unfollow an author", async () => {
       const results = await chai
         .request(app)
@@ -121,6 +128,7 @@ describe("User following", () => {
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have unfollowed this author");
     });
+
     it("should return an error message when unfollowing an author you were not following", async () => {
       const results = await chai
         .request(app)
@@ -130,6 +138,7 @@ describe("User following", () => {
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have already unfollowed this author");
     });
+
     it("should get a current user's followings", async () => {
       const results = await chai
         .request(app)
@@ -142,6 +151,7 @@ describe("User following", () => {
       expect(results.body.user.followings).to.be.an("array");
       expect(results.body.user.followings).length(0);
     });
+
     it("should return a user's number of followers", async () => {
       const results = await chai
         .request(app)

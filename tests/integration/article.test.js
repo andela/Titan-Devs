@@ -141,6 +141,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should deny bookmarking if no access-token provided", done => {
       const { article } = createdArticle;
       chai

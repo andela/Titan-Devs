@@ -12,6 +12,9 @@ const {
   GONE
 } = constants.statusCode;
 
+/**
+ * @class PostController
+ */
 export default class PostController {
   /**
    * @description This helps the authorized user to create a new article
@@ -67,7 +70,7 @@ export default class PostController {
   }
 
   /**
-   * @description This helps the user to bookmark the article for reading it later.
+   * @description It helps the user to bookmark the article for reading it later.
    * @param  {object} req - The request object
    * @param  {object} res - The response object
    * @return {object} - It returns the request response object
@@ -75,10 +78,6 @@ export default class PostController {
 
   static async bookmark(req, res) {
     try {
-      // TODO: Fetch the use by req.user.id,
-      // TODO: Fetch the article by req.params.slug,
-      // TODO: Fetch the bookmark by slug and userId,
-      // TODO: If it's found, delete it. otherwise, create it
       const { id: userId } = req.user;
       const { slug } = req.params;
       const user = await User.findOne({ where: { id: userId } });
