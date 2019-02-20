@@ -3,7 +3,7 @@ import faker from "faker";
 const newArticle = {
   title: faker.lorem.words(15),
   description: faker.lorem.words(50),
-  body: faker.lorem.words(500),
+  body: "I set fire to the rain, and that was the last time",
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
 const newComment = {
