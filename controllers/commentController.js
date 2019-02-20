@@ -135,9 +135,7 @@ export default class CommentController {
         });
         return res.status(200).json({ comment });
       }
-      return res
-        .status(200)
-        .json({ message: "No current user who is liking that comment" });
+      return res.status(200).json({ message: "No comment with that id" });
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
