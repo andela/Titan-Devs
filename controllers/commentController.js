@@ -3,7 +3,7 @@ import models from "../models";
 import constants from "../helpers/constants";
 
 const { User, Article, Comment, CommentLike } = models;
-const { CREATED, BAD_REQUEST } = constants.statusCode;
+const { CREATED, BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = constants.statusCode;
 
 /**
  * @class CommentController
@@ -51,8 +51,6 @@ export default class CommentController {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
-      }
-      return res.status(500).send({ message: error, status: 500 });
     }
   }
 
@@ -77,7 +75,7 @@ export default class CommentController {
           .status(400)
           .json({ message: "You are liking a non-existing comment" });
       }
-      return res.status(500).json({ error: error.message });
+      return res.status(INTERNAL_SERVER_ERROR).json({ error: error.message });
     }
 
     try {
@@ -147,9 +145,9 @@ export default class CommentController {
           .status(BAD_REQUEST)
           .json({ message: "There is no comment with that id" });
       }
-      res.status(200).json({ comment });
+      res.status(OK).json({ comment });
     } catch (error) {
-      res.status(400).json({ message: error.message });
+      res.status(BAD_REQUEST).json({ message: error.message });
     }
   }
 }
