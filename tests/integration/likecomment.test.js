@@ -1,15 +1,15 @@
 import chaiHttp from "chai-http";
-import models from "../../models";
 import chai, { expect, should } from "chai";
+import models from "../../models";
 import app from "../../index";
-import { newArticle, newComment } from "../testData";
+import { newArticle, newComment } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
 let slug;
 let commentId;
 
-let newUser = {
+const newUser = {
   email: "yves.iraguha@gmail.com",
   password: "password",
   username: "Nick2019"
@@ -52,7 +52,7 @@ describe("API end points /comments/commentId/likes", () => {
                       .send({ body: "hello there " })
                       .end((err, res) => {
                         if (!err) commentId = res.body.comment.id;
-                        done(err ? err : undefined);
+                        done(err || undefined);
                       });
                   });
               }
