@@ -130,7 +130,7 @@ export default class ArticleLikesController {
         return res.status(NOT_FOUND).json({ message: "Article not found" });
       }
 
-      res.json({ article });
+      return res.status(202).json({ message: "Successfully disliked" });
     } catch (err) {
       res.status(INTERNAL_SERVER_ERROR).json({
         message: "Unknown error",

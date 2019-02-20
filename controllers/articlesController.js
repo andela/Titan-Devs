@@ -155,4 +155,46 @@ export default class PostController {
       return res.status(500).send({ message: error, status: 500 });
     }
   }
+
+  /**
+   * @description - fetch one article
+   * @param {object} -res The response object
+   * @returns {object} - returns the response object
+   */
+
+  static async getArticle(req, res) {
+    const { slug } = req.params;
+    try {
+      const article = await Article.findOne({
+        where: {
+          slug
+        },
+        include: [
+          {
+            model: User,
+            as: "likes",
+            attributes: [
+              "id",
+              "username",
+              "email",
+              "firstname",
+              "lastname",
+              "bio",
+              "image"
+            ]
+          }
+        ]
+      });
+      if (!article) {
+        return res.status(404).json({ message: "Article not found" });
+      }
+
+      res.json({ article });
+    } catch (err) {
+      res.status(500).json({
+        message: "Unknown error",
+        errors: err.stack
+      });
+    }
+  }
 }
