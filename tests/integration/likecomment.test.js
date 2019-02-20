@@ -19,8 +19,8 @@ const { User } = models;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
-describe("API end points /comments/commentId/likes", () => {
-  const { email, password, username } = newUser;
+describe("Liking a comment", () => {
+  const { email, password } = newUser;
   before("Create a user, article, and comment", done => {
     chai
       .request(app)
