@@ -48,7 +48,7 @@ export default class FollowerController {
   }
 
   /**
-   * @description Allows a user to unfollow a followed user.
+   * @description Allows a user to unFollow a followed user.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @returns {Object} - It returns the response object.

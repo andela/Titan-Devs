@@ -59,10 +59,11 @@ export default class PostController {
               .json({ status: NOT_FOUND, message: "Please consider logging in" });
       }
     } catch (error) {
-      if (error.details)
-        {return res
+      if (error.details) {
+        return res
           .status(BAD_REQUEST)
-          .send({ message: error.details[0].message, status: BAD_REQUEST });}
+          .send({ message: error.details[0].message, status: BAD_REQUEST });
+      }
       return res
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
@@ -82,11 +83,12 @@ export default class PostController {
       const { slug } = req.params;
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
-      if (!article || !user)
-        {return res.status(NOT_FOUND).json({
+      if (!article || !user) {
+        return res.status(NOT_FOUND).json({
           status: NOT_FOUND,
           message: `The article with this slug ${slug} doesn't exist`
-        });}
+        });
+      }
       const { id: articleId } = article.dataValues;
       const bookmark = await Bookmark.findOne({ where: { userId, articleId } });
       if (!bookmark) {
