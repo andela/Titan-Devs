@@ -34,15 +34,13 @@ describe("Liking a comment", () => {
             .send({ email, password })
             .end((err, res) => {
               if (!err) {
-                token = res.body.token;
+                ({ token } = res.body);
                 chai
                   .request(app)
                   .post("/api/v1/articles")
                   .set("Authorization", `Bearer ${token}`)
                   .send(newArticle)
                   .end((err, res) => {
-                    if (!err) {
-                    }
                     const { slug: artSlug } = res.body.article;
                     slug = artSlug;
                     chai
@@ -60,6 +58,7 @@ describe("Liking a comment", () => {
         }
       });
   });
+
   describe("POST /articles/:slug/comments/:commentId", () => {
     it("should like the comment and return the comment liked message", done => {
       chai
@@ -68,7 +67,6 @@ describe("Liking a comment", () => {
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
-
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Comment liked");
           expect(res.body.likeComment).to.haveOwnProperty("commentId");
@@ -77,6 +75,7 @@ describe("Liking a comment", () => {
           done();
         });
     });
+
     it("should unlike the comment and return the comment unliked message", done => {
       chai
         .request(app)
@@ -105,6 +104,7 @@ describe("Liking a comment", () => {
         done();
       });
   });
+
   it("should throw an unauthorized error", done => {
     chai
       .request(app)
@@ -119,6 +119,7 @@ describe("Liking a comment", () => {
         done();
       });
   });
+
   it("should fetch all users who liked a comment in form of array", done => {
     chai
       .request(app)

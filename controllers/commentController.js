@@ -56,10 +56,11 @@ export default class CommentController {
   }
 
   /**
-   * Like a comment.
+   * @description liked a specific comment.
+   *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
-   * @return {Object} - It returns the request response object.
+   * @returns {Object} - Returns the like created.
    */
   static async like(req, res) {
     const { commentId } = req.params;
@@ -105,16 +106,16 @@ export default class CommentController {
         .status(CREATED)
         .json({ message: "Comment unliked", unlikeComment, updateCommentLikes });
     } catch (error) {
-      console.log(error);
       res.status(BAD_REQUEST).json({ error: error.message, stack: error.stack });
     }
   }
+
   /**
-   * Get all users who liked a specific comment
+   * @description Get all users who liked a specific comment.
    *
-   * @param  {object} req - The request object
-   * @param  {object} res - The response object
-   * @returns {object} - returns the comment object
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - Returns the comment object.
    */
   static async getLikingUsers(req, res) {
     const { commentId } = req.params;
@@ -124,7 +125,7 @@ export default class CommentController {
       });
       if (comment) {
         comment = comment.toJSON();
-        comment["likedBy"] = [];
+        comment.likedBy = [];
         const likes = await commentlike.findAll({
           where: { commentId: comment.id },
           include: [{ model: User, as: "likedBy" }]
