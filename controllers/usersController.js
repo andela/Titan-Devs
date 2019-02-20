@@ -139,16 +139,12 @@ class UserController {
   static async resendVerificationEmail(req, res) {
     try {
       const { email } = req.body;
-      if (!email)
-<<<<<<< HEAD
-        {return res.status(BAD_REQUEST).json({ message: "Email is required" });}
-      if (!isEmailValid(email))
-        {return res.status(BAD_REQUEST).json({ message: "Invalid email" });}
-=======
-        return res.status(NOT_FOUND).json({ message: "Email is required" });
-      if (!isEmailValid(email))
-        return res.status(NOT_FOUND).json({ message: "Invalid email" });
->>>>>>> [#163518683] add description on comments
+      if (!email) {
+        return res.status(BAD_REQUEST).json({ message: "Email is required" });
+      }
+      if (!isEmailValid(email)) {
+        return res.status(BAD_REQUEST).json({ message: "Invalid email" });
+      }
       const user = await User.findOne({
         where: { email }
       });
