@@ -3,16 +3,13 @@ import models from "../models";
 const { ArticleLike, Article } = models;
 
 /**
- *ArticleLikesController
- *
+ *@description ArticleLikesController
  * @class
  */
 
 export default class ArticleLikesController {
   /**
-   *
-   * like
-   *
+   * @description let user like article
    * @param {object} -res The response object
    * @return {object} - returns the response object
    */
@@ -52,9 +49,7 @@ export default class ArticleLikesController {
   }
 
   /**
-   *
-   * dislike
-   *
+   * @description let user dislike article
    * @param {object} -res The response object
    * @return {object} - returns the response object
    */
