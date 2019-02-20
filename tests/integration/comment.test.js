@@ -52,7 +52,6 @@ describe("# Article's comments endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(newComment)
         .end((err, res) => {
-          console.log(res.body);
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Comment created");
           expect(res.body).to.haveOwnProperty("comment");

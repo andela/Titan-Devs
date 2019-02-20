@@ -57,7 +57,6 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${wrongToken}`);
-    console.log(results);
     expect(results.status).equal(401);
   });
   it("/PUT it should fail with invalid token", async () => {
