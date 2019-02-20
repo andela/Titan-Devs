@@ -3,11 +3,7 @@ import faker from "faker";
 const newArticle = {
   title: faker.lorem.words(15),
   description: faker.lorem.words(50),
-<<<<<<< HEAD
   body: "I set fire to the rain, and that was the last time",
-=======
-  body: faker.lorem.words(500),
->>>>>>> 163518692 Enable user to like and unlike an article
   tagsList: ["reactjs", "angularjs", "dragons"]
 };
 const newComment = {

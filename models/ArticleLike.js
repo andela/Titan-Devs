@@ -5,11 +5,9 @@ module.exports = (sequelize, DataTypes) => {
       userId: DataTypes.UUID,
       articleId: DataTypes.UUID
     },
-    {}
+    {
+      tableName: "articleLikes"
+    }
   );
-  ArticleLike.associate = models => {
-    ArticleLike.belongsTo(models.User);
-    ArticleLike.belongsTo(models.Article);
-  };
   return ArticleLike;
 };

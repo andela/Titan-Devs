@@ -30,7 +30,6 @@ describe("ArticleLike Controller", () => {
       article: { slug }
     } = articleResult.body);
   });
-
   describe("article fetch and like", () => {
     describe("Like", () => {
       it("should allow  user to like an article", done => {
@@ -86,7 +85,6 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
-
       it("should if user is not authenticated", done => {
         chai
           .request(app)
@@ -214,7 +212,6 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
-
       it("should if user is not authenticated", done => {
         chai
           .request(app)
