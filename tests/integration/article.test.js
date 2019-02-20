@@ -216,6 +216,19 @@ describe("Share Articles endpoints", () => {
         done();
       });
   });
+  it("should be ready to be posted on facebook", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/article/${validArticleId}/share/linkedIn`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on linkedIn"
+        );
+        done();
+      });
+  });
   it("should be ready to be posted on email", done => {
     chai
       .request(app)
