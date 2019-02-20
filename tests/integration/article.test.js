@@ -30,7 +30,7 @@ before(done => {
 });
 
 describe("# Articles endpoints", () => {
-  describe("POST /articles", () => {
+  describe("Create a new article", () => {
     it("should create the article and return the success message", done => {
       chai
         .request(app)

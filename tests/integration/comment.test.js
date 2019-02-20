@@ -44,7 +44,7 @@ before(done => {
 });
 
 describe("# Article's comments endpoints", () => {
-  describe("POST /articles/:slug/comments", () => {
+  describe("Comment on an article", () => {
     it("should create the comment and return the success message", done => {
       chai
         .request(app)
