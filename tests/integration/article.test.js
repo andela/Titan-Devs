@@ -1,21 +1,21 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, user } from "../helpers/testData";
+import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
-
+const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
 before(done => {
-  const { email, password } = user;
+  const { email, password } = dummyUser;
   chai
     .request(app)
     .post("/api/v1/users")
-    .send(user)
-    .end((error, result) => {
+    .send(dummyUser)
+    .end(error => {
       if (!error) {
         chai
           .request(app)
@@ -30,7 +30,7 @@ before(done => {
 });
 
 describe("# Articles endpoints", () => {
-  describe("POST /articles", () => {
+  describe("Create a new article", () => {
     it("should create the article and return the success message", done => {
       chai
         .request(app)
@@ -48,6 +48,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should deny the request if no access-token provided", done => {
       chai
         .request(app)
