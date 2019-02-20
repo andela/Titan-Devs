@@ -19,6 +19,12 @@ article
     shareValidator.validateArticle,
     Article.shareOnFacebook
   )
+  .get(
+    "/article/:articleId/share/linkedIn",
+    checkAuth,
+    shareValidator.validateArticle,
+    Article.shareOnLinkedin
+  )
   .get("/article/:articleId/share/email", checkAuth, Article.shareOnEmail)
   .get("/article/:articleId", Article.findOneArticle);
 

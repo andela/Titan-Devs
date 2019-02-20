@@ -135,4 +135,28 @@ export default class PostController {
         .json({ message: "Article was NOT posted, Server error" });
     }
   }
+
+  static async shareOnLinkedin(req, res) {
+    try {
+      const { articleId } = req.params;
+      if (process.env === "production") {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${
+            process.env.SERVER_HOST
+          }/article/${articleId}`
+        );
+      } else {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${articleId}`
+        );
+      }
+      return res.status(200).json({
+        message: "Article ready to be posted on linkedIn"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
 }
