@@ -36,6 +36,11 @@ article
   )
   .get("/articles/:slug/share/email", checkAuth, Article.shareOnEmail)
   .get("/articles/:slug", Article.findOneArticle);
+
+const article = Router();
+
+article.post("/articles", Article.create);
+article.post("/articles/:slug/bookmark", Article.bookmark);
 article.put(
   "/article/:articleId/report",
   shareValidator.validateArticle,

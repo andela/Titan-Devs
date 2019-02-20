@@ -49,7 +49,7 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-    Article.hasMany(models.Bookmark, {
+    Article.hasMany(models.ReportArticle, {
       foreignKey: "articleId",
       onDelete: "CASCADE",
       hooks: true
