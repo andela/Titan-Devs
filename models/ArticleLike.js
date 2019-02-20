@@ -3,7 +3,8 @@ module.exports = (sequelize, DataTypes) => {
     "ArticleLike",
     {
       userId: DataTypes.UUID,
-      articleId: DataTypes.UUID
+      articleId: DataTypes.UUID,
+      like: DataTypes.BOOLEAN
     },
     {
       tableName: "articleLikes"
