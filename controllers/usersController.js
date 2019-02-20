@@ -213,7 +213,7 @@ class UserController {
         }
       );
     } catch (error) {
-      return res.status(OK).json({
+      return res.status(INTERNAL_SERVER_ERROR).json({
         message: error
       });
     }
