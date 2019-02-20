@@ -30,6 +30,7 @@ describe("ArticleLike Controller", () => {
       article: { slug }
     } = articleResult.body);
   });
+
   describe("article fetch and like", () => {
     describe("Like", () => {
       it("should allow  user to like an article", done => {
@@ -48,7 +49,8 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
-      it("should deslike article when user try to like article twice", done => {
+
+      it("should dislike article when user try to like article twice", done => {
         chai
           .request(app)
           .post(`/api/v1/articles/${slug}/likes`)
@@ -64,6 +66,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should fail on non existing slug", done => {
         chai
           .request(app)
@@ -83,6 +86,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should if user is not authenticated", done => {
         chai
           .request(app)
@@ -115,6 +119,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should allow  user to deslike an article", done => {
         chai
           .request(app)
@@ -131,6 +136,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should fail on non existing slug", done => {
         chai
           .request(app)
@@ -150,6 +156,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should if user is not authenticated", done => {
         chai
           .request(app)
@@ -188,6 +195,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should return not found on non existing slug", done => {
         chai
           .request(app)
@@ -206,6 +214,7 @@ describe("ArticleLike Controller", () => {
             done();
           });
       });
+
       it("should if user is not authenticated", done => {
         chai
           .request(app)
