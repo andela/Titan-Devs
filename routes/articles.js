@@ -26,15 +26,12 @@ article
     shareValidator.validateArticle,
     Article.shareOnFacebook
   )
-<<<<<<< HEAD
   .get(
     "/article/:articleId/share/linkedIn",
     checkAuth,
     shareValidator.validateArticle,
     Article.shareOnLinkedin
   )
-=======
->>>>>>> [#163518700] share on facebook
   .get("/article/:articleId/share/email", checkAuth, Article.shareOnEmail)
   .get("/article/:articleId", Article.findOneArticle);
 
