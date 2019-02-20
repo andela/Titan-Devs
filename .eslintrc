@@ -1,12 +1,12 @@
 {
   "root": true,
   "extends": ["airbnb-base", "prettier"],
+  "plugins": ["prettier", "jsdoc"],
   "env": {
     "node": true,
     "es6": true,
     "mocha": true
   },
-  "plugins": ["prettier"],
   "rules": {
     "parserOptions": {
       "allowImportExportEverywhere": true,
@@ -36,7 +36,7 @@
       }
     ],
     "require-jsdoc": [
-      2,
+      "error",
       {
         "require": {
           "FunctionDeclaration": true,
