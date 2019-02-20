@@ -49,10 +49,17 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+<<<<<<< HEAD
     Article.hasMany(models.Bookmark, {
       foreignKey: "articleId",
       onDelete: "CASCADE",
       hooks: true
+=======
+    Article.belongsToMany(models.User, {
+      through: models.ArticleLike,
+      as: "likes",
+      foreignKey: "articleId"
+>>>>>>> [#163518692]Enable user to like or dislike an article
     });
   };
   return Article;

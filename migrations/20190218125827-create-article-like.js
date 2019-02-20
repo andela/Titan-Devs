@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("ArticleLikes", {
+    return queryInterface.createTable("articleLikes", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,11 +10,21 @@ module.exports = {
       },
       userId: {
         type: Sequelize.UUID,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "users",
+          as: "userId",
+          key: "id"
+        }
       },
       articleId: {
         type: Sequelize.UUID,
-        allowNull: false
+        allowNull: false,
+        references: {
+          model: "articles",
+          as: "articleId",
+          key: "id"
+        }
       },
       createdAt: {
         allowNull: false,
@@ -27,6 +37,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("ArticleLikes");
+    return queryInterface.dropTable("articleLikes");
   }
 };

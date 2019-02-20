@@ -1,4 +1,5 @@
 import models from "../models";
+
 const { ArticleLike, Article } = models;
 
 /**
@@ -10,17 +11,18 @@ const { ArticleLike, Article } = models;
 export default class ArticleLikesController {
   /**
    *
-   * likeArticle
+   * like
    *
    * @param {object} -res The response object
    * @return {object} - returns the response object
    */
 
-  static async likeArticle(req, res) {
+  static async like(req, res, next) {
+    const { slug } = req.params;
     try {
       const article = await Article.findOne({
         where: {
-          slug: req.slug
+          slug
         }
       });
       if (!article) {
@@ -28,12 +30,18 @@ export default class ArticleLikesController {
           message: "Article not found"
         });
       }
-      await ArticleLike.create({
-        userId: req.user.id,
-        articleId: article.id
-      });
-      return res.status(201).json({
-        message: "Article liked"
+      ArticleLike.findOrCreate({
+        where: {
+          userId: req.user.id,
+          articleId: article.id
+        }
+      }).spread((like, created) => {
+        if (created) {
+          return res.status(201).json({
+            message: "Successfully liked"
+          });
+        }
+        return next();
       });
     } catch (err) {
       res.status(500).json({
@@ -45,17 +53,18 @@ export default class ArticleLikesController {
 
   /**
    *
-   * unlikeArticle
+   * dislike
    *
    * @param {object} -res The response object
    * @return {object} - returns the response object
    */
 
-  static async unlikeArticle(req, res) {
+  static async dislike(req, res) {
+    const { slug } = req.params;
     try {
       const article = await Article.findOne({
         where: {
-          slug: req.slug
+          slug
         }
       });
       if (!article) {
@@ -63,46 +72,14 @@ export default class ArticleLikesController {
           message: "Article not found"
         });
       }
-      const results = await ArticleLike.destroy({
-        userId: req.user.id,
-        articleId: article.id
-      });
-
-      return res.status(202).json({ message: "Article unlike successfully" });
-    } catch (err) {
-      res.status(500).json({
-        message: "Unknown error",
-        errors: err.stack
-      });
-    }
-  }
-
-  /**
-   *
-   * unlikeArticle
-   *
-   * @param {object} -res The response object
-   * @return {object} - returns the response object
-   */
-
-  static async getArticleLikes(req, res) {
-    try {
-      const article = await Article.findOne({
+      await ArticleLike.destroy({
         where: {
-          slug: req.slug
-        },
-        include: [
-          {
-            model: ArticleLike,
-            as: "likes"
-          }
-        ]
+          userId: req.user.id,
+          articleId: article.id
+        }
       });
-      if (!article) {
-        return res.status(404).json({ message: "Article not found" });
-      }
 
-      res.json({ article });
+      return res.status(202).json({ message: "Successfully disliked" });
     } catch (err) {
       res.status(500).json({
         message: "Unknown error",

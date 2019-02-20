@@ -1,3 +1,5 @@
+import faker from "faker";
+
 const newArticle = {
   title: "How to train your dragon",
   description: "Ever wonder how?",
@@ -66,5 +68,9 @@ const sendGridResponse = [
   },
   null
 ];
-
-export { newArticle, newComment, users, sendGridResponse };
+const article = {
+  title: faker.lorem.words(15),
+  description: faker.lorem.words(50),
+  body: faker.lorem.words(500)
+};
+export { newArticle, newComment, users, sendGridResponse, article };
