@@ -83,8 +83,8 @@ export default class PostController {
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
       if (!article || !user)
-        return res.status(BAD_REQUEST).json({
-          status: BAD_REQUEST,
+        return res.status(NOT_FOUND).json({
+          status: NOT_FOUND,
           message: `The article with this slug ${slug} doesn't exist`
         });
       const { id: articleId } = article.dataValues;

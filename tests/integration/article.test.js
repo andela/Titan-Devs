@@ -6,7 +6,7 @@ import constants from "../../helpers/constants";
 
 let token;
 const { dummyUser } = users;
-const { UNAUTHORIZED, CREATED, GONE, BAD_REQUEST } = constants.statusCode;
+const { UNAUTHORIZED, CREATED, NOT_FOUND, GONE, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 
 before(done => {
@@ -161,7 +161,7 @@ describe("# Articles endpoints", () => {
         .post(`/api/v1/articles/${article.slug}fs1/bookmark`)
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
-          expect(res.status).equals(BAD_REQUEST);
+          expect(res.status).equals(NOT_FOUND);
           expect(res.body.message).to.contain("The article with this slug");
           done();
         });
