@@ -3,7 +3,7 @@ import models from "../models";
 import constants from "../helpers/constants";
 
 const { User, Article, Comment, commentlike } = models;
-const { CREATED, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
+const { CREATED, BAD_REQUEST } = constants.statusCode;
 
 /**
  * @class CommentController
@@ -15,6 +15,7 @@ export default class CommentController {
    * @param  {Object} res - The response object.
    * @returns {Object} - It returns the request response object.
    */
+
   static async create(req, res) {
     try {
       const { body } = req.body;
@@ -56,12 +57,13 @@ export default class CommentController {
   }
 
   /**
-   * @description liked a specific comment.
+   * @description It allows a user to like a specific comment.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @returns {Object} - Returns the like created.
    */
+
   static async like(req, res) {
     const { commentId } = req.params;
     try {
@@ -89,9 +91,11 @@ export default class CommentController {
           },
           { where: { id: commentId } }
         );
-        return res
-          .status(CREATED)
-          .json({ message: "Comment liked", likeComment, updateCommentLikes });
+        return res.status(CREATED).json({
+          message: "Comment liked",
+          likeComment,
+          updatedComment: updateCommentLikes[0][0]
+        });
       }
       const unlikeComment = await commentlike.destroy({
         where: { commentId, userId }
@@ -102,21 +106,24 @@ export default class CommentController {
         },
         { where: { id: commentId } }
       );
-      res
-        .status(CREATED)
-        .json({ message: "Comment unliked", unlikeComment, updateCommentLikes });
+      res.status(CREATED).json({
+        message: "Comment unliked",
+        unlikeComment,
+        updatedComment: updateCommentLikes[0][0]
+      });
     } catch (error) {
-      res.status(BAD_REQUEST).json({ error: error.message, stack: error.stack });
+      res.status(BAD_REQUEST).json({ error: error.message });
     }
   }
 
   /**
-   * @description Get all users who liked a specific comment.
+   * @description It helps to get all users who liked a specific comment.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @returns {Object} - Returns the comment object.
    */
+
   static async getLikingUsers(req, res) {
     const { commentId } = req.params;
     try {
@@ -128,7 +135,7 @@ export default class CommentController {
         comment.likedBy = [];
         const likes = await commentlike.findAll({
           where: { commentId: comment.id },
-          include: [{ model: User, as: "likedBy" }]
+          include: [{ model: User, as: "likedBy", attributes: ["username"] }]
         });
 
         likes.map(like => {
