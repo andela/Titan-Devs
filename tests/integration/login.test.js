@@ -132,7 +132,7 @@ describe("POST /api/v1/users/login", () => {
       });
   });
 
-  it("should test a non-existing user error", done => {
+  it("should test a non-existing user error ", done => {
     const user = {
       email: "test@test.com",
       password: "user@user"
