@@ -1,20 +1,18 @@
 import models from "../models";
 
 const { User, Follower } = models;
+
 /**
- * FollowerController
- *
- * @class
+ *@class FollowerController
  */
 export default class FollowerController {
   /**
-   *
-   * FollowUser.
-   *
-   * @param  {object} req - The request object.
-   * @param  {object} res - The response object.
-   * @return {object} - It returns the response object.
+   * @description It allows a user to follow another user
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async followUser(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -50,13 +48,12 @@ export default class FollowerController {
   }
 
   /**
-   *
-   * UnFollow.
-   *
-   * @param  {object} req - The request object.
-   * @param  {object} res - The response object.
-   * @return {object} - It returns the response object.
+   * @description Allows a user to unfollow a followed user.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async unFollow(req, res) {
     const { id } = req.user;
     const { username } = req.params;
@@ -89,13 +86,12 @@ export default class FollowerController {
   }
 
   /**
-   *
-   * GetAllFollowers.
-   *
-   * @param  {object} req - The request object.
-   * @param  {object} res - The response object.
-   * @return {object} - It returns the response object.
+   * @description It gets the user's followers
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
    */
+
   static async getAllFollowers(req, res) {
     const { username } = req.params;
     try {
@@ -127,13 +123,12 @@ export default class FollowerController {
   }
 
   /**
-   *
-   * GetFollowings.
-   *
-   * @param  {object} req - The request object.
-   * @param  {object} res - The response object.
-   * @return {object} - It returns the response object.
+   * @description Gets all the user's followings.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
    */
+
   static async getFollowings(req, res) {
     const { username } = req.params;
     try {

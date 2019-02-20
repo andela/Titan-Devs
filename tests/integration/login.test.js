@@ -20,16 +20,18 @@ describe("POST /api/v1/users/login", () => {
       cascade: true
     });
   });
+
   before("Create a user in database", done => {
     chai
       .request(app)
       .post("/api/v1/users")
       .send({ ...dummyUser })
-      .end((error, result) => {
+      .end(error => {
         if (error) done(error);
         done();
       });
   });
+
   it("should return a token", done => {
     const user = {
       email: dummyUser.email,
@@ -46,6 +48,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should return a missing email error ", done => {
     const user = {
       password: dummyUser.password
@@ -61,6 +64,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should return a missing password error", done => {
     const user = {
       email: "test@test.com"
@@ -76,6 +80,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should return an empty email error", done => {
     const user = {
       email: " ",
@@ -92,6 +97,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should return an empty password error", done => {
     const user = {
       email: "test@test.com",
@@ -108,6 +114,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should test a wrong password error", done => {
     const user = {
       email: dummyUser.email,
@@ -124,6 +131,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should test a non-existing user error", done => {
     const user = {
       email: "test@test.com",
@@ -140,6 +148,7 @@ describe("POST /api/v1/users/login", () => {
         done();
       });
   });
+
   it("should test an email of wrong format", done => {
     const user = {
       email: "123.com",

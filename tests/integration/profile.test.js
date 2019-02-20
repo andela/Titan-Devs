@@ -5,6 +5,7 @@ import app from "../../index";
 
 const { User } = models;
 chai.use(chaiHttp);
+
 after("Destroy the database ", done => {
   try {
     const database = User.destroy({
@@ -19,6 +20,7 @@ after("Destroy the database ", done => {
     done(error);
   }
 });
+
 describe("Profile controller", () => {
   let token;
   before("Login", done => {
@@ -33,7 +35,7 @@ describe("Profile controller", () => {
       .send({
         ...user
       })
-      .end((errors, response) => {
+      .end(errors => {
         if (errors) done(errors.message);
         chai
           .request(app)
@@ -46,6 +48,7 @@ describe("Profile controller", () => {
           });
       });
   });
+
   it("should test updating a profile", done => {
     const user = {
       profile: {
@@ -82,6 +85,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test unauthorized attempt", done => {
     const user = {
       profile: {
@@ -102,6 +106,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test fetching a profile of a user", done => {
     const username = "luc2018";
     chai
@@ -119,6 +124,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test fetching a profile an non-existing user", done => {
     const username = "Yves2018";
     chai
@@ -133,6 +139,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test fetching all profiles", done => {
     chai
       .request(app)
@@ -144,6 +151,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test deleting a user", done => {
     const username = "luc2018";
     chai
@@ -159,6 +167,7 @@ describe("Profile controller", () => {
         done(error);
       });
   });
+
   it("should test deleting an non-existing user", done => {
     const username = "luc2018";
     chai
@@ -171,6 +180,7 @@ describe("Profile controller", () => {
         done();
       });
   });
+
   it("should test deleting an unauthorized request", done => {
     const username = "Yves2018";
     chai

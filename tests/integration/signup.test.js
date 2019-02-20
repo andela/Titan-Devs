@@ -21,6 +21,7 @@ describe("SignUp", () => {
       cascade: true
     });
   });
+
   it("should register user with correct details", async () => {
     const response = await chai
       .request(app)
@@ -37,6 +38,7 @@ describe("SignUp", () => {
       "username"
     ]);
   });
+
   it("should fail if one of email, firstName, lastName, or password is empty", async () => {
     const response = await chai
       .request(app)
@@ -50,6 +52,7 @@ describe("SignUp", () => {
       password: "Password is required"
     });
   });
+
   it("should fail if user provide invalid email", async () => {
     const response = await chai
       .request(app)
@@ -61,6 +64,7 @@ describe("SignUp", () => {
     expect(response.status).eql(400);
     expect(response.body.message).to.be.equal("Invalid email");
   });
+
   it("should fail if email already exist", async () => {
     const response = await chai
       .request(app)
@@ -74,6 +78,7 @@ describe("SignUp", () => {
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The email is already taken");
   });
+
   it("should fail if provided password is less than 8 characters", async () => {
     const response = await chai
       .request(app)
@@ -89,6 +94,7 @@ describe("SignUp", () => {
       "The password should be an alphanumeric with at least 8 characters"
     );
   });
+
   it("should fail if provided username is not an alphanumeric character", async () => {
     const response = await chai
       .request(app)
@@ -104,6 +110,7 @@ describe("SignUp", () => {
       "The username must begin with letter and only contains alphabet and numbers not symbols"
     );
   });
+
   it("should fail if username already exist", async () => {
     const response = await chai
       .request(app)
