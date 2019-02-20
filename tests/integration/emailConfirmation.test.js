@@ -78,7 +78,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
       .request(app)
       .put(`/api/v1/users/resend`)
       .send({ email: "fabrice.niyomwungeri@andela.com" });
-    expect(results.body.message).to.be.equal("User already verified!");
+    expect(results.body.message).to.be.equal("User verified");
     expect(results.body).to.have.property("message");
   });
 });

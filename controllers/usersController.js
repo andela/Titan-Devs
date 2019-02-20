@@ -140,9 +140,9 @@ class UserController {
     try {
       const { email } = req.body;
       if (!email)
-        {return res.status(NOT_FOUND).json({ message: "Email is required" });}
+        {return res.status(BAD_REQUEST).json({ message: "Email is required" });}
       if (!isEmailValid(email))
-        {return res.status(NOT_FOUND).json({ message: "Invalid email" });}
+        {return res.status(BAD_REQUEST).json({ message: "Invalid email" });}
       const user = await User.findOne({
         where: { email }
       });
@@ -153,7 +153,7 @@ class UserController {
       }
       if (user.dataValues.isVerified) {
         return res.status(OK).json({
-          message: "User already verified!"
+          message: "User verified"
         });
       }
       const token = jwt.sign(
