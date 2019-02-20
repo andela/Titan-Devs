@@ -38,7 +38,7 @@
       }
     ],
     "require-jsdoc": [
-      "error",
+      2,
       {
         "require": {
           "FunctionDeclaration": true,
