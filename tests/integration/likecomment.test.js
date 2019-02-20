@@ -1,8 +1,7 @@
 import chaiHttp from "chai-http";
-import chai, { expect, should } from "chai";
-import models from "../../models";
+import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, newComment } from "../helpers/testData";
+import { newArticle } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
@@ -15,8 +14,7 @@ const newUser = {
   username: "Nick2019"
 };
 
-const { User } = models;
-const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
+const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK } = constants.statusCode;
 chai.use(chaiHttp);
 
 describe("Liking a comment", () => {
@@ -83,7 +81,7 @@ describe("Liking a comment", () => {
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
-          expect(res.status).equals(201);
+          expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Comment unliked");
           done();
         });
@@ -99,7 +97,7 @@ describe("Liking a comment", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).equals(400);
+        expect(res.status).equals(BAD_REQUEST);
         expect(res.body.message).to.contain("You are liking a non-existing comment");
         done();
       });
@@ -127,7 +125,7 @@ describe("Liking a comment", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).equals(200);
+        expect(res.status).equals(OK);
         expect(res.body.comment.likedBy).to.be.an("array");
         done();
       });
