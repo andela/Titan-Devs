@@ -3,8 +3,12 @@
   "extends": ["airbnb-base", "prettier"],
   "env": {
     "node": true,
+<<<<<<< HEAD
     "es6": true,
     "mocha": true
+=======
+    "es6": true
+>>>>>>> [#163518676]Overead the eslint rules
   },
   "plugins": ["prettier"],
   "rules": {
@@ -36,7 +40,7 @@
       }
     ],
     "require-jsdoc": [
-      "error",
+      2,
       {
         "require": {
           "FunctionDeclaration": true,
