@@ -7,7 +7,7 @@ const { User, Follower } = models;
  */
 export default class FollowerController {
   /**
-   * @description It allows a user to follow another user
+   * @description It allows a user to follow another user.
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @returns {Object} - It returns the response object.
