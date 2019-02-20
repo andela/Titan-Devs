@@ -121,6 +121,12 @@ export default class PostController {
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
     }
   }
+  /**
+   * @description This creates report an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
 
   /**
    *
