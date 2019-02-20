@@ -25,9 +25,8 @@ export default (sequelize, DataTypes) => {
       tableName: "articles",
       hooks: {
         beforeCreate(article) {
-          /* eslint no-bitwise: "off" */
           article.slug = slug(
-            `${article.title}-${((Math.random() * 36 ** 6) | 0).toString(36)}`
+            `${article.title}-${(Math.random() * 36 ** 6 || 0).toString(36)}`
           ).toLowerCase();
         }
       }

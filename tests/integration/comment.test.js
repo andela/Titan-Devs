@@ -62,6 +62,7 @@ describe("# Article's comments endpoints", () => {
           done();
         });
     });
+
     it("should deny the request if no access-token provided", done => {
       chai
         .request(app)
@@ -99,6 +100,7 @@ describe("# Article's comments endpoints", () => {
           done();
         });
     });
+
     it("should decline creating the comment if article with provided slug doesn't exist", done => {
       chai
         .request(app)
