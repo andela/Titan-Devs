@@ -122,6 +122,14 @@ export default class PostController {
     }
   }
 
+  /**
+   *
+   * findOneArticle.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
   static async findOneArticle(req, res) {
     try {
       const { articleId } = req.params;
@@ -137,6 +145,14 @@ export default class PostController {
         .json({ message: "Article was NOT posted, Server error" });
     }
   }
+  /**
+   *
+   * shareOnEmail.
+   *
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
+   */
 
   static async shareOnEmail(req, res) {
     try {
@@ -164,6 +180,14 @@ export default class PostController {
     }
   }
 
+  /**
+   *
+   * shareOnFacebook.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
   static async shareOnFacebook(req, res) {
     try {
       const { articleId } = req.params;
@@ -189,6 +213,14 @@ export default class PostController {
     }
   }
 
+  /**
+   *
+   * shareOnTwitter.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
   static async shareOnTwitter(req, res) {
     try {
       const { articleId } = req.params;
@@ -207,6 +239,14 @@ export default class PostController {
     }
   }
 
+  /**
+   *
+   * shareOnLinkedin.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
   static async shareOnLinkedin(req, res) {
     try {
       const { articleId } = req.params;
