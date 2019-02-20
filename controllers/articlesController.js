@@ -4,13 +4,14 @@ import constants from "../helpers/constants";
 import articleValidator from "../helpers/validators/articleValidators";
 import calculateReadTime from "../helpers/calculateReadTime";
 
-const { User, Article, Tag, ArticleTag, Bookmark } = models;
+const { User, Article, Tag, ArticleTag, Bookmark, ReportArticle } = models;
 const {
   CREATED,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST,
-  GONE
+  GONE,
+  OK
 } = constants.statusCode;
 
 /**
