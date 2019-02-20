@@ -132,7 +132,6 @@ export default class ArticleLikesController {
 
       res.json({ article });
     } catch (err) {
-      console.log(err);
       res.status(INTERNAL_SERVER_ERROR).json({
         message: "Unknown error",
         errors: err.stack
