@@ -49,11 +49,12 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-<<<<<<< HEAD
     Article.hasMany(models.Bookmark, {
-=======
+      foreignKey: "articleId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
     Article.hasMany(models.ReportArticle, {
->>>>>>> [#163518702] add article reporting
       foreignKey: "articleId",
       onDelete: "CASCADE",
       hooks: true
