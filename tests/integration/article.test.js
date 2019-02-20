@@ -87,7 +87,7 @@ describe("# Articles endpoints", () => {
         });
     });
 
-    it("should decline creating the article if no body provided ", done => {
+    it("should decline creating the article if no body provided", done => {
       const { body, ...rest } = newArticle;
       chai
         .request(app)
