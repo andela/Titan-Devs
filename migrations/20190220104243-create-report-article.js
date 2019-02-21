@@ -1,7 +1,7 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface
-      .createTable("report_articles", {
+      .createTable("reportArticles", {
         id: {
           allowNull: false,
           primaryKey: true,
@@ -30,13 +30,13 @@ module.exports = {
         }
       })
       .then(() => {
-        queryInterface.addConstraint("report_articles", ["userId", "articleId"], {
+        queryInterface.addConstraint("reportArticles", ["userId", "articleId"], {
           type: "unique",
           name: "articleId_userId_unique_composite_key"
         });
       });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("report_articles");
+    return queryInterface.dropTable("reportArticles");
   }
 };

@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       description: DataTypes.STRING
     },
-    { tableName: "report_articles" }
+    { tableName: "reportArticles" }
   );
   ReportArticle.associate = models => {
     ReportArticle.belongsTo(models.User, {
