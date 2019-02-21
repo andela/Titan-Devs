@@ -68,8 +68,9 @@ describe("ArticleLike Controller", () => {
       });
 
       it("should fail on non existing slug", done => {
-        chai.request(app).p;
-        ost(`/api/v1/articles/${slug}i97/likes`)
+        chai
+          .request(app)
+          .post(`/api/v1/articles/${slug}i97/likes`)
           .set({
             Authorization: `Bearer ${token}`
           })
