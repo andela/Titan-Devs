@@ -301,7 +301,7 @@ export default class PostController {
         article: reportArticle
       });
     } catch (error) {
-      return res.status(BAD_REQUEST).json({
+      return res.status(INTERNAL_SERVER_ERROR).json({
         message: "Server Error"
       });
     }
