@@ -1,8 +1,8 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
-import app from "../../../index";
-import constants from "../../../helpers/constants";
-import { token, validArticleId } from "../article.test";
+import app from "../../index";
+import constants from "../../helpers/constants";
+import { token, validArticleId } from "./article.test";
 
 const {
   UNAUTHORIZED,
@@ -12,8 +12,8 @@ const {
 } = constants.statusCode;
 chai.use(chaiHttp);
 
-describe("", () => {
-  it("should be report an article", done => {
+describe("Reports and article endpoints", () => {
+  it("should report an article", done => {
     chai
       .request(app)
       .put(`/api/v1/articles/${validArticleId}/report`)
@@ -32,6 +32,7 @@ describe("", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({ description: "abusive" })
       .end((err, res) => {
+        console.log(res.body, "======================okay");
         expect(res.status).equals(INTERNAL_SERVER_ERROR);
         done();
       });

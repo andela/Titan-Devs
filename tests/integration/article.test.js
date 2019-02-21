@@ -6,6 +6,7 @@ import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
+
 const { dummyUser } = users;
 const {
   UNAUTHORIZED,
@@ -13,11 +14,13 @@ const {
   BAD_REQUEST,
   OK,
   NOT_FOUND,
-  GONE
+  GONE,
+  INTERNAL_SERVER_ERROR
 } = constants.statusCode;
 let validSlug;
 chai.use(chaiHttp);
 
+chai.use(chaiHttp);
 before(done => {
   const { email, password } = dummyUser;
   chai

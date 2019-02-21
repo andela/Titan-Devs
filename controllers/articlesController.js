@@ -302,7 +302,7 @@ export default class PostController {
       });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Server Error"
+        message: "Something happen, please try again later"
       });
     }
   }
