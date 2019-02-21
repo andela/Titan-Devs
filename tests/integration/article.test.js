@@ -198,7 +198,6 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "abusive" })
         .end((err, res) => {
-          console.log(res.body, "======================okay");
           expect(res.status).equals(INTERNAL_SERVER_ERROR);
           done();
         });
