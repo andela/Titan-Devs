@@ -42,7 +42,7 @@ const article = Router();
 article.post("/articles", Article.create);
 article.post("/articles/:slug/bookmark", Article.bookmark);
 article.put(
-  "/article/:articleId/report",
+  "/articles/:articleId/report",
   shareValidator.validateArticle,
   Article.reportArticle
 );
