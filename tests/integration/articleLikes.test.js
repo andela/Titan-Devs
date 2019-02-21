@@ -217,8 +217,8 @@ describe("ArticleLike Controller", () => {
       it("should if user is not authenticated", done => {
         chai
           .request(app)
-          .get(`/api/v1/articles/${slug}`)
-          .set({ Authorization: `Bear ${token}yi` })
+          .get(`/api/v1/articles/${slug}/likes`)
+          .set({ Authorization: `Bear ${token}lkajdf` })
           .end((err, response) => {
             if (err) {
               return done(err);
