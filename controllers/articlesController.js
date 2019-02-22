@@ -1,3 +1,4 @@
+import opn from "opn";
 import models from "../models";
 import constants from "../helpers/constants";
 import articleValidator from "../helpers/validators/articleValidators";
@@ -117,6 +118,155 @@ export default class PostController {
       return res
         .status(INTERNAL_SERVER_ERROR)
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
+    }
+  }
+
+  /**
+   *
+   * FindOneArticle.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async findOneArticle(req, res) {
+    try {
+      const { slug } = req.params;
+      const article = await Article.findOne({ where: { slug } });
+      return res.status(200).json({
+        article
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
+  /**
+   *
+   * shareOnEmail.
+   *
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
+   */
+
+  static async shareOnEmail(req, res) {
+    try {
+      const { slug } = req.params;
+      const article = await Article.findOne({ where: { slug } });
+      if (!article) {
+        return res.status(400).json({
+          message: "Article doesn't exist"
+        });
+      }
+      opn(
+        `mailto:?subject=${article.dataValues.title}&body=${
+          process.env.SERVER_HOST
+        }/article/${slug}`
+      );
+      return res.status(200).json({
+        message: "Article ready to be posted on Email"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
+
+  /**
+   *
+   * ShareOnFacebook.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnFacebook(req, res) {
+    try {
+      const { slug } = req.params;
+      if (process.env === "production") {
+        opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=${
+            process.env.SERVER_HOST
+          }/article/${slug}`
+        );
+      } else {
+        opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/article/${slug}`
+        );
+      }
+
+      return res.status(200).json({
+        message: "Article ready to be posted on facebook"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
+
+  /**
+   *
+   * ShareOnTwitter.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnTwitter(req, res) {
+    try {
+      const { slug } = req.params;
+      opn(
+        `https://twitter.com/intent/tweet?text=${
+          process.env.SERVER_HOST
+        }/article/${slug}`
+      );
+      return res.status(200).json({
+        message: "Article ready to be posted on twitter"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
+
+  /**
+   *
+   * ShareOnLinkedin.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnLinkedin(req, res) {
+    try {
+      const { slug } = req.params;
+      if (process.env === "production") {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${
+            process.env.SERVER_HOST
+          }/article/${slug}`
+        );
+      } else {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${slug}`
+        );
+      }
+      return res.status(200).json({
+        message: "Article ready to be posted on linkedIn"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Article was NOT posted, Server error" });
     }
   }
 }

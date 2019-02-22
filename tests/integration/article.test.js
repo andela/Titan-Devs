@@ -7,7 +7,15 @@ import constants from "../../helpers/constants";
 
 let token;
 const { dummyUser } = users;
-const { UNAUTHORIZED, CREATED, NOT_FOUND, GONE, BAD_REQUEST } = constants.statusCode;
+const {
+  UNAUTHORIZED,
+  CREATED,
+  BAD_REQUEST,
+  OK,
+  NOT_FOUND,
+  GONE
+} = constants.statusCode;
+let validSlug;
 chai.use(chaiHttp);
 
 before(done => {
@@ -41,6 +49,7 @@ describe("# Articles endpoints", () => {
         .send(newArticle)
         .end((err, res) => {
           createdArticle = res.body;
+          validSlug = res.body.article.slug;
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
           expect(res.body).to.haveOwnProperty("article");
@@ -180,5 +189,55 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+  });
+});
+describe("Share Articles endpoints", () => {
+  it("should be ready to be posted on twitter", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles/${validSlug}/share/twitter`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on twitter");
+        done();
+      });
+  });
+  it("should be ready to be posted on facebook", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles/${validSlug}/share/fb`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on facebook"
+        );
+        done();
+      });
+  });
+  it("should be ready to be posted on linkedIn", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles/${validSlug}/share/linkedIn`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on linkedIn"
+        );
+        done();
+      });
+  });
+  it("should be ready to be posted on email", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles/${validSlug}/share/email`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on Email");
+        done();
+      });
   });
 });

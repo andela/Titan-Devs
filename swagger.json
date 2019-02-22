@@ -325,6 +325,102 @@
           }
         }
       }
+    },
+    "/article/{articleId}/share/fb": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Share article on facebook",
+        "description": "This helps the user share their preferred article on facebook ",
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "description": "Article properties"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Post ready to be posted on facebook"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 200
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/article/{articleId}/share/email": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Share article on email",
+        "description": "This helps the user share their preferred article on email ",
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "description": "Article properties"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Post ready to be posted on email"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 200
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/article/{articleId}/share/twitter": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Share article on twitter",
+        "description": "This helps the user share their preferred article on twitter ",
+        "parameters": [
+          {
+            "name": "article",
+            "in": "body",
+            "description": "Article properties"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string",
+                  "example": "Post ready to be posted on twitter"
+                },
+                "status": {
+                  "type": "number",
+                  "example": 200
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "definitions": {
