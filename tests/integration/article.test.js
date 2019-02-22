@@ -15,7 +15,6 @@ const {
   OK,
   NOT_FOUND,
   GONE,
-  INTERNAL_SERVER_ERROR
 } = constants.statusCode;
 let validSlug;
 chai.use(chaiHttp);
