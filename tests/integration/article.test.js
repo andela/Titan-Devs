@@ -135,10 +135,12 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+  });
+  describe("Report an article endpoint", () => {
     it("should be report an article", done => {
       chai
         .request(app)
-        .put(`/api/v1/article/${validSlug}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "abusive" })
         .end((err, res) => {
@@ -147,21 +149,10 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
-    it("should should throw server error", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/article/${validSlug}/report`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ description: "abusive" })
-        .end((err, res) => {
-          expect(res.status).equals(INTERNAL_SERVER_ERROR);
-          done();
-        });
-    });
     it("should should ask for description", done => {
       chai
         .request(app)
-        .put(`/api/v1/article/${validSlug}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "" })
         .end((err, res) => {
@@ -173,7 +164,7 @@ describe("# Articles endpoints", () => {
     it("should deny the request if no access-token provided", done => {
       chai
         .request(app)
-        .put(`/api/v1/article/${validSlug}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .end((err, res) => {
           expect(res.status).equals(UNAUTHORIZED);
           done();
@@ -182,7 +173,7 @@ describe("# Articles endpoints", () => {
     it("should report an article", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${validArticleId}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "abusive" })
         .end((err, res) => {
@@ -191,21 +182,10 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
-    it("should should throw server error", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/articles/${validArticleId}/report`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ description: "abusive" })
-        .end((err, res) => {
-          expect(res.status).equals(INTERNAL_SERVER_ERROR);
-          done();
-        });
-    });
     it("should should ask for description", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${validArticleId}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "" })
         .end((err, res) => {
@@ -217,7 +197,7 @@ describe("# Articles endpoints", () => {
     it("should deny the request if no access-token provided", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${validArticleId}/report`)
+        .put(`/api/v1/articles/${validSlug}/report`)
         .end((err, res) => {
           expect(res.status).equals(UNAUTHORIZED);
           done();

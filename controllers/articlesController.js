@@ -285,12 +285,17 @@ export default class PostController {
 
   static async reportArticle(req, res) {
     try {
-      const { articleId } = req.params;
+      const { slug } = req.params;
       const { id: userId } = req.user;
       const { description } = req.body;
+      
       if (!description || undefined) {
         return res.status(BAD_REQUEST).json({ message: "Please, give a reason" });
       }
+      const article = await Article.findOne({
+        where: { slug }
+      });
+      const { articleId } = article.dataValues;
       const reportArticle = await ReportArticle.create({
         articleId,
         userId,

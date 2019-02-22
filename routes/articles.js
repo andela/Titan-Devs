@@ -1,10 +1,8 @@
 import { Router } from "express";
 import Article from "../controllers/articlesController";
 import shareValidator from "../middlewares/shareValidator";
-
 import ArticleLikeController from "../controllers/articleLikesController";
 import checkAuth from "../middlewares/checkAuth";
-import shareValidator from "../middlewares/shareValidator";
 
 const article = Router();
 
@@ -36,14 +34,7 @@ article
   )
   .get("/articles/:slug/share/email", checkAuth, Article.shareOnEmail)
   .get("/articles/:slug", Article.findOneArticle);
-
-const article = Router();
-
 article.post("/articles", Article.create);
 article.post("/articles/:slug/bookmark", Article.bookmark);
-article.put(
-  "/articles/:articleId/report",
-  shareValidator.validateArticle,
-  Article.reportArticle
-);
+article.put("/articles/:slug/report", Article.reportArticle);
 export default article;
