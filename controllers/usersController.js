@@ -73,7 +73,7 @@ class UserController {
     } catch (error) {
       res
         .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Sending email failed", errors: error.stack });
+        .json({ message: "Sending email failed", errors: "Something happened, please try again" });
     }
   }
 
@@ -124,7 +124,7 @@ class UserController {
     } catch (error) {
       res
         .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Password update failed", errors: error.stack });
+        .json({ message: "Password update failed", errors: "Something happened, please try again" });
     }
   }
   /**
@@ -216,7 +216,7 @@ class UserController {
       );
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({
-        message: error
+        message: "Something happened, please try again"
       });
     }
   }
