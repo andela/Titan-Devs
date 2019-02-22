@@ -7,9 +7,9 @@ import dotenv from "dotenv";
 import methodOverride from "method-override";
 import morgan from "morgan";
 import swaggerUi from "swagger-ui-express";
+import passport from "passport";
 import routers from "./routes";
 import swaggerDocument from "./swagger.json";
-import passport from "passport";
 import passportConfig from "./middlewares/passport";
 
 dotenv.config();
@@ -32,7 +32,7 @@ passportConfig(passport);
 
 app.use(
   session({
-    secret: process.env.SECRET_OR_KEY,
+    secret: process.env.SECRET_KEY,
     cookie: { maxAge: 60000 },
     resave: false,
     saveUninitialized: false

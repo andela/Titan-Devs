@@ -2,7 +2,7 @@ import passport_jwt from "passport-jwt";
 import models from "../models";
 
 const JwtStrategy = passport_jwt.Strategy;
-const ExtractJwt = passport_jwt.ExtractJwt;
+const { ExtractJwt } = passport_jwt;
 
 const { User } = models;
 export default passport => {
@@ -10,7 +10,7 @@ export default passport => {
     new JwtStrategy(
       {
         jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-        secretOrKey: process.env.SECRET_OR_KEY
+        secretOrKey: process.env.SECRET_KEY
       },
       function(jwt_payload, done) {
         User.findOne({

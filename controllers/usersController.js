@@ -47,7 +47,7 @@ class UserController {
         if (!response) {
           return res.status(NOT_FOUND).json({ message: "User not found" });
         }
-        const token = await jwt.sign(req.body.email, process.env.SECRET_OR_KEY);
+        const token = await jwt.sign(req.body.email, process.env.SECRET_KEY);
         const user = await response.update(
           { resetToken: token },
           { returning: true }
@@ -89,7 +89,7 @@ class UserController {
   static async updatePassword(req, res) {
     const { token } = req.params;
     try {
-      await jwt.verify(token, process.env.SECRET_OR_KEY, async (error, email) => {
+      await jwt.verify(token, process.env.SECRET_KEY, async (error, email) => {
         if (error) {
           return res
             .status(BAD_REQUEST)
@@ -160,7 +160,7 @@ class UserController {
       }
       const token = jwt.sign(
         { userId: user.dataValues.id, email: user.dataValues.email },
-        process.env.SECRET_OR_KEY
+        process.env.SECRET_KEY
       );
       await sendEmail(email, "Confirm your email", template(token));
       return res.status(OK).json({
@@ -185,7 +185,7 @@ class UserController {
     try {
       jwt.verify(
         req.params.auth_token,
-        process.env.SECRET_OR_KEY,
+        process.env.SECRET_KEY,
         async (error, user) => {
           if (!user) {
             return res.status(UNAUTHORIZED).json({ message: "Token is invalid" });
