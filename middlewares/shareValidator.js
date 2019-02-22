@@ -4,7 +4,7 @@ const { Article } = models;
 export default class SignupValidator {
   static async validateArticle(req, res, next) {
     const article = await Article.findOne({
-      where: { id: req.params.articleId }
+      where: { slug: req.params.slug }
     });
     return article
       ? next()

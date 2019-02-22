@@ -10,7 +10,7 @@ const router = Router();
 
 router.use(userRouters);
 router.use(profileRouter);
-
-router.use(checkAuth, commentRoutes, articleRoutes);
+router.use(checkAuth, commentRoutes);
+router.use(articleRoutes);
 
 export default router;

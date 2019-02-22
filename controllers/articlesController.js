@@ -1,4 +1,3 @@
-
 import opn from "opn";
 import models from "../models";
 import constants from "../helpers/constants";
@@ -124,18 +123,17 @@ export default class PostController {
 
   /**
    *
-   * findOneArticle.
+   * FindOneArticle.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @return {Object} - It returns the response object.
    */
+
   static async findOneArticle(req, res) {
     try {
-      const { articleId } = req.params;
-      const article = await Article.findOne({
-        where: { id: articleId }
-      });
+      const { slug } = req.params;
+      const article = await Article.findOne({ where: { slug } });
       return res.status(200).json({
         article
       });
@@ -156,10 +154,8 @@ export default class PostController {
 
   static async shareOnEmail(req, res) {
     try {
-      const { articleId } = req.params;
-      const article = await Article.findOne({
-        where: { id: articleId }
-      });
+      const { slug } = req.params;
+      const article = await Article.findOne({ where: { slug } });
       if (!article) {
         return res.status(400).json({
           message: "Article doesn't exist"
@@ -168,7 +164,7 @@ export default class PostController {
       opn(
         `mailto:?subject=${article.dataValues.title}&body=${
           process.env.SERVER_HOST
-        }/article/${articleId}`
+        }/article/${slug}`
       );
       return res.status(200).json({
         message: "Article ready to be posted on Email"
@@ -182,24 +178,25 @@ export default class PostController {
 
   /**
    *
-   * shareOnFacebook.
+   * ShareOnFacebook.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @return {Object} - It returns the response object.
    */
+
   static async shareOnFacebook(req, res) {
     try {
-      const { articleId } = req.params;
+      const { slug } = req.params;
       if (process.env === "production") {
         opn(
           `https://www.facebook.com/sharer/sharer.php?&u=${
             process.env.SERVER_HOST
-          }/article/${articleId}`
+          }/article/${slug}`
         );
       } else {
         opn(
-          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/article/${articleId}`
+          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/article/${slug}`
         );
       }
 
@@ -215,19 +212,20 @@ export default class PostController {
 
   /**
    *
-   * shareOnTwitter.
+   * ShareOnTwitter.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @return {Object} - It returns the response object.
    */
+
   static async shareOnTwitter(req, res) {
     try {
-      const { articleId } = req.params;
+      const { slug } = req.params;
       opn(
         `https://twitter.com/intent/tweet?text=${
           process.env.SERVER_HOST
-        }/article/${articleId}`
+        }/article/${slug}`
       );
       return res.status(200).json({
         message: "Article ready to be posted on twitter"
@@ -241,24 +239,25 @@ export default class PostController {
 
   /**
    *
-   * shareOnLinkedin.
+   * ShareOnLinkedin.
    *
    * @param  {Object} req - The request object.
    * @param  {Object} res - The response object.
    * @return {Object} - It returns the response object.
    */
+
   static async shareOnLinkedin(req, res) {
     try {
-      const { articleId } = req.params;
+      const { slug } = req.params;
       if (process.env === "production") {
         opn(
           `https://www.linkedin.com/sharing/share-offsite/?url=${
             process.env.SERVER_HOST
-          }/article/${articleId}`
+          }/article/${slug}`
         );
       } else {
         opn(
-          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${articleId}`
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${slug}`
         );
       }
       return res.status(200).json({
