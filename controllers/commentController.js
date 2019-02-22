@@ -2,8 +2,8 @@ import Joi from "joi";
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { User, Article, Comment } = models;
-const { CREATED, BAD_REQUEST } = constants.statusCode;
+const { User, Article, Comment, CommentLike } = models;
+const { CREATED, BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = constants.statusCode;
 
 /**
  * @class CommentController
@@ -47,11 +47,108 @@ export default class CommentController {
         });
       }
     } catch (error) {
-      if (error.details)
+      if (error.details) {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
-      return res.status(500).send({ message: error, status: 500 });
+      }
+    }
+  }
+
+  /**
+   * @description It allows a user to like a specific comment.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - Returns the like created.
+   */
+
+  static async like(req, res) {
+    const { commentId } = req.params;
+    try {
+      const comments = await Comment.findOne({ where: { id: commentId } });
+      if (!comments) {
+        throw new Error("You are liking a non-existing comment");
+      }
+    } catch (error) {
+      if (error.message === "You are liking a non-existing comment") {
+        return res
+          .status(400)
+          .json({ message: "You are liking a non-existing comment" });
+      }
+      return res.status(INTERNAL_SERVER_ERROR).json({ error: error.message });
+    }
+
+    try {
+      const userId = req.user.id;
+      const likes = await CommentLike.findAll({ where: { commentId, userId } });
+      if (likes.length === 0) {
+        const likeComment = await CommentLike.create({ commentId, userId });
+        const updateCommentLikes = await Comment.increment(
+          {
+            like: 1
+          },
+          { where: { id: commentId } }
+        );
+        return res.status(CREATED).json({
+          message: "Comment liked",
+          likeComment,
+          updatedComment: updateCommentLikes[0][0]
+        });
+      }
+      const unlikeComment = await CommentLike.destroy({
+        where: { commentId, userId }
+      });
+      const updateCommentLikes = await Comment.decrement(
+        {
+          like: 1
+        },
+        { where: { id: commentId } }
+      );
+      res.status(CREATED).json({
+        message: "Comment unliked",
+        unlikeComment,
+        updatedComment: updateCommentLikes[0][0]
+      });
+    } catch (error) {
+      res.status(BAD_REQUEST).json({ error: error.message });
+    }
+  }
+
+  /**
+   * @description It helps to get all users who liked a specific comment.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - Returns the comment object.
+   */
+
+  static async getCommentLikes(req, res) {
+    const { commentId } = req.params;
+    try {
+      const comment = await Comment.findOne({
+        where: { id: commentId },
+        include: [
+          {
+            model: User,
+            as: "likes",
+            attributes: ["id", "firstname", "username"]
+          },
+          {
+            model: User,
+            as: "author",
+            attributes: ["id", "firstname", "username"]
+          }
+        ]
+      });
+      if (!comment) {
+        res
+          .status(BAD_REQUEST)
+          .json({ message: "There is no comment with that id" });
+      }
+      res.status(OK).json({ comment });
+    } catch (error) {
+      res.status(BAD_REQUEST).json({ message: error.message });
     }
   }
 }

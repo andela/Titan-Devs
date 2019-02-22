@@ -44,7 +44,7 @@ before(done => {
 });
 
 describe("# Article's comments endpoints", () => {
-  describe("Comment on an article", () => {
+  describe("POST /articles/:slug/comments", () => {
     it("should create the comment and return the success message", done => {
       chai
         .request(app)
@@ -100,7 +100,6 @@ describe("# Article's comments endpoints", () => {
           done();
         });
     });
-
     it("should decline creating the comment if article with provided slug doesn't exist", done => {
       chai
         .request(app)

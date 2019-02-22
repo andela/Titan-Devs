@@ -3,14 +3,16 @@ export default (sequelize, DataTypes) => {
     "Comment",
     {
       id: {
-        type: DataTypes.INTEGER,
+        allowNull: false,
         primaryKey: true,
-        allowNull: false,
-        autoIncrement: true
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4
       },
-      body: {
-        allowNull: false,
-        type: DataTypes.TEXT
+      body: { type: DataTypes.TEXT, allowNull: false },
+      like: {
+        allowNull: true,
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       }
     },
     { tableName: "comments" }
@@ -24,7 +26,13 @@ export default (sequelize, DataTypes) => {
     Comment.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",
-      hooks: true
+      hooks: true,
+      as: "author"
+    });
+    Comment.belongsToMany(models.User, {
+      through: models.CommentLike,
+      as: "likes",
+      foreignKey: "commentId"
     });
   };
   return Comment;
