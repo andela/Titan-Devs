@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Article from "../controllers/articlesController";
-import shareValidator from "../middlewares/shareValidator";
+import articleValidator from "../middlewares/articleValidator";
 import ArticleLikeController from "../controllers/articleLikesController";
 import checkAuth from "../middlewares/checkAuth";
 
@@ -17,19 +17,19 @@ article
   .get(
     "/articles/:slug/share/twitter",
     checkAuth,
-    shareValidator.validateArticle,
+    articleValidator.validateArticle,
     Article.shareOnTwitter
   )
   .get(
     "/articles/:slug/share/fb",
     checkAuth,
-    shareValidator.validateArticle,
+    articleValidator.validateArticle,
     Article.shareOnFacebook
   )
   .get(
     "/articles/:slug/share/linkedIn",
     checkAuth,
-    shareValidator.validateArticle,
+    articleValidator.validateArticle,
     Article.shareOnLinkedin
   )
   .get("/articles/:slug/share/email", checkAuth, Article.shareOnEmail)
