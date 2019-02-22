@@ -1,8 +1,8 @@
 import passport_jwt from "passport-jwt";
 import models from "../models";
 
-const JwtStrategy = passport_jwt.Strategy;
-const { ExtractJwt } = passport_jwt;
+const JwtStrategy = passportJwt.Strategy;
+const { ExtractJwt } = passportJwt;
 
 const { User } = models;
 export default passport => {
