@@ -51,6 +51,7 @@ export default class CommentController {
         return res
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
+      }
     }
   }
 
