@@ -1,4 +1,4 @@
-import passport_jwt from "passport-jwt";
+import passportJwt from "passport-jwt";
 import models from "../models";
 
 const JwtStrategy = passportJwt.Strategy;
