@@ -7,7 +7,6 @@ import constants from "../../helpers/constants";
 
 let token;
 const { dummyUser } = users;
-let validArticleId;
 const {
   UNAUTHORIZED,
   CREATED,
@@ -16,10 +15,7 @@ const {
   NOT_FOUND,
   GONE
 } = constants.statusCode;
-<<<<<<< HEAD
-=======
 let validSlug;
->>>>>>> [#163518700] change from articleId to slug
 chai.use(chaiHttp);
 
 before(done => {
@@ -220,17 +216,10 @@ describe("Share Articles endpoints", () => {
         done();
       });
   });
-<<<<<<< HEAD
-  it("should be ready to be posted on facebook", done => {
-    chai
-      .request(app)
-      .get(`/api/v1/article/${validArticleId}/share/linkedIn`)
-=======
   it("should be ready to be posted on linkedIn", done => {
     chai
       .request(app)
       .get(`/api/v1/articles/${validSlug}/share/linkedIn`)
->>>>>>> [#163518700] change from articleId to slug
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).equals(OK);
@@ -243,11 +232,7 @@ describe("Share Articles endpoints", () => {
   it("should be ready to be posted on email", done => {
     chai
       .request(app)
-<<<<<<< HEAD
-      .get(`/api/v1/article/${validArticleId}/share/email`)
-=======
       .get(`/api/v1/articles/${validSlug}/share/email`)
->>>>>>> [#163518700] change from articleId to slug
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).equals(OK);
