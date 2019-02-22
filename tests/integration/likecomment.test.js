@@ -24,7 +24,7 @@ describe("Liking a comment", () => {
       .request(app)
       .post("/api/v1/users")
       .send(newUser)
-      .end((error, result) => {
+      .end(error => {
         if (!error) {
           chai
             .request(app)
@@ -39,6 +39,9 @@ describe("Liking a comment", () => {
                   .set("Authorization", `Bearer ${token}`)
                   .send(newArticle)
                   .end((err, res) => {
+                    if (err) {
+                      done(error);
+                    }
                     const { slug: artSlug } = res.body.article;
                     slug = artSlug;
                     chai

@@ -33,7 +33,6 @@ before(done => {
                 .set("Authorization", `Bearer ${token}`)
                 .send(newArticle)
                 .end((err, res) => {
-                  console.log("object");
                   const { slug: artSlug } = res.body.article;
                   slug = artSlug;
                   done(err || undefined);

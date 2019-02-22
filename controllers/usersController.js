@@ -36,18 +36,11 @@ class UserController {
 
   static async signUp(req, res) {
     const { email, password, username } = req.body;
-    console.log(`expected email and password ${email} ${password} ${username}`);
     try {
       const salt = await genSaltSync(
         parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
       );
-
       const hashPassword = await hashSync(password, salt);
-      console.log(
-        `........................trying to create a user in users.js ${(hashPassword,
-        username,
-        email)}`
-      );
       const user = await User.create({
         username,
         email,
