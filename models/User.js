@@ -54,6 +54,11 @@ export default (sequelize, DataTypes) => {
       address: {
         type: DataTypes.STRING(100),
         defaultValue: null
+      },
+      isVerified: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
       }
     },
     { tableName: "users" }

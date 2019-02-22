@@ -43,7 +43,10 @@ export default class FollowerController {
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Following user failed", errors: error.stack });
+        .json({
+          message: "Following user failed",
+          errors: "Something happened, please try again"
+        });
     }
   }
 
@@ -81,7 +84,10 @@ export default class FollowerController {
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Unfollowing user failed", errors: error.stack });
+        .json({
+          message: "Unfollowing user failed",
+          errors: "Something happened, please try again"
+        });
     }
   }
 
@@ -118,7 +124,10 @@ export default class FollowerController {
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Unknown error occurred", errors: error.stack });
+        .json({
+          message: "Unknown error occurred",
+          errors: "Something happened, please try again"
+        });
     }
   }
 
@@ -152,7 +161,10 @@ export default class FollowerController {
     } catch (error) {
       res
         .status(500)
-        .json({ message: "Unknown error occurred", errors: error.stack });
+        .json({
+          message: "Unknown error occurred",
+          errors: "Something happened, please try again"
+        });
     }
   }
 }

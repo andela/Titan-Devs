@@ -43,7 +43,7 @@ class Login {
                 username: result.dataValues.username,
                 id: result.dataValues.id
               },
-              process.env.SECRET_OR_KEY
+              process.env.SECRET_KEY
             );
             return res.status(200).send({
               message: "Logged in successfully",
