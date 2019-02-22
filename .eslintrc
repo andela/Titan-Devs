@@ -1,45 +1,49 @@
 {
   "root": true,
   "extends": ["airbnb-base", "prettier"],
-  "plugins": ["prettier", "jsdoc", "eslint-plugin-jsdoc"],
   "env": {
     "node": true,
     "es6": true,
     "mocha": true
   },
-  "parserOptions": {
-    "sourceType": "module"
-  },
+  "plugins": ["prettier"],
   "rules": {
-    "no-extra-parens": "off",
-    "prettier/prettier": ["error"],
+    "parserOptions": {
+      "allowImportExportEverywhere": true,
+      "sourceType": "module"
+    },
+    "eol-last": ["error", "always"],
+    "import/prefer-default-export": "off",
+    "import/resolver": {
+      "node": { "extensions": [".js"] }
+    },
     "one-var": 0,
     "one-var-declaration-per-line": 0,
     "new-cap": 0,
     "consistent-return": 0,
     "no-param-reassign": 0,
     "comma-dangle": 0,
+    "curly": ["error", "multi-line"],
     "import/no-unresolved": [2, { "commonjs": true }],
     "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
-    "curly": "off",
-    "jsdoc/check-examples": 1,
-    "jsdoc/check-param-names": 1,
-    "jsdoc/check-tag-names": 1,
-    "jsdoc/check-types": 1,
-    "jsdoc/newline-after-description": 0,
-    "jsdoc/no-undefined-types": 1,
-    "jsdoc/require-description": 1,
-    "jsdoc/require-description-complete-sentence": 1,
-    "jsdoc/require-example": 0,
-    "jsdoc/require-hyphen-before-param-description": 1,
-    "jsdoc/require-param": 1,
-    "jsdoc/require-param-description": 1,
-    "jsdoc/require-param-name": 1,
-    "jsdoc/require-param-type": 1,
-    "jsdoc/require-returns": 1,
-    "jsdoc/require-returns-check": 1,
-    "jsdoc/require-returns-description": 1,
-    "jsdoc/require-returns-type": 1,
-    "jsdoc/valid-types": 1
+    "valid-jsdoc": [
+      "error",
+      {
+        "requireReturn": true,
+        "requireReturnType": true,
+        "requireParamDescription": false,
+        "requireReturnDescription": true
+      }
+    ],
+    "require-jsdoc": [
+      "error",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": false,
+          "ClassDeclaration": false
+        }
+      }
+    ]
   }
 }

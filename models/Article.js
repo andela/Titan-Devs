@@ -54,6 +54,11 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+    Article.belongsToMany(models.User, {
+      through: models.ArticleLike,
+      as: "likes",
+      foreignKey: "articleId"
+    });
   };
   return Article;
 };

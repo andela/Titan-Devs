@@ -56,11 +56,9 @@ export default (sequelize, DataTypes) => {
         defaultValue: null
       }
     },
-    // for postgres always set tables names in lower cases to avoid problems in the future
     { tableName: "users" }
   );
 
-  // eslint-disabled-next-line no-use-before-define
   User.associate = models => {
     User.hasMany(models.Article, {
       foreignKey: "userId",
@@ -72,12 +70,18 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-    // associations can be defined here
     User.belongsToMany(models.User, {
       through: models.Follower,
       as: "followings",
       foreignKey: "followerId",
-      targetKey: "followerId"
+      targetKey: "followerId",
+      onDelete: "CASCADE"
+    });
+
+    User.belongsToMany(models.Article, {
+      through: models.ArticleLike,
+      as: "likes",
+      foreignKey: "userId"
     });
   };
   return User;
