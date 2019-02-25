@@ -66,7 +66,7 @@ class UserController {
         }
         return res.status(409).json({ message: errorMessage });
       }
-      res.status(500).json({
+      return res.status(500).json({
         message: "User registration failed, try again later!",
         errors: error
       });
