@@ -148,27 +148,6 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
-    it("should should ask for description", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/articles/${validSlug}/report`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ description: "" })
-        .end((err, res) => {
-          expect(res.status).equals(BAD_REQUEST);
-          expect(res.body.message).to.contain("Please, give a reason");
-          done();
-        });
-    });
-    it("should deny the request if no access-token provided", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/articles/${validSlug}/report`)
-        .end((err, res) => {
-          expect(res.status).equals(UNAUTHORIZED);
-          done();
-        });
-    });
     it("should report an article", done => {
       chai
         .request(app)
@@ -190,15 +169,6 @@ describe("# Articles endpoints", () => {
         .end((err, res) => {
           expect(res.status).equals(BAD_REQUEST);
           expect(res.body.message).to.contain("Please, give a reason");
-          done();
-        });
-    });
-    it("should deny the request if no access-token provided", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/articles/${validSlug}/report`)
-        .end((err, res) => {
-          expect(res.status).equals(UNAUTHORIZED);
           done();
         });
     });

@@ -12,7 +12,7 @@ const { User } = models;
  *
  * @class
  */
-class Login {
+class LoginController {
   /**
    *
    * SignIn.
@@ -62,4 +62,4 @@ class Login {
   }
 }
 
-export default Login;
+export default LoginController;
