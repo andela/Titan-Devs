@@ -8,6 +8,8 @@ notifications:
   slack: andela:m0fSBLRd944nk3Gme63A9OgD
 rvm:
   - 2.2.0
+script:
+   - "node nyc --reporter=text --reporter=lcov check-coverage --statements 90 --branches 90 --lines 90 --functions 90"
 before_script:
   - psql -c 'create database titan_devs_test' -U postgres
   - yarn
