@@ -289,7 +289,7 @@ export default class PostController {
       const { id: userId } = req.user;
       const { description } = req.body;
       
-      if (!description || undefined) {
+      if (!description) {
         return res.status(BAD_REQUEST).json({ message: "Please, give a reason" });
       }
       const article = await Article.findOne({
