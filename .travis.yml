@@ -8,8 +8,6 @@ notifications:
   slack: andela:m0fSBLRd944nk3Gme63A9OgD
 rvm:
   - 2.2.0
-script:
-   - "node ./node_modules/.bin/nyc --reporter=text --reporter=lcov check-coverage --statements 90 --branches 90 --lines 90 --functions 90"
 before_script:
   - psql -c 'create database titan_devs_test' -U postgres
   - yarn
@@ -18,3 +16,5 @@ before_script:
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+after_success: 
+  npm run coverage
