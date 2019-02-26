@@ -14,14 +14,6 @@ let userToken;
 const { ACCEPTED, NOT_FOUND } = constants.statusCode;
 
 describe("Confirm sign up", () => {
-  before(async () => {
-    await User.destroy({
-      where: { email: "fabrice.niyomwungeri@andela.com" },
-      truncate: true,
-      cascade: true
-    });
-  });
-
   it(" should register user with correct details", async () => {
     const response = await chai
       .request(app)

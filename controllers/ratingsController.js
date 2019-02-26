@@ -19,29 +19,19 @@ class RatingController {
     const userId = req.user.id;
     const { rating } = req.body;
     const { article } = req;
-    joi.validate({ slug, userId, rating }, ratingOne, (err, _value) => {
+    joi.validate({ rating }, ratingOne, (err, _value) => {
       if (err) {
         next(err);
       } else {
         Rating.create({ slug, userId, rating, articleId: article.id })
           .then(result => {
-            /* eslint-disable no-underscore-dangle */
-            if (result._options.isNewRecord) {
-              res.status(201).json({
-                message: "Article rated successfully",
-                rating: result.dataValues
-              });
-            }
+            res.status(201).json({
+              message: "Article rated successfully",
+              rating: result.dataValues
+            });
           })
           .catch(error => {
             if (
-              error.name === "SequelizeForeignKeyConstraintError" &&
-              error.index === "ratings_articleId_fkey"
-            ) {
-              res
-                .status(NOT_FOUND)
-                .json({ message: "Post you are looking for cannot be found" });
-            } else if (
               error.parent.code === "23505" &&
               error.name === "SequelizeUniqueConstraintError"
             ) {
@@ -63,35 +53,25 @@ class RatingController {
    * @return {Object} - It returns the response object.
    */
 
-  static async getAll(req, res, next) {
-    const { slug } = req.params;
-    const userId = req.user.id;
+  static async getAll(req, res) {
     const { article } = req;
 
-    joi.validate({ userId, slug }, ratingAll, async (err, _value) => {
-      if (err) {
-        next(err);
-      } else {
-        try {
-          const results = await Rating.findAll({
-            raw: true,
-            where: { articleId: article.id }
-          });
-          const averageRating = await Rating.findAll({
-            attributes: [
-              [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
-            ],
-            raw: true,
-            where: { articleId: article.id }
-          });
-          res.status(OK).json({ ratings: results, averageRating: averageRating[0] });
-        } catch (error) {
-          res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({ message: "Please Try again later" });
-        }
-      }
-    });
+    try {
+      const results = await Rating.findAll({
+        raw: true,
+        where: { articleId: article.id }
+      });
+      const averageRating = await Rating.findAll({
+        attributes: [
+          [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
+        ],
+        raw: true,
+        where: { articleId: article.id }
+      });
+      res.status(OK).json({ ratings: results, averageRating: averageRating[0] });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: "Please Try again later" });
+    }
   }
 
   /**
@@ -103,11 +83,10 @@ class RatingController {
    */
 
   static update(req, res, next) {
-    const { slug } = req.params;
     const userId = req.user.id;
     const { rating } = req.body;
     const { id: articleId } = req.article;
-    joi.validate({ slug, userId, rating }, ratingOne, (err, _value) => {
+    joi.validate({ rating }, ratingOne, (err, _value) => {
       if (err) {
         next(err);
       } else {

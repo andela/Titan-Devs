@@ -1,10 +1,12 @@
 import chai from "chai";
 import sinon from "sinon";
 import chaiHttp from "chai-http";
-
+import models from "../../models";
 import app from "../../index";
 
 chai.use(chaiHttp);
+
+const { User } = models;
 
 describe("Profile controller", () => {
   let token;
