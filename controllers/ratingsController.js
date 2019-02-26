@@ -15,7 +15,6 @@ class RatingController {
    */
 
   static create(req, res, next) {
-    console.log("error", " == ", req.article, "====");
     const { slug } = req.params;
     const userId = req.user.id;
     const { rating } = req.body;
