@@ -1,70 +1,18 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, fakeId } from "../helpers/testData";
+import { fakeId } from "../helpers/testData";
 import constants from "../../helpers/constants";
-
-let token;
-let slug;
-let commentId;
-
-const newUser = {
-  email: "yves.iraguha@gmail.com",
-  password: "password",
-  username: "Nick2019"
-};
+import { token, post, newComment } from "../setups.test";
 
 const { UNAUTHORIZED, CREATED, OK, NOT_FOUND } = constants.statusCode;
 chai.use(chaiHttp);
-
 describe("Liking a comment", () => {
-  const { email, password } = newUser;
-  before("Create a user, article, and comment", done => {
-    chai
-      .request(app)
-      .post("/api/v1/users")
-      .send(newUser)
-      .end(error => {
-        if (!error) {
-          chai
-            .request(app)
-            .post("/api/v1/users/login")
-            .send({ email, password })
-            .end((err, res) => {
-              if (!err) {
-                ({ token } = res.body);
-                chai
-                  .request(app)
-                  .post("/api/v1/articles")
-                  .set("Authorization", `Bearer ${token}`)
-                  .send(newArticle)
-                  .end((err, res) => {
-                    if (err) {
-                      done(error);
-                    }
-                    const { slug: artSlug } = res.body.article;
-                    slug = artSlug;
-                    chai
-                      .request(app)
-                      .post(`/api/v1/articles/${slug}/comments`)
-                      .set("Authorization", `Bearer ${token}`)
-                      .send({ body: "hello there " })
-                      .end((err, res) => {
-                        if (!err) commentId = res.body.comment.id;
-                        done(err || undefined);
-                      });
-                  });
-              }
-            });
-        }
-      });
-  });
-
-  describe("POST /articles/:slug/comments/:commentId", () => {
+  describe("POST /articles/:slug/comments/commentId", () => {
     it("should like the comment and return the comment liked message", done => {
       chai
         .request(app)
-        .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+        .post(`/api/v1/articles/${post.slug}/comments/${newComment.id}/likes`)
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
@@ -80,7 +28,7 @@ describe("Liking a comment", () => {
     it("should unlike the comment and return the comment Disliked message", done => {
       chai
         .request(app)
-        .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+        .post(`/api/v1/articles/${post.slug}/comments/${newComment.id}/likes`)
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           if (err) done(err);
@@ -94,9 +42,10 @@ describe("Liking a comment", () => {
   it("should throw an error of liking a non-existing comment", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments/${fakeId}/likes`)
+      .post(`/api/v1/articles/${post.slug}/comments/${fakeId}/likes`)
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
+
         if (error) done(error);
         expect(res.status).equals(NOT_FOUND);
         expect(res.body.message).to.contain("You are liking a non-existing comment");
@@ -107,7 +56,7 @@ describe("Liking a comment", () => {
   it("should throw an unauthorized error", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+      .post(`/api/v1/articles/${post.slug}/comments/${newComment.id}/likes`)
       .set("Authorization", `Bearer hellopeople`)
       .end((error, res) => {
         if (error) done(error);
@@ -122,7 +71,7 @@ describe("Liking a comment", () => {
   it("should fetch all users who liked a comment in form of array", done => {
     chai
       .request(app)
-      .get(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
+      .get(`/api/v1/articles/${post.slug}/comments/${newComment.id}/likes`)
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
@@ -135,7 +84,7 @@ describe("Liking a comment", () => {
   it("should return error of non-existing comment", done => {
     chai
       .request(app)
-      .get(`/api/v1/articles/${slug}/comments/${fakeId}/likes`)
+      .get(`/api/v1/articles/${post.slug}/comments/${fakeId}/likes`)
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);

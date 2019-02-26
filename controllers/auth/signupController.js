@@ -5,10 +5,11 @@ import models from "../../models";
 import constants from "../../helpers/constants";
 import sentEmailTemplate from "../../helpers/emailVerificationTamplate";
 import { sendEmail } from "../../services/sendgrid";
+import defaultPermissions from "../../helpers/defaultPermissions";
 
 const { ACCEPTED, INTERNAL_SERVER_ERROR, CREATED, CONFLICT } = constants.statusCode;
 
-const { User } = models;
+const { User} = models;
 dotenv.config();
 
 export default class SignUpController {
@@ -27,13 +28,22 @@ export default class SignUpController {
         parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
       );
       const hashPassword = await hashSync(password, salt);
+
+      const newRole = await defaultPermissions();
+      const roleId = newRole.id;
       const user = await User.create({
         username,
         email,
-        password: hashPassword
+        password: hashPassword,
+        roleId
       });
+
       const token = jwt.sign(
-        { userId: user.dataValues.id, email: user.dataValues.email },
+        {
+          userId: user.dataValues.id,
+          email: user.dataValues.email,
+          roleId: user.dataValues.roleId
+        },
         process.env.SECRET_KEY
       );
       const emailBody = await sentEmailTemplate(token);

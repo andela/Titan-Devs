@@ -17,21 +17,13 @@
       "description": "API for users in the system"
     }
   ],
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/users": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Create new user in system",
         "parameters": [
           {
@@ -43,9 +35,7 @@
             }
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "New user is created",
@@ -56,9 +46,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get all users in system",
         "responses": {
           "200": {
@@ -81,9 +69,7 @@
         }
       ],
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get user with given ID",
         "responses": {
           "200": {
@@ -96,9 +82,7 @@
       },
       "delete": {
         "summary": "Delete user with given ID",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "User is deleted",
@@ -110,9 +94,7 @@
       },
       "put": {
         "summary": "Update user with given ID",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "user",
@@ -136,12 +118,8 @@
     "/users/login": {
       "post": {
         "summary": "User login",
-        "tags": [
-          "Users"
-        ],
-        "consumes": [
-          "application/json"
-        ],
+        "tags": ["Users"],
+        "consumes": ["application/json"],
         "parameters": [
           {
             "in": "body",
@@ -149,10 +127,7 @@
             "description": "Allows a user to login.",
             "schema": {
               "type": "object",
-              "required": [
-                "email",
-                "password"
-              ],
+              "required": ["email", "password"],
               "properties": {
                 "email": {
                   "type": "string"
@@ -164,9 +139,7 @@
             }
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "User logged in successfully",
@@ -193,9 +166,7 @@
     },
     "/articles": {
       "post": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Create an article",
         "description": "This helps the user to create a new article",
         "parameters": [
@@ -220,9 +191,7 @@
     },
     "/articles/{slug}/comments/{commentID}/likes": {
       "post": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Like a specific comment",
         "description": "This allows a user to like a specific comment on article.",
         "parameters": [
@@ -248,9 +217,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "comment liked successfully",
@@ -305,9 +272,7 @@
     },
     "/articles/{slug}/comments/{commentID}": {
       "put": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "update a specific comment",
         "description": "This allows a user to update a specific comment.",
         "parameters": [
@@ -341,9 +306,7 @@
             }
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "comment updated successfully",
@@ -399,9 +362,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "delete a specific comment",
         "description": "This allows a user to delete a specific comment.",
         "parameters": [
@@ -427,9 +388,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "comment updated successfully"
@@ -449,9 +408,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "get a specific comment",
         "description": "This allows a user to get a specific comment.",
         "parameters": [
@@ -477,9 +434,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -504,9 +459,7 @@
     },
     "/articles/{slug}/comments/{commentID}/history": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "get a specific comment history",
         "description": "This allows a user to get a specific comment history.",
         "parameters": [
@@ -532,9 +485,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -556,9 +507,7 @@
     },
     "/articles/{slug}/comments": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "get comments for a specific article",
         "description": "This allows a user to get article with comments.",
         "parameters": [
@@ -577,9 +526,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "OK"
@@ -601,9 +548,7 @@
     },
     "/articles/{slug}/highlights/{highlightId}": {
       "put": {
-        "tags": [
-          "Highlight"
-        ],
+        "tags": ["Highlight"],
         "summary": "update a specific highlight",
         "description": "This allows a user to update a specific comment.",
         "parameters": [
@@ -641,9 +586,7 @@
             "description": "the end index of the highlight"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "highlight updated successfully",
@@ -670,9 +613,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Highlight"
-        ],
+        "tags": ["Highlight"],
         "summary": "delete a specific highlight",
         "description": "This allows a user to delete a specific highlight.",
         "parameters": [
@@ -698,9 +639,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "highlight deleted  successfully",
@@ -727,9 +666,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Highlight"
-        ],
+        "tags": ["Highlight"],
         "summary": "get a specific highlight",
         "description": "This allows a user to get a specific highlight.",
         "parameters": [
@@ -755,9 +692,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "highlight retrieved successfully",
@@ -786,9 +721,7 @@
     },
     "/articles/{slug}/highlights": {
       "post": {
-        "tags": [
-          "Highlight"
-        ],
+        "tags": ["Highlight"],
         "summary": "create a specific highlight",
         "description": "This allows a user to hightlight a specific article.",
         "parameters": [
@@ -832,9 +765,7 @@
             "description": "the text to put on the comment"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
             "description": "highlight created successfully",
@@ -861,9 +792,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Highlight"
-        ],
+        "tags": ["Highlight"],
         "summary": "get all highlights made on an article",
         "description": "This allows a user to hightlight a specific article.",
         "parameters": [
@@ -889,9 +818,7 @@
             "type": "string"
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "highlight has been retrieved successfully",
@@ -905,6 +832,578 @@
           },
           "401": {
             "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/roles": {
+      "post": {
+        "tags": ["Role"],
+        "summary": "create a specific role",
+        "description": "This allows admin to create a specific role.",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "in": "path",
+            "required": true,
+            "description": "role description",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Role created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role' "
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Role"],
+        "summary": "get all roles",
+        "description": "This allows admin to get all roles.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to get all roles",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/roles/{roleId}": {
+      "get": {
+        "tags": ["Role"],
+        "summary": "get a specific role",
+        "description": "This allows admin to get a specific role.",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a role",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Role"],
+        "summary": "update a specific role",
+        "description": "This allows a admin to update a specific role.",
+        "parameters": [
+          {
+            "role": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a role you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a role",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "role has been retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "403": {
+            "description": "Access not granted"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Role"],
+        "summary": "delete a role",
+        "description": "This allows a admin to delete a specific role.",
+        "parameters": [
+          {
+            "role": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a role you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a role",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "highlight has been retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/roles/{roleId}/permissions": {
+      "get": {
+        "tags": ["Role"],
+        "summary": "get permissions granted to a specific role",
+        "description": "get permissions granted to a specific role",
+        "parameters": [
+          {
+            "name": "roleId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Role"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/permissions": {
+      "get": {
+        "tags": ["Permission"],
+        "summary": "get all permissions",
+        "description": "This allows admin to get all permission.",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to get all permission",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Permission"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/permissions/{roleId}": {
+      "post": {
+        "tags": ["Permission"],
+        "summary": "create a permission",
+        "description": "This allows admin to create a specific permission.",
+        "parameters": [
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to create a permission",
+            "type": "string"
+          },
+          {
+            "name": "createPermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for create Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "readPermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for read Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "updatePermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for update Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "deletePermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for delete Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "Provide a token",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "Permission created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Permission"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "put": {
+        "tags": ["Permission"],
+        "summary": "update a permission",
+        "description": "This allows admin to update a specific permission.",
+        "parameters": [
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          },
+          {
+            "name": "resource",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to create a permission",
+            "type": "string"
+          },
+          {
+            "name": "createPermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for create Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "readPermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for read Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "updatePermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for update Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "deletePermission",
+            "in": "header",
+            "required": false,
+            "description": "true or false for delete Permission field",
+            "type": "boolean"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "provide token",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "Permission updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Permission"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Permission"],
+        "summary": "get a specifc permission",
+        "description": "This allows admin to get a specific permission.",
+        "parameters": [
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "201": {
+            "description": "permission retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Permission"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Permission"],
+        "summary": "delete a permission",
+        "description": "This allows admin to delete a specific permission.",
+        "parameters": [
+          {
+            "name": "permissionId",
+            "in": "path",
+            "required": true,
+            "description": "name of the role",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "Provide a token",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "permission deleted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Permission"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Access Denied"
           },
           "404": {
             "description": "resource not found"
@@ -996,6 +1495,44 @@
         "articleId": {
           "type": "string",
           "example": "3e6736d5-7bf3-4119-ad08-b8ae6aaaa624"
+        }
+      }
+    },
+    "Role": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "example": "reader"
+        },
+        "description": {
+          "type": "string",
+          "example": "a person who reads or who is fond of reading."
+        }
+      }
+    },
+    "Permission": {
+      "type": "object",
+      "properties": {
+        "resource": {
+          "type": "string",
+          "example": true
+        },
+        "createPermission": {
+          "type": "boolean",
+          "example": false
+        },
+        "readPermission": {
+          "type": "boolean",
+          "example": true
+        },
+        "updatePermission": {
+          "type": "boolean",
+          "example": true
+        },
+        "deletePermission": {
+          "type": "boolean",
+          "example": false
         }
       }
     }

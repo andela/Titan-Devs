@@ -142,488 +142,94 @@ const article = {
   description: faker.lorem.words(50),
   body: faker.lorem.words(INTERNAL_SERVER_ERROR)
 };
-const opnResponse = {
-  _events: {},
-  _eventsCount: 0,
-  _closesNeeded: 3,
-  _closesGot: 0,
-  connected: false,
-  signalCode: null,
-  exitCode: null,
-  killed: false,
-  spawnfile: "open",
-  _handle: {
-    pid: 15495
+const roleTestData = {
+  validRole: {
+    name: "AUTHOR",
+    description: "writer"
   },
-  spawnargs: [
-    "open",
-    "https://twitter.com/intent/tweet?text=http://localhost:3000/api/v1/articles/how-to-train-your-dragon-gdrcq9h9rt"
-  ],
-  pid: 15495,
-  stdin: {
-    connecting: false,
-    _hadError: false,
-    _handle: {},
-    _parent: null,
-    _host: null,
-    _readableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      buffer: {
-        head: null,
-        tail: null,
-        length: 0
-      },
-      length: 0,
-      pipes: null,
-      pipesCount: 0,
-      flowing: null,
-      ended: false,
-      endEmitted: false,
-      reading: false,
-      sync: true,
-      needReadable: false,
-      emittedReadable: false,
-      readableListening: false,
-      resumeScheduled: false,
-      emitClose: false,
-      destroyed: false,
-      defaultEncoding: "utf8",
-      awaitDrain: 0,
-      readingMore: false,
-      decoder: null,
-      encoding: null
-    },
-    readable: false,
-    _events: {},
-    _eventsCount: 1,
-    _writableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      finalCalled: false,
-      needDrain: false,
-      ending: false,
-      ended: false,
-      finished: false,
-      destroyed: false,
-      decodeStrings: false,
-      defaultEncoding: "utf8",
-      length: 0,
-      writing: false,
-      corked: 0,
-      sync: true,
-      bufferProcessing: false,
-      writecb: null,
-      writelen: 0,
-      bufferedRequest: null,
-      lastBufferedRequest: null,
-      pendingcb: 0,
-      prefinished: false,
-      errorEmitted: false,
-      emitClose: false,
-      bufferedRequestCount: 0,
-      corkedRequestsFree: {
-        next: null,
-        entry: null
-      }
-    },
-    writable: true,
-    allowHalfOpen: false,
-    _sockname: null,
-    _pendingData: null,
-    _pendingEncoding: "",
-    server: null,
-    _server: null
+  validRoleAdmin: {
+    name: "ADMINN",
+    description: "Administrator"
   },
-  stdout: {
-    connecting: false,
-    _hadError: false,
-    _handle: {
-      reading: true
-    },
-    _parent: null,
-    _host: null,
-    _readableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      buffer: {
-        head: null,
-        tail: null,
-        length: 0
-      },
-      length: 0,
-      pipes: null,
-      pipesCount: 0,
-      flowing: null,
-      ended: false,
-      endEmitted: false,
-      reading: true,
-      sync: false,
-      needReadable: true,
-      emittedReadable: false,
-      readableListening: false,
-      resumeScheduled: false,
-      emitClose: false,
-      destroyed: false,
-      defaultEncoding: "utf8",
-      awaitDrain: 0,
-      readingMore: false,
-      decoder: null,
-      encoding: null
-    },
-    readable: true,
-    _events: {},
-    _eventsCount: 2,
-    _writableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      finalCalled: false,
-      needDrain: false,
-      ending: false,
-      ended: false,
-      finished: false,
-      destroyed: false,
-      decodeStrings: false,
-      defaultEncoding: "utf8",
-      length: 0,
-      writing: false,
-      corked: 0,
-      sync: true,
-      bufferProcessing: false,
-      writecb: null,
-      writelen: 0,
-      bufferedRequest: null,
-      lastBufferedRequest: null,
-      pendingcb: 0,
-      prefinished: false,
-      errorEmitted: false,
-      emitClose: false,
-      bufferedRequestCount: 0,
-      corkedRequestsFree: {
-        next: null,
-        entry: null
-      }
-    },
-    writable: false,
-    allowHalfOpen: false,
-    _sockname: null,
-    _pendingData: null,
-    _pendingEncoding: "",
-    server: null,
-    _server: null
+  validRole2: {
+    name: "Anonymous",
+    description: "Administrator"
   },
-  stderr: {
-    connecting: false,
-    _hadError: false,
-    _handle: {
-      reading: true
-    },
-    _parent: null,
-    _host: null,
-    _readableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      buffer: {
-        head: null,
-        tail: null,
-        length: 0
-      },
-      length: 0,
-      pipes: null,
-      pipesCount: 0,
-      flowing: null,
-      ended: false,
-      endEmitted: false,
-      reading: true,
-      sync: false,
-      needReadable: true,
-      emittedReadable: false,
-      readableListening: false,
-      resumeScheduled: false,
-      emitClose: false,
-      destroyed: false,
-      defaultEncoding: "utf8",
-      awaitDrain: 0,
-      readingMore: false,
-      decoder: null,
-      encoding: null
-    },
-    readable: true,
-    _events: {},
-    _eventsCount: 2,
-    _writableState: {
-      objectMode: false,
-      highWaterMark: 16384,
-      finalCalled: false,
-      needDrain: false,
-      ending: false,
-      ended: false,
-      finished: false,
-      destroyed: false,
-      decodeStrings: false,
-      defaultEncoding: "utf8",
-      length: 0,
-      writing: false,
-      corked: 0,
-      sync: true,
-      bufferProcessing: false,
-      writecb: null,
-      writelen: 0,
-      bufferedRequest: null,
-      lastBufferedRequest: null,
-      pendingcb: 0,
-      prefinished: false,
-      errorEmitted: false,
-      emitClose: false,
-      bufferedRequestCount: 0,
-      corkedRequestsFree: {
-        next: null,
-        entry: null
-      }
-    },
-    writable: false,
-    allowHalfOpen: false,
-    _sockname: null,
-    _pendingData: null,
-    _pendingEncoding: "",
-    server: null,
-    _server: null
+  invalidRole: {
+    description: "writer"
   },
-  stdio: [
-    {
-      connecting: false,
-      _hadError: false,
-      _handle: {},
-      _parent: null,
-      _host: null,
-      _readableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        buffer: {
-          head: null,
-          tail: null,
-          length: 0
-        },
-        length: 0,
-        pipes: null,
-        pipesCount: 0,
-        flowing: null,
-        ended: false,
-        endEmitted: false,
-        reading: false,
-        sync: true,
-        needReadable: false,
-        emittedReadable: false,
-        readableListening: false,
-        resumeScheduled: false,
-        emitClose: false,
-        destroyed: false,
-        defaultEncoding: "utf8",
-        awaitDrain: 0,
-        readingMore: false,
-        decoder: null,
-        encoding: null
-      },
-      readable: false,
-      _events: {},
-      _eventsCount: 1,
-      _writableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        finalCalled: false,
-        needDrain: false,
-        ending: false,
-        ended: false,
-        finished: false,
-        destroyed: false,
-        decodeStrings: false,
-        defaultEncoding: "utf8",
-        length: 0,
-        writing: false,
-        corked: 0,
-        sync: true,
-        bufferProcessing: false,
-        writecb: null,
-        writelen: 0,
-        bufferedRequest: null,
-        lastBufferedRequest: null,
-        pendingcb: 0,
-        prefinished: false,
-        errorEmitted: false,
-        emitClose: false,
-        bufferedRequestCount: 0,
-        corkedRequestsFree: {
-          next: null,
-          entry: null
-        }
-      },
-      writable: true,
-      allowHalfOpen: false,
-      _sockname: null,
-      _pendingData: null,
-      _pendingEncoding: "",
-      server: null,
-      _server: null
-    },
-    {
-      connecting: false,
-      _hadError: false,
-      _handle: {
-        reading: true
-      },
-      _parent: null,
-      _host: null,
-      _readableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        buffer: {
-          head: null,
-          tail: null,
-          length: 0
-        },
-        length: 0,
-        pipes: null,
-        pipesCount: 0,
-        flowing: null,
-        ended: false,
-        endEmitted: false,
-        reading: true,
-        sync: false,
-        needReadable: true,
-        emittedReadable: false,
-        readableListening: false,
-        resumeScheduled: false,
-        emitClose: false,
-        destroyed: false,
-        defaultEncoding: "utf8",
-        awaitDrain: 0,
-        readingMore: false,
-        decoder: null,
-        encoding: null
-      },
-      readable: true,
-      _events: {},
-      _eventsCount: 2,
-      _writableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        finalCalled: false,
-        needDrain: false,
-        ending: false,
-        ended: false,
-        finished: false,
-        destroyed: false,
-        decodeStrings: false,
-        defaultEncoding: "utf8",
-        length: 0,
-        writing: false,
-        corked: 0,
-        sync: true,
-        bufferProcessing: false,
-        writecb: null,
-        writelen: 0,
-        bufferedRequest: null,
-        lastBufferedRequest: null,
-        pendingcb: 0,
-        prefinished: false,
-        errorEmitted: false,
-        emitClose: false,
-        bufferedRequestCount: 0,
-        corkedRequestsFree: {
-          next: null,
-          entry: null
-        }
-      },
-      writable: false,
-      allowHalfOpen: false,
-      _sockname: null,
-      _pendingData: null,
-      _pendingEncoding: "",
-      server: null,
-      _server: null
-    },
-    {
-      connecting: false,
-      _hadError: false,
-      _handle: {
-        reading: true
-      },
-      _parent: null,
-      _host: null,
-      _readableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        buffer: {
-          head: null,
-          tail: null,
-          length: 0
-        },
-        length: 0,
-        pipes: null,
-        pipesCount: 0,
-        flowing: null,
-        ended: false,
-        endEmitted: false,
-        reading: true,
-        sync: false,
-        needReadable: true,
-        emittedReadable: false,
-        readableListening: false,
-        resumeScheduled: false,
-        emitClose: false,
-        destroyed: false,
-        defaultEncoding: "utf8",
-        awaitDrain: 0,
-        readingMore: false,
-        decoder: null,
-        encoding: null
-      },
-      readable: true,
-      _events: {},
-      _eventsCount: 2,
-      _writableState: {
-        objectMode: false,
-        highWaterMark: 16384,
-        finalCalled: false,
-        needDrain: false,
-        ending: false,
-        ended: false,
-        finished: false,
-        destroyed: false,
-        decodeStrings: false,
-        defaultEncoding: "utf8",
-        length: 0,
-        writing: false,
-        corked: 0,
-        sync: true,
-        bufferProcessing: false,
-        writecb: null,
-        writelen: 0,
-        bufferedRequest: null,
-        lastBufferedRequest: null,
-        pendingcb: 0,
-        prefinished: false,
-        errorEmitted: false,
-        emitClose: false,
-        bufferedRequestCount: 0,
-        corkedRequestsFree: {
-          next: null,
-          entry: null
-        }
-      },
-      writable: false,
-      allowHalfOpen: false,
-      _sockname: null,
-      _pendingData: null,
-      _pendingEncoding: "",
-      server: null,
-      _server: null
-    }
-  ]
+  noAlphabeticRoleDesc: {
+    name: "ADMIN",
+    description: 93989
+  },
+  noAlphabeticRoleName: {
+    name: 4895,
+    description: "Administrator"
+  }
 };
+const invalidPermissionObject = {
+  invalidPermission: {},
+  invalidPermission2: {
+    resource: 4895
+  }
+};
+const permissionObjects = [
+  {
+    resource: "articles",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "users",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "profiles",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "permissions",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "roles",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "auth",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  },
+  {
+    resource: "test",
+    createPermission: true,
+    readPermission: true,
+    updatePermission: true,
+    deletePermission: true
+  }
+];
 
 const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhY2lAZW1haWwuY29tIiwidXNlcm5hbWUiOiJwYWNpIiwiaWQiOiIzNjRlYmFjNy1jYjQ1LTQ5ZDQtODlmNC1lY2Y5MWE5OTczZjIiLCJpYXQiOjE1NTIwMDEwNTB9.mPtpx6r62aXEYWyWFYYkiCdTEPR4ECfZrB1wJ30fXXM`;
 const fakeId = "71840433-e8e4-48dd-89d1-b0a91258da58";
+const testUIID = {
+  invalidUUID: "08ecefad-4822-4b49-9b4e-101f873d75a7"
+};
 export {
   newArticle,
   newComment,
@@ -631,7 +237,9 @@ export {
   tokenEmailVerication,
   sendGridResponse,
   article,
-  opnResponse,
   fakeId,
-  fakeToken
+  testUIID,
+  roleTestData,
+  permissionObjects,
+  invalidPermissionObject
 };

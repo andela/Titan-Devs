@@ -4,7 +4,7 @@ import app from "../../index";
 import { post, token } from "../setups.test";
 import constants from "../../helpers/constants";
 
-const { BAD_REQUEST, OK } = constants.statusCode;
+const { BAD_REQUEST, OK, CONFLICT } = constants.statusCode;
 
 chai.use(chaiHttp);
 describe("Report an article endpoint", () => {
@@ -16,11 +16,10 @@ describe("Report an article endpoint", () => {
       .send({ description: "abusive" })
       .end((err, res) => {
         expect(res.status).equals(OK);
-        expect(res.body.message).to.contain("Article reported");
+        expect(res.body.message).to.contain("reported");
         done();
       });
   });
-
   it("should report an article", done => {
     chai
       .request(app)
@@ -28,12 +27,11 @@ describe("Report an article endpoint", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({ description: "abusive" })
       .end((err, res) => {
-        expect(res.status).equals(OK);
+        expect(res.status).equals(CONFLICT);
         expect(res.body.message).to.contain("Article already reported");
         done();
       });
   });
-
   it("should should ask for description", done => {
     chai
       .request(app)

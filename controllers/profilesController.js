@@ -85,12 +85,10 @@ class Profile {
       const profiles = await User.findAll();
       return res.status(OK).json({ profiles });
     } catch (error) {
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({
-          error:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        error:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -121,13 +119,11 @@ class Profile {
           .status(BAD_REQUEST)
           .json({ message: `There no user with that username` });
       }
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({
-          message: "Error happened",
-          error:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Error happened",
+        error:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 }

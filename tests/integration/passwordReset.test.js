@@ -2,23 +2,17 @@ import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import nock from "nock";
 import app from "../../index";
-import { users, sendGridResponse } from "../helpers/testData";
+import { sendGridResponse } from "../helpers/testData";
 import constants from "../../helpers/constants";
+import { user } from "../setups.test";
 
 const { OK, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
-const { dummyUser } = users;
 chai.use(chaiHttp);
 should();
 let pwdResetToken;
 
 describe("Reset Password", () => {
   before(async () => {
-    await chai
-      .request(app)
-      .post("/api/v1/users")
-      .send({
-        ...dummyUser
-      });
     nock("https://api.sendgrid.com")
       .post("/v3/mail/send")
       .reply(OK, { mockResponse: sendGridResponse });
@@ -28,7 +22,7 @@ describe("Reset Password", () => {
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({
-        email: dummyUser.email
+        email: user.email
       });
     pwdResetToken = results.body.user.resetToken;
     expect(results.status).equal(OK);
@@ -80,11 +74,12 @@ describe("Reset Password", () => {
   });
 
   it("should return error if new password is the same as current one", async () => {
+    const password = "lucjdldf2018";
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)
       .send({
-        password: dummyUser.password
+        password
       });
     expect(results.status).equal(BAD_REQUEST);
     expect(results.body.message).eql(

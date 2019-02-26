@@ -1,47 +1,20 @@
 import chai from "chai";
-import sinon from "sinon";
 import chaiHttp from "chai-http";
-import models from "../../models";
 import app from "../../index";
 import { users } from "../helpers/testData";
 import constants from "../../helpers/constants";
+import { token3, user3 } from "../setups.test";
 
-const { OK, BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, INTERNAL_SERVER_ERROR } = constants.statusCode;
+const { OK, BAD_REQUEST, FORBIDDEN, UNAUTHORIZED } = constants.statusCode;
 chai.use(chaiHttp);
 
-const { User } = models;
-
 describe("Profile controller", () => {
-  let token;
-  before("Login", done => {
-    const user = users.dummyUser4;
-    chai
-      .request(app)
-      .post("/api/v1/users")
-      .send({
-        ...user
-      })
-      .end(errors => {
-        if (errors) done(errors.message);
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email: user.email, password: user.password })
-          .end((error, res) => {
-            if (error) done(error.message);
-            ({ token } = res.body);
-            done();
-          });
-      });
-  });
-
   it("should test updating a profile", done => {
-    const user = users.dummyUser5;
     chai
       .request(app)
-      .put("/api/v1/profiles/luc2018")
-      .send(user)
-      .set({ Authorization: `Bearer ${token}` })
+      .put(`/api/v1/profiles/${user3.username}`)
+      .send(users.dummyUser5)
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(OK);
@@ -66,9 +39,9 @@ describe("Profile controller", () => {
     const user = users.dummyUser6;
     chai
       .request(app)
-      .put("/api/v1/profiles/luc2018")
+      .put(`/api/v1/profiles/${user3.username}`)
       .send(user)
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(BAD_REQUEST);
@@ -83,7 +56,7 @@ describe("Profile controller", () => {
       .request(app)
       .put("/api/v1/profiles/Yves2013")
       .send(user)
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(FORBIDDEN);
@@ -92,33 +65,11 @@ describe("Profile controller", () => {
       });
   });
 
-  it("fakes server error on update ", done => {
-    const user = users.dummyUser8;
-    const res = {
-      status() {},
-      send() {}
-    };
-
-    sinon.stub(res, "status").returnsThis();
-    sinon.stub(User, "update").throws();
-    chai
-      .request(app)
-      .put("/api/v1/profiles/luc2018")
-      .send(user)
-      .set({ Authorization: `Bearer ${token}` })
-      .end((error, res) => {
-        if (error) done(error);
-        res.status.should.be.eql(INTERNAL_SERVER_ERROR);
-        res.body.should.have.property("error");
-        done();
-      });
-  });
-
   it("should test unauthorized delete attempt", done => {
     chai
       .request(app)
       .delete("/api/v1/profiles/Yves2013")
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(FORBIDDEN);
@@ -128,10 +79,9 @@ describe("Profile controller", () => {
   });
 
   it("should test fetching a profile of a user", done => {
-    const username = "luc2018";
     chai
       .request(app)
-      .get(`/api/v1/profiles/${username}`)
+      .get(`/api/v1/profiles/${user3.username}`)
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(OK);
@@ -145,7 +95,7 @@ describe("Profile controller", () => {
       });
   });
 
-  it("should test fetching a profile an non-existing user", done => {
+  it("should test fetching a profile an non-existing user3", done => {
     const username = "Yves2018";
     chai
       .request(app)
@@ -173,11 +123,10 @@ describe("Profile controller", () => {
   });
 
   it("should test deleting a user", done => {
-    const username = "luc2018";
     chai
       .request(app)
-      .delete(`/api/v1/profiles/${username}`)
-      .set({ Authorization: `Bearer ${token}` })
+      .delete(`/api/v1/profiles/${user3.username}`)
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(OK);
@@ -188,12 +137,12 @@ describe("Profile controller", () => {
       });
   });
 
-  it("should test deleting an non-existing user", done => {
+  it("should test deleting an non-existing user3", done => {
     const username = "luc2018";
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(UNAUTHORIZED);
@@ -206,7 +155,7 @@ describe("Profile controller", () => {
     chai
       .request(app)
       .delete(`/api/v1/profiles/${username}`)
-      .set({ Authorization: `Bearer ${token}` })
+      .set({ Authorization: `Bearer ${token3}` })
       .end((error, result) => {
         if (error) done(error);
         result.status.should.be.eql(UNAUTHORIZED);

@@ -32,7 +32,7 @@ class LoginController {
     }
     User.findOne({
       where: { email },
-      attributes: ["email", "password", "username", "id"]
+      attributes: ["email", "password", "username", "id", "roleId"]
     })
       .then(result => {
         if (!result) {
@@ -46,7 +46,8 @@ class LoginController {
               {
                 email: result.dataValues.email,
                 username: result.dataValues.username,
-                id: result.dataValues.id
+                id: result.dataValues.id,
+                roleId: result.dataValues.roleId
               },
               process.env.SECRET_KEY
             );
@@ -64,7 +65,7 @@ class LoginController {
         return res.status(INTERNAL_SERVER_ERROR).json({
           message:
             "Sorry, this is not working properly. We now know about this mistake and are working to fix it",
-            error
+          error
         });
       });
   }
