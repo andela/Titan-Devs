@@ -1,13 +1,13 @@
 import models from "../models";
 
 const { Article } = models;
-export default class SignupValidator {
+export default class ArticleValidator {
   static async validateArticle(req, res, next) {
     const article = await Article.findOne({
       where: { slug: req.params.slug }
     });
     return article
       ? next()
-      : res.status(400).json({ message: "Article was not found" });
+      : res.status(404).json({ message: "Article was not found" });
   }
 }

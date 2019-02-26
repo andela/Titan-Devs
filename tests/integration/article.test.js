@@ -6,6 +6,7 @@ import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
+
 const { dummyUser } = users;
 const {
   UNAUTHORIZED,
@@ -13,11 +14,12 @@ const {
   BAD_REQUEST,
   OK,
   NOT_FOUND,
-  GONE
+  GONE,
 } = constants.statusCode;
 let validSlug;
 chai.use(chaiHttp);
 
+chai.use(chaiHttp);
 before(done => {
   const { email, password } = dummyUser;
   chai
@@ -129,6 +131,44 @@ describe("# Articles endpoints", () => {
           expect(res.body.article).to.haveOwnProperty("createdAt");
           expect(res.body.article).to.haveOwnProperty("title");
           expect(res.body.article.title).to.contain(newArticle.title);
+          done();
+        });
+    });
+  });
+  describe("Report an article endpoint", () => {
+    it("should be report an article", done => {
+      chai
+        .request(app)
+        .put(`/api/v1/articles/${validSlug}/report`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ description: "abusive" })
+        .end((err, res) => {
+          expect(res.status).equals(OK);
+          expect(res.body.message).to.contain("Article reported");
+          done();
+        });
+    });
+    it("should report an article", done => {
+      chai
+        .request(app)
+        .put(`/api/v1/articles/${validSlug}/report`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ description: "abusive" })
+        .end((err, res) => {
+          expect(res.status).equals(OK);
+          expect(res.body.message).to.contain("Article reported");
+          done();
+        });
+    });
+    it("should should ask for description", done => {
+      chai
+        .request(app)
+        .put(`/api/v1/articles/${validSlug}/report`)
+        .set("Authorization", `Bearer ${token}`)
+        .send({ description: "" })
+        .end((err, res) => {
+          expect(res.status).equals(BAD_REQUEST);
+          expect(res.body.message).to.contain("Please, give a reason");
           done();
         });
     });

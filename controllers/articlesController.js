@@ -4,13 +4,14 @@ import constants from "../helpers/constants";
 import articleValidator from "../helpers/validators/articleValidators";
 import calculateReadTime from "../helpers/calculateReadTime";
 
-const { User, Article, Tag, ArticleTag, Bookmark } = models;
+const { User, Article, Tag, ArticleTag, Bookmark, ReportArticle } = models;
 const {
   CREATED,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST,
-  GONE
+  GONE,
+  OK
 } = constants.statusCode;
 
 /**
@@ -120,6 +121,12 @@ export default class PostController {
         .send({ message: error, status: INTERNAL_SERVER_ERROR });
     }
   }
+  /**
+   * @description This creates report an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
 
   /**
    *
@@ -267,6 +274,41 @@ export default class PostController {
       return res
         .status(500)
         .json({ message: "Article was NOT posted, Server error" });
+    }
+  }
+  /**
+   * @description This creates report an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+
+  static async reportArticle(req, res) {
+    try {
+      const { slug } = req.params;
+      const { id: userId } = req.user;
+      const { description } = req.body;
+      
+      if (!description) {
+        return res.status(BAD_REQUEST).json({ message: "Please, give a reason" });
+      }
+      const article = await Article.findOne({
+        where: { slug }
+      });
+      const { articleId } = article.dataValues;
+      const reportArticle = await ReportArticle.create({
+        articleId,
+        userId,
+        description
+      });
+      return res.status(OK).json({
+        message: "Article reported",
+        article: reportArticle
+      });
+    } catch (error) {
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Something happen, please try again later"
+      });
     }
   }
 }

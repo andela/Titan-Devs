@@ -12,7 +12,16 @@ const { User } = models;
  *
  * @class
  */
-class Login {
+class LoginController {
+  /**
+   *
+   * SignIn.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
   static signIn(req, res) {
     const { email, password } = req.body;
     const err = validate(email, password);
@@ -53,4 +62,4 @@ class Login {
   }
 }
 
-export default Login;
+export default LoginController;
