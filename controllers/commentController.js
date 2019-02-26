@@ -73,7 +73,7 @@ export default class CommentController {
     } catch (error) {
       if (error.message === "You are liking a non-existing comment") {
         return res
-          .status(400)
+          .status(BAD_REQUEST)
           .json({ message: "You are liking a non-existing comment" });
       }
       return res.status(INTERNAL_SERVER_ERROR).json({ error: error.message });
@@ -148,7 +148,7 @@ export default class CommentController {
       }
       res.status(OK).json({ comment });
     } catch (error) {
-      res.status(BAD_REQUEST).json({ message: error.message });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
     }
   }
 }

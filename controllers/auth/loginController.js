@@ -3,7 +3,9 @@ import dotenv from "dotenv";
 import bcrypt from "bcrypt";
 import models from "../../models";
 import validate from "../../helpers/validators/loginValidators";
+import constants from "../../helpers/constants";
 
+const { INTERNAL_SERVER_ERROR, NOT_FOUND, BAD_REQUEST, OK } = constants.statusCode;
 dotenv.config();
 
 const { User } = models;
@@ -26,7 +28,7 @@ class LoginController {
     const { email, password } = req.body;
     const err = validate(email, password);
     if (err) {
-      return res.status(400).json({ message: err.message });
+      return res.status(BAD_REQUEST).json({ message: err.message });
     }
     User.findOne({
       where: { email },
@@ -34,7 +36,9 @@ class LoginController {
     })
       .then(result => {
         if (!result) {
-          return res.status(404).json({ message: "Invalid email or password!" });
+          return res
+            .status(NOT_FOUND)
+            .json({ message: "Invalid email or password!" });
         }
         bcrypt.compare(password, result.dataValues.password, (error, response) => {
           if (response) {
@@ -46,18 +50,21 @@ class LoginController {
               },
               process.env.SECRET_KEY
             );
-            return res.status(200).send({
+            return res.status(OK).send({
               message: "Logged in successfully",
               token
             });
           }
           return res
-            .status(400)
+            .status(BAD_REQUEST)
             .json({ message: "Invalid email or password!", error });
         });
       })
-      .catch(error => {
-        return res.status(500).json({ error: error.message });
+      .catch(() => {
+        return res.status(INTERNAL_SERVER_ERROR).json({
+          error:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
       });
   }
 }

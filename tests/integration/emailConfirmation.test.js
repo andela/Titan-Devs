@@ -1,8 +1,12 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
+import nock from "nock";
 import app from "../../index";
+import { users, tokenEmailVerication, sendGridResponse } from "../helpers/testData";
+
 import constants from "../../helpers/constants";
-import { users, tokenEmailVerication } from "../helpers/testData";
+
+const { CREATED, UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED} = constants.statusCode;
 
 const { dummyUser3 } = users;
 const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;
@@ -10,18 +14,23 @@ chai.use(chaiHttp);
 should();
 let userToken;
 
-const { ACCEPTED, NOT_FOUND } = constants.statusCode;
-
-describe("Confirm sign up", () => {
-  it(" should register user with correct details", async () => {
+describe("/API end point /users/confirmation/:auth_token", () => {
+  before(() => {
+    nock("https://api.sendgrid.com")
+      .post("/v3/mail/send")
+      .reply(OK, { mockResponse: sendGridResponse });
+  });
+  it("it is should register user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
       .send({ ...dummyUser3 });
-    expect(response.status).eql(201);
+    expect(response.status).eql(CREATED);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
-    expect(response.body.message).to.be.equals("User registered successfully");
+    expect(response.body.message).to.be.equals(
+      "We have sent an email with a confirmation link to your email address. Please allow 2-5 minutes for this message to arrive"
+    );
     expect(response.body.user).to.be.an("object");
     expect(Object.keys(response.body.user)).to.include.members([
       "id",
@@ -39,7 +48,7 @@ describe("Confirm sign up", () => {
         email: "fabrice.niyomwungeri@andela.com",
         password: "password98"
       });
-    expect(response.status).eql(200);
+    expect(response.status).eql(OK);
     userToken = response.body.token;
   });
 
@@ -47,7 +56,7 @@ describe("Confirm sign up", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${userToken}`);
-    expect(results.status).equal(200);
+    expect(results.status).equal(OK);
     expect(results.body.message).equal("Email confirmed successfully!");
   });
 
@@ -71,8 +80,7 @@ describe("Confirm sign up", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${wrongToken}`);
-    expect(results.status).equal(401);
-    expect(results.body.message).equal("Token is invalid or expired, try again");
+    expect(results.status).equal(UNAUTHORIZED);
   });
 
   it("should fail with invalid token", async () => {

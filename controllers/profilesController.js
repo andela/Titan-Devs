@@ -1,6 +1,8 @@
 import models from "../models";
 import validation from "../middlewares/updateProfileValidator";
+import constants from "../helpers/constants";
 
+const { INTERNAL_SERVER_ERROR, OK, BAD_REQUEST, FORBIDDEN } = constants.statusCode;
 const { User } = models;
 
 /**
@@ -19,10 +21,10 @@ class Profile {
     const usernameFromToken = req.user.username;
     const newUser = validation(req.body.profile);
     if (newUser.error) {
-      return res.status(400).json({ error: newUser.error });
+      return res.status(BAD_REQUEST).json({ error: newUser.error });
     }
     if (usernameFromToken !== usernameParameter) {
-      return res.status(403).json({ error: "Not authorized" });
+      return res.status(FORBIDDEN).json({ error: "Not authorized" });
     }
 
     try {
@@ -32,10 +34,13 @@ class Profile {
       });
       const newProfile = updatedProfile[1][0];
       return res
-        .status(200)
+        .status(OK)
         .json({ message: "Profile updated successfully", profile: newProfile });
     } catch (error) {
-      res.status(500).json({ error });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        error:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -55,12 +60,16 @@ class Profile {
       if (profile == null) {
         throw new Error("No user with that name");
       }
-      return res.status(200).json({ profile });
+      return res.status(OK).json({ profile });
     } catch (error) {
       if (error.message === "No user with that name") {
-        return res.status(400).json({ message: "No user with that name" });
+        return res.status(BAD_REQUEST).json({ message: "No user with that name" });
       }
-      return res.status(500).json({ message: "Error happened", error });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Error happened",
+        error:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -74,9 +83,14 @@ class Profile {
   static async getAllProfiles(req, res) {
     try {
       const profiles = await User.findAll();
-      return res.status(200).json({ profiles });
+      return res.status(OK).json({ profiles });
     } catch (error) {
-      res.status(400).json({ error });
+      res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({
+          error:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
     }
   }
 
@@ -91,15 +105,29 @@ class Profile {
     const { username } = req.params;
     const usernameFromToken = req.user.username;
     if (username !== usernameFromToken) {
-      return res.status(403).json({ error: "Unauthorized request" });
+      return res.status(FORBIDDEN).json({ message: "Unauthorized request" });
     }
     try {
       const deletedUser = await User.destroy({
         where: { username }
       });
-      res.status(200).json({ message: "Profile deleted successfully", deletedUser });
+      if (deletedUser === 0) {
+        throw new Error("There no user with that username");
+      }
+      res.status(OK).json({ message: "Profile deleted successfully" });
     } catch (error) {
-      res.status(500).json({ message: "Error happened", error });
+      if (error.message === "There no user with that username") {
+        return res
+          .status(BAD_REQUEST)
+          .json({ message: `There no user with that username` });
+      }
+      res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({
+          message: "Error happened",
+          error:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
     }
   }
 }

@@ -12,6 +12,9 @@ import routers from "./routes";
 import swaggerDocument from "./swagger.json";
 import joiValidator from "./middlewares/joiValidator";
 import passportConfig from "./middlewares/passport";
+import constants from "./helpers/constants";
+
+const { NOT_FOUND, INTERNAL_SERVER_ERROR } = constants.statusCode;
 
 dotenv.config();
 const isProduction = process.env.NODE_ENV === "production";
@@ -49,7 +52,7 @@ app.use("/api/v1", routers);
 app.use(joiValidator());
 app.use((req, resp, next) => {
   const err = new Error("The page you are looking for cannot be found");
-  err.status = 404;
+  err.status = NOT_FOUND;
   next(err);
 });
 
@@ -58,7 +61,7 @@ if (!isProduction) {
   app.use((err, req, res, next) => {
     // eslint-disable-next-line no-console
     console.log(err.stack);
-    res.status(err.status || 500);
+    res.status(err.status || INTERNAL_SERVER_ERROR);
 
     res.json({
       message: err.message
@@ -68,7 +71,7 @@ if (!isProduction) {
 
 // eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
-  res.status(err.status || 500);
+  res.status(err.status || INTERNAL_SERVER_ERROR);
   res.json({
     message: err.message
   });

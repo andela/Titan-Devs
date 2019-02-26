@@ -3,7 +3,9 @@ import chaiHttp from "chai-http";
 import app from "../../index";
 
 import { users } from "../helpers/testData";
+import constants from "../../helpers/constants";
 
+const {NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser } = users;
 
@@ -47,7 +49,7 @@ describe("POST /api/v1/users/login", () => {
       .end((error, res) => {
         if (error) done(error.message);
         res.body.should.have.property("message").eql("Please provide an email");
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         done();
       });
   });
@@ -62,7 +64,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error);
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Please provide a password");
         done();
       });
@@ -79,7 +81,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Email cannot be empty");
         done();
       });
@@ -96,7 +98,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Password cannot be empty");
         done();
       });
@@ -113,7 +115,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Invalid email or password!");
         done();
       });
@@ -130,7 +132,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(404);
+        res.status.should.be.equal(NOT_FOUND);
         res.body.should.have.property("message").eql("Invalid email or password!");
         done();
       });
@@ -147,7 +149,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(400);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Invalid email format!");
         done();
       });

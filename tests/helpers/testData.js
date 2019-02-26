@@ -1,8 +1,11 @@
 import faker from "faker";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import constants from "../../helpers/constants";
 
 dotenv.config();
+
+const { ACCEPTED, INTERNAL_SERVER_ERROR } = constants;
 const newArticle = {
   title: faker.lorem.words(15),
   description: faker.lorem.words(50),
@@ -91,7 +94,7 @@ const tokenEmailVerication = {
 
 const sendGridResponse = [
   {
-    statusCode: 202,
+    statusCode: ACCEPTED,
     headers: {
       server: "nginx",
       date: "Mon, 18 Feb 2019 10:21:11 GMT",
@@ -136,7 +139,7 @@ const sendGridResponse = [
 const article = {
   title: faker.lorem.words(15),
   description: faker.lorem.words(50),
-  body: faker.lorem.words(500)
+  body: faker.lorem.words(INTERNAL_SERVER_ERROR)
 };
 export {
   newArticle,

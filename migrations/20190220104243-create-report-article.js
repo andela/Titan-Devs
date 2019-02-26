@@ -30,7 +30,7 @@ module.exports = {
         }
       })
       .then(() => {
-        queryInterface.addConstraint("reportArticles", ["userId", "articleId"], {
+        queryInterface.addConstraint("reportArticles", ["userId", "articleId","description"], {
           type: "unique",
           name: "articleId_userId_unique_composite_key"
         });

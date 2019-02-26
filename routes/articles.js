@@ -6,7 +6,7 @@ import checkAuth from "../middlewares/checkAuth";
 
 const article = Router();
 
-article.post("/articles", checkAuth, Article.create);
+
 article.post("/articles/:slug/bookmark", checkAuth, Article.bookmark);
 article.post("/articles/:slug/likes", ArticleLikeController.like);
 article.post("/articles/:slug/dislikes", ArticleLikeController.dislike);
@@ -34,7 +34,6 @@ article
   )
   .get("/articles/:slug/share/email", checkAuth, Article.shareOnEmail)
   .get("/articles/:slug", Article.findOneArticle);
-article.post("/articles", Article.create);
 article.post("/articles/:slug/bookmark", Article.bookmark);
-article.put("/articles/:slug/report", Article.reportArticle);
+article.put("/articles/:slug/report", articleValidator.validateArticle, Article.reportArticle);
 export default article;

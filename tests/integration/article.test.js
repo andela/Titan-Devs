@@ -15,6 +15,7 @@ const {
   OK,
   NOT_FOUND,
   GONE,
+  CONFLICT
 } = constants.statusCode;
 let validSlug;
 chai.use(chaiHttp);
@@ -155,8 +156,8 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "abusive" })
         .end((err, res) => {
-          expect(res.status).equals(OK);
-          expect(res.body.message).to.contain("Article reported");
+          expect(res.status).equals(CONFLICT);
+          expect(res.body.message).to.contain("Article already reported");
           done();
         });
     });

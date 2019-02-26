@@ -1,5 +1,7 @@
 import models from "../models";
+import constants from "../helpers/constants";
 
+const { NOT_FOUND } = constants.statusCode;
 const { Article } = models;
 export default class ArticleValidator {
   static async validateArticle(req, res, next) {
@@ -9,6 +11,6 @@ export default class ArticleValidator {
     req.article = article;
     return article
       ? next()
-      : res.status(404).json({ message: "Article was not found" });
+      : res.status(NOT_FOUND).json({ message: "Article was not found" });
   }
 }
