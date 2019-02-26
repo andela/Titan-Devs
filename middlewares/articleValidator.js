@@ -6,6 +6,7 @@ export default class ArticleValidator {
     const article = await Article.findOne({
       where: { slug: req.params.slug }
     });
+    req.article = article;
     return article
       ? next()
       : res.status(404).json({ message: "Article was not found" });

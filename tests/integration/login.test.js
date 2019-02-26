@@ -1,26 +1,13 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-import models from "../../models";
+
 import { users } from "../helpers/testData";
 
 chai.use(chaiHttp);
 const { dummyUser } = users;
 
 describe("POST /api/v1/users/login", () => {
-  after(async () => {
-    await models.Follower.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-    await models.User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-  });
-
   before("Create a user in database", done => {
     chai
       .request(app)

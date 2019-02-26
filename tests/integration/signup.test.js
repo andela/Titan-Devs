@@ -1,28 +1,17 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
-import models from "../../models";
 import app from "../../index";
-import { users } from "../helpers/testData";
 
-const { dummyUser } = users;
+const dummyUser = {
+  email: "luc.bayo.test@gmail.com",
+  password: "password",
+  username: "luc20179"
+};
 chai.use(chaiHttp);
 should();
 
-describe("SignUp", () => {
-  after(async () => {
-    await models.Follower.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-    await models.User.destroy({
-      where: {},
-      truncate: true,
-      cascade: true
-    });
-  });
-
-  it("should register user with correct details", async () => {
+describe("API end point for auth/signup ", () => {
+  it("it is should register user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -111,7 +100,7 @@ describe("SignUp", () => {
     );
   });
 
-  it("should fail if username already exist", async () => {
+  it("It should fail if email already exist", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")

@@ -81,6 +81,10 @@ export default (sequelize, DataTypes) => {
       as: "likedBy",
       foreignKey: "userId"
     });
+    User.hasMany(models.Rating, {
+      foreignKey: "userId",
+      onDelete: "CASCADE"
+    });
     User.belongsToMany(models.User, {
       through: models.Follower,
       as: "followings",
@@ -92,7 +96,9 @@ export default (sequelize, DataTypes) => {
     User.belongsToMany(models.Article, {
       through: models.ArticleLike,
       as: "likes",
-      foreignKey: "userId"
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      targetKey: "followerId"
     });
     User.hasMany(models.ReportArticle, {
       foreignKey: "userId",

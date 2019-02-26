@@ -11,14 +11,7 @@ should();
 let userToken;
 
 describe("/API end point /users/confirmation/:auth_token", () => {
-  before(async () => {
-    await models.User.destroy({
-      where: { email: "fabrice.niyomwungeri@andela.com" },
-      truncate: true,
-      cascade: true
-    });
-  });
-  it("it is should register user with corret details", async () => {
+  it("it is should register user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
