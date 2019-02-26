@@ -41,7 +41,7 @@ const validateInputs = newInfo => {
   });
   Joi.validate(newUser, Schema, (error, _values) => {
     if (error) {
-      const err = error.details[0].message.replace(/\"/gi, "");
+      const err = error.details[0].message.replace(/"/gi, "");
       newUser.error = err;
     }
   });
