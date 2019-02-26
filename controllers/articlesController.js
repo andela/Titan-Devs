@@ -9,7 +9,9 @@ const {
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST,
-  OK
+  GONE,
+  OK,
+  CONFLICT
 } = constants.statusCode;
 /**
  * @class PostController
@@ -63,13 +65,67 @@ export default class PostController {
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
       }
-      return res.status(INTERNAL_SERVER_ERROR).send({
-        message:
-          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .send({
+          message:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
     }
   }
 
+  /**
+   * @description It helps the user to bookmark the article for reading it later.
+   * @param  {object} req - The request object
+   * @param  {object} res - The response object
+   * @return {object} - It returns the request response object
+   */
+
+  static async bookmark(req, res) {
+    try {
+      const { id: userId } = req.user;
+      const { slug } = req.params;
+      const user = await User.findOne({ where: { id: userId } });
+      const article = await Article.findOne({ where: { slug } });
+      if (!article || !user) {
+        return res.status(NOT_FOUND).json({
+          status: NOT_FOUND,
+          message: `The article with this slug ${slug} doesn't exist`
+        });
+      }
+      const { id: articleId } = article.dataValues;
+      const bookmark = await Bookmark.findOne({ where: { userId, articleId } });
+      if (!bookmark) {
+        const bookmarked = await Bookmark.create({ userId, articleId });
+        if (bookmarked) {
+          return res.status(CREATED).json({
+            message: "Article bookmarked",
+            bookmark: bookmarked.dataValues,
+            status: CREATED
+          });
+        }
+        return res.status(GONE).json({
+          message: "Error while bookmarking the article",
+          status: GONE
+        });
+      }
+      const { id } = bookmark.dataValues;
+      const deleted = Bookmark.destroy({ where: { id } });
+      return deleted
+        ? res.status(GONE).json({ message: "Bookmark deleted", status: GONE })
+        : res.status(GONE).json({
+            message: "Error while discarding the bookmark",
+            status: GONE
+          });
+    } catch (error) {
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .send({
+          message:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
+    }
+  }
   /**
    *
    * FindOneArticle.
@@ -87,6 +143,172 @@ export default class PostController {
         article
       });
     } catch (error) {
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+    }
+  }
+  /**
+   *
+   * shareOnEmail.
+   *
+   * @param  {object} req - The request object.
+   * @param  {object} res - The response object.
+   * @return {object} - It returns the response object.
+   */
+
+  static async shareOnEmail(req, res) {
+    try {
+      const { slug } = req.params;
+      const article = await Article.findOne({ where: { slug } });
+      if (!article) {
+        return res.status(BAD_REQUEST).json({
+          message: "Article doesn't exist"
+        });
+      }
+      opn(
+        `mailto:?subject=${article.dataValues.title}&body=${
+          process.env.SERVER_HOST
+        }/article/${slug}`
+      );
+      return res.status(OK).json({
+        message: "Article ready to be posted on Email"
+      });
+    } catch (error) {
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+    }
+  }
+
+  /**
+   *
+   * ShareOnFacebook.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnFacebook(req, res) {
+    try {
+      const { slug } = req.params;
+      if (process.env === "production") {
+        opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=${
+            process.env.SERVER_HOST
+          }/article/${slug}`
+        );
+      } else {
+        opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/article/${slug}`
+        );
+      }
+
+      return res.status(OK).json({
+        message: "Article ready to be posted on facebook"
+      });
+    } catch (error) {
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+    }
+  }
+
+  /**
+   *
+   * ShareOnTwitter.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnTwitter(req, res) {
+    try {
+      const { slug } = req.params;
+      opn(
+        `https://twitter.com/intent/tweet?text=${
+          process.env.SERVER_HOST
+        }/article/${slug}`
+      );
+      return res.status(200).json({
+        message: "Article ready to be posted on twitter"
+      });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+    }
+  }
+  /**
+   *
+   * ShareOnLinkedin.
+   *
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @return {Object} - It returns the response object.
+   */
+
+  static async shareOnLinkedin(req, res) {
+    try {
+      const { slug } = req.params;
+      if (process.env === "production") {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${
+            process.env.SERVER_HOST
+          }/article/${slug}`
+        );
+      } else {
+        opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${slug}`
+        );
+      }
+      return res.status(OK).json({
+        message: "Article ready to be posted on linkedIn"
+      });
+    } catch (error) {
+      return res
+        .status(INTERNAL_SERVER_ERROR)
+        .json({
+          message:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
+    }
+  }
+  /**
+   * @description This creates report an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+
+  static async reportArticle(req, res) {
+    try {
+      const { slug } = req.params;
+      const { id: userId } = req.user;
+      const { description } = req.body;
+      if (!description) {
+        return res.status(BAD_REQUEST).json({ message: "Please, give a reason" });
+      }
+      const article = await Article.findOne({
+        where: { slug }
+      });
+      const { id: articleId } = article.dataValues;
+      const reportArticle = await ReportArticle.create({
+        articleId,
+        userId,
+        description
+      });
+      return res.status(OK).json({
+        article
+      });
+    } catch (error) {
+      if (error.name === "SequelizeUniqueConstraintError") {
+        return res.status(CONFLICT).json({
+          message: "Article already reported"
+        });
+      }
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
