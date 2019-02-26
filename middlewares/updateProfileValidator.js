@@ -33,14 +33,15 @@ const Schema = Joi.object().keys({
     .max(30)
 });
 const validateInputs = newInfo => {
-  let newUser = {};
-  let fields = Object.keys(newInfo);
+  const newUser = {};
+  const fields = Object.keys(newInfo);
+  // eslint-disable-next-line array-callback-return
   fields.map(key => {
     newUser[key] = newInfo[key];
   });
-  Joi.validate(newUser, Schema, (error, values) => {
+  Joi.validate(newUser, Schema, (error, _values) => {
     if (error) {
-      let err = error.details[0].message.replace(/\"/gi, "");
+      const err = error.details[0].message.replace(/\"/gi, "");
       newUser.error = err;
     }
   });
