@@ -60,10 +60,11 @@ class LoginController {
             .json({ message: "Invalid email or password!", error });
         });
       })
-      .catch(() => {
+      .catch(error => {
         return res.status(INTERNAL_SERVER_ERROR).json({
-          error:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+          message:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it",
+            error
         });
       });
   }
