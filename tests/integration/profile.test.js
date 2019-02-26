@@ -1,4 +1,5 @@
 import chai from "chai";
+import sinon from "sinon";
 import chaiHttp from "chai-http";
 
 import app from "../../index";
@@ -70,7 +71,32 @@ describe("Profile controller", () => {
       });
   });
 
-  it("should test unauthorized attempt", done => {
+  it("should test updating a profile with invalid first name and last name", done => {
+    const user = {
+      profile: {
+        bio: "I am a software developer",
+        image: "image-link",
+        firstname: " ",
+        lastname: " ",
+        gender: "Male",
+        phone: "07836378367373",
+        address: "Kigali city"
+      }
+    };
+    chai
+      .request(app)
+      .put("/api/v1/profiles/luc2018")
+      .send(user)
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(400);
+        result.body.should.have.property("error").which.is.a("string");
+        done();
+      });
+  });
+
+  it("should test unauthorized update attempt", done => {
     const user = {
       profile: {
         bio: "I am a software developer",
@@ -87,6 +113,47 @@ describe("Profile controller", () => {
         if (error) done(error);
         result.status.should.be.eql(403);
         result.body.should.have.property("error").eql("Not authorized");
+        done();
+      });
+  });
+
+  it("fakes server error on update ", done => {
+    const user = {
+      profile: {
+        bio: "I am a software developer",
+        image: "image-link",
+        following: "false"
+      }
+    };
+    const res = {
+      status() {},
+      send() {}
+    };
+
+    sinon.stub(res, "status").returnsThis();
+    sinon.stub(User, "update").throws();
+    chai
+      .request(app)
+      .put("/api/v1/profiles/luc2018")
+      .send(user)
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, res) => {
+        if (error) done(error);
+        res.status.should.be.eql(500);
+        res.body.should.have.property("error");
+        done();
+      });
+  });
+
+  it("should test unauthorized delete attempt", done => {
+    chai
+      .request(app)
+      .delete("/api/v1/profiles/Yves2013")
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(403);
+        result.body.should.have.property("error").eql("Unauthorized request");
         done();
       });
   });

@@ -110,9 +110,10 @@ class UserController {
         }
       });
     } catch (error) {
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Sending email failed", errors: "Something happened, please try again" });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Sending email failed",
+        errors: "Something happened, please try again"
+      });
     }
   }
 
@@ -161,9 +162,10 @@ class UserController {
         });
       });
     } catch (error) {
-      res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Password update failed", errors: "Something happened, please try again" });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Password update failed",
+        errors: "Something happened, please try again"
+      });
     }
   }
   /**
@@ -203,7 +205,7 @@ class UserController {
       );
       await sendEmail(email, "Confirm your email", template(token));
       return res.status(OK).json({
-        message: "Email sent successufully"
+        message: "Email sent successfully"
       });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({
@@ -226,17 +228,15 @@ class UserController {
         req.params.auth_token,
         process.env.SECRET_KEY,
         async (error, user) => {
-          if (!user) {
-            return res.status(UNAUTHORIZED).json({ message: "Token is invalid" });
-          }
-          const verifiedUser = await User.findOne({
-            where: { id: user.id, email: user.email }
-          });
           if (error) {
             return res
               .status(UNAUTHORIZED)
               .json({ message: "Token is invalid or expired, try again" });
           }
+          const verifiedUser = await User.findOne({
+            where: { id: user.id, email: user.email }
+          });
+
           if (!verifiedUser) {
             return res
               .status(NOT_FOUND)

@@ -2,16 +2,27 @@ import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import app from "../../index";
 import models from "../../models";
+import constants from "../../helpers/constants";
 import { users, tokenEmailVerication } from "../helpers/testData";
 
 const { dummyUser3 } = users;
-const { invalidToken, wrongToken } = tokenEmailVerication;
+const { User } = models;
+const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;
 chai.use(chaiHttp);
 should();
 let userToken;
+const { ACCEPTED, NOT_FOUND } = constants.statusCode;
 
-describe("/API end point /users/confirmation/:auth_token", () => {
-  it("it is should register user with correct details", async () => {
+describe("Confirm sign up", () => {
+  before(async () => {
+    await User.destroy({
+      where: { email: "fabrice.niyomwungeri@andela.com" },
+      truncate: true,
+      cascade: true
+    });
+  });
+
+  it(" should register user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
@@ -28,7 +39,8 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     ]);
     userToken = response.body.token;
   });
-  it("it is should login user with corret details", async () => {
+
+  it("should login user with correct details", async () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users/login")
@@ -39,26 +51,56 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     expect(response.status).eql(200);
     userToken = response.body.token;
   });
-  it("/GET it should pass with valid token", async () => {
+
+  it("should pass with valid token", async () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${userToken}`);
     expect(results.status).equal(200);
     expect(results.body.message).equal("Email confirmed successfully!");
   });
-  it("/PUT it should fail with wrong token", async () => {
+
+  it("should return a user already verified", async () => {
+    const results = await chai
+      .request(app)
+      .get(`/api/v1/users/confirm/${userToken}`);
+    expect(results.status).equal(ACCEPTED);
+    expect(results.body.message).equal("User already verified!");
+  });
+
+  it("should return a non-existing user", async () => {
+    const results = await chai.request(app).get(`/api/v1/users/confirm/${noUser}`);
+    expect(results.status).equal(NOT_FOUND);
+    expect(results.body.message).equal(
+      "User verification failed, User was not found"
+    );
+  });
+
+  it("should fail with wrong token", async () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${wrongToken}`);
     expect(results.status).equal(401);
+    expect(results.body.message).equal("Token is invalid or expired, try again");
   });
-  it("/PUT it should fail with invalid token", async () => {
+
+  it("should fail with invalid token", async () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${invalidToken}`);
     expect(results.status).equal(401);
+    expect(results.body.message).equal("Token is invalid or expired, try again");
   });
-  it("/PUT it should fail with invalid email", async () => {
+
+  it("should fail with imitated token", async () => {
+    const results = await chai
+      .request(app)
+      .get(`/api/v1/users/confirm/${mutatedToken}`);
+    expect(results.status).equal(401);
+    expect(results.body.message).equal("Token is invalid or expired, try again");
+  });
+
+  it("should fail with invalid email", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/resend`)
@@ -66,12 +108,31 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     expect(results.body.message).to.be.equal("User not found");
     expect(results.body).to.have.property("message");
   });
-  it("/PUT it should fail with already verified account", async () => {
+
+  it("should fail with already verified account", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/resend`)
       .send({ email: "fabrice.niyomwungeri@andela.com" });
     expect(results.body.message).to.be.equal("User verified");
     expect(results.body).to.have.property("message");
+  });
+
+  it("should fail with missing email error", async () => {
+    const results = await chai
+      .request(app)
+      .put(`/api/v1/users/resend`)
+      .send({});
+    expect(results.status).equals(400);
+    expect(results.body.message).to.be.equal("Email is required");
+  });
+
+  it("should return invalid email error", async () => {
+    const results = await chai
+      .request(app)
+      .put(`/api/v1/users/resend`)
+      .send({ email: "yvesiraguha" });
+    expect(results.status).equals(400);
+    expect(results.body.message).to.be.equal("Invalid email");
   });
 });

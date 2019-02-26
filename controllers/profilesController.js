@@ -91,20 +91,14 @@ class Profile {
     const { username } = req.params;
     const usernameFromToken = req.user.username;
     if (username !== usernameFromToken) {
-      return res.status(403).json({ message: "Unauthorized request" });
+      return res.status(403).json({ error: "Unauthorized request" });
     }
     try {
       const deletedUser = await User.destroy({
         where: { username }
       });
-      if (deletedUser === 0) {
-        throw new Error("There no user with that username");
-      }
-      res.status(200).json({ message: "Profile deleted successfully" });
+      res.status(200).json({ message: "Profile deleted successfully", deletedUser });
     } catch (error) {
-      if (error.message === "There no user with that username") {
-        return res.status(400).json({ message: `There no user with that username` });
-      }
       res.status(500).json({ message: "Error happened", error });
     }
   }

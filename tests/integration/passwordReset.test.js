@@ -38,6 +38,18 @@ describe("Reset Password", () => {
     expect(results.body.user).to.have.property("resetToken");
   });
 
+  it("should return an email required error", async () => {
+    const results = await chai
+      .request(app)
+      .post("/api/v1/users/reset_password")
+      .send({});
+    expect(results.status).equal(404);
+    expect(results.body).to.be.an("object");
+    expect(results.body)
+      .to.have.property("message")
+      .eql("Email is required");
+  });
+
   it("should not send the link to non existing user", async () => {
     const results = await chai
       .request(app)

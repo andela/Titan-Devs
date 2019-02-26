@@ -7,9 +7,6 @@
 
 export default article => {
   const { body } = article.body;
-  if (!body) {
-    return 0;
-  }
   const readTime = Math.ceil(body.split(" ").length / 265);
   return readTime;
 };
