@@ -5,6 +5,7 @@ import articleValidator from "../helpers/validators/articleValidators";
 import calculateReadTime from "../helpers/calculateReadTime";
 
 const { User, Article, Tag, ArticleTag, Bookmark, ReportArticle } = models;
+let opnResponse;
 const {
   CREATED,
   NOT_FOUND,
@@ -66,12 +67,10 @@ export default class PostController {
           .status(BAD_REQUEST)
           .send({ message: error.details[0].message, status: BAD_REQUEST });
       }
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({
-          message:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
+      return res.status(INTERNAL_SERVER_ERROR).send({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -119,12 +118,10 @@ export default class PostController {
             status: GONE
           });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({
-          message:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
+      return res.status(INTERNAL_SERVER_ERROR).send({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
   /**
@@ -144,9 +141,10 @@ export default class PostController {
         article
       });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
   /**
@@ -160,6 +158,7 @@ export default class PostController {
 
   static async shareOnEmail(req, res) {
     try {
+      opnResponse = null;
       const { slug } = req.params;
       const article = await Article.findOne({ where: { slug } });
       if (!article) {
@@ -167,18 +166,30 @@ export default class PostController {
           message: "Article doesn't exist"
         });
       }
-      opn(
-        `mailto:?subject=${article.dataValues.title}&body=${
-          process.env.SERVER_HOST
-        }/article/${slug}`
-      );
+      if (process.env.NODE_ENV === "test") {
+        opnResponse = await opn(
+          `mailto:?subject=${article.dataValues.title}&body=${
+            process.env.SERVER_HOST
+          }/article/${slug}`,
+          { wait: false, app: "non-existing-web-browser" }
+        );
+      } else {
+        opnResponse = await opn(
+          `mailto:?subject=${article.dataValues.title}&body=${
+            process.env.SERVER_HOST
+          }/article/${slug}`,
+          { wait: false }
+        );
+      }
       return res.status(OK).json({
-        message: "Article ready to be posted on Email"
+        message: "Article ready to be posted on Email",
+        response: opnResponse
       });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -193,26 +204,38 @@ export default class PostController {
 
   static async shareOnFacebook(req, res) {
     try {
+      opnResponse = null;
       const { slug } = req.params;
-      if (process.env === "production") {
-        opn(
+      if (process.env.NODE_ENV === "production") {
+        opnResponse = await opn(
           `https://www.facebook.com/sharer/sharer.php?&u=${
             process.env.SERVER_HOST
-          }/article/${slug}`
+          }/article/${slug}`,
+          { wait: false }
+        );
+      } else if (process.env.NODE_ENV === "test") {
+        opnResponse = await opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=${
+            process.env.SERVER_HOST
+          }/article/${slug}`,
+          { wait: false, app: "non-existing-web-browser" }
         );
       } else {
-        opn(
-          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/article/${slug}`
+        opnResponse = await opn(
+          `https://www.facebook.com/sharer/sharer.php?&u=http://tolocalhost.com/api/v1/articles/${slug}`,
+          { wait: false }
         );
       }
 
       return res.status(OK).json({
-        message: "Article ready to be posted on facebook"
+        message: "Article ready to be posted on facebook",
+        response: opnResponse
       });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -227,19 +250,32 @@ export default class PostController {
 
   static async shareOnTwitter(req, res) {
     try {
+      opnResponse = null;
       const { slug } = req.params;
-      opn(
-        `https://twitter.com/intent/tweet?text=${
-          process.env.SERVER_HOST
-        }/article/${slug}`
-      );
-      return res.status(200).json({
-        message: "Article ready to be posted on twitter"
+      if (process.env.NODE_ENV === "test") {
+        opnResponse = await opn(
+          `https://twitter.com/intent/tweet?text=${
+            process.env.SERVER_HOST
+          }/articles/${slug}`,
+          { wait: false, app: "non-existing-web-browser" }
+        );
+      } else {
+        opnResponse = await opn(
+          `https://twitter.com/intent/tweet?text=${
+            process.env.SERVER_HOST
+          }/articles/${slug}`,
+          { wait: false }
+        );
+      }
+      return res.status(OK).json({
+        message: "Article ready to be posted on twitter",
+        response: opnResponse
       });
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
   /**
@@ -253,28 +289,35 @@ export default class PostController {
 
   static async shareOnLinkedin(req, res) {
     try {
+      opnResponse = null;
       const { slug } = req.params;
-      if (process.env === "production") {
-        opn(
+      if (process.env.NODE_ENV === "production") {
+        opnResponse = await opn(
           `https://www.linkedin.com/sharing/share-offsite/?url=${
             process.env.SERVER_HOST
-          }/article/${slug}`
+          }/articles/${slug}`,
+          { wait: false }
+        );
+      } else if (process.env.NODE_ENV === "test") {
+        opnResponse = await opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/articles/${slug}`,
+          { wait: false, app: "non-existing-web-browser" }
         );
       } else {
-        opn(
-          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/article/${slug}`
+        opnResponse = await opn(
+          `https://www.linkedin.com/sharing/share-offsite/?url=http://tolocalhost.com/api/v1/articles/${slug}`,
+          { wait: false }
         );
       }
       return res.status(OK).json({
-        message: "Article ready to be posted on linkedIn"
+        message: "Article ready to be posted on linkedIn",
+        response: opnResponse
       });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({
-          message:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
   /**

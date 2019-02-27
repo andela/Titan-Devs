@@ -241,6 +241,7 @@ describe("Share Articles endpoints", () => {
       .end((err, res) => {
         expect(res.status).equals(OK);
         expect(res.body.message).to.contain("Article ready to be posted on twitter");
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -254,6 +255,7 @@ describe("Share Articles endpoints", () => {
         expect(res.body.message).to.contain(
           "Article ready to be posted on facebook"
         );
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -267,6 +269,7 @@ describe("Share Articles endpoints", () => {
         expect(res.body.message).to.contain(
           "Article ready to be posted on linkedIn"
         );
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -278,6 +281,7 @@ describe("Share Articles endpoints", () => {
       .end((err, res) => {
         expect(res.status).equals(OK);
         expect(res.body.message).to.contain("Article ready to be posted on Email");
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });

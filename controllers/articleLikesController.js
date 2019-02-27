@@ -133,7 +133,8 @@ export default class ArticleLikesController {
       res.json({ article });
     } catch (err) {
       res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it",
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
       });
     }
   }
