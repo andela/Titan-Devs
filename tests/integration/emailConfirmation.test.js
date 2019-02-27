@@ -1,23 +1,15 @@
 import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
-import jwt from "jsonwebtoken";
 import app from "../../index";
 import constants from "../../helpers/constants";
 import { users, tokenEmailVerication } from "../helpers/testData";
 
 const { dummyUser3 } = users;
-const { invalidToken, wrongToken, mutatedToken } = tokenEmailVerication;
+const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;
 chai.use(chaiHttp);
 should();
 let userToken;
-const noUser = jwt.sign(
-  {
-    email: "yves.iraguha@gmail.com",
-    id: "a934b3c4-9593-4455-b08e-c82de23ed165",
-    username: "YvesIraguha"
-  },
-  process.env.SECRET_KEY
-);
+
 const { ACCEPTED, NOT_FOUND } = constants.statusCode;
 
 describe("Confirm sign up", () => {

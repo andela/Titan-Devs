@@ -3,6 +3,7 @@ import sinon from "sinon";
 import chaiHttp from "chai-http";
 import models from "../../models";
 import app from "../../index";
+import { users } from "../helpers/testData";
 
 chai.use(chaiHttp);
 
@@ -11,11 +12,7 @@ const { User } = models;
 describe("Profile controller", () => {
   let token;
   before("Login", done => {
-    const user = {
-      email: "me@example.com",
-      password: "password",
-      username: "luc2018"
-    };
+    const user = users.dummyUser4;
     chai
       .request(app)
       .post("/api/v1/users")
@@ -37,17 +34,7 @@ describe("Profile controller", () => {
   });
 
   it("should test updating a profile", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        firstname: "YvesIraguha",
-        lastname: "Iraguha",
-        gender: "Male",
-        phone: "07836378367373",
-        address: "Kigali city"
-      }
-    };
+    const user = users.dummyUser5;
     chai
       .request(app)
       .put("/api/v1/profiles/luc2018")
@@ -74,17 +61,7 @@ describe("Profile controller", () => {
   });
 
   it("should test updating a profile with invalid first name and last name", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        firstname: " ",
-        lastname: " ",
-        gender: "Male",
-        phone: "07836378367373",
-        address: "Kigali city"
-      }
-    };
+    const user = users.dummyUser6;
     chai
       .request(app)
       .put("/api/v1/profiles/luc2018")
@@ -99,13 +76,7 @@ describe("Profile controller", () => {
   });
 
   it("should test unauthorized update attempt", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        following: "false"
-      }
-    };
+    const user = users.dummyUser7;
     chai
       .request(app)
       .put("/api/v1/profiles/Yves2013")
@@ -120,13 +91,7 @@ describe("Profile controller", () => {
   });
 
   it("fakes server error on update ", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        following: "false"
-      }
-    };
+    const user = users.dummyUser8;
     const res = {
       status() {},
       send() {}
