@@ -185,8 +185,9 @@ describe("# Articles endpoints", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(rest)
       .end((err, res) => {
-        expect(res.status).equals(BAD_REQUEST);
-        expect(res.body.message).to.contain('"title" is required');
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on twitter");
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -199,8 +200,11 @@ describe("# Articles endpoints", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(rest)
       .end((err, res) => {
-        expect(res.status).equals(BAD_REQUEST);
-        expect(res.body.message).to.contain('"body" is required');
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on facebook"
+        );
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -213,8 +217,11 @@ describe("# Articles endpoints", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(rest)
       .end((err, res) => {
-        expect(res.status).equals(BAD_REQUEST);
-        expect(res.body.message).to.contain('"description" is required');
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain(
+          "Article ready to be posted on linkedIn"
+        );
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
@@ -227,12 +234,9 @@ describe("# Articles endpoints", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(rest)
       .end((err, res) => {
-        expect(res.status).equals(CREATED);
-        expect(res.body.message).to.contain("Article created");
-        expect(res.body).to.haveOwnProperty("article");
-        expect(res.body.article).to.haveOwnProperty("createdAt");
-        expect(res.body.article).to.haveOwnProperty("title");
-        expect(res.body.article.title).to.contain(newArticle.title);
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Article ready to be posted on Email");
+        expect(res.body.response.spawnfile).to.equal("open");
         done();
       });
   });
