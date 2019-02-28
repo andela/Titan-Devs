@@ -30,7 +30,7 @@ export default class ShareArticleController {
           `mailto:?subject=${article.dataValues.title}&body=${
             process.env.SERVER_HOST
           }/article/${slug}`,
-          { wait: false, app: "non-existing-web-browser" }
+          { wait: false, app: "internet explorer" }
         );
       } else {
         opnResponse = await opn(
