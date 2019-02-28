@@ -92,6 +92,15 @@ describe("User following", () => {
       expect(results.body.followers).length(1);
     });
 
+    it("should return a non-existing user error", async () => {
+      const results = await chai
+        .request(app)
+        .get(`/api/v1/profiles/iraguha2020/followers`)
+        .set({ Authorization: `Bearer ${userToken}` });
+      expect(results.status).eql(404);
+      expect(results.body.message).eql("User not found");
+    });
+
     it("should return an empty array when user has no followers", async () => {
       const results = await chai
         .request(app)
@@ -115,6 +124,16 @@ describe("User following", () => {
       expect(results.body.message).eql("You have unfollowed this author");
     });
 
+    it("should throw a non-existing user error", async () => {
+      const results = await chai
+        .request(app)
+        .delete(`/api/v1/profiles/iraguha2019/follow`)
+        .set({ Authorization: `Bearer ${userToken}` });
+      expect(results.status).eql(404);
+      expect(results.body).to.be.an("object");
+      expect(results.body.message).eql("User not found");
+    });
+
     it("should return an error message when unfollowing an author you were not following", async () => {
       const results = await chai
         .request(app)
@@ -136,6 +155,15 @@ describe("User following", () => {
       expect(results.body.user).to.have.property("followings");
       expect(results.body.user.followings).to.be.an("array");
       expect(results.body.user.followings).length(0);
+    });
+
+    it("should return an non-existing user error", async () => {
+      const results = await chai
+        .request(app)
+        .get(`/api/v1/profiles/iraguha2030/followings`)
+        .set({ Authorization: `Bearer ${userToken}` });
+      expect(results.status).eql(404);
+      expect(results.body.message).eql("User not found");
     });
 
     it("should return a user's number of followers", async () => {

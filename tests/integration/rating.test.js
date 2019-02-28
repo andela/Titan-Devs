@@ -104,6 +104,19 @@ describe("All test related to rating ", () => {
         done();
       });
   });
+
+  it("cannot update rate if the rating is less than 1 and more than 5", done => {
+    chai
+      .request(app)
+      .put(`/api/v1/article/${post.slug}/rating`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({ postId: post.id, rating: 10 })
+      .end((err, res) => {
+        expect(res.status).to.be.eql(BAD_REQUEST);
+        expect(res.body.message).to.be.eql("Please provide a valid rating");
+        done();
+      });
+  });
   it("can rate", done => {
     chai
       .request(app)

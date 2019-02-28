@@ -1,5 +1,8 @@
 import faker from "faker";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
+dotenv.config();
 const newArticle = {
   title: faker.lorem.words(15),
   description: faker.lorem.words(50),
@@ -25,6 +28,47 @@ const users = {
     email: "fabrice.niyomwungeri@andela.com",
     password: "password98",
     username: "fabrice92"
+  },
+  dummyUser4: {
+    email: "me@example.com",
+    password: "password",
+    username: "luc2018"
+  },
+  dummyUser5: {
+    profile: {
+      bio: "I am a software developer",
+      image: "image-link",
+      firstname: "YvesIraguha",
+      lastname: "Iraguha",
+      gender: "Male",
+      phone: "07836378367373",
+      address: "Kigali city"
+    }
+  },
+  dummyUser6: {
+    profile: {
+      bio: "I am a software developer",
+      image: "image-link",
+      firstname: " ",
+      lastname: " ",
+      gender: "Male",
+      phone: "07836378367373",
+      address: "Kigali city"
+    }
+  },
+  dummyUser7: {
+    profile: {
+      bio: "I am a software developer",
+      image: "image-link",
+      following: "false"
+    }
+  },
+  dummyUser8: {
+    profile: {
+      bio: "I am a software developer",
+      image: "image-link",
+      following: "false"
+    }
   }
 };
 
@@ -32,7 +76,17 @@ const tokenEmailVerication = {
   invalidToken:
     "eyJhbGciOiJIUzJpZCI6ImI5ZjZjN2JiLWM1NTItNDUyNS04MTUwLWI0NTI5NjNkMTZiZiIsImlhdCI6MTU1MDAwODA4Mn0.xCpwywFSzqHXbikot0SzS8fUpPKsqMVMtgmpf4OD_l8",
   wrongToken:
-    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0MzM0YTA4LTMyMWEtNDdhYS1iMGVmLTQ5ODZmMWYyN2Q0OSIsImlhdCI6MTU1MDA1MzIzN30.O2QZO576DJ-iLc1ge7yU-jHdoAlQq9CK9Kc6QGqRuid"
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjU0MzM0YTA4LTMyMWEtNDdhYS1iMGVmLTQ5ODZmMWYyN2Q0OSIsImlhdCI6MTU1MDA1MzIzN30.O2QZO576DJ-iLc1ge7yU-jHdoAlQq9CK9Kc6QGqRuid",
+  mutatedToken: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJmaXJzdG5hbWUiOiJZdmVzIiwibGFzdG5hbWUiOiJJcmFndWhhIiwiSWQiOiJhc3NhZGFmYWRhaGZhaGRhaGRhaCIsImlhdCI6MTU1MTE5NDI0NX0.
+  BD3GY0JypL9E0B3kgh0ps3m2CJv_8UXMfz_-SI92nCE`,
+  noUser: jwt.sign(
+    {
+      email: "yves.iraguha@gmail.com",
+      id: "a934b3c4-9593-4455-b08e-c82de23ed165",
+      username: "YvesIraguha"
+    },
+    process.env.SECRET_KEY
+  )
 };
 
 const sendGridResponse = [
@@ -71,8 +125,7 @@ const sendGridResponse = [
       headers: {
         Accept: "application/json",
         "User-agent": "sendgrid/6.3.0;nodejs",
-        Authorization:
-          "Bearer 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",
+        Authorization: process.env.SENDGRID_API_KEY,
         "content-type": "application/json",
         "content-length": 2500
       }

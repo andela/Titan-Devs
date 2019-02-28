@@ -1,18 +1,18 @@
 import chai from "chai";
+import sinon from "sinon";
 import chaiHttp from "chai-http";
-
+import models from "../../models";
 import app from "../../index";
+import { users } from "../helpers/testData";
 
 chai.use(chaiHttp);
+
+const { User } = models;
 
 describe("Profile controller", () => {
   let token;
   before("Login", done => {
-    const user = {
-      email: "me@example.com",
-      password: "password",
-      username: "luc2018"
-    };
+    const user = users.dummyUser4;
     chai
       .request(app)
       .post("/api/v1/users")
@@ -34,17 +34,7 @@ describe("Profile controller", () => {
   });
 
   it("should test updating a profile", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        firstname: "YvesIraguha",
-        lastname: "Iraguha",
-        gender: "Male",
-        phone: "07836378367373",
-        address: "Kigali city"
-      }
-    };
+    const user = users.dummyUser5;
     chai
       .request(app)
       .put("/api/v1/profiles/luc2018")
@@ -70,14 +60,23 @@ describe("Profile controller", () => {
       });
   });
 
-  it("should test unauthorized attempt", done => {
-    const user = {
-      profile: {
-        bio: "I am a software developer",
-        image: "image-link",
-        following: "false"
-      }
-    };
+  it("should test updating a profile with invalid first name and last name", done => {
+    const user = users.dummyUser6;
+    chai
+      .request(app)
+      .put("/api/v1/profiles/luc2018")
+      .send(user)
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(400);
+        result.body.should.have.property("error").which.is.a("string");
+        done();
+      });
+  });
+
+  it("should test unauthorized update attempt", done => {
+    const user = users.dummyUser7;
     chai
       .request(app)
       .put("/api/v1/profiles/Yves2013")
@@ -87,6 +86,41 @@ describe("Profile controller", () => {
         if (error) done(error);
         result.status.should.be.eql(403);
         result.body.should.have.property("error").eql("Not authorized");
+        done();
+      });
+  });
+
+  it("fakes server error on update ", done => {
+    const user = users.dummyUser8;
+    const res = {
+      status() {},
+      send() {}
+    };
+
+    sinon.stub(res, "status").returnsThis();
+    sinon.stub(User, "update").throws();
+    chai
+      .request(app)
+      .put("/api/v1/profiles/luc2018")
+      .send(user)
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, res) => {
+        if (error) done(error);
+        res.status.should.be.eql(500);
+        res.body.should.have.property("error");
+        done();
+      });
+  });
+
+  it("should test unauthorized delete attempt", done => {
+    chai
+      .request(app)
+      .delete("/api/v1/profiles/Yves2013")
+      .set({ Authorization: `Bearer ${token}` })
+      .end((error, result) => {
+        if (error) done(error);
+        result.status.should.be.eql(403);
+        result.body.should.have.property("error").eql("Unauthorized request");
         done();
       });
   });
