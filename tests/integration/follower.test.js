@@ -4,7 +4,7 @@ import { users } from "../helpers/testData";
 import app from "../../index";
 import constants from "../../helpers/constants";
 
-const { CREATED, OK, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
+const { CREATED, OK, NOT_FOUND, ACCEPTED, CONFLICT, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser, dummyUser2 } = users;
 
