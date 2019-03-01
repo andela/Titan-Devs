@@ -5,7 +5,7 @@ import constants from "../../helpers/constants";
 import app from "../../index";
 import { sendGridResponse } from "../helpers/testData";
 
-const { CREATED, OK, BAD_REQUEST } = constants.statusCode;
+const { CREATED, OK, BAD_REQUEST, CONFLICT } = constants.statusCode;
 const dummyUser = {
   email: "luc.bayo.test@gmail.com",
   password: "password",
@@ -74,7 +74,7 @@ describe("API end point for auth/signup ", () => {
         password: "aabayo7876865",
         username: "jean786"
       });
-    expect(response.status).equal(409);
+    expect(response.status).equal(CONFLICT);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The email is already taken");
   });
@@ -104,7 +104,7 @@ describe("API end point for auth/signup ", () => {
         password: "password",
         username: "7aba^>"
       });
-    expect(response.status).equal(409);
+    expect(response.status).equal(CONFLICT);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql(
       "The username must begin with letter and only contains alphabet and numbers not symbols"
@@ -119,7 +119,7 @@ describe("API end point for auth/signup ", () => {
         ...dummyUser,
         email: "jean@andela.com"
       });
-    expect(response.status).equal(409);
+    expect(response.status).equal(CONFLICT);
     expect(response.body).to.be.an("object");
     expect(response.body.message).eql("The username is already taken");
   });

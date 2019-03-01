@@ -1,7 +1,7 @@
 import constants from "../helpers/constants";
 import { isEmpty, isEmailValid, isAlphanumeric } from "../helpers/funcValidators";
 
-const { BAD_REQUEST } = constants.statusCode;
+const { BAD_REQUEST, CONFLICT } = constants.statusCode;
 
 export default class SignupValidator {
   static async allAttributes(req, res, next) {
@@ -39,7 +39,7 @@ export default class SignupValidator {
     const { username } = req.body;
     return isAlphanumeric(username) && /[a-z]/i.test(username.trim()[0])
       ? next()
-      : res.status(409).json({
+      : res.status(CONFLICT).json({
           message:
             "The username must begin with letter and only contains alphabet and numbers not symbols"
         });

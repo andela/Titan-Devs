@@ -6,7 +6,7 @@ import { users, tokenEmailVerication, sendGridResponse } from "../helpers/testDa
 
 import constants from "../../helpers/constants";
 
-const { CREATED, UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED} = constants.statusCode;
+const { CREATED, UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED, BAD_REQUEST } = constants.statusCode;
 
 const { dummyUser3 } = users;
 const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;
@@ -87,7 +87,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${invalidToken}`);
-    expect(results.status).equal(401);
+    expect(results.status).equal(UNAUTHORIZED);
     expect(results.body.message).equal("Token is invalid or expired, try again");
   });
 
@@ -95,7 +95,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     const results = await chai
       .request(app)
       .get(`/api/v1/users/confirm/${mutatedToken}`);
-    expect(results.status).equal(401);
+    expect(results.status).equal(UNAUTHORIZED);
     expect(results.body.message).equal("Token is invalid or expired, try again");
   });
 
@@ -122,7 +122,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
       .request(app)
       .put(`/api/v1/users/resend`)
       .send({});
-    expect(results.status).equals(400);
+    expect(results.status).equals(BAD_REQUEST);
     expect(results.body.message).to.be.equal("Email is required");
   });
 
@@ -131,7 +131,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
       .request(app)
       .put(`/api/v1/users/resend`)
       .send({ email: "yvesiraguha" });
-    expect(results.status).equals(400);
+    expect(results.status).equals(BAD_REQUEST);
     expect(results.body.message).to.be.equal("Invalid email");
   });
 });

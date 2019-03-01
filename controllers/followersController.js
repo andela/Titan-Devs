@@ -1,7 +1,7 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, ACCEPTED } = constants.statusCode;
+const { CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
 const { User, Follower } = models;
 
 /**
@@ -39,7 +39,7 @@ export default class FollowerController {
           });
         }
         return res
-          .status(409)
+          .status(CONFLICT)
           .json({ message: "You are already following this author" });
       });
     } catch (error) {

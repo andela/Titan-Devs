@@ -45,7 +45,7 @@ describe("Reset Password", () => {
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({});
-    expect(results.status).equal(404);
+    expect(results.status).equal(NOT_FOUND);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")

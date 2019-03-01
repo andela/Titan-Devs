@@ -4,7 +4,7 @@ import { users } from "../helpers/testData";
 import app from "../../index";
 import constants from "../../helpers/constants";
 
-const { CREATED, OK, NOT_FOUND, ACCEPTED } = constants.statusCode;
+const { CREATED, OK, NOT_FOUND, ACCEPTED, CONFLICT, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser, dummyUser2 } = users;
 
@@ -66,7 +66,7 @@ describe("User following", () => {
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(409);
+      expect(results.status).eql(CONFLICT);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You are already following this author");
     });
@@ -99,7 +99,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/iraguha2020/followers`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body.message).eql("User not found");
     });
 
@@ -131,7 +131,7 @@ describe("User following", () => {
         .request(app)
         .delete(`/api/v1/profiles/iraguha2019/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("User not found");
     });
@@ -164,7 +164,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/iraguha2030/followings`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body.message).eql("User not found");
     });
 

@@ -1,6 +1,6 @@
 import joi from "joi";
 import models from "../models";
-import { ratingOne, ratingAll } from "../helpers/ratingValidation";
+import { ratingOne } from "../helpers/ratingValidation";
 import constants from "../helpers/constants";
 
 const { Rating, sequelize } = models;
@@ -63,34 +63,25 @@ class RatingController {
    * @return {Object} - It returns the response object.
    */
 
-  static async getAll(req, res) {
+static async getAll(req, res) {
     const { article } = req;
 
-    joi.validate({ userId, slug }, ratingAll, async (err, _value) => {
-      if (err) {
-        next(err);
-      } else {
-        try {
-          const results = await Rating.findAll({
-            raw: true,
-            where: { articleId: article.id }
-          });
-          const averageRating = await Rating.findAll({
-            attributes: [
-              [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
-            ],
-            raw: true,
-            where: { articleId: article.id }
-          });
-          res.status(OK).json({ ratings: results, averageRating: averageRating[0] });
-        } catch (error) {
-          res.status(INTERNAL_SERVER_ERROR).json({
-            message:
-              "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-          });
-        }
-      }
-    });
+    try {
+      const results = await Rating.findAll({
+        raw: true,
+        where: { articleId: article.id }
+      });
+      const averageRating = await Rating.findAll({
+        attributes: [
+          [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
+        ],
+        raw: true,
+        where: { articleId: article.id }
+      });
+      res.status(OK).json({ ratings: results, averageRating: averageRating[0] });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: "Please Try again later" });
+    }
   }
 
   /**

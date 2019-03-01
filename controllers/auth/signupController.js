@@ -6,7 +6,7 @@ import constants from "../../helpers/constants";
 import sentEmailTemplate from "../../helpers/emailVerificationTamplate";
 import { sendEmail } from "../../services/sendgrid";
 
-const { ACCEPTED, INTERNAL_SERVER_ERROR, CREATED } = constants.statusCode;
+const { ACCEPTED, INTERNAL_SERVER_ERROR, CREATED, CONFLICT } = constants.statusCode;
 
 const { User } = models;
 dotenv.config();
@@ -66,7 +66,7 @@ export default class SignUpController {
         if (message === "username must be unique") {
           errorMessage = "The username is already taken";
         }
-        return res.status(409).json({ message: errorMessage });
+        return res.status(CONFLICT).json({ message: errorMessage });
       }
       res.status(INTERNAL_SERVER_ERROR).json({
         message:
