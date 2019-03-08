@@ -64,7 +64,7 @@ describe("ArticleLike Controller", () => {
             expect(response.status).eql(OK);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Unliked successfully");
+            expect(response.body.message).to.be.eql("Disliked successfully");
             done();
           });
       });

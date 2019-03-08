@@ -77,7 +77,7 @@ describe("Liking a comment", () => {
         });
     });
 
-    it("should unlike the comment and return the comment unliked message", done => {
+    it("should unlike the comment and return the comment Disliked message", done => {
       chai
         .request(app)
         .post(`/api/v1/articles/${slug}/comments/${commentId}/likes`)
@@ -85,7 +85,7 @@ describe("Liking a comment", () => {
         .end((err, res) => {
           if (err) done(err);
           expect(res.status).equals(CREATED);
-          expect(res.body.message).to.contain("Comment unliked");
+          expect(res.body.message).to.contain("Comment Disliked");
           done();
         });
     });
