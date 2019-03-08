@@ -620,10 +620,13 @@ const opnResponse = {
     }
   ]
 };
+
+const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhY2lAZW1haWwuY29tIiwidXNlcm5hbWUiOiJwYWNpIiwiaWQiOiIzNjRlYmFjNy1jYjQ1LTQ5ZDQtODlmNC1lY2Y5MWE5OTczZjIiLCJpYXQiOjE1NTIwMDEwNTB9.mPtpx6r62aXEYWyWFYYkiCdTEPR4ECfZrB1wJ30fXXM`;
 export {
   newArticle,
   newComment,
   users,
+  fakeToken,
   tokenEmailVerication,
   sendGridResponse,
   article,
