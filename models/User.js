@@ -67,6 +67,7 @@ export default (sequelize, DataTypes) => {
   User.associate = models => {
     User.hasMany(models.Article, {
       foreignKey: "userId",
+      as: "author",
       onDelete: "CASCADE",
       hooks: true
     });
@@ -79,6 +80,7 @@ export default (sequelize, DataTypes) => {
     User.belongsToMany(models.Comment, {
       through: models.CommentLike,
       as: "likedBy",
+      onDelete: "CASCADE",
       foreignKey: "userId"
     });
     User.hasMany(models.Rating, {
@@ -92,23 +94,18 @@ export default (sequelize, DataTypes) => {
       targetKey: "followerId",
       onDelete: "CASCADE"
     });
-
+    User.belongsToMany(models.User, {
+      through: models.Follower,
+      as: "followers",
+      onDelete: "CASCADE",
+      foreignKey: "followingId",
+      targetKey: "followingId"
+    });
     User.belongsToMany(models.Article, {
       through: models.ArticleLike,
       as: "likes",
-      foreignKey: "userId",
       onDelete: "CASCADE",
-      targetKey: "followerId"
-    });
-    User.hasMany(models.ReportArticle, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-      hooks: true
-    });
-    User.hasMany(models.ReportArticle, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-      hooks: true
+      foreignKey: "userId"
     });
     User.hasMany(models.ReportArticle, {
       foreignKey: "userId",

@@ -35,14 +35,14 @@ export default (sequelize, DataTypes) => {
   Article.associate = models => {
     Article.belongsTo(models.User, {
       foreignKey: "userId",
+      as: "author",
       onDelete: "CASCADE",
       hooks: true
     });
     Article.belongsToMany(models.Tag, {
-      through: "ArticleTag",
+      through: "ArticleTags",
       foreignKey: "articleId",
-      onDelete: "CASCADE",
-      hooks: true
+      as: "tagsList"
     });
     Article.hasMany(models.Rating, {
       foreignKey: "articleId",
@@ -63,19 +63,10 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-    Article.hasMany(models.ReportArticle, {
-      foreignKey: "articleId",
-      onDelete: "CASCADE",
-      hooks: true
-    });
-    Article.hasMany(models.ReportArticle, {
-      foreignKey: "articleId",
-      onDelete: "CASCADE",
-      hooks: true
-    });
     Article.belongsToMany(models.User, {
       through: models.ArticleLike,
       as: "likes",
+      onDelete: "CASCADE",
       foreignKey: "articleId"
     });
   };

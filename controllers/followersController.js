@@ -1,7 +1,13 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
+const {
+  CREATED,
+  INTERNAL_SERVER_ERROR,
+  NOT_FOUND,
+  ACCEPTED,
+  CONFLICT
+} = constants.statusCode;
 const { User, Follower } = models;
 
 /**
@@ -43,9 +49,9 @@ export default class FollowerController {
           .json({ message: "You are already following this author" });
       });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
+      res.status(500).json({
         message: "Following user failed",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        errors: "Something happened, please try again"
       });
     }
   }
@@ -84,9 +90,9 @@ export default class FollowerController {
         .status(ACCEPTED)
         .json({ message: "You have unfollowed this author" });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
+      res.status(500).json({
         message: "Unfollowing user failed",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        errors: "Something happened, please try again"
       });
     }
   }
@@ -116,15 +122,16 @@ export default class FollowerController {
         include: [
           {
             model: User,
+            as: "followings",
             attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
           }
         ]
       });
       res.json({ followers });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
+      res.status(500).json({
         message: "Unknown error occurred",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        errors: "Something happened, please try again"
       });
     }
   }
@@ -157,9 +164,9 @@ export default class FollowerController {
       }
       res.json({ user });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
+      res.status(500).json({
         message: "Unknown error occurred",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        errors: "Something happened, please try again"
       });
     }
   }

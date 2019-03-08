@@ -4,7 +4,7 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": " NODE_ENV=test yarn run db:migrate && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
+    "test": "NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:reset": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all"
@@ -32,6 +32,7 @@
     "express-session": "^1.15.6",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
     "method-override": "^2.3.10",
     "methods": "^1.1.2",
     "mongoose": "^5.2.2",

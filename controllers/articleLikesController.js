@@ -39,10 +39,20 @@ export default class ArticleLikesController {
           return res.status(CREATED).json({ message: "Successfully liked" });
         }
         if (articleLike.like) {
-          await articleLike.destroy();
-          return res.status(OK).json({ message: "Unliked successfully" });
+          await ArticleLike.destroy({
+            where: { userId: req.user.id, articleId: article.id }
+          });
+          return res.status(OK).json({ message: "Disliked successfully" });
         }
-        await articleLike.update({ like: true });
+        await ArticleLike.update(
+          { like: true },
+          {
+            where: {
+              userId: req.user.id,
+              articleId: article.id
+            }
+          }
+        );
         return res.status(OK).json({ message: "Successfully liked" });
       });
     } catch (err) {
@@ -83,10 +93,23 @@ export default class ArticleLikesController {
           return res.status(CREATED).json({ message: "Successfully disliked" });
         }
         if (!articleLike.like) {
-          await articleLike.destroy();
+          await ArticleLike.destroy({
+            where: {
+              userId: req.user.id,
+              articleId: article.id
+            }
+          });
           return res.status(OK).json({ message: "Successfully removed dislike" });
         }
-        await articleLike.update({ like: false });
+        await ArticleLike.update(
+          { like: false },
+          {
+            where: {
+              userId: req.user.id,
+              articleId: article.id
+            }
+          }
+        );
         return res.status(CREATED).json({ message: "Successfully disliked" });
       });
     } catch (err) {
