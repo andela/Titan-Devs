@@ -141,7 +141,6 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send({ description: "abusive" })
         .end((err, res) => {
-          console.log("FDJVGHDFJICHGIJSDHJDFJJG", res.body);
           expect(res.status).equals(OK);
           expect(res.body.message).to.contain("Article reported");
           done();

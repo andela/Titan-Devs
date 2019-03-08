@@ -260,8 +260,6 @@ export default class ArticleController {
     try {
       const { slug } = req.params;
       const { id: userId } = req.user;
-      console.log("===================", req.user);
-
       const { description } = req.body;
 
       if (!description) {
@@ -280,7 +278,6 @@ export default class ArticleController {
         article
       });
     } catch (error) {
-      console.log("================================", error.stack);
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
