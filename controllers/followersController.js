@@ -4,6 +4,7 @@ import constants from "../helpers/constants";
 const {
   CREATED,
   NOT_FOUND,
+  OK,
   ACCEPTED,
   CONFLICT,
   INTERNAL_SERVER_ERROR
@@ -26,33 +27,22 @@ export default class FollowerController {
     const { id } = req.user;
     const { username } = req.params;
     try {
-      const user = await User.findOne({
-        where: {
-          username
-        }
-      });
+      const user = await User.findOne({ where: { username } });
       if (!user) {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       await Follower.findOrCreate({
-        where: {
-          followingId: user.id,
-          followerId: id
-        }
+        where: { followingId: user.id, followerId: id }
       }).spread((follower, created) => {
         if (created) {
-          return res.status(CREATED).json({
-            message: "Follow successful"
-          });
+          return res.status(CREATED).json({ message: "Follow successful" });
         }
-        return res
-          .status(CONFLICT)
-          .json({ message: "You are already following this author" });
+        return res.status(CONFLICT).json({
+          message: "You are already following this author"
+        });
       });
     } catch (error) {
-      res.status().json({
-        message: SERVER_ERROR
-      });
+      res.status().json({ message: SERVER_ERROR });
     }
   }
 
@@ -67,28 +57,21 @@ export default class FollowerController {
     const { id } = req.user;
     const { username } = req.params;
     try {
-      const user = await User.findOne({
-        where: {
-          username
-        }
-      });
+      const user = await User.findOne({ where: { username } });
       if (!user) {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       const results = await Follower.destroy({
-        where: {
-          followingId: user.id,
-          followerId: id
-        }
+        where: { followingId: user.id, followerId: id }
       });
       if (results <= 0) {
-        return res
-          .status(NOT_FOUND)
-          .json({ message: "You have already unfollowed this author" });
+        return res.status(NOT_FOUND).json({
+          message: "You have already unfollowed this author"
+        });
       }
-      return res
-        .status(ACCEPTED)
-        .json({ message: "You have unfollowed this author" });
+      return res.status(ACCEPTED).json({
+        message: "You have unfollowed this author"
+      });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
@@ -104,18 +87,12 @@ export default class FollowerController {
   static async getAllFollowers(req, res) {
     const { username } = req.params;
     try {
-      const user = await User.findOne({
-        where: {
-          username
-        }
-      });
+      const user = await User.findOne({ where: { username } });
       if (!user) {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       const followers = await Follower.findAll({
-        where: {
-          followingId: user.id
-        },
+        where: { followingId: user.id },
         include: [
           {
             model: User,
@@ -124,7 +101,10 @@ export default class FollowerController {
           }
         ]
       });
-      res.json({ followers });
+      return res.status(OK).json({
+        message: "Followers retrieved successfully",
+        followers
+      });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
@@ -141,9 +121,7 @@ export default class FollowerController {
     const { username } = req.params;
     try {
       const user = await User.findOne({
-        where: {
-          username
-        },
+        where: { username },
         attributes: ["id", "username"],
         include: [
           {
@@ -156,7 +134,10 @@ export default class FollowerController {
       if (!user) {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
-      res.json({ user });
+      return res.status(OK).json({
+        message: "Followings retrieved successfully",
+        user
+      });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
