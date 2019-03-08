@@ -223,6 +223,7 @@ export default class ArticleController {
       await Article.destroy({ where: { id: article.id } });
       return res.status(OK).json({ message: "Deleted successfully" });
     } catch (error) {
+      console.log("================================", error.stack);
       return res.status(INTERNAL_SERVER_ERROR).json({
         message: "Can't delete the article, server error"
       });
