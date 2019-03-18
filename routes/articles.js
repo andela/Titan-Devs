@@ -11,7 +11,7 @@ const article = Router();
 
 article.get("/articles", optionalAuth, Article.findAll);
 article.put("/articles/:slug", checkAuth, Article.update);
-article.delete("/articles/:slug", checkAuth, Article.delete);
+article.delete("/articles/:slug", checkAuth, Article.deleteOne);
 article.post("/articles/:slug/bookmark", checkAuth, Article.bookmark);
 article.post("/articles/:slug/likes", checkAuth, ArticleLikeController.like);
 article.post("/articles/:slug/dislikes", checkAuth, ArticleLikeController.dislike);

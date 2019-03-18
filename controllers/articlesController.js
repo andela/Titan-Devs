@@ -11,7 +11,6 @@ const { User, Article, Tag, ArticleTags, Bookmark, ReportArticle } = models;
 const {
   CREATED,
   OK,
-  NO_CONTENT,
   UNAUTHORIZED,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
@@ -292,77 +291,48 @@ export default class ArticleController {
    */
 
   static async findAll(req, res) {
-    const {
-      query: {
-        author = null,
-        favorited: liked = null,
-        tag: oneTag = null,
-        page = 1,
-        limit = 20
-      },
-      user: { id = null } = {}
-    } = req;
+    const { user: { id = null } = {} } = req;
+
     try {
       const all = await Article.findAll({
-        offset: (Number(page) - 1) * Number(limit),
-        limit,
         order: [["createdAt", "DESC"]],
         include: [
           {
             model: User,
             as: "author",
             attributes: ["username", "bio", "image"],
-            where: author ? { username: author } : {},
             include: [
-              {
-                model: User,
-                as: "followers",
-                attributes: ["id", "username"]
-              }
+              { model: User, as: "followers", attributes: ["id", "username"] }
             ]
           },
-          {
-            model: User,
-            as: "likes",
-            attributes: ["username"],
-            through: { attributes: [] }
-          },
-          {
-            model: Tag,
-            attributes: ["name"],
-            as: "tagsList",
-            through: { attributes: [] }
-          }
+          { model: User, as: "likes", attributes: ["username"], through: {} },
+          { model: Tag, attributes: ["name"], as: "tagsList", through: {} }
         ]
       });
       if (all.length) {
-        const articles = all
-          .map(each => {
-            const {
-              author: { followers, username, bio, image },
-              tagsList,
-              likes,
-              ...article
-            } = each.get();
-            const following = !!_.dropWhile(followers, f => f.id !== id).length;
-            return {
-              ...article,
-              likes: likes.map(like => like.username),
-              author: { following, username, bio, image },
-              favorited: !!likes.length,
-              favoritesCount: likes.length,
-              tagsList: tagsList.map(tag => tag.get().name || null)
-            };
-          })
-          .filter(art => liked === null || art.likes.includes(liked))
-          .filter(art => oneTag === null || art.tagsList.includes(oneTag));
-        return res.status(OK).json({
-          message: "Successful",
-          articles,
-          articlesCount: articles.length
+        const articles = all.map(each => {
+          const {
+            author: { followers, username, bio, image }
+          } = each.get();
+          const { tagsList, likes, ...article } = each.get();
+          const following = !!_.dropWhile(followers, f => f.id !== id).length;
+          return {
+            ...article,
+            likes: likes.map(like => like.username),
+            author: { following, username, bio, image },
+            favorited: !!likes.length,
+            favoritesCount: likes.length,
+            tagsList: tagsList.map(t => t.get().name || null)
+          };
         });
+        const articlesCount = articles.length;
+        return res
+          .status(OK)
+          .json({ message: "Successful", articles, articlesCount });
       }
-      return res.status(NO_CONTENT).json({ message: "No articles created yet!" });
+      return res.status(NOT_FOUND).json({
+        message: "No more articles found, still need to read more?"
+      });
     } catch (error) {
       return res
         .status(INTERNAL_SERVER_ERROR)
@@ -379,11 +349,8 @@ export default class ArticleController {
 
   static async update(req, res) {
     try {
-      const {
-        params: { slug },
-        user: { id: userId },
-        body
-      } = req;
+      const { slug } = req.params;
+      const { user: { id: userId } = {}, body } = req;
       const article = await Article.findOne({ where: { slug, userId } });
       if (article) {
         const allowed = _.pick(body, Object.keys(articleSchema));
@@ -422,9 +389,9 @@ export default class ArticleController {
     } catch (error) {
       return error.details
         ? res.status(BAD_REQUEST).json({ message: error.details[0].message })
-        : res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({ message: "Can't update the article, server error" });
+        : res.status(INTERNAL_SERVER_ERROR).json({
+            message: "Can't update the article, server error"
+          });
     }
   }
 
@@ -435,25 +402,23 @@ export default class ArticleController {
    * @returns {object} It returns the request's response object
    */
 
-  static async delete(req, res) {
+  static async deleteOne(req, res) {
     try {
-      const {
-        params: { slug },
-        user: { id: userId }
-      } = req;
+      const { slug } = req.params;
+      const { user: { id: userId } = {} } = req;
       const article = await Article.findOne({ where: { slug } });
       if (article.userId !== userId || !article) {
-        return res
-          .status(UNAUTHORIZED)
-          .json({ message: `You can only delete the article you authored` });
+        return res.status(UNAUTHORIZED).json({
+          message: `You can only delete the article you authored`
+        });
       }
       await ArticleTags.destroy({ where: { articleId: article.id } });
       await Article.destroy({ where: { id: article.id } });
       return res.status(OK).json({ message: "Deleted successfully" });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Can't delete the article, server error" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Can't delete the article, server error"
+      });
     }
   }
 }
