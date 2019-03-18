@@ -53,8 +53,8 @@ describe("Profile controller", () => {
           .property("bio")
           .eql("I am a software developer");
         result.body.profile.should.have.property("image").eql("image-link");
-        result.body.profile.should.have.property("firstname").eql("YvesIraguha");
-        result.body.profile.should.have.property("lastname").eql("Iraguha");
+        result.body.profile.should.have.property("firstName").eql("YvesIraguha");
+        result.body.profile.should.have.property("lastName").eql("Iraguha");
         result.body.profile.should.have.property("gender").eql("Male");
         result.body.profile.should.have.property("phone").eql("07836378367373");
         result.body.profile.should.have.property("address").eql("Kigali city");

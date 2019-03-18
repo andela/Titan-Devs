@@ -32,10 +32,10 @@ export default (sequelize, DataTypes) => {
       resetToken: {
         type: DataTypes.TEXT
       },
-      firstname: {
+      firstName: {
         type: DataTypes.STRING(500)
       },
-      lastname: {
+      lastName: {
         type: DataTypes.STRING(100),
         defaultValue: null
       },

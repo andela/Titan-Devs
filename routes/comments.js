@@ -3,10 +3,20 @@ import Comment from "../controllers/commentController";
 import checkAuth from "../middlewares/checkAuth";
 
 const comment = Router();
-
 comment.use(checkAuth);
-comment.post("/articles/:slug/comments", Comment.create);
-comment.post("/articles/:slug/comments/:commentId/likes", Comment.like);
-comment.get("/articles/:slug/comments/:commentId/likes", Comment.getCommentLikes);
- 
+comment
+  .route("/articles/:slug/comments")
+  .post(Comment.create)
+  .get(Comment.fetchAllComments);
+comment
+  .route("/articles/:slug/comments/:id")
+  .get(Comment.fetch)
+  .put(Comment.update)
+  .delete(Comment.delete);
+comment
+  .route("/articles/:slug/comments/:commentId/likes")
+  .post(Comment.like)
+  .get(Comment.getCommentLikes);
+comment.get("/articles/:slug/comments/:commentId/history", Comment.getEditHistory);
+
 export default comment;

@@ -1,50 +1,61 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, users, newComment } from "../helpers/testData";
+import { newArticle, users, newComment, fakeId } from "../helpers/testData";
 
 import constants from "../../helpers/constants";
 
 let token;
 let slug;
-const commentId = "hello world";
+let commentId;
 const { dummyUser } = users;
-const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK } = constants.statusCode;
+const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
 chai.use(chaiHttp);
 
-before(done => {
-  const { email, password } = dummyUser;
-  chai
-    .request(app)
-    .post("/api/v1/users")
-    .send(dummyUser)
-    .end(error => {
-      if (!error) {
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email, password })
-          .end((err, res) => {
-            if (!err) {
-              const { token: accessToken } = res.body;
-              token = accessToken;
-              chai
-                .request(app)
-                .post("/api/v1/articles")
-                .set("Authorization", `Bearer ${token}`)
-                .send(newArticle)
-                .end((err, res) => {
-                  const { slug: artSlug } = res.body.article;
-                  slug = artSlug;
-                  done(err || undefined);
-                });
-            }
-          });
-      }
-    });
-});
-
 describe("Comment on an article", () => {
+  before(done => {
+    const { email, password } = dummyUser;
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(dummyUser)
+      .end(error => {
+        if (!error) {
+          chai
+            .request(app)
+            .post("/api/v1/users/login")
+            .send({ email, password })
+            .end((err, res) => {
+              if (!err) {
+                const { token: accessToken } = res.body;
+                token = accessToken;
+                chai
+                  .request(app)
+                  .post("/api/v1/articles")
+                  .set("Authorization", `Bearer ${token}`)
+                  .send(newArticle)
+                  .end((err, res) => {
+                    if (error) done(error);
+                    const { slug: artSlug } = res.body.article;
+                    slug = artSlug;
+                    chai
+                      .request(app)
+                      .post(`/api/v1/articles/${slug}/comments`)
+                      .set("Authorization", `Bearer ${token}`)
+                      .send(newComment)
+                      .end((er, res) => {
+                        if (!er) {
+                          commentId = res.body.comment.id;
+                        }
+
+                        done(er || undefined);
+                      });
+                  });
+              }
+            });
+        }
+      });
+  });
   it("should create the comment and return the success message", done => {
     chai
       .request(app)
@@ -108,11 +119,85 @@ describe("Comment on an article", () => {
       .set("Authorization", `Bearer ${token}`)
       .send(newComment)
       .end((err, res) => {
-        expect(res.status).equals(BAD_REQUEST);
+        expect(res.status).equals(NOT_FOUND);
         expect(res.body.message).to.contain("The article with this slug");
         done();
       });
   });
+  describe("Fetching comments", () => {
+    it("should return all comments related to article", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${slug}/comments`)
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, res) => {
+          if (error) done(error);
+          expect(res.status).equals(OK);
+          expect(res.body.article.Comments).to.be.a("array");
+          expect(res.body.article.Comments[0]).to.haveOwnProperty("body");
+          done();
+        });
+    });
+    it("should return all comments related to article", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${slug}/comments`)
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, res) => {
+          if (error) done(error);
+          expect(res.status).equals(OK);
+          expect(res.body.article.Comments).to.be.a("array");
+          expect(res.body.article.Comments[0]).to.haveOwnProperty("body");
+          done();
+        });
+    });
+
+    it("should return no article error", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${slug}s/comments`)
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, res) => {
+          if (error) done(error);
+          expect(res.status).equals(NOT_FOUND);
+          expect(res.body.message).equals("There is no article with that slug");
+          done();
+        });
+    });
+
+    it("should return a particular comment", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, res) => {
+          if (error) done(error);
+          expect(res.status).equals(OK);
+          expect(res.body.comment).to.be.a("object");
+          expect(res.body.comment).to.haveOwnProperty("createdAt");
+          expect(res.body.comment).to.haveOwnProperty("updatedAt");
+          expect(res.body.comment).to.haveOwnProperty("body");
+          expect(res.body.comment.body).equals(
+            "I like this article however, You should rename the title"
+          );
+          done();
+        });
+    });
+
+    it("should return a non-existing comment error", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles/${slug}/comments/${fakeId}`)
+        .set("Authorization", `Bearer ${token}`)
+        .end((error, res) => {
+          if (error) done(error);
+          expect(res.status).equals(NOT_FOUND);
+          expect(res.body.message).to.contain("The comment does not exist");
+          done();
+        });
+    });
+  });
+
   describe("Updating a comment", () => {
     it("should return comment updated successfully", done => {
       chai
@@ -124,8 +209,8 @@ describe("Comment on an article", () => {
           if (error) done(error);
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Comment updated successfully");
-          expect(res.body.comment).to.have.property("body");
-          expect(res.body.comment.body).equals("Hello world");
+          expect(res.body.comment).to.have.property("oldVersion");
+          expect(res.body.comment).to.have.property("newVersion");
           done();
         });
     });
@@ -138,19 +223,19 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(BAD_REQUEST);
-          expect(res.body.message).to.contain("'body' should not be empty");
+          expect(res.body.message).to.contain("body should not be empty");
           done();
         });
     });
     it("should return updating non-existing comment", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${commentId}s`)
+        .put(`/api/v1/articles/${slug}/comments/${fakeId}`)
         .set("Authorization", `Bearer ${token}`)
         .send({ body: "Helllo world" })
         .end((error, res) => {
           if (error) done(error);
-          expect(res.status).equals(BAD_REQUEST);
+          expect(res.status).equals(NOT_FOUND);
           expect(res.body.message).to.contain("The comment does not exist");
           done();
         });
@@ -164,20 +249,9 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Permission denied");
-          done();
-        });
-    });
-    it("should return editing for others error", done => {
-      chai
-        .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${commentId}`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ body: "Hello world " })
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Permission denied");
+          expect(res.body.message).to.contain(
+            "Please provide a token to perform this action"
+          );
           done();
         });
     });
@@ -199,11 +273,11 @@ describe("Comment on an article", () => {
     it("should return deleting non-existing comment", done => {
       chai
         .request(app)
-        .delete(`/api/v1/articles/${slug}/comments/${commentId}s`)
-        .send({ body: "Helllo world" })
+        .delete(`/api/v1/articles/${slug}/comments/${fakeId}`)
+        .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
-          expect(res.status).equals(BAD_REQUEST);
+          expect(res.status).equals(NOT_FOUND);
           expect(res.body.message).to.contain("The comment does not exist");
           done();
         });
@@ -216,60 +290,9 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Permission denied");
-          done();
-        });
-    });
-    it("should return deleting for others error", done => {
-      chai
-        .request(app)
-        .post(`/api/v1/articles/${slug}/comments/${commentId}`)
-        .set("Authorization", `Bearer ${token}`)
-        .send({ body: "Hello world " })
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Permission denied");
-          done();
-        });
-    });
-  });
-  describe("Fetching comments", () => {
-    it("should return all comments related to article", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/articles/${slug}/comments`)
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(OK);
-          expect(res.body.comments).to.be.a("array");
-          expect(res.body.comments.length).equals(2);
-          done();
-        });
-    });
-    it("should return a particular comment", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/articles/${slug}/comments/${commentId}`)
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(OK);
-          expect(res.body.comment).to.be.a("object");
-          expect(res.body.comment).to.haveOwnProperty("createdAt");
-          expect(res.body.comment).to.haveOwnProperty("updatedAt");
-          expect(res.body.comment).to.haveOwnProperty("body");
-          expect(res.body.comment.body).equals("This article needs improvement");
-          done();
-        });
-    });
-    it("should return a non-existing comment error", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/articles/${slug}/comments/${commentId}s`)
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(BAD_REQUEST);
-          expect(res.body.message).to.contain("The comment does not exist");
+          expect(res.body.message).to.contain(
+            "Please provide a token to perform this action"
+          );
           done();
         });
     });

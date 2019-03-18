@@ -41,8 +41,8 @@ const users = {
     profile: {
       bio: "I am a software developer",
       image: "image-link",
-      firstname: "YvesIraguha",
-      lastname: "Iraguha",
+      firstName: "YvesIraguha",
+      lastName: "Iraguha",
       gender: "Male",
       phone: "07836378367373",
       address: "Kigali city"
@@ -52,8 +52,8 @@ const users = {
     profile: {
       bio: "I am a software developer",
       image: "image-link",
-      firstname: " ",
-      lastname: " ",
+      firstName: " ",
+      lastName: " ",
       gender: "Male",
       phone: "07836378367373",
       address: "Kigali city"
@@ -622,6 +622,7 @@ const opnResponse = {
 };
 
 const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhY2lAZW1haWwuY29tIiwidXNlcm5hbWUiOiJwYWNpIiwiaWQiOiIzNjRlYmFjNy1jYjQ1LTQ5ZDQtODlmNC1lY2Y5MWE5OTczZjIiLCJpYXQiOjE1NTIwMDEwNTB9.mPtpx6r62aXEYWyWFYYkiCdTEPR4ECfZrB1wJ30fXXM`;
+const fakeId = "71840433-e8e4-48dd-89d1-b0a91258da58";
 export {
   newArticle,
   newComment,
@@ -630,5 +631,6 @@ export {
   tokenEmailVerication,
   sendGridResponse,
   article,
-  opnResponse
+  opnResponse,
+  fakeId
 };

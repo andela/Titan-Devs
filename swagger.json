@@ -93,7 +93,7 @@
         }
       },
       "put": {
-        "summary": "Update user with give ID",
+        "summary": "Update user with given ID",
         "tags": ["Users"],
         "parameters": [
           {
@@ -115,162 +115,51 @@
         }
       }
     },
-    "/users/confirm/{auth_token}": {
-      "get": {
+    "/users/login": {
+      "post": {
+        "summary": "User login",
         "tags": ["Users"],
-        "summary": "Send email send email verification",
-        "description": "This helps in verifying account created ",
+        "consumes": ["application/json"],
         "parameters": [
           {
-            "name": "user",
             "in": "body",
-            "description": "User properties"
+            "name": "user",
+            "description": "Allows a user to login.",
+            "schema": {
+              "type": "object",
+              "required": ["email", "password"],
+              "properties": {
+                "email": {
+                  "type": "string"
+                },
+                "password": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Success",
+            "description": "User logged in successfully",
             "schema": {
               "type": "object",
               "properties": {
                 "message": {
-                  "type": "string",
-                  "example": "Email confirmed successfully!"
+                  "type": "string"
                 },
-                "status": {
-                  "type": "number",
-                  "example": 200
+                "token": {
+                  "type": "string"
                 }
               }
             }
           },
-          "202": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "User already verified!"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 202
-                }
-              }
-            }
+          "400": {
+            "description": "Invalid email or password"
           },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Token is invalid or expired, try again"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 401
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "User verification failed, User was not found"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 404
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/users/resend": {
-      "get": {
-        "tags": ["Users"],
-        "summary": "Re-send email verification",
-        "description": "This helps in resend email verification just in case email did not come.",
-        "parameters": [
-          {
-            "name": "user",
-            "in": "body",
-            "description": "User properties"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Email confirmed successfully!"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              }
-            }
-          },
-          "202": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "User already verified!"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 202
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Token is invalid or expired, try again"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 401
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "User verification failed, User was not found"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 404
-                }
-              }
-            }
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -363,169 +252,359 @@
         }
       }
     },
-    "/articles/{slug}/bookmark": {
+    "/articles/{slug}/comments/{commentID}/likes": {
       "post": {
         "tags": ["Articles"],
-        "summary": "Bookmark an article",
-        "description": "This helps the user bookmark an article for reading it later",
+        "summary": "Like a specific comment",
+        "description": "This allows a user to like a specific comment on article.",
         "parameters": [
           {
             "name": "slug",
             "in": "path",
             "required": true,
-            "description": "Article's slug",
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "commentID",
+            "in": "path",
+            "required": true,
+            "description": "ID for a comment we want to like",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to like a comment",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "comment liked successfully",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "comment": {
+                  "type": "object",
+                  "properties": {
+                    "body": {
+                      "type": "string"
+                    },
+                    "like": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updateddAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "likedBy": {
+                      "type": "object"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "articleId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/articles/{slug}/comments/{commentID}": {
+      "put": {
+        "tags": ["Articles"],
+        "summary": "update a specific comment",
+        "description": "This allows a user to update a specific comment.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "commentID",
+            "in": "path",
+            "required": true,
+            "description": "ID for a comment they want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a comment",
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Article properties",
             "schema": {
               "$ref": "#/definitions/Article"
             }
           }
         ],
+        "produces": ["application/json"],
         "responses": {
           "201": {
-            "description": "CREATED",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
-      }
-    },
-    "/article/{articleId}/share/fb": {
-      "get": {
-        "tags": ["Articles"],
-        "summary": "Share article on facebook",
-        "description": "This helps the user share their preferred article on facebook ",
-        "parameters": [
-          {
-            "name": "article",
-            "in": "body",
-            "description": "Article properties"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
+            "description": "comment updated successfully",
             "schema": {
               "type": "object",
               "properties": {
                 "message": {
-                  "type": "string",
-                  "example": "Post ready to be posted on facebook"
+                  "type": "string"
                 },
-                "status": {
-                  "type": "number",
-                  "example": 200
+                "comment": {
+                  "type": "object",
+                  "properties": {
+                    "body": {
+                      "type": "string"
+                    },
+                    "like": {
+                      "type": "integer"
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updateddAt": {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "likedBy": {
+                      "type": "object"
+                    },
+                    "userId": {
+                      "type": "string"
+                    },
+                    "articleId": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
-          }
-        }
-      }
-    },
-    "/article/{articleId}/share/email": {
-      "get": {
-        "tags": ["Articles"],
-        "summary": "Share article on email",
-        "description": "This helps the user share their preferred article on email ",
-        "parameters": [
-          {
-            "name": "article",
-            "in": "body",
-            "description": "Article properties"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Post ready to be posted on email"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/article/{articleId}/share/twitter": {
-      "get": {
-        "tags": ["Articles"],
-        "summary": "Share article on twitter",
-        "description": "This helps the user share their preferred article on twitter ",
-        "parameters": [
-          {
-            "name": "article",
-            "in": "body",
-            "description": "Article properties"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Success",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "message": {
-                  "type": "string",
-                  "example": "Post ready to be posted on twitter"
-                },
-                "status": {
-                  "type": "number",
-                  "example": 200
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    "/article/{slug}/rating": {
-      "parameters": [
-        {
-          "slug": "article slug",
-          "in": "path",
-          "required": true,
-          "description": "article id we want to rate",
-          "type": "string"
-        }
-      ],
-      "get": {
-        "tags": ["Ratings"],
-        "summary": "Get the ratings for the given article",
-        "responses": {
-          "200": {
-            "description": "Rating retrieved",
-            "schema": {
-              "$ref": "#/definitions/Rating"
-            }
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       },
-      "put": {
-        "summary": "Update  a given rating ",
-        "tags": ["Ratings"],
+      "delete": {
+        "tags": ["Articles"],
+        "summary": "delete a specific comment",
+        "description": "This allows a user to delete a specific comment.",
         "parameters": [
           {
-            "name": "rating",
-            "in": "body",
-            "description": "The rating for a blog post",
-            "schema": {
-              "$ref": "#/definitions/Rating"
-            }
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "commentID",
+            "in": "path",
+            "required": true,
+            "description": "ID for a comment they want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a comment",
+            "type": "string"
           }
         ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
-            "description": "Article rating has been edited successfully",
-            "schema": {
-              "$ref": "#/definitions/Rating"
-            }
+            "description": "comment updated successfully"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      },
+      "get": {
+        "tags": ["Articles"],
+        "summary": "get a specific comment",
+        "description": "This allows a user to get a specific comment.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "commentID",
+            "in": "path",
+            "required": true,
+            "description": "ID for a comment they want to get",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to get a comment",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "201": {
+            "description": "CREATED"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/articles/{slug}/comments/{commentID}/history": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "get a specific comment history",
+        "description": "This allows a user to get a specific comment history.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "commentID",
+            "in": "path",
+            "required": true,
+            "description": "ID for a comment they want to get",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to get a comment",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/articles/{slug}/comments": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "get comments for a specific article",
+        "description": "This allows a user to get article with comments.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to get an article with its comments",
+            "type": "string"
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "bad request"
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
           }
         }
       }
@@ -576,6 +655,12 @@
               "type": "string",
               "example": "javaScript"
             }
+          }
+        },
+        "commnents": {
+          "type": "array",
+          "items": {
+            "type": "object"
           }
         }
       }

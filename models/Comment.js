@@ -15,7 +15,7 @@ export default (sequelize, DataTypes) => {
         defaultValue: 0
       }
     },
-    { tableName: "comments" }
+    { tableName: "comments", paranoid: "true" }
   );
   Comment.associate = models => {
     Comment.belongsTo(models.Article, {
@@ -33,6 +33,18 @@ export default (sequelize, DataTypes) => {
       through: models.CommentLike,
       as: "likes",
       foreignKey: "commentId"
+    });
+
+    Comment.hasMany(models.Commentlog, {
+      foreignKey: "commentId",
+      as: "commentHistory"
+    });
+
+    Comment.hasMany(models.CommentLike, {
+      foreignKey: "commentId",
+      onDelete: "CASCADE",
+      as: "likesCount",
+      hooks: true
     });
   };
   return Comment;

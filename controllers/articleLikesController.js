@@ -116,8 +116,8 @@ export default class ArticleLikesController {
               "id",
               "username",
               "email",
-              "firstname",
-              "lastname",
+              "firstName",
+              "lastName",
               "bio",
               "image"
             ]
