@@ -92,9 +92,11 @@ export default class ArticleController {
 
   static async findAll(req, res) {
     const { user: { id = null } = {} } = req;
-
+    const { page = 1, limit = 20 } = req.query;
     try {
       const all = await Article.findAll({
+        offset: (Number(page) - 1) * Number(limit),
+        limit,
         order: [["createdAt", "DESC"]],
         include: [
           {
