@@ -1,6 +1,6 @@
 import joi from "joi";
 import models from "../models";
-import { ratingOne } from "../helpers/ratingValidation";
+import { ratingOne } from "../helpers/ratingValidator";
 import constants from "../helpers/constants";
 
 const { Rating, sequelize } = models;
@@ -63,7 +63,7 @@ class RatingController {
    * @return {Object} - It returns the response object.
    */
 
-static async getAll(req, res) {
+  static async getAll(req, res) {
     const { article } = req;
 
     try {

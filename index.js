@@ -44,7 +44,9 @@ app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1", routers);
 app.use(joiValidator());
 app.use((req, resp, next) => {
-  const err = new Error("The page you are looking for cannot be found");
+  const err = new Error(
+    "We are sorry we cannot find the page you are looking for , Please check the url and retry"
+  );
   err.status = NOT_FOUND;
   next(err);
 });

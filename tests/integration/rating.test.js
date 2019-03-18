@@ -26,7 +26,9 @@ describe("All test related to rating ", () => {
       .send({ rating: 4 })
       .end((err, res) => {
         expect(res.status).to.be.eql(NOT_FOUND);
-        expect(res.body.message).to.be.eql("Article was not found");
+        expect(res.body.message).to.be.eql(
+          "We are sorry we cannot find the article you are looking for , Please check the id and retry"
+        );
         done();
       });
   });
@@ -49,7 +51,7 @@ describe("All test related to rating ", () => {
       .end((err, res) => {
         expect(res.status).equal(UNAUTHORIZED);
         expect(res.body.message).to.be.eql(
-          "Please provide a token to perform this action"
+          "We are sorry but we are not able to authenticate you.You have to login to perform this action."
         );
         done();
       });
@@ -62,7 +64,9 @@ describe("All test related to rating ", () => {
       .send({ rating: 4 })
       .end((err, res) => {
         expect(res.status).to.be.eql(NOT_FOUND);
-        expect(res.body.message).to.be.eql("Article was not found");
+        expect(res.body.message).to.be.eql(
+          "We are sorry we cannot find the article you are looking for , Please check the id and retry"
+        );
         done();
       });
   });

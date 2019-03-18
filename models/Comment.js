@@ -13,7 +13,8 @@ export default (sequelize, DataTypes) => {
         allowNull: true,
         type: DataTypes.INTEGER,
         defaultValue: 0
-      }
+      },
+      highlightId: DataTypes.UUID
     },
     { tableName: "comments", paranoid: "true" }
   );
