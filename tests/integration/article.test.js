@@ -201,6 +201,87 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
+    describe("Pagination (limit the number of articles to be returned)", () => {
+      it("should return the exact number of articles specified by the limit param", done => {
+        chai
+          .request(app)
+          .get(`/api/v1/articles?limit=2`)
+          .end((err, res) => {
+            expect(res.status).equals(OK);
+            expect(res.body.message).to.contain("Successful");
+            expect(res.body)
+              .to.haveOwnProperty("articles")
+              .to.be.an("array");
+            expect(res.body)
+              .to.haveOwnProperty("articlesCount")
+              .to.be.a("number");
+            expect(res.body.articles.length).to.equal(2);
+            expect(res.body.articlesCount).to.equal(2);
+            done();
+          });
+      });
+
+      it("should return (x) articles for the first page, and y articles for the second page", done => {
+        chai
+          .request(app)
+          .get(`/api/v1/articles?limit=1&page=1`)
+          .end((err, page1) => {
+            chai
+              .request(app)
+              .get(`/api/v1/articles?limit=2&page=2`)
+              .end((error, page2) => {
+                expect(page1.status).equals(OK);
+                expect(page1.body.message).to.contain("Successful");
+                expect(page1.body)
+                  .to.haveOwnProperty("articles")
+                  .to.be.an("array");
+                expect(page1.body)
+                  .to.haveOwnProperty("articlesCount")
+                  .to.be.a("number");
+                expect(page1.body.articles.length).to.equal(1);
+                expect(page1.body.articlesCount).to.equal(1);
+                expect(page2.status).equals(OK);
+                expect(page2.body.message).to.contain("Successful");
+                expect(page2.body)
+                  .to.haveOwnProperty("articles")
+                  .to.be.an("array");
+                expect(page2.body)
+                  .to.haveOwnProperty("articlesCount")
+                  .to.be.a("number");
+                expect(page2.body.articles.length).to.equal(2);
+                expect(page2.body.articlesCount).to.equal(2);
+                expect(page1.body.articles).not.to.equal(page2.body.articles);
+                done();
+              });
+          });
+      });
+    });
+  });
+
+  describe("Updating and deleting a specific article", () => {
+    before(done => {
+      chai
+        .request(app)
+        .post("/api/v1/users")
+        .send({
+          email: "fake@email.com",
+          username: "fake",
+          password: "243hjgudsgdgh"
+        })
+        .end(error => {
+          if (!error) {
+            chai
+              .request(app)
+              .post("/api/v1/users/login")
+              .send({ email: "fake@email.com", password: "243hjgudsgdgh" })
+              .end((err, res) => {
+                if (!err) fakeToken = res.body.token;
+                done(err || undefined);
+              });
+          }
+        });
+    });
   });
 
   describe("Updating and deleting a specific article", () => {
