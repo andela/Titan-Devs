@@ -105,12 +105,7 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-    User.hasMany(models.ReportArticle, {
-      foreignKey: "userId",
-      onDelete: "CASCADE",
-      hooks: true
-    });
-    User.hasMany(models.ReportArticle, {
+    User.hasMany(models.UserRoles, {
       foreignKey: "userId",
       onDelete: "CASCADE",
       hooks: true
