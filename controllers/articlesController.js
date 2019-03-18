@@ -372,13 +372,14 @@ export default class ArticleController {
           returning: true,
           limit: 1
         });
+        const tags = await updated
+          .getTagsList({ attributes: ["name"] })
+          .map(t => t.name || null);
         return res.status(CREATED).json({
           article: {
             ...updated.get(),
             author: _.pick(await updated.getAuthor(), ["username", "bio", "image"]),
-            tagsList: await updated.getTagsList({ attributes: ["name"] }).map(t => {
-              return t.name || null;
-            })
+            tagsList: tags
           },
           message: `Updated successfully`
         });
