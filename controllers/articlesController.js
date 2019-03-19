@@ -148,6 +148,7 @@ export default class ArticleController {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
+
   /**
    * @description It helps the user to fetch all of the created articles.
    * @param  {object} req - The request object
