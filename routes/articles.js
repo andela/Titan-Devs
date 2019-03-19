@@ -6,11 +6,12 @@ import checkAuth from "../middlewares/checkAuth";
 import optionalAuth from "../middlewares/optionalAuth";
 import BookmarkController from "../controllers/bookmarkController";
 import ReportArticleController from "../controllers/reportArticleController";
+import articleFilters from "../middlewares/articleFilters";
 
 const article = Router();
 
 article.get("/articles/:slug", optionalAuth, Article.findOneArticle);
-article.get("/articles", optionalAuth, Article.findAll);
+article.get("/articles", optionalAuth, Article.findAll, articleFilters);
 
 article
   .use(checkAuth)

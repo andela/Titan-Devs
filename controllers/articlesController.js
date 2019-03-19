@@ -156,8 +156,9 @@ export default class ArticleController {
    * @returns {object} It returns the request's response object
    */
 
-  static async findAll(req, res) {
+  static async findAll(req, res, next) {
     const { user: { id = null } = {} } = req;
+    const { author, favorited, tag } = req.query;
     const { page = 1, limit = 20 } = req.query;
     try {
       const all = await Article.findAll({
@@ -168,9 +169,9 @@ export default class ArticleController {
       if (all.length) {
         const articles = all.map(each => orderArticle(each, id));
         const articlesCount = articles.length;
-        return res
-          .status(OK)
-          .json({ message: "Successful", articles, articlesCount });
+        return author || favorited || tag
+          ? next(articles)
+          : res.status(OK).json({ message: "Successful", articles, articlesCount });
       }
       return res.status(NOT_FOUND).json({
         message:
