@@ -1,9 +1,9 @@
 import dotenv from "dotenv";
-import { template } from "handlebars";
+
 dotenv.config();
 
 const resetPasswordTemplate = token => {
-  const template = `
+  return `
     <html>
         <head>
             <title></title>
@@ -50,7 +50,6 @@ const resetPasswordTemplate = token => {
     </html>
 
   `;
-  return template;
 };
 
 export default resetPasswordTemplate;

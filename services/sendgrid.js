@@ -8,7 +8,7 @@ export const sendEmail = async (email, subject, emailTemplate) => {
   const message = {
     to: email,
     from: { email: process.env.DEVELOPER_EMAIL, name: "Author's Heaven" },
-    subject: subject,
+    subject,
     html: emailTemplate
   };
 

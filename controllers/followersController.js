@@ -1,13 +1,7 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const {
-  CREATED,
-  INTERNAL_SERVER_ERROR,
-  NOT_FOUND,
-  ACCEPTED,
-  CONFLICT
-} = constants.statusCode;
+const { CREATED, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
 const { User, Follower } = models;
 
 /**

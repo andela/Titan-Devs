@@ -9,25 +9,23 @@ import ReportArticleController from "../controllers/reportArticleController";
 
 const article = Router();
 
+article.get("/articles/:slug", Article.findOneArticle);
 article.get("/articles", optionalAuth, Article.findAll);
-article.put("/articles/:slug", checkAuth, Article.update);
-article.delete("/articles/:slug", checkAuth, Article.deleteOne);
-article.post("/articles/:slug/bookmark", checkAuth, BookmarkController.bookmark);
-article.post("/articles/:slug/likes", checkAuth, ArticleLikeController.like);
-article.post("/articles/:slug/dislikes", checkAuth, ArticleLikeController.dislike);
-article.get(
-  "/articles/:slug/likes",
-  checkAuth,
-  ArticleLikeController.getArticleLikes
-);
 
 article
-  .post("/articles", checkAuth, Article.create)
-  .get("/articles/:slug", Article.findOneArticle);
-article.put(
-  "/articles/:slug/report",
-  checkAuth,
-  articleValidator.validateArticle,
-  ReportArticleController.reportArticle
-);
+  .use(checkAuth)
+  .post("/articles", Article.create)
+  .post("/articles/:slug/bookmark", BookmarkController.bookmark)
+  .post("/articles/:slug/likes", ArticleLikeController.like)
+  .post("/articles/:slug/dislikes", ArticleLikeController.dislike)
+  .get("/articles/:slug/likes", ArticleLikeController.getArticleLikes)
+  .put(
+    "/articles/:slug/report",
+    articleValidator.validateArticle,
+    ReportArticleController.reportArticle
+  )
+  .route("/articles/:slug")
+  .put(Article.update)
+  .delete(Article.deleteOne);
+
 export default article;
