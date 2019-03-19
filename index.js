@@ -1,5 +1,4 @@
 import express from "express";
-import bodyParser from "body-parser";
 import session from "express-session";
 import cors from "cors";
 import errorhandler from "errorhandler";
@@ -26,10 +25,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(morgan("dev"));
 app.use(methodOverride());
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(morgan("dev"));
-
 app.use(express.static(`${__dirname}/public`));
 app.use(passport.initialize());
 passportConfig(passport);
@@ -43,9 +38,7 @@ app.use(
   })
 );
 
-if (!isProduction) {
-  app.use(errorhandler());
-}
+if (!isProduction) app.use(errorhandler());
 
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1", routers);
