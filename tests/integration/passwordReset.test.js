@@ -3,7 +3,9 @@ import chai, { expect, should } from "chai";
 import nock from "nock";
 import app from "../../index";
 import { users, sendGridResponse } from "../helpers/testData";
+import constants from "../../helpers/constants";
 
+const { OK, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 const { dummyUser } = users;
 chai.use(chaiHttp);
 should();
@@ -19,7 +21,7 @@ describe("Reset Password", () => {
       });
     nock("https://api.sendgrid.com")
       .post("/v3/mail/send")
-      .reply(200, { mockResponse: sendGridResponse });
+      .reply(OK, { mockResponse: sendGridResponse });
   });
   it("should send password rest link", async () => {
     const results = await chai
@@ -29,7 +31,7 @@ describe("Reset Password", () => {
         email: dummyUser.email
       });
     pwdResetToken = results.body.user.resetToken;
-    expect(results.status).equal(200);
+    expect(results.status).equal(OK);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
@@ -43,7 +45,7 @@ describe("Reset Password", () => {
       .request(app)
       .post("/api/v1/users/reset_password")
       .send({});
-    expect(results.status).equal(404);
+    expect(results.status).equal(NOT_FOUND);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
@@ -57,7 +59,7 @@ describe("Reset Password", () => {
       .send({
         email: "yves@gmail.com"
       });
-    expect(results.status).equal(404);
+    expect(results.status).equal(NOT_FOUND);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
@@ -71,7 +73,7 @@ describe("Reset Password", () => {
       .send({
         password: "you@8*"
       });
-    expect(results.status).equal(400);
+    expect(results.status).equal(BAD_REQUEST);
     expect(results.body.message).eql(
       "The password should be an alphanumeric with at least 8 characters"
     );
@@ -84,7 +86,7 @@ describe("Reset Password", () => {
       .send({
         password: dummyUser.password
       });
-    expect(results.status).equal(400);
+    expect(results.status).equal(BAD_REQUEST);
     expect(results.body.message).eql(
       "Your new password was the same as your current one"
     );
@@ -97,7 +99,7 @@ describe("Reset Password", () => {
       .send({
         password: "password78t67"
       });
-    expect(results.status).equal(200);
+    expect(results.status).equal(OK);
     expect(results.body.message).eql("Password updated");
   });
 
@@ -108,7 +110,7 @@ describe("Reset Password", () => {
       .send({
         password: "password"
       });
-    expect(results.status).equal(400);
+    expect(results.status).equal(BAD_REQUEST);
     expect(results.body.message).eql("Invalid or expired link");
   });
 
@@ -119,7 +121,7 @@ describe("Reset Password", () => {
       .send({
         password: "245452hello"
       });
-    expect(results.status).equal(400);
+    expect(results.status).equal(BAD_REQUEST);
     expect(results.body.message).eql("Link expired");
   });
 });

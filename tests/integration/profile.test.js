@@ -4,7 +4,9 @@ import chaiHttp from "chai-http";
 import models from "../../models";
 import app from "../../index";
 import { users } from "../helpers/testData";
+import constants from "../../helpers/constants";
 
+const { OK, BAD_REQUEST, UNAUTHORIZED, FORBIDDEN, INTERNAL_SERVER_ERROR } = constants.statusCode;
 chai.use(chaiHttp);
 
 const { User } = models;
@@ -42,7 +44,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(200);
+        result.status.should.be.eql(OK);
         result.body.should.have
           .property("message")
           .eql("Profile updated successfully");
@@ -69,7 +71,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(400);
+        result.status.should.be.eql(BAD_REQUEST);
         result.body.should.have.property("error").which.is.a("string");
         done();
       });
@@ -84,7 +86,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(403);
+        result.status.should.be.eql(FORBIDDEN);
         result.body.should.have.property("error").eql("Not authorized");
         done();
       });
@@ -106,7 +108,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, res) => {
         if (error) done(error);
-        res.status.should.be.eql(500);
+        res.status.should.be.eql(INTERNAL_SERVER_ERROR);
         res.body.should.have.property("error");
         done();
       });
@@ -119,8 +121,8 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(403);
-        result.body.should.have.property("error").eql("Unauthorized request");
+        result.status.should.be.eql(FORBIDDEN);
+        result.body.should.have.property("message").eql("Unauthorized request");
         done();
       });
   });
@@ -132,7 +134,7 @@ describe("Profile controller", () => {
       .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(200);
+        result.status.should.be.eql(OK);
         result.body.should.have.property("profile").which.is.a("object");
         result.body.profile.should.have.property("username").eql("luc2018");
         result.body.profile.should.have
@@ -150,7 +152,7 @@ describe("Profile controller", () => {
       .get(`/api/v1/profiles/${username}`)
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(400);
+        result.status.should.be.eql(BAD_REQUEST);
         result.body.should.have
           .property("message")
           .which.is.eql("No user with that name");
@@ -164,7 +166,7 @@ describe("Profile controller", () => {
       .get("/api/v1/profiles")
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(200);
+        result.status.should.be.eql(OK);
         result.body.should.have.property("profiles").which.is.a("array");
         done();
       });
@@ -178,7 +180,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(200);
+        result.status.should.be.eql(OK);
         result.body.should.have
           .property("message")
           .eql("Profile deleted successfully");
@@ -194,7 +196,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(401);
+        result.status.should.be.eql(UNAUTHORIZED);
         done();
       });
   });
@@ -207,7 +209,7 @@ describe("Profile controller", () => {
       .set({ Authorization: `Bearer ${token}` })
       .end((error, result) => {
         if (error) done(error);
-        result.status.should.be.eql(401);
+        result.status.should.be.eql(UNAUTHORIZED);
         done();
       });
   });

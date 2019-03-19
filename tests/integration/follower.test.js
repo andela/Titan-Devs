@@ -2,7 +2,9 @@ import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import { users } from "../helpers/testData";
 import app from "../../index";
+import constants from "../../helpers/constants";
 
+const { CREATED, OK, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser, dummyUser2 } = users;
 
@@ -41,7 +43,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followings`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(200);
+      expect(results.status).eql(OK);
       expect(results.body).to.be.an("object");
       expect(results.body.user).to.be.an("object");
       expect(results.body.user).to.have.property("followings");
@@ -54,7 +56,7 @@ describe("User following", () => {
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(201);
+      expect(results.status).eql(CREATED);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("Follow successful");
     });
@@ -64,7 +66,7 @@ describe("User following", () => {
         .request(app)
         .post(`/api/v1/profiles/${dummyUser2.username}/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(409);
+      expect(results.status).eql(CONFLICT);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You are already following this author");
     });
@@ -74,7 +76,7 @@ describe("User following", () => {
         .request(app)
         .post(`/api/v1/profiles/kamliWihene/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("User not found");
     });
@@ -84,7 +86,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/${dummyUser2.username}/followers`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(200);
+      expect(results.status).eql(OK);
       expect(results.body).to.be.an("object");
       expect(results.body)
         .to.have.property("followers")
@@ -97,7 +99,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/iraguha2020/followers`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body.message).eql("User not found");
     });
 
@@ -106,7 +108,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followers`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(200);
+      expect(results.status).eql(OK);
       expect(results.body).to.be.an("object");
       expect(results.body)
         .to.have.property("followers")
@@ -119,7 +121,7 @@ describe("User following", () => {
         .request(app)
         .delete(`/api/v1/profiles/${dummyUser2.username}/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(202);
+      expect(results.status).eql(ACCEPTED);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have unfollowed this author");
     });
@@ -129,7 +131,7 @@ describe("User following", () => {
         .request(app)
         .delete(`/api/v1/profiles/iraguha2019/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("User not found");
     });
@@ -139,7 +141,7 @@ describe("User following", () => {
         .request(app)
         .delete(`/api/v1/profiles/${dummyUser2.username}/follow`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body).to.be.an("object");
       expect(results.body.message).eql("You have already unfollowed this author");
     });
@@ -149,7 +151,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/${dummyUser.username}/followings`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(200);
+      expect(results.status).eql(OK);
       expect(results.body).to.be.an("object");
       expect(results.body.user).to.be.an("object");
       expect(results.body.user).to.have.property("followings");
@@ -162,7 +164,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/iraguha2030/followings`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(404);
+      expect(results.status).eql(NOT_FOUND);
       expect(results.body.message).eql("User not found");
     });
 
@@ -171,7 +173,7 @@ describe("User following", () => {
         .request(app)
         .get(`/api/v1/profiles/${dummyUser2.username}/followers`)
         .set({ Authorization: `Bearer ${userToken}` });
-      expect(results.status).eql(200);
+      expect(results.status).eql(OK);
       expect(results.body).to.be.an("object");
       expect(results.body)
         .to.have.property("followers")

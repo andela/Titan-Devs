@@ -1,10 +1,16 @@
 import joi from "joi";
 import models from "../models";
-import { ratingOne, ratingAll } from "../helpers/ratingValidation";
+import { ratingOne } from "../helpers/ratingValidation";
 import constants from "../helpers/constants";
 
 const { Rating, sequelize } = models;
-const { NOT_FOUND, OK, INTERNAL_SERVER_ERROR, CONFLICT } = constants.statusCode;
+const {
+  NOT_FOUND,
+  OK,
+  INTERNAL_SERVER_ERROR,
+  CONFLICT,
+  CREATED
+} = constants.statusCode;
 class RatingController {
   /**
    * @description Create a rating for a blog post
@@ -25,10 +31,13 @@ class RatingController {
       } else {
         Rating.create({ slug, userId, rating, articleId: article.id })
           .then(result => {
-            res.status(201).json({
-              message: "Article rated successfully",
-              rating: result.dataValues
-            });
+            /* eslint-disable no-underscore-dangle */
+            if (result._options.isNewRecord) {
+              res.status(CREATED).json({
+                message: "Article rated successfully",
+                rating: result.dataValues
+              });
+            }
           })
           .catch(error => {
             if (
@@ -37,9 +46,10 @@ class RatingController {
             ) {
               res.status(CONFLICT).json({ message: "Cannot rate an article twice" });
             } else {
-              res
-                .status(INTERNAL_SERVER_ERROR)
-                .json({ message: "Please Try again later" });
+              res.status(INTERNAL_SERVER_ERROR).json({
+                message:
+                  "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+              });
             }
           });
       }
@@ -53,7 +63,7 @@ class RatingController {
    * @return {Object} - It returns the response object.
    */
 
-  static async getAll(req, res) {
+static async getAll(req, res) {
     const { article } = req;
 
     try {
@@ -101,9 +111,10 @@ class RatingController {
             }
           })
           .catch(_error => {
-            res
-              .status(INTERNAL_SERVER_ERROR)
-              .json({ message: "Please Try again later" });
+            res.status(INTERNAL_SERVER_ERROR).json({
+              message:
+                "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+            });
           });
       }
     });

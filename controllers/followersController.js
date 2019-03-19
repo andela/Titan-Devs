@@ -1,5 +1,7 @@
 import models from "../models";
+import constants from "../helpers/constants";
 
+const { CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
 const { User, Follower } = models;
 
 /**
@@ -23,7 +25,7 @@ export default class FollowerController {
         }
       });
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       await Follower.findOrCreate({
         where: {
@@ -32,21 +34,19 @@ export default class FollowerController {
         }
       }).spread((follower, created) => {
         if (created) {
-          return res.status(201).json({
+          return res.status(CREATED).json({
             message: "Follow successful"
           });
         }
         return res
-          .status(409)
+          .status(CONFLICT)
           .json({ message: "You are already following this author" });
       });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Following user failed",
-          errors: "Something happened, please try again"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Following user failed",
+        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -67,7 +67,7 @@ export default class FollowerController {
         }
       });
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       const results = await Follower.destroy({
         where: {
@@ -77,17 +77,17 @@ export default class FollowerController {
       });
       if (results <= 0) {
         return res
-          .status(404)
+          .status(NOT_FOUND)
           .json({ message: "You have already unfollowed this author" });
       }
-      return res.status(202).json({ message: "You have unfollowed this author" });
+      return res
+        .status(ACCEPTED)
+        .json({ message: "You have unfollowed this author" });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Unfollowing user failed",
-          errors: "Something happened, please try again"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Unfollowing user failed",
+        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -107,7 +107,7 @@ export default class FollowerController {
         }
       });
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       const followers = await Follower.findAll({
         where: {
@@ -122,12 +122,10 @@ export default class FollowerController {
       });
       res.json({ followers });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Unknown error occurred",
-          errors: "Something happened, please try again"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Unknown error occurred",
+        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 
@@ -155,16 +153,14 @@ export default class FollowerController {
         ]
       });
       if (!user) {
-        return res.status(404).json({ message: "User not found" });
+        return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       res.json({ user });
     } catch (error) {
-      res
-        .status(500)
-        .json({
-          message: "Unknown error occurred",
-          errors: "Something happened, please try again"
-        });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Unknown error occurred",
+        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
     }
   }
 }
