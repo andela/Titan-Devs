@@ -627,10 +627,10 @@ export {
   newArticle,
   newComment,
   users,
-  fakeToken,
   tokenEmailVerication,
   sendGridResponse,
   article,
   opnResponse,
-  fakeId
+  fakeId,
+  fakeToken
 };
