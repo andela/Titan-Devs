@@ -2,9 +2,7 @@ import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
 import { article, users } from "../helpers/testData";
-import constants from "../../helpers/constants";
 
-const { OK, CREATED, NOT_FOUND, UNAUTHORIZED } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser } = users;
 describe("ArticleLike Controller", () => {
@@ -44,7 +42,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(CREATED);
+            expect(response.status).eql(201);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
             expect(response.body.message).to.be.eql("Successfully liked");
@@ -61,7 +59,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(OK);
+            expect(response.status).eql(200);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
             expect(response.body.message).to.be.eql("Disliked successfully");
@@ -80,7 +78,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(NOT_FOUND);
+            expect(response.status).eql(404);
             expect(response.body).to.an("object");
             expect(response.body)
               .to.have.property("message")
@@ -98,7 +96,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(UNAUTHORIZED);
+            expect(response.status).eql(401);
             done();
           });
       });
@@ -114,7 +112,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(CREATED);
+            expect(response.status).eql(201);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
             expect(response.body.message).to.be.eql("Successfully disliked");
@@ -131,7 +129,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(OK);
+            expect(response.status).eql(200);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
             expect(response.body.message).to.be.eql("Successfully removed dislike");
@@ -150,7 +148,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(NOT_FOUND);
+            expect(response.status).eql(404);
             expect(response.body).to.an("object");
             expect(response.body)
               .to.have.property("message")
@@ -168,7 +166,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(UNAUTHORIZED);
+            expect(response.status).eql(401);
             done();
           });
       });
@@ -184,7 +182,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(OK);
+            expect(response.status).eql(200);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("article");
             expect(response.body.article).to.have.property("id");
@@ -209,7 +207,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(NOT_FOUND);
+            expect(response.status).eql(404);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
             expect(response.body.message).eql("Article not found");
@@ -226,7 +224,7 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(UNAUTHORIZED);
+            expect(response.status).eql(401);
             done();
           });
       });

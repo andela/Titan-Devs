@@ -18,11 +18,7 @@ export default class ArticleLikesController {
   static async like(req, res) {
     const { slug } = req.params;
     try {
-      const article = await Article.findOne({
-        where: {
-          slug
-        }
-      });
+      const article = await Article.findOne({ where: { slug } });
       if (!article) {
         return res.status(NOT_FOUND).json({
           message: "Article not found"
@@ -46,12 +42,7 @@ export default class ArticleLikesController {
         }
         await ArticleLike.update(
           { like: true },
-          {
-            where: {
-              userId: req.user.id,
-              articleId: article.id
-            }
-          }
+          { where: { userId: req.user.id, articleId: article.id } }
         );
         return res.status(OK).json({ message: "Successfully liked" });
       });
@@ -65,6 +56,7 @@ export default class ArticleLikesController {
 
   /**
    * @description let user dislike article
+   * @param {object} -req The request object
    * @param {object} -res The response object
    * @return {object} - returns the response object
    */
@@ -72,21 +64,12 @@ export default class ArticleLikesController {
   static async dislike(req, res) {
     const { slug } = req.params;
     try {
-      const article = await Article.findOne({
-        where: {
-          slug
-        }
-      });
+      const article = await Article.findOne({ where: { slug } });
       if (!article) {
-        return res.status(NOT_FOUND).json({
-          message: "Article not found"
-        });
+        return res.status(NOT_FOUND).json({ message: "Article not found" });
       }
       await ArticleLike.findOrCreate({
-        where: {
-          userId: req.user.id,
-          articleId: article.id
-        },
+        where: { userId: req.user.id, articleId: article.id },
         defaults: { like: false }
       }).spread(async (articleLike, created) => {
         if (created) {
@@ -94,21 +77,13 @@ export default class ArticleLikesController {
         }
         if (!articleLike.like) {
           await ArticleLike.destroy({
-            where: {
-              userId: req.user.id,
-              articleId: article.id
-            }
+            where: { userId: req.user.id, articleId: article.id }
           });
           return res.status(OK).json({ message: "Successfully removed dislike" });
         }
         await ArticleLike.update(
           { like: false },
-          {
-            where: {
-              userId: req.user.id,
-              articleId: article.id
-            }
-          }
+          { where: { userId: req.user.id, articleId: article.id } }
         );
         return res.status(CREATED).json({ message: "Successfully disliked" });
       });
@@ -130,9 +105,7 @@ export default class ArticleLikesController {
     const { slug } = req.params;
     try {
       const article = await Article.findOne({
-        where: {
-          slug
-        },
+        where: { slug },
         include: [
           {
             model: User,
@@ -152,12 +125,11 @@ export default class ArticleLikesController {
       if (!article) {
         return res.status(NOT_FOUND).json({ message: "Article not found" });
       }
-
-      res.json({ article });
+      return res.status(OK).json({ article });
     } catch (err) {
       res.status(INTERNAL_SERVER_ERROR).json({
-        message:
-          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        message: "Unknown error",
+        errors: err.stack
       });
     }
   }
