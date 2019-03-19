@@ -12,7 +12,6 @@ export const articleSchema = {
     .required(),
   body: Joi.string()
     .trim()
-    // .min(100)
     .required(),
   tagsList: Joi.array()
 };

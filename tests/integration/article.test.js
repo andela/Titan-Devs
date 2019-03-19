@@ -5,21 +5,14 @@ import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
-
 let fakeToken;
-const { dummyUser } = users;
-const {
-  UNAUTHORIZED,
-  CREATED,
-  BAD_REQUEST,
-  OK,
-  NOT_FOUND,
-  INTERNAL_SERVER_ERROR
-} = constants.statusCode;
 let validSlug;
-chai.use(chaiHttp);
+
+const { dummyUser } = users;
+const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
 
 chai.use(chaiHttp);
+
 before(done => {
   const { email, password } = dummyUser;
   chai
@@ -50,6 +43,8 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(newArticle)
         .end((err, res) => {
+          createdArticle = res.body;
+          validSlug = res.body.article.slug;
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");
           expect(res.body).to.haveOwnProperty("article");
@@ -133,6 +128,7 @@ describe("# Articles endpoints", () => {
         });
     });
   });
+
   describe("Report an article endpoint", () => {
     it("should be report an article", done => {
       chai
@@ -146,6 +142,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should report an article", done => {
       chai
         .request(app)
@@ -158,6 +155,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should should ask for description", done => {
       chai
         .request(app)
@@ -243,6 +241,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should be ready to be posted on facebook", done => {
       chai
         .request(app)
@@ -256,6 +255,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should be ready to be posted on linkedIn", done => {
       chai
         .request(app)
@@ -269,6 +269,7 @@ describe("# Articles endpoints", () => {
           done();
         });
     });
+
     it("should be ready to be posted on email", done => {
       chai
         .request(app)
@@ -281,6 +282,7 @@ describe("# Articles endpoints", () => {
         });
     });
   });
+
   describe("Fetching all articles", () => {
     it("should return a list of all created articles", done => {
       chai
@@ -315,321 +317,156 @@ describe("# Articles endpoints", () => {
               .to.haveOwnProperty("username")
               .to.be.a("string");
           });
+          done();
         });
-      });
+    });
 
-      it("should deny bookmarking if no access-token provided", done => {
-        const { article } = createdArticle;
+    it("should return a list of all created articles even when no token provided", done => {
+      chai
+        .request(app)
+        .get(`/api/v1/articles`)
+        .end((err, res) => {
+          expect(res.status).equals(OK);
+          expect(res.body.message).to.contain("Successful");
+          expect(res.body)
+            .to.haveOwnProperty("articles")
+            .to.be.an("array");
+          expect(res.body)
+            .to.haveOwnProperty("articlesCount")
+            .to.be.a("number");
+
+          res.body.articles.map(article => {
+            expect(article).to.have.any.keys(
+              "slug",
+              "title",
+              "description",
+              "body",
+              "tagsList",
+              "favorited",
+              "favoritesCount",
+              "author"
+            );
+            expect(article.tagsList).to.be.an("array");
+            expect(article.favoritesCount).to.be.a("number");
+            expect(article.favorited).to.be.a("boolean");
+            return expect(article.author)
+              .to.be.an("object")
+              .to.haveOwnProperty("username")
+              .to.be.a("string");
+          });
+          done();
+        });
+    });
+  });
+
+  describe("Updating and deleting a specific article", () => {
+    before(done => {
+      chai
+        .request(app)
+        .post("/api/v1/users")
+        .send({
+          email: "fake@email.com",
+          username: "fake",
+          password: "243hjgudsgdgh"
+        })
+        .end(error => {
+          if (!error) {
+            chai
+              .request(app)
+              .post("/api/v1/users/login")
+              .send({ email: "fake@email.com", password: "243hjgudsgdgh" })
+              .end((err, res) => {
+                if (!err) fakeToken = res.body.token;
+                done(err || undefined);
+              });
+          }
+        });
+    });
+
+    describe("Updating a specific article", () => {
+      it("should add the new tags on an article", done => {
         chai
           .request(app)
-          .post(`/api/v1/articles/${article.slug}/bookmark`)
+          .put(`/api/v1/articles/${validSlug}`)
+          .set("Authorization", `Bearer ${token}`)
+          .send({ tagsList: ["politics", "music", "love"] })
           .end((err, res) => {
-            expect(res.status).equals(UNAUTHORIZED);
-            expect(res.body.message).to.contain("Please provide a token");
+            expect(res.status).equals(CREATED);
+            expect(res.body.message).to.contain("Updated");
+            expect(res.body)
+              .to.haveOwnProperty("article")
+              .to.be.an("object");
             done();
           });
       });
 
-      it("should decline bookmarking the article which doesn't exist", done => {
-        const { article } = createdArticle;
+      it("should throw the error if the current user is not the author of that article", done => {
         chai
           .request(app)
-          .post(`/api/v1/articles/${article.slug}fs1/bookmark`)
+          .put(`/api/v1/articles/${validSlug}`)
+          .set("Authorization", `Bearer ${fakeToken}`)
+          .end((err, res) => {
+            expect(res.status).equals(UNAUTHORIZED);
+            expect(res.body.message).to.contain(
+              "You can only update the article you authored"
+            );
+            done();
+          });
+      });
+
+      it("should throw the bad request error if the description is invalid", done => {
+        chai
+          .request(app)
+          .put(`/api/v1/articles/${validSlug}`)
+          .set("Authorization", `Bearer ${token}`)
+          .send({ description: "Love" })
+          .end((err, res) => {
+            expect(res.status).equals(BAD_REQUEST);
+            expect(res.body.message).to.contain(
+              '"description" length must be at least 10 characters long'
+            );
+            done();
+          });
+      });
+    });
+
+    describe("Deleting a specific article", () => {
+      it("should throw the error if the current user is not the author of that article", done => {
+        chai
+          .request(app)
+          .delete(`/api/v1/articles/${validSlug}`)
+          .set("Authorization", `Bearer ${fakeToken}`)
+          .end((err, res) => {
+            expect(res.status).equals(UNAUTHORIZED);
+            expect(res.body.message).to.contain(
+              "You can only delete the article you authored"
+            );
+            done();
+          });
+      });
+
+      it(`should throw an error if passed an invalid slug`, done => {
+        chai
+          .request(app)
+          .delete(`/api/v1/articles/${validSlug}3`)
           .set("Authorization", `Bearer ${token}`)
           .end((err, res) => {
             expect(res.status).equals(NOT_FOUND);
-            expect(res.body.message).to.contain("The article with this slug");
+            expect(res.body.message).to.contain("article not found");
             done();
           });
       });
 
-      it("should delete the bookmark if it existed", done => {
-        const { article } = createdArticle;
+      it(`should delete the article with slug ${validSlug}`, done => {
         chai
           .request(app)
-          .post(`/api/v1/articles/${article.slug}/bookmark`)
+          .delete(`/api/v1/articles/${validSlug}`)
           .set("Authorization", `Bearer ${token}`)
           .end((err, res) => {
             expect(res.status).equals(OK);
-            expect(res.body.message).to.contain("Bookmark deleted");
+            expect(res.body.message).to.contain("Deleted");
             done();
           });
-      });
-    });
-
-    describe("Share Articles endpoints", () => {
-      it("should be ready to be posted on twitter", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles/${validSlug}/share/twitter`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain(
-              "Article ready to be posted on twitter"
-            );
-            done();
-          });
-      });
-      it("should be ready to be posted on facebook", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles/${validSlug}/share/fb`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain(
-              "Article ready to be posted on facebook"
-            );
-            done();
-          });
-      });
-      it("should be ready to be posted on linkedIn", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles/${validSlug}/share/linkedIn`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain(
-              "Article ready to be posted on linkedIn"
-            );
-            done();
-          });
-      });
-      it("should be ready to be posted on email", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles/${validSlug}/share/email`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain(
-              "Article ready to be posted on Email"
-            );
-            done();
-          });
-      });
-    });
-    describe("Fetching all articles", () => {
-      it("should return a list of all created articles", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain("Successful");
-            expect(res.body)
-              .to.haveOwnProperty("articles")
-              .to.be.an("array");
-            expect(res.body)
-              .to.haveOwnProperty("articlesCount")
-              .to.be.a("number");
-            res.body.articles.map(article => {
-              expect(article).to.have.any.keys(
-                "slug",
-                "title",
-                "description",
-                "body",
-                "tagsList",
-                "favorited",
-                "favoritesCount",
-                "author"
-              );
-              expect(article.tagsList).to.be.an("array");
-              expect(article.favoritesCount).to.be.a("number");
-              expect(article.favorited).to.be.a("boolean");
-              return expect(article.author)
-                .to.be.an("object")
-                .to.haveOwnProperty("username")
-                .to.be.a("string");
-            });
-            done();
-          });
-      });
-
-      it("should return a list of all created articles even when no token provided", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain("Successful");
-            expect(res.body)
-              .to.haveOwnProperty("articles")
-              .to.be.an("array");
-            expect(res.body)
-              .to.haveOwnProperty("articlesCount")
-              .to.be.a("number");
-
-            res.body.articles.map(article => {
-              expect(article).to.have.any.keys(
-                "slug",
-                "title",
-                "description",
-                "body",
-                "tagsList",
-                "favorited",
-                "favoritesCount",
-                "author"
-              );
-              expect(article.tagsList).to.be.an("array");
-              expect(article.favoritesCount).to.be.a("number");
-              expect(article.favorited).to.be.a("boolean");
-              return expect(article.author)
-                .to.be.an("object")
-                .to.haveOwnProperty("username")
-                .to.be.a("string");
-            });
-
-            done();
-          });
-      });
-
-      it("should filter articles by author", done => {
-        chai
-          .request(app)
-          .get(`/api/v1/articles?author=${dummyUser.username}`)
-          .end((err, res) => {
-            expect(res.status).equals(OK);
-            expect(res.body.message).to.contain("Successful");
-            expect(res.body)
-              .to.haveOwnProperty("articles")
-              .to.be.an("array");
-            expect(res.body)
-              .to.haveOwnProperty("articlesCount")
-              .to.be.a("number");
-            res.body.articles.map(article => {
-              expect(article).to.have.any.keys(
-                "slug",
-                "title",
-                "description",
-                "body",
-                "tagsList",
-                "favorited",
-                "favoritesCount",
-                "author"
-              );
-              return expect(article.author)
-                .to.be.an("object")
-                .to.haveOwnProperty("username")
-                .to.be.a("string")
-                .to.equal(dummyUser.username);
-            });
-            done();
-          });
-      });
-    });
-
-    describe("Updating and deleting a specific article", () => {
-      before(done => {
-        chai
-          .request(app)
-          .post("/api/v1/users")
-          .send({
-            email: "fake@email.com",
-            username: "fake",
-            password: "243hjgudsgdgh"
-          })
-          .end(error => {
-            if (!error) {
-              chai
-                .request(app)
-                .post("/api/v1/users/login")
-                .send({ email: "fake@email.com", password: "243hjgudsgdgh" })
-                .end((err, res) => {
-                  if (!err) fakeToken = res.body.token;
-                  done(err || undefined);
-                });
-            }
-          });
-      });
-
-      describe("Updating a specific article", () => {
-        it("should add the new tags on an article", done => {
-          chai
-            .request(app)
-            .put(`/api/v1/articles/${validSlug}`)
-            .set("Authorization", `Bearer ${token}`)
-            .send({ tagsList: ["politics", "music", "love"] })
-            .end((err, res) => {
-              expect(res.status).equals(CREATED);
-              expect(res.body.message).to.contain("Updated");
-              expect(res.body)
-                .to.haveOwnProperty("article")
-                .to.be.an("object");
-              done();
-            });
-        });
-
-        it("should throw the error if the current user is not the author of that article", done => {
-          chai
-            .request(app)
-            .put(`/api/v1/articles/${validSlug}`)
-            .set("Authorization", `Bearer ${fakeToken}`)
-            .end((err, res) => {
-              expect(res.status).equals(UNAUTHORIZED);
-              expect(res.body.message).to.contain(
-                "You can only update the article you authored"
-              );
-              done();
-            });
-        });
-
-        it("should throw the bad request error if the description is invalid", done => {
-          chai
-            .request(app)
-            .put(`/api/v1/articles/${validSlug}`)
-            .set("Authorization", `Bearer ${token}`)
-            .send({ description: "Love" })
-            .end((err, res) => {
-              expect(res.status).equals(BAD_REQUEST);
-              expect(res.body.message).to.contain(
-                '"description" length must be at least 10 characters long'
-              );
-              done();
-            });
-        });
-      });
-
-      describe("Deleting a specific article", () => {
-        it("should throw the error if the current user is not the author of that article", done => {
-          chai
-            .request(app)
-            .delete(`/api/v1/articles/${validSlug}`)
-            .set("Authorization", `Bearer ${fakeToken}`)
-            .end((err, res) => {
-              expect(res.status).equals(UNAUTHORIZED);
-              expect(res.body.message).to.contain(
-                "You can only delete the article you authored"
-              );
-              done();
-            });
-        });
-
-        it(`should delete the article with slug ${validSlug}`, done => {
-          chai
-            .request(app)
-            .delete(`/api/v1/articles/${validSlug}`)
-            .set("Authorization", `Bearer ${token}`)
-            .end((err, res) => {
-              expect(res.status).equals(OK);
-              expect(res.body.message).to.contain("Deleted");
-              done();
-            });
-        });
-
-        it("should throw the error if article is not found", done => {
-          chai
-            .request(app)
-            .delete(`/api/v1/articles/${validSlug}l`)
-            .set("Authorization", `Bearer ${token}`)
-            .end((err, res) => {
-              expect(res.status).equals(INTERNAL_SERVER_ERROR);
-              done();
-            });
-        });
       });
     });
   });

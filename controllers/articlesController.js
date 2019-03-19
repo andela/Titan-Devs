@@ -55,9 +55,9 @@ export default class ArticleController {
     } catch (error) {
       return error.details
         ? res.status(BAD_REQUEST).json({ message: error.details[0].message })
-        : res
-            .status(INTERNAL_SERVER_ERROR)
-            .json({ message: "Can't create the article, server error" });
+        : res.status(INTERNAL_SERVER_ERROR).json({
+            message: "Can't create the article, server error"
+          });
     }
   }
 
@@ -86,27 +86,25 @@ export default class ArticleController {
         if (bookmarked) {
           return res.status(CREATED).json({
             message: "Article bookmarked",
-            bookmark: bookmarked.dataValues,
-            status: CREATED
+            bookmark: bookmarked.dataValues
           });
         }
-        return res.status(OK).json({
-          message: "Error while bookmarking the article",
-          status: INTERNAL_SERVER_ERROR
+        return res.status(INTERNAL_SERVER_ERROR).json({
+          message: "Error while bookmarking the article"
         });
       }
       const { id } = bookmark.dataValues;
       const deleted = Bookmark.destroy({ where: { id } });
       return deleted
-        ? res.status(OK).json({ message: "Bookmark deleted", status: OK })
+        ? res.status(OK).json({ message: "Bookmark deleted" })
         : res.status(INTERNAL_SERVER_ERROR).json({
-            message: "Error while discarding the bookmark",
-            status: INTERNAL_SERVER_ERROR
+            message: "Error while discarding the bookmark"
           });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .send({ message: error, status: INTERNAL_SERVER_ERROR });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, something went wrong. We already know about this and our developer are working hard to fix it"
+      });
     }
   }
 
@@ -125,9 +123,9 @@ export default class ArticleController {
         article
       });
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Article was NOT posted, Server error" });
+      return res.status(500).json({
+        message: "Article was NOT posted, Server error"
+      });
     }
   }
   /**
@@ -155,9 +153,9 @@ export default class ArticleController {
         message: "Article ready to be posted on Email"
       });
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Article was NOT posted, Server error" });
+      return res.status(500).json({
+        message: "Article was NOT posted, Server error"
+      });
     }
   }
 
@@ -243,9 +241,9 @@ export default class ArticleController {
         message: "Article ready to be posted on linkedIn"
       });
     } catch (error) {
-      return res
-        .status(500)
-        .json({ message: "Article was NOT posted, Server error" });
+      return res.status(500).json({
+        message: "Article was NOT posted, Server error"
+      });
     }
   }
   /**
@@ -331,7 +329,8 @@ export default class ArticleController {
           .json({ message: "Successful", articles, articlesCount });
       }
       return res.status(NOT_FOUND).json({
-        message: "No more articles found, still need to read more?"
+        message:
+          "No more articles found, you can also share your thoughts by creating an article"
       });
     } catch (error) {
       return res
@@ -408,7 +407,12 @@ export default class ArticleController {
       const { slug } = req.params;
       const { user: { id: userId } = {} } = req;
       const article = await Article.findOne({ where: { slug } });
-      if (article.userId !== userId || !article) {
+      if (!article) {
+        return res.status(NOT_FOUND).json({
+          message: `Error deleting, article not found`
+        });
+      }
+      if (article.userId !== userId) {
         return res.status(UNAUTHORIZED).json({
           message: `You can only delete the article you authored`
         });
