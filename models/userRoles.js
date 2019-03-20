@@ -1,4 +1,3 @@
-
 module.exports = (sequelize, DataTypes) => {
   const UserRoles = sequelize.define(
     "UserRoles",
@@ -12,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "userRoles" }
   );
-  UserRoles.associate = function(models) {
+  UserRoles.associate = models => {
     UserRoles.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",

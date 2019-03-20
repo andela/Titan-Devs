@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     { tableName: "permissions" }
   );
-  Permission.associate = function(models) {
+  Permission.associate = models => {
     Permission.hasMany(models.RolePermissions, {
       foreignKey: "permissionId",
       onDelete: "CASCADE",

@@ -10,7 +10,7 @@ const {
   BAD_REQUEST,
   CREATED
 } = constants.statusCode;
-const { Permission, RolePermissions, Role } = models;
+const { Permission, RolePermissions } = models;
 class PermissionController {
   static async create(req, res) {
     try {
@@ -129,7 +129,6 @@ class PermissionController {
         message: "successfully deleted the permission"
       });
     } catch (error) {
-      console.log(error);
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"

@@ -1,4 +1,3 @@
-import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
 import models from "../../models";
@@ -23,8 +22,8 @@ let roleId, permissionId, rolePermissionId;
 describe("permission", () => {
   describe("create()", () => {
     before(async () => {
-      const role = await Role.create(validRole);
-      roleId = role.id;
+      const newRole = await Role.create(validRole);
+      roleId = newRole.id;
     });
     describe("when valid information", () => {
       it("should create a permission", done => {

@@ -1,7 +1,7 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { NOT_FOUND, INTERNAL_SERVER_ERROR, BAD_REQUEST } = constants.statusCode;
+const { NOT_FOUND, INTERNAL_SERVER_ERROR } = constants.statusCode;
 const { User, Article, Role, Permission } = models;
 
 export default class ModelValidator {
