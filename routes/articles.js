@@ -9,7 +9,7 @@ import ReportArticleController from "../controllers/reportArticleController";
 
 const article = Router();
 
-article.get("/articles/:slug", Article.findOneArticle);
+article.get("/articles/:slug", optionalAuth, Article.findOneArticle);
 article.get("/articles", optionalAuth, Article.findAll);
 
 article

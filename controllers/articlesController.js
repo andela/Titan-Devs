@@ -6,7 +6,7 @@ import articleValidator, {
 } from "../helpers/validators/articleValidators";
 import calculateReadTime from "../helpers/calculateReadTime";
 
-const { User, Article, Tag, ArticleTags } = models;
+const { User, Article, Tag, ArticleTags, Comment } = models;
 const {
   CREATED,
   OK,
@@ -16,6 +16,65 @@ const {
   BAD_REQUEST
 } = constants.statusCode;
 
+const articleQuery = {
+  order: [["createdAt", "DESC"]],
+  where: { deletedAt: null },
+  attributes: { exclude: ["deletedAt"] },
+  include: [
+    {
+      model: User,
+      as: "author",
+      attributes: ["username", "image", "firstname", "lastname"],
+      include: [{ model: User, as: "followers", attributes: ["id", "username"] }]
+    },
+    {
+      model: User,
+      as: "likes",
+      attributes: ["username", "image", "firstname", "lastname"],
+      through: { attributes: [] }
+    },
+    {
+      model: Tag,
+      attributes: ["name"],
+      as: "tagsList",
+      through: { attributes: [] }
+    },
+    {
+      model: Comment,
+      as: "comments",
+      attributes: ["id", "body", "createdAt", "updatedAt", "like"],
+      include: [
+        {
+          model: User,
+          as: "author",
+          attributes: ["username", "image", "firstname", "lastname"]
+        },
+        {
+          model: User,
+          as: "likes",
+          through: { attributes: [] },
+          attributes: ["username", "image", "firstname", "lastname"]
+        }
+      ]
+    }
+  ]
+};
+
+const orderArticle = (article, id) => {
+  const {
+    author: { followers, username, bio, image, firstname, lastname }
+  } = article.get();
+  const { tagsList, likes, ...artInfo } = article.get();
+  const following = !!_.dropWhile(followers, f => f.id !== id).length;
+  return {
+    ...artInfo,
+    likes,
+    author: { following, username, bio, image, firstname, lastname },
+    liked: !!likes.length,
+    likesCount: likes.length,
+    tagsList: tagsList.map(t => t.get().name || null)
+  };
+};
 /**
  * @class ArticleController
  */
@@ -47,7 +106,7 @@ export default class ArticleController {
           );
           await article.addTagsList(tag);
         });
-        res.status(CREATED).json({
+        return res.status(CREATED).json({
           message: "Article created",
           article: { ...article.get(), tagsList }
         });
@@ -69,12 +128,23 @@ export default class ArticleController {
    */
 
   static async findOneArticle(req, res) {
+    const { user: { id = null } = {} } = req;
+    const { slug } = req.params;
+    const { where, order, ...rest } = articleQuery;
     try {
-      const { slug } = req.params;
-      const article = await Article.findOne({ where: { slug } });
-      return res.status(OK).json({
-        article
+      const article = await Article.findOne({
+        where: { slug, deletedAt: null },
+        ...rest
       });
+
+      return article
+        ? res.status(OK).json({
+            message: "Successful",
+            article: orderArticle(article, id)
+          })
+        : res.status(NOT_FOUND).json({
+            message: `No article matching with the ${slug} slug`
+          });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:
@@ -97,38 +167,10 @@ export default class ArticleController {
       const all = await Article.findAll({
         offset: (Number(page) - 1) * Number(limit),
         limit,
-        order: [["createdAt", "DESC"]],
-        where: { deletedAt: null },
-        attributes: { exclude: ["deletedAt"] },
-        include: [
-          {
-            model: User,
-            as: "author",
-            attributes: ["username", "bio", "image"],
-            include: [
-              { model: User, as: "followers", attributes: ["id", "username"] }
-            ]
-          },
-          { model: User, as: "likes", attributes: ["username"], through: {} },
-          { model: Tag, attributes: ["name"], as: "tagsList", through: {} }
-        ]
+        ...articleQuery
       });
       if (all.length) {
-        const articles = all.map(each => {
-          const {
-            author: { followers, username, bio, image }
-          } = each.get();
-          const { tagsList, likes, ...article } = each.get();
-          const following = !!_.dropWhile(followers, f => f.id !== id).length;
-          return {
-            ...article,
-            likes: likes.map(like => like.username),
-            author: { following, username, bio, image },
-            favorited: !!likes.length,
-            favoritesCount: likes.length,
-            tagsList: tagsList.map(t => t.get().name || null)
-          };
-        });
+        const articles = all.map(each => orderArticle(each, id));
         const articlesCount = articles.length;
         return res
           .status(OK)
