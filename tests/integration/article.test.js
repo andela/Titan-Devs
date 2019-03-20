@@ -328,28 +328,94 @@ describe("Fetching all articles", () => {
     });
   });
 });
-
-describe("Updating and deleting a specific article", () => {
-  before(done => {
+describe("Filtering (filter articles by [author, favorited, tag])", () => {
+  const { username } = dummyUser;
+  it(`should only return the article authored by "${username}"`, done => {
     chai
       .request(app)
-      .post("/api/v1/users")
-      .send({
-        email: "fake@email.com",
-        username: "fake",
-        password: "243hjgudsgdgh"
-      })
-      .end(error => {
-        if (!error) {
-          chai
-            .request(app)
-            .post("/api/v1/users/login")
-            .send({ email: "fake@email.com", password: "243hjgudsgdgh" })
-            .end((err, res) => {
-              if (!err) fakeToken = res.body.token;
-              done(err || undefined);
-            });
-        }
+      .get(`/api/v1/articles?author=${username}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Successful");
+        expect(res.body)
+          .to.haveOwnProperty("articles")
+          .to.be.an("array");
+        expect(res.body)
+          .to.haveOwnProperty("articlesCount")
+          .to.be.a("number");
+        res.body.articles.forEach(article =>
+          expect(article.author.username).to.equal(username)
+        );
+        done();
+      });
+  });
+
+  it(`should only return the article with "${newArticle.tagsList[0]}" tag`, done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles?tag=${newArticle.tagsList[0]}`)
+      .end((err, res) => {
+        expect(res.status).equals(OK);
+        expect(res.body.message).to.contain("Successful");
+        expect(res.body)
+          .to.haveOwnProperty("articles")
+          .to.be.an("array");
+        expect(res.body)
+          .to.haveOwnProperty("articlesCount")
+          .to.be.a("number");
+        res.body.articles.forEach(article =>
+          expect(article.tagsList).to.contain(newArticle.tagsList[0])
+        );
+        done();
+      });
+  });
+
+  it(`should only return the articles favorited by "${username}" user`, async () => {
+    await chai
+      .request(app)
+      .post(`/api/v1/articles/${validSlug}/likes`)
+      .set({ Authorization: `Bearer ${token}` });
+    const response = await chai
+      .request(app)
+      .get(`/api/v1/articles?favorited=${username}`);
+    expect(response.status).equals(OK);
+    expect(response.body.message).to.contain("Successful");
+    expect(response.body)
+      .to.haveOwnProperty("articles")
+      .to.be.an("array");
+    expect(response.body)
+      .to.haveOwnProperty("articlesCount")
+      .to.be.a("number");
+    response.body.articles.forEach(article =>
+      expect(article.likes).to.include(username)
+    );
+  });
+
+  it(`should only return the articles authored by "${username}", favorited by "${username}", and tagged "${
+    newArticle.tagsList[0]
+  }" tag`, done => {
+    chai
+      .request(app)
+      .get(
+        `/api/v1/articles?author=${username}&favorited=${username}&tag=${
+          newArticle.tagsList[0]
+        }`
+      )
+      .end((err, response) => {
+        expect(response.status).equals(OK);
+        expect(response.body.message).to.contain("Successful");
+        expect(response.body)
+          .to.haveOwnProperty("articles")
+          .to.be.an("array");
+        expect(response.body)
+          .to.haveOwnProperty("articlesCount")
+          .to.be.a("number");
+        response.body.articles.forEach(article => {
+          expect(article.tagsList).to.contain(newArticle.tagsList[0]);
+          expect(article.author.username).to.equal(username);
+          expect(article.likes).to.include(username);
+        });
+        done();
       });
   });
 });
