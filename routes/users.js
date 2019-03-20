@@ -3,6 +3,7 @@ import Login from "../controllers/auth/loginController";
 import SignUpController from "../controllers/auth/signupController";
 import UserController from "../controllers/usersController";
 import SignupValidation from "../middlewares/signupValidator";
+import validator from "../middlewares/modelValidator";
 
 const userRouters = Router();
 
@@ -24,4 +25,9 @@ userRouters
     SignupValidation.validatePassword,
     UserController.updatePassword
   );
+userRouters.get(
+  "/users/:userId/roles",
+  validator.checkUser,
+  UserController.getUserRoles
+);
 export default userRouters;

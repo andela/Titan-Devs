@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Article from "../controllers/articlesController";
-import articleValidator from "../middlewares/articleValidator";
+import articleValidator from "../middlewares/modelValidator";
 import ArticleLikeController from "../controllers/articleLikesController";
 import BookmarkController from "../controllers/bookmarkController";
 import ReportArticleController from "../controllers/reportArticleController";

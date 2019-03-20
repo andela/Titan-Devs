@@ -6,7 +6,7 @@ import db from "../models";
 global.assert = assert;
 /* eslint-disable import/no-mutable-exports */
 let token;
-const { Article, User } = db;
+const { Article, User, Permission, Role } = db;
 const dummyArticle = {
   title: "History of a lone wolf",
   description: "lone wolf",
@@ -42,6 +42,16 @@ before(createTestData);
 
 after("Destroy the database ", async () => {
   await User.destroy({
+    where: {},
+    truncate: true,
+    cascade: true
+  });
+  await Permission.destroy({
+    where: {},
+    truncate: true,
+    cascade: true
+  });
+  await Role.destroy({
     where: {},
     truncate: true,
     cascade: true

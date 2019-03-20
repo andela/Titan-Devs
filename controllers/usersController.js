@@ -20,7 +20,7 @@ const {
 
 dotenv.config();
 
-const { User } = models;
+const { User, UserRoles, Role } = models;
 
 /**
  * @class UserController
@@ -232,6 +232,32 @@ class UserController {
           });
         }
       );
+    } catch (error) {
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
+  }
+
+  static async getUserRoles(req, res) {
+    try {
+      const { userId } = req.params;
+      const userRoles = await UserRoles.findOne({
+        where: { userId }
+      });
+      if (!userRoles) {
+        return res.status(NOT_FOUND).json({
+          message: "Role not found"
+        });
+      }
+      const userRoleResponse = await UserRoles.findAll({
+        where: { userId },
+        include: [{ model: Role }]
+      });
+      return res.status(OK).json({
+        data: userRoleResponse
+      });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:

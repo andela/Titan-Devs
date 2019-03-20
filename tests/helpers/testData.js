@@ -150,8 +150,20 @@ const role = {
     name: "ADMIN",
     description: "Administrator"
   },
+  validRole2: {
+    name: "Anonymous",
+    description: "Administrator"
+  },
   invalidRole: {
     description: "writer"
+  },
+  noAlphabeticRoleDesc: {
+    name: "ADMIN",
+    description: 93989
+  },
+  noAlphabeticRoleName: {
+    name: 4895,
+    description: "Administrator"
   }
 };
 const permission = {
@@ -159,9 +171,16 @@ const permission = {
     name: "create",
     description: "be able to create an article"
   },
+  validPermission2: {
+    name: "read",
+    description: "be able to create an article"
+  },
   invalidPermission: {
     description: "writer"
   }
+};
+const testUIID = {
+  invalidUUID: "08ecefad-4822-4b49-9b4e-101f873d75a7"
 };
 export {
   newArticle,
@@ -171,5 +190,6 @@ export {
   sendGridResponse,
   article,
   role,
-  permission
+  permission,
+  testUIID
 };

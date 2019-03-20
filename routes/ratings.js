@@ -1,6 +1,6 @@
 import { Router } from "express";
 import checkAuth from "../middlewares/checkAuth";
-import articleValidator from "../middlewares/articleValidator";
+import articleValidator from "../middlewares/modelValidator";
 import RatingController from "../controllers/ratingsController";
 
 const ratingRouters = Router();
