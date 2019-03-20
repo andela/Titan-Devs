@@ -4,7 +4,8 @@ import constants from "../helpers/constants";
 import articleValidator, {
   articleSchema
 } from "../helpers/validators/articleValidators";
-// import calculateReadTime from "../helpers/calculateReadTime";
+
+import notification from "../helpers/notification/sendNotification";
 
 const { User, Article, Bookmark, Tag, ArticleTags, Comment } = models;
 const {
@@ -100,6 +101,7 @@ export default class ArticleController {
       const { id: userId } = req.user;
       const valid = await articleValidator(req.body);
       if (req.user && valid) {
+        const message = "Your favorite author created a new article";
         const article = await Article.create({
           ...rest,
           readTime: 0,
@@ -112,6 +114,7 @@ export default class ArticleController {
           );
           await article.addTagsList(tag);
         });
+        notification.sendFollowersNotifications(userId, message);
         return res.status(CREATED).json({
           message: "Article created",
           article: { ...article.get(), deletedAt: undefined, tagsList }
