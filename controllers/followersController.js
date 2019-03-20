@@ -1,8 +1,15 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { CREATED, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
+const {
+  CREATED,
+  NOT_FOUND,
+  ACCEPTED,
+  CONFLICT,
+  INTERNAL_SERVER_ERROR
+} = constants.statusCode;
 const { User, Follower } = models;
+const { SERVER_ERROR } = constants.errorMessage;
 
 /**
  *@class FollowerController
@@ -43,9 +50,8 @@ export default class FollowerController {
           .json({ message: "You are already following this author" });
       });
     } catch (error) {
-      res.status(500).json({
-        message: "Following user failed",
-        errors: "Something happened, please try again"
+      res.status().json({
+        message: SERVER_ERROR
       });
     }
   }
@@ -84,10 +90,7 @@ export default class FollowerController {
         .status(ACCEPTED)
         .json({ message: "You have unfollowed this author" });
     } catch (error) {
-      res.status(500).json({
-        message: "Unfollowing user failed",
-        errors: "Something happened, please try again"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -123,10 +126,7 @@ export default class FollowerController {
       });
       res.json({ followers });
     } catch (error) {
-      res.status(500).json({
-        message: "Unknown error occurred",
-        errors: "Something happened, please try again"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -158,10 +158,7 @@ export default class FollowerController {
       }
       res.json({ user });
     } catch (error) {
-      res.status(500).json({
-        message: "Unknown error occurred",
-        errors: "Something happened, please try again"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 }

@@ -4,6 +4,7 @@ import constants from "../helpers/constants";
 const { User, Article, Bookmark } = models;
 
 const { CREATED, NOT_FOUND, INTERNAL_SERVER_ERROR, OK } = constants.statusCode;
+const { SERVER_ERROR } = constants.errorMessage;
 export default class BookMarkController {
   /**
    * @description It helps the user to bookmark the article for reading it later.
@@ -33,9 +34,7 @@ export default class BookMarkController {
             bookmark: bookmarked.dataValues
           });
         }
-        return res.status(INTERNAL_SERVER_ERROR).json({
-          message: "Error while bookmarking the article"
-        });
+        return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
       }
       const { id } = bookmark.dataValues;
       const deleted = Bookmark.destroy({ where: { id } });
@@ -45,10 +44,7 @@ export default class BookMarkController {
             message: "Error while discarding the bookmark"
           });
     } catch (error) {
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message:
-          "Sorry, something went wrong. We already know about this and our developer are working hard to fix it"
-      });
+      return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 }

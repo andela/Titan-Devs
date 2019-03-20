@@ -15,6 +15,7 @@ const {
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST
 } = constants.statusCode;
+const { SERVER_ERROR } = constants.errorMessage;
 
 const articleQuery = {
   order: [["createdAt", "DESC"]],
@@ -114,9 +115,7 @@ export default class ArticleController {
     } catch (error) {
       return error.details
         ? res.status(BAD_REQUEST).json({ message: error.details[0].message })
-        : res.status(INTERNAL_SERVER_ERROR).json({
-            message: "Can't create the article, server error"
-          });
+        : res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -146,10 +145,7 @@ export default class ArticleController {
             message: `No article matching with the ${slug} slug`
           });
     } catch (error) {
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message:
-          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -181,9 +177,7 @@ export default class ArticleController {
           "No more articles found, you can also share your thoughts by creating an article"
       });
     } catch (error) {
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Can't get the articles, server error"
-      });
+      return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -237,9 +231,7 @@ export default class ArticleController {
     } catch (error) {
       return error.details
         ? res.status(BAD_REQUEST).json({ message: error.details[0].message })
-        : res.status(INTERNAL_SERVER_ERROR).json({
-            message: "Can't update the article, server error"
-          });
+        : res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -269,9 +261,7 @@ export default class ArticleController {
       await Article.destroy({ where: { id: article.id } });
       return res.status(OK).json({ message: "Deleted successfully" });
     } catch (error) {
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Can't delete the article, server error"
-      });
+      return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 }

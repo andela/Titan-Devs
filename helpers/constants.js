@@ -62,5 +62,9 @@ export default {
     LOOP_DETECTED: 508,
     NOT_EXTENDED: 510,
     NET_AUTH_REQUIRED: 511
+  },
+  errorMessage: {
+    SERVER_ERROR:
+      "Sorry, this is not working properly. We already know about this our team is working hard to fix it"
   }
 };
