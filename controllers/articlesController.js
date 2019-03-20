@@ -98,6 +98,8 @@ export default class ArticleController {
         offset: (Number(page) - 1) * Number(limit),
         limit,
         order: [["createdAt", "DESC"]],
+        where: { deletedAt: null },
+        attributes: { exclude: ["deletedAt"] },
         include: [
           {
             model: User,
@@ -137,9 +139,9 @@ export default class ArticleController {
           "No more articles found, you can also share your thoughts by creating an article"
       });
     } catch (error) {
-      return res
-        .status(INTERNAL_SERVER_ERROR)
-        .json({ message: "Can't get the articles, server error" });
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message: "Can't get the articles, server error"
+      });
     }
   }
 
@@ -225,7 +227,6 @@ export default class ArticleController {
       await Article.destroy({ where: { id: article.id } });
       return res.status(OK).json({ message: "Deleted successfully" });
     } catch (error) {
-      console.log("================================", error.stack);
       return res.status(INTERNAL_SERVER_ERROR).json({
         message: "Can't delete the article, server error"
       });

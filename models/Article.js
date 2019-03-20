@@ -23,6 +23,7 @@ export default (sequelize, DataTypes) => {
     },
     {
       tableName: "articles",
+      paranoid: true,
       hooks: {
         beforeCreate(article) {
           article.slug = slug(
