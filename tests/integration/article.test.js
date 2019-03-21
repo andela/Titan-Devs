@@ -286,8 +286,8 @@ describe("Fetching all articles", () => {
           expect(res.body)
             .to.haveOwnProperty("articlesCount")
             .to.be.a("number");
-          expect(res.body.articles.length).to.equal(2);
-          expect(res.body.articlesCount).to.equal(2);
+          expect(res.body.articles.length).not.to.be.greaterThan(2);
+          expect(res.body.articlesCount).not.to.be.greaterThan(2);
           done();
         });
     });
@@ -309,8 +309,8 @@ describe("Fetching all articles", () => {
               expect(page1.body)
                 .to.haveOwnProperty("articlesCount")
                 .to.be.a("number");
-              expect(page1.body.articles.length).to.equal(1);
-              expect(page1.body.articlesCount).to.equal(1);
+              expect(page1.body.articles.length).not.to.be.greaterThan(2);
+              expect(page1.body.articlesCount).not.to.be.greaterThan(2);
               expect(page2.status).equals(OK);
               expect(page2.body.message).to.contain("successful");
               expect(page2.body)
@@ -319,8 +319,8 @@ describe("Fetching all articles", () => {
               expect(page2.body)
                 .to.haveOwnProperty("articlesCount")
                 .to.be.a("number");
-              expect(page2.body.articles.length).to.equal(1);
-              expect(page2.body.articlesCount).to.equal(1);
+              expect(page2.body.articles.length).not.to.be.greaterThan(2);
+              expect(page2.body.articlesCount).not.to.be.greaterThan(2);
               expect(page1.body.articles).not.to.equal(page2.body.articles);
               done();
             });

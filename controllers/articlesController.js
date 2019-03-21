@@ -93,8 +93,7 @@ export default class ArticleController {
       const { id: userId } = req.user;
       const valid = await articleValidator(req.body);
       const readTime = calculateReadTime(req);
-      const user = await User.findOne({ where: { id: userId } });
-      if (user && valid) {
+      if (req.user && valid) {
         const article = await Article.create({
           readTime,
           ...rest,
