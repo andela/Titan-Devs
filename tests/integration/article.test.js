@@ -205,7 +205,7 @@ describe("Fetching all articles", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).equals(OK);
-        expect(res.body.message).to.contain("Successful");
+        expect(res.body.message).to.contain("successful");
         expect(res.body)
           .to.haveOwnProperty("articles")
           .to.be.an("array");
@@ -241,7 +241,7 @@ describe("Fetching all articles", () => {
       .get(`/api/v1/articles`)
       .end((err, res) => {
         expect(res.status).equals(OK);
-        expect(res.body.message).to.contain("Successful");
+        expect(res.body.message).to.contain("successful");
         expect(res.body)
           .to.haveOwnProperty("articles")
           .to.be.an("array");
@@ -279,7 +279,7 @@ describe("Fetching all articles", () => {
         .get(`/api/v1/articles?limit=2`)
         .end((err, res) => {
           expect(res.status).equals(OK);
-          expect(res.body.message).to.contain("Successful");
+          expect(res.body.message).to.contain("successful");
           expect(res.body)
             .to.haveOwnProperty("articles")
             .to.be.an("array");
@@ -302,7 +302,7 @@ describe("Fetching all articles", () => {
             .get(`/api/v1/articles?limit=2&page=2`)
             .end((error, page2) => {
               expect(page1.status).equals(OK);
-              expect(page1.body.message).to.contain("Successful");
+              expect(page1.body.message).to.contain("successful");
               expect(page1.body)
                 .to.haveOwnProperty("articles")
                 .to.be.an("array");
@@ -312,7 +312,7 @@ describe("Fetching all articles", () => {
               expect(page1.body.articles.length).to.equal(1);
               expect(page1.body.articlesCount).to.equal(1);
               expect(page2.status).equals(OK);
-              expect(page2.body.message).to.contain("Successful");
+              expect(page2.body.message).to.contain("successful");
               expect(page2.body)
                 .to.haveOwnProperty("articles")
                 .to.be.an("array");
@@ -336,7 +336,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
       .get(`/api/v1/articles?author=${username}`)
       .end((err, res) => {
         expect(res.status).equals(OK);
-        expect(res.body.message).to.contain("Successful");
+        expect(res.body.message).to.contain("successful");
         expect(res.body)
           .to.haveOwnProperty("articles")
           .to.be.an("array");
@@ -356,7 +356,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
       .get(`/api/v1/articles?tag=${newArticle.tagsList[0]}`)
       .end((err, res) => {
         expect(res.status).equals(OK);
-        expect(res.body.message).to.contain("Successful");
+        expect(res.body.message).to.contain("successful");
         expect(res.body)
           .to.haveOwnProperty("articles")
           .to.be.an("array");
@@ -379,7 +379,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
       .request(app)
       .get(`/api/v1/articles?favorited=${username}`);
     expect(response.status).equals(OK);
-    expect(response.body.message).to.contain("Successful");
+    expect(response.body.message).to.contain("successful");
     expect(response.body)
       .to.haveOwnProperty("articles")
       .to.be.an("array");
@@ -403,7 +403,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
       )
       .end((err, response) => {
         expect(response.status).equals(OK);
-        expect(response.body.message).to.contain("Successful");
+        expect(response.body.message).to.contain("successful");
         expect(response.body)
           .to.haveOwnProperty("articles")
           .to.be.an("array");
@@ -453,7 +453,7 @@ describe("Updating and deleting a specific article", () => {
         .send({ tagsList: ["politics", "music", "love"] })
         .end((err, res) => {
           expect(res.status).equals(CREATED);
-          expect(res.body.message).to.contain("Updated");
+          expect(res.body.message).to.contain("updated");
           expect(res.body)
             .to.haveOwnProperty("article")
             .to.be.an("object");
@@ -525,7 +525,7 @@ describe("Updating and deleting a specific article", () => {
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           expect(res.status).equals(OK);
-          expect(res.body.message).to.contain("Deleted");
+          expect(res.body.message).to.contain("deleted");
           done();
         });
     });

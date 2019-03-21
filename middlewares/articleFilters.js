@@ -18,5 +18,5 @@ export default (unfiltered, req, res, next) => {
     .filter(art => tag === null || art.tagsList.includes(tag))
     .filter(art => favorited === null || art.likes.includes(favorited));
   const articlesCount = articles.length;
-  return res.status(OK).json({ message: "Successful", articles, articlesCount });
+  return res.status(OK).json({ message: "successful", articles, articlesCount });
 };

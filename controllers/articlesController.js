@@ -165,12 +165,16 @@ export default class ArticleController {
         limit,
         ...articleQuery
       });
-      if (all.length) {
+      if (all.length > 0) {
         const articles = all.map(each => orderArticle(each, id));
         const articlesCount = articles.length;
         return author || favorited || tag
           ? next(articles)
-          : res.status(OK).json({ message: "Successful", articles, articlesCount });
+          : res.status(OK).json({
+              message: "Articles retrieved successfully",
+              articles,
+              articlesCount
+            });
       }
       return res.status(NOT_FOUND).json({
         message:
@@ -222,7 +226,7 @@ export default class ArticleController {
             author: _.pick(await updated.getAuthor(), ["username", "bio", "image"]),
             tagsList: tags
           },
-          message: `Updated successfully`
+          message: `Article updated successfully`
         });
       }
       return res.status(UNAUTHORIZED).json({
@@ -259,7 +263,7 @@ export default class ArticleController {
       }
       await ArticleTags.destroy({ where: { articleId: article.id } });
       await Article.destroy({ where: { id: article.id } });
-      return res.status(OK).json({ message: "Deleted successfully" });
+      return res.status(OK).json({ message: "Article deleted successfully" });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
