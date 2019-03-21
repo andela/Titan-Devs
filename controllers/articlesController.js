@@ -158,8 +158,7 @@ export default class ArticleController {
 
   static async findAll(req, res, next) {
     const { user: { id = null } = {} } = req;
-    const { author, favorited, tag } = req.query;
-    const { page = 1, limit = 20 } = req.query;
+    const { author, favorited, tag, page = 1, limit = 20 } = req.query;
     try {
       const all = await Article.findAll({
         offset: (Number(page) - 1) * Number(limit),
