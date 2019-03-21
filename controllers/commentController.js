@@ -191,6 +191,7 @@ export default class CommentController {
         include: [
           {
             model: Comment,
+            as: "comments",
             attributes: [
               "articleId",
               "body",

@@ -133,21 +133,8 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(OK);
-          expect(res.body.article.Comments).to.be.a("array");
-          expect(res.body.article.Comments[0]).to.haveOwnProperty("body");
-          done();
-        });
-    });
-    it("should return all comments related to article", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/articles/${slug}/comments`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((error, res) => {
-          if (error) done(error);
-          expect(res.status).equals(OK);
-          expect(res.body.article.Comments).to.be.a("array");
-          expect(res.body.article.Comments[0]).to.haveOwnProperty("body");
+          expect(res.body.article.comments).to.be.a("array");
+          expect(res.body.article.comments[0]).to.haveOwnProperty("body");
           done();
         });
     });
