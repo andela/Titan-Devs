@@ -16,14 +16,8 @@ module.exports = {
         type: Sequelize.UUID,
         references: { model: "users", key: "id" }
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      createdAt: { allowNull: false, type: Sequelize.DATE },
+      updatedAt: { allowNull: false, type: Sequelize.DATE }
     });
   },
   down: (queryInterface, Sequelize) => {

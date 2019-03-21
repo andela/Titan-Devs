@@ -1,8 +1,15 @@
 import models from "../models";
 import constants from "../helpers/constants";
 
-const { CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND, ACCEPTED, CONFLICT } = constants.statusCode;
+const {
+  CREATED,
+  NOT_FOUND,
+  ACCEPTED,
+  CONFLICT,
+  INTERNAL_SERVER_ERROR
+} = constants.statusCode;
 const { User, Follower } = models;
+const { SERVER_ERROR } = constants.errorMessage;
 
 /**
  *@class FollowerController
@@ -43,9 +50,8 @@ export default class FollowerController {
           .json({ message: "You are already following this author" });
       });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Following user failed",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      res.status().json({
+        message: SERVER_ERROR
       });
     }
   }
@@ -84,10 +90,7 @@ export default class FollowerController {
         .status(ACCEPTED)
         .json({ message: "You have unfollowed this author" });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Unfollowing user failed",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -116,16 +119,14 @@ export default class FollowerController {
         include: [
           {
             model: User,
+            as: "followings",
             attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
           }
         ]
       });
       res.json({ followers });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Unknown error occurred",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 
@@ -157,10 +158,7 @@ export default class FollowerController {
       }
       res.json({ user });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Unknown error occurred",
-        errors: "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 }

@@ -1,4 +1,4 @@
-"use strict";
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("tags", {
@@ -10,7 +10,8 @@ module.exports = {
       },
       name: {
         allowNull: false,
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: true
       },
       createdAt: {
         allowNull: false,

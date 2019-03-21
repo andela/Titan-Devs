@@ -4,7 +4,7 @@
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
   "scripts": {
-    "test": " NODE_ENV=test yarn run db:migrate && NODE_ENV=test nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
+    "test": "NODE_ENV=test yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:reset": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all"
@@ -22,27 +22,21 @@
     "@sendgrid/mail": "^6.3.1",
     "babel-preset-airbnb": "^3.2.0",
     "bcrypt": "^3.0.3",
-    "body-parser": "^1.18.3",
     "cors": "^2.8.4",
     "dotenv": "^6.2.0",
-    "ejs": "^2.6.1",
     "errorhandler": "^1.5.0",
-    "express": "^4.16.3",
-    "express-jwt": "^5.3.1",
+    "express": "^4.16.4",
     "express-session": "^1.15.6",
     "joi": "^14.3.1",
     "jsonwebtoken": "^8.3.0",
+    "lodash": "^4.17.11",
     "method-override": "^2.3.10",
-    "methods": "^1.1.2",
-    "mongoose": "^5.2.2",
-    "mongoose-unique-validator": "^2.0.1",
     "morgan": "^1.9.0",
     "nock": "^10.0.6",
     "nodemon": "^1.18.9",
     "opn": "^5.4.0",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
-    "passport-local": "^1.0.0",
     "pg": "^7.8.0",
     "pg-hstore": "^2.3.2",
     "request": "^2.87.0",
@@ -50,9 +44,7 @@
     "sequelize-cli": "^5.4.0",
     "sinon": "^7.2.4",
     "slug": "^0.9.3",
-    "swagger-ui-express": "^4.0.2",
-    "underscore": "^1.9.1",
-    "uuid": "^3.3.2"
+    "swagger-ui-express": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
@@ -66,13 +58,10 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^4.0.0",
     "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-jsdoc": "^4.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "faker": "^4.1.0",
     "mocha": "^5.2.0",
-    "nock": "^10.0.6",
     "nyc": "^13.2.0",
-    "prettier": "^1.16.4",
-    "rosie": "^2.0.1"
+    "prettier": "^1.16.4"
   }
 }

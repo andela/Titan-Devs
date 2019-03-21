@@ -5,8 +5,10 @@ import { article, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 const { OK, CREATED, NOT_FOUND, UNAUTHORIZED } = constants.statusCode;
-chai.use(chaiHttp);
 const { dummyUser } = users;
+
+chai.use(chaiHttp);
+
 describe("ArticleLike Controller", () => {
   let slug;
   let token;
@@ -64,7 +66,7 @@ describe("ArticleLike Controller", () => {
             expect(response.status).eql(OK);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Unliked successfully");
+            expect(response.body.message).to.be.eql("Disliked successfully");
             done();
           });
       });

@@ -2,23 +2,30 @@ import { Router } from "express";
 import Article from "../controllers/articlesController";
 import articleValidator from "../middlewares/articleValidator";
 import ArticleLikeController from "../controllers/articleLikesController";
+import checkAuth from "../middlewares/checkAuth";
+import optionalAuth from "../middlewares/optionalAuth";
 import BookmarkController from "../controllers/bookmarkController";
 import ReportArticleController from "../controllers/reportArticleController";
-import checkAuth from "../middlewares/checkAuth";
 
 const article = Router();
 
-article.post("/articles/:slug/bookmark", checkAuth, BookmarkController.bookmark);
-article.post("/articles/:slug/likes", ArticleLikeController.like);
-article.post("/articles/:slug/dislikes", ArticleLikeController.dislike);
-article.get("/articles/:slug/likes", ArticleLikeController.getArticleLikes);
+article.get("/articles/:slug", optionalAuth, Article.findOneArticle);
+article.get("/articles", optionalAuth, Article.findAll);
 
 article
-  .post("/articles", checkAuth, Article.create)
-  .get("/articles/:slug", Article.findOneArticle);
-article.put(
-  "/articles/:slug/report",
-  articleValidator.validateArticle,
-  ReportArticleController.reportArticle
-);
+  .use(checkAuth)
+  .post("/articles", Article.create)
+  .post("/articles/:slug/bookmark", BookmarkController.bookmark)
+  .post("/articles/:slug/likes", ArticleLikeController.like)
+  .post("/articles/:slug/dislikes", ArticleLikeController.dislike)
+  .get("/articles/:slug/likes", ArticleLikeController.getArticleLikes)
+  .put(
+    "/articles/:slug/report",
+    articleValidator.validateArticle,
+    ReportArticleController.reportArticle
+  )
+  .route("/articles/:slug")
+  .put(Article.update)
+  .delete(Article.deleteOne);
+
 export default article;

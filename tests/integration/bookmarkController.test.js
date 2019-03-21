@@ -4,7 +4,7 @@ import app from "../../index";
 import constants from "../../helpers/constants";
 import { post, token } from "../setups.test";
 
-const { UNAUTHORIZED, CREATED, NOT_FOUND, GONE } = constants.statusCode;
+const { UNAUTHORIZED, CREATED, NOT_FOUND, OK } = constants.statusCode;
 chai.use(chaiHttp);
 
 describe("POST /articles/:slug/bookmark", () => {
@@ -53,7 +53,7 @@ describe("POST /articles/:slug/bookmark", () => {
       .post(`/api/v1/articles/${post.slug}/bookmark`)
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
-        expect(res.status).equals(GONE);
+        expect(res.status).equals(OK);
         expect(res.body.message).to.contain("Bookmark deleted");
         done();
       });

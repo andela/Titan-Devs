@@ -1,8 +1,9 @@
 import Joi from "joi";
 
-const articleSchema = {
+export const articleSchema = {
   title: Joi.string()
     .trim()
+    .min(10)
     .required(),
   description: Joi.string()
     .trim()
@@ -11,7 +12,8 @@ const articleSchema = {
     .required(),
   body: Joi.string()
     .trim()
+    // .min(100)
     .required(),
   tagsList: Joi.array()
 };
-export default article => Joi.validate(article, articleSchema);
+export default (article, schema = articleSchema) => Joi.validate(article, schema);

@@ -11,8 +11,8 @@ const router = Router();
 
 router.use(userRouters);
 router.use(profileRouter);
-router.use(checkAuth, commentRoutes);
 router.use(articleRoutes);
-router.use(checkAuth, articleRoutes);
 router.use(checkAuth, ratingRouters);
+router.use(commentRoutes);
+
 export default router;

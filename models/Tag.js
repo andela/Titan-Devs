@@ -8,14 +8,15 @@ export default (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
-      name: DataTypes.STRING
+      name: { type: DataTypes.STRING, unique: true, allowNull: false }
     },
     { tableName: "tags" }
   );
   Tag.associate = models => {
     Tag.belongsToMany(models.Article, {
-      through: "ArticleTag",
+      through: "ArticleTags",
       foreignKey: "tagId",
+      as: "articles",
       onDelete: "CASCADE",
       hooks: true
     });

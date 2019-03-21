@@ -106,7 +106,7 @@ export default class CommentController {
         { where: { id: commentId } }
       );
       res.status(CREATED).json({
-        message: "Comment unliked",
+        message: "Comment Disliked",
         unlikeComment,
         updatedComment: updateCommentLikes[0][0]
       });

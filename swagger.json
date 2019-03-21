@@ -17,21 +17,13 @@
       "description": "API for users in the system"
     }
   ],
-  "schemes": [
-    "http"
-  ],
-  "consumes": [
-    "application/json"
-  ],
-  "produces": [
-    "application/json"
-  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
   "paths": {
     "/users": {
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Create new user in system",
         "parameters": [
           {
@@ -43,9 +35,7 @@
             }
           }
         ],
-        "produces": [
-          "application/json"
-        ],
+        "produces": ["application/json"],
         "responses": {
           "200": {
             "description": "New user is created",
@@ -56,9 +46,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get all users in system",
         "responses": {
           "200": {
@@ -81,9 +69,7 @@
         }
       ],
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Get user with given ID",
         "responses": {
           "200": {
@@ -96,9 +82,7 @@
       },
       "delete": {
         "summary": "Delete user with given ID",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "responses": {
           "200": {
             "description": "User is deleted",
@@ -110,9 +94,7 @@
       },
       "put": {
         "summary": "Update user with give ID",
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "parameters": [
           {
             "name": "user",
@@ -135,9 +117,7 @@
     },
     "/users/confirm/{auth_token}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Send email send email verification",
         "description": "This helps in verifying account created ",
         "parameters": [
@@ -217,9 +197,7 @@
     },
     "/users/resend": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Re-send email verification",
         "description": "This helps in resend email verification just in case email did not come.",
         "parameters": [
@@ -299,9 +277,7 @@
     },
     "/articles": {
       "post": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Create an article",
         "description": "This helps the user to create a new article",
         "parameters": [
@@ -322,13 +298,74 @@
             }
           }
         }
+      },
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Get created articles",
+        "description": "This helps the user to fetch all the created articles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      }
+    },
+    "/articles/{slug}": {
+      "put": {
+        "tags": ["Articles"],
+        "summary": "Update an article",
+        "description": "This helps the author to update their article",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Article slug property",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Articles"],
+        "summary": "Delete an article",
+        "description": "This helps the author to delete their article",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "Article slug property",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "CREATED",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
       }
     },
     "/articles/{slug}/bookmark": {
       "post": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Bookmark an article",
         "description": "This helps the user bookmark an article for reading it later",
         "parameters": [
@@ -354,9 +391,7 @@
     },
     "/article/{articleId}/share/fb": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Share article on facebook",
         "description": "This helps the user share their preferred article on facebook ",
         "parameters": [
@@ -388,9 +423,7 @@
     },
     "/article/{articleId}/share/email": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Share article on email",
         "description": "This helps the user share their preferred article on email ",
         "parameters": [
@@ -422,9 +455,7 @@
     },
     "/article/{articleId}/share/twitter": {
       "get": {
-        "tags": [
-          "Articles"
-        ],
+        "tags": ["Articles"],
         "summary": "Share article on twitter",
         "description": "This helps the user share their preferred article on twitter ",
         "parameters": [
@@ -465,9 +496,7 @@
         }
       ],
       "get": {
-        "tags": [
-          "Ratings"
-        ],
+        "tags": ["Ratings"],
         "summary": "Get the ratings for the given article",
         "responses": {
           "200": {
@@ -480,9 +509,7 @@
       },
       "put": {
         "summary": "Update  a given rating ",
-        "tags": [
-          "Ratings"
-        ],
+        "tags": ["Ratings"],
         "parameters": [
           {
             "name": "rating",
@@ -502,55 +529,56 @@
           }
         }
       }
-  },
-  "definitions": {
-    "User": {
-      "type": "object",
-      "properties": {
-        "user": {
+    },
+    "definitions": {
+      "User": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "object",
+            "properties": {
+              "email": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "items": {
           "type": "object",
           "properties": {
-            "email": {
+            "firstName": {
               "type": "string"
             }
           }
         }
-      }
-    },
-    "Users": {
-      "type": "array",
-      "items": {
+      },
+      "Article": {
         "type": "object",
         "properties": {
-          "firstName": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Article": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "example": "An American ate the African chicken"
-        },
-        "body": {
-          "type": "string",
-          "example": "Ever wonder how the guy got his pocket empty because of the meal?"
-        },
-        "description": {
-          "type": "string",
-          "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
-        },
-        "tagsList": {
-          "type": "array",
-          "items": {
+          "title": {
             "type": "string",
-            "example": "javaScript"
+            "example": "An American ate the African chicken"
+          },
+          "body": {
+            "type": "string",
+            "example": "Ever wonder how the guy got his pocket empty because of the meal?"
+          },
+          "description": {
+            "type": "string",
+            "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
+          },
+          "tagsList": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "javaScript"
+            }
           }
         }
       }
     }
   }
-}}
+}
