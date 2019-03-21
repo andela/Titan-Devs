@@ -138,7 +138,7 @@ export default class ArticleController {
 
       return article
         ? res.status(OK).json({
-            message: "Successful",
+            message: "Article found successfully",
             article: orderArticle(article, id)
           })
         : res.status(NOT_FOUND).json({
@@ -249,7 +249,9 @@ export default class ArticleController {
   static async deleteOne(req, res) {
     try {
       const { slug } = req.params;
-      const { user: { id: userId } = {} } = req;
+      const {
+        user: { id: userId }
+      } = req;
       const article = await Article.findOne({ where: { slug } });
       if (!article) {
         return res.status(NOT_FOUND).json({
