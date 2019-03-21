@@ -15,7 +15,7 @@ const {
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST
 } = constants.statusCode;
-const { SERVER_ERROR } = constants.errorMessage;
+const { SERVER_ERROR, NO_ARTICLE_FOUND } = constants.errorMessage;
 
 const articleQuery = {
   order: [["createdAt", "DESC"]],
@@ -167,19 +167,15 @@ export default class ArticleController {
       });
       if (all.length > 0) {
         const articles = all.map(each => orderArticle(each, id));
-        const articlesCount = articles.length;
         return author || favorited || tag
           ? next(articles)
           : res.status(OK).json({
               message: "Articles retrieved successfully",
               articles,
-              articlesCount
+              articlesCount: articles.length
             });
       }
-      return res.status(NOT_FOUND).json({
-        message:
-          "No more articles found, you can also share your thoughts by creating an article"
-      });
+      return res.status(NOT_FOUND).json({ message: NO_ARTICLE_FOUND });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }

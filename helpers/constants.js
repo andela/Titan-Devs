@@ -64,6 +64,8 @@ export default {
     NET_AUTH_REQUIRED: 511
   },
   errorMessage: {
+    NO_ARTICLE_FOUND:
+      "No more articles found, you can also share your thoughts by creating an article",
     SERVER_ERROR:
       "Sorry, this is not working properly. We already know about this our team is working hard to fix it"
   }
