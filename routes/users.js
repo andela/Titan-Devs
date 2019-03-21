@@ -25,9 +25,5 @@ userRouters
     SignupValidation.validatePassword,
     UserController.updatePassword
   );
-userRouters.get(
-  "/users/:userId/roles",
-  validator.checkUser,
-  UserController.getUserRoles
-);
+userRouters.get("/users/:userId/roles", UserController.getUserRoles);
 export default userRouters;

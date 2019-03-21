@@ -62,11 +62,12 @@ class RoleController {
         return res.status(CONFLICT).json({
           message: "Role already assigned to the user"
         });
-      }
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message:
-          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
+      } 
+        return res.status(INTERNAL_SERVER_ERROR).json({
+          message:
+            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+        });
+      
     }
   }
 

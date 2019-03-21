@@ -6,7 +6,14 @@ import { users, tokenEmailVerication, sendGridResponse } from "../helpers/testDa
 
 import constants from "../../helpers/constants";
 
-const { CREATED, UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED, BAD_REQUEST } = constants.statusCode;
+const {
+  CREATED,
+  UNAUTHORIZED,
+  OK,
+  NOT_FOUND,
+  ACCEPTED,
+  BAD_REQUEST
+} = constants.statusCode;
 
 const { dummyUser3 } = users;
 const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;

@@ -200,9 +200,14 @@ describe("role", () => {
         .request(app)
         .put(`/api/v1/roles/${roleId}`)
         .set("Authorization", `Bearer ${token}`)
-        .send({ noAlphabeticRoleName })
+        .send(noAlphabeticRoleName)
         .end((err, res) => {
           expect(res.status).equals(BAD_REQUEST);
+          expect(res.body.message).equals(
+            `{${noAlphabeticRoleName.name}} and {${
+              noAlphabeticRoleName.description
+            }} can only be alphabetic characters`
+          );
           done();
         });
     });
@@ -247,6 +252,7 @@ describe("role", () => {
         .set("Authorization", `Bearer ${token}`)
         .end((err, res) => {
           expect(res.status).equals(NOT_FOUND);
+          expect(res.body.message).equals("Role not found");
           done();
         });
     });
