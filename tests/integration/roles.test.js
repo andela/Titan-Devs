@@ -1,6 +1,6 @@
 import chai, { expect } from "chai";
 import app from "../../index";
-import { token, user } from "../setups.test";
+import { token } from "../setups.test";
 import constants from "../../helpers/constants";
 import { role, testUIID } from "../helpers/testData";
 
@@ -20,7 +20,7 @@ const {
   noAlphabeticRoleName
 } = role;
 const { invalidUUID } = testUIID;
-let roleId, userRoleId;
+let roleId;
 describe("role", () => {
   describe("create()", () => {
     describe("when valid information is given", () => {
@@ -79,41 +79,6 @@ describe("role", () => {
           .send(noAlphabeticRoleDesc)
           .end((err, res) => {
             expect(res.status).equals(BAD_REQUEST);
-            done();
-          });
-      });
-    });
-  });
-  describe("assignRole()", () => {
-    describe("when user and role is provided", () => {
-      it("should create a user role", done => {
-        chai
-          .request(app)
-          .post(`/api/v1/roles/${roleId}/user/${user.id}`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            userRoleId = res.body.data.id;
-            expect(res.status).equals(CREATED);
-            done();
-          });
-      });
-      it("should return a conflict message", done => {
-        chai
-          .request(app)
-          .post(`/api/v1/roles/${roleId}/user/${user.id}`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(CONFLICT);
-            done();
-          });
-      });
-      it("should return internal error", done => {
-        chai
-          .request(app)
-          .post(`/api/v1/roles/${roleId}/user/dkfdljslfjls`)
-          .set("Authorization", `Bearer ${token}`)
-          .end((err, res) => {
-            expect(res.status).equals(INTERNAL_SERVER_ERROR);
             done();
           });
       });
@@ -230,72 +195,6 @@ describe("role", () => {
         .send(validRole2)
         .end((err, res) => {
           expect(res.status).equals(OK);
-          done();
-        });
-    });
-  });
-  describe("getUserRoles()", () => {
-    it("should return roles assigned to the user", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/users/${user.id}/roles`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(OK);
-          done();
-        });
-    });
-    it("should return not found", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/users/${invalidUUID}/roles`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(NOT_FOUND);
-          expect(res.body.message).equals("Role not found");
-          done();
-        });
-    });
-    it("should return internal error", done => {
-      chai
-        .request(app)
-        .get(`/api/v1/users/883840/roles`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(INTERNAL_SERVER_ERROR);
-          done();
-        });
-    });
-  });
-
-  describe("removeRole()", () => {
-    it("should return array of role permission", done => {
-      chai
-        .request(app)
-        .delete(`/api/v1/roles/${userRoleId}/remove`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(OK);
-          done();
-        });
-    });
-    it("should return not found", done => {
-      chai
-        .request(app)
-        .delete(`/api/v1/roles/${invalidUUID}/remove`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(NOT_FOUND);
-          done();
-        });
-    });
-    it("should return internal server error", done => {
-      chai
-        .request(app)
-        .delete(`/api/v1/roles/869594/remove`)
-        .set("Authorization", `Bearer ${token}`)
-        .end((err, res) => {
-          expect(res.status).equals(INTERNAL_SERVER_ERROR);
           done();
         });
     });

@@ -14,8 +14,7 @@ const {
   INTERNAL_SERVER_ERROR
 } = constants.statusCode;
 const { invalidPermission, validPermission, validPermission2 } = permission;
-const { noAlphabeticRoleDesc, noAlphabeticRoleName } = role;
-const { validRole } = role;
+const { noAlphabeticRoleDesc, noAlphabeticRoleName, validRole } = role;
 const { invalidUUID } = testUIID;
 const { Role } = models;
 let roleId, permissionId, rolePermissionId;
@@ -32,7 +31,7 @@ describe("permission", () => {
           .post(`/api/v1/permissions`)
           .set("Authorization", `Bearer ${token}`)
           .send(validPermission)
-          .end((err, res) => {
+          .end((err, res) => { 
             permissionId = res.body.permission.id;
             expect(res.status).equals(CREATED);
             done();
@@ -60,7 +59,7 @@ describe("permission", () => {
           .send(invalidPermission)
           .end((err, res) => {
             expect(res.status).equals(BAD_REQUEST);
-            expect(res.body.message).equals("Name is required");
+            expect(res.body.message).equals("Resource is required");
             done();
           });
       });

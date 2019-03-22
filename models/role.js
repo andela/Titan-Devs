@@ -21,14 +21,17 @@ module.exports = (sequelize, DataTypes) => {
     { tableName: "roles" }
   );
   Role.associate = models => {
-    Role.hasMany(models.UserRoles, {
+    Role.hasMany(models.User, {
       foreignKey: "roleId",
       onDelete: "CASCADE",
+      as: "roles",
       hooks: true
     });
-    Role.hasMany(models.RolePermissions, {
+
+    Role.hasMany(models.Permission, {
       foreignKey: "roleId",
       onDelete: "CASCADE",
+      as: "permissions",
       hooks: true
     });
   };

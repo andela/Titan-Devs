@@ -1,19 +1,27 @@
-'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('permissions', {
+    return queryInterface.createTable("permissions", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      name: {
+      resource: {
         type: Sequelize.STRING,
-        unique:true
+        unique: true
       },
-      description: {
-        type: Sequelize.STRING
+      create_: {
+        type: Sequelize.BOOLEAN
+      },
+      read_: {
+        type: Sequelize.BOOLEAN
+      },
+      update_: {
+        type: Sequelize.BOOLEAN
+      },
+      delete_: {
+        type: Sequelize.BOOLEAN
       },
       createdAt: {
         allowNull: false,
@@ -22,10 +30,20 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      },
+      roleId: {
+        type: Sequelize.UUID,
+        onDelete: "CASCADE",
+        references: { model: "roles", key: "id" }
       }
+    }).then(() => {
+      queryInterface.addConstraint("permissions", ["resource", "roleId",], {
+        type: "unique",
+        name: "rolesId_resources_unique_composite_key"
+      });
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('permissions');
+    return queryInterface.dropTable("permissions");
   }
 };

@@ -168,15 +168,46 @@ const role = {
 };
 const permission = {
   validPermission: {
-    name: "create",
-    description: "be able to create an article"
+    resource: "articles",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
   },
   validPermission2: {
-    name: "read",
-    description: "be able to create an article"
+    resource: "users",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
   },
-  invalidPermission: {
-    description: "writer"
+  validPermission3: {
+    resource: "profiles",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
+  },
+  validPermission4: {
+    resource: "article",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
+  },
+  validPermission5: {
+    resource: "permissions",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
+  },
+  validPermission6: {
+    resource: "roles",
+    create_: true,
+    read_: true,
+    update_: true,
+    delete_: true
   }
 };
 const testUIID = {

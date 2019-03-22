@@ -9,20 +9,38 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
-      name: {
+      resource: {
         allowNull: false,
         unique: true,
         type: DataTypes.STRING
       },
-      description: {
-        type: DataTypes.STRING
-      }
+      create_: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      read_: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      update_: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      delete_: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: false
+      },
+      roleId: { type: DataTypes.UUID, allowNull: false }
     },
     { tableName: "permissions" }
   );
   Permission.associate = models => {
-    Permission.hasMany(models.RolePermissions, {
-      foreignKey: "permissionId",
+    Permission.belongsTo(models.Role, {
+      foreignKey: "roleId",
       onDelete: "CASCADE",
       hooks: true
     });

@@ -4,7 +4,7 @@ import validator from "../middlewares/modelValidator";
 
 const permission = Router();
 
-permission.post("/permissions", Permission.create);
+permission.post("/permissions/:roleId", validator.checkRole, Permission.create);
 permission.put(
   "/permissions/:permissionId",
   validator.checkPermission,

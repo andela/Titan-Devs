@@ -59,7 +59,8 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
-      }
+      },
+      roleId: { type: DataTypes.UUID, allowNull: true }
     },
     { tableName: "users" }
   );
@@ -105,8 +106,8 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
-    User.hasMany(models.UserRoles, {
-      foreignKey: "userId",
+    User.belongsTo(models.Role, {
+      foreignKey: "roleId",
       onDelete: "CASCADE",
       hooks: true
     });

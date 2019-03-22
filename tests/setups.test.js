@@ -20,10 +20,16 @@ const dummyUser = {
   email: "you.can.see@me.com",
   username: "youcant@"
 };
+const dummyRole = {
+  name: "admin",
+  description: "brah brah"
+};
 let user;
 let post;
+let role;
 const createTestData = async () => {
-  user = await User.create({ ...dummyUser });
+  role = await Role.create(dummyRole);
+  user = await User.create({ ...dummyUser, roleId: role.id });
   token = jwt.sign(
     {
       email: user.email,

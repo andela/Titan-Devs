@@ -21,7 +21,7 @@ export default class SignUpController {
    * @return {object} - It returns the response object.
    */
   static async signUp(req, res) {
-    const { email, password, username } = req.body;
+    const { email, password, username, roleId } = req.body;
     try {
       const salt = await genSaltSync(
         parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
@@ -30,10 +30,15 @@ export default class SignUpController {
       const user = await User.create({
         username,
         email,
-        password: hashPassword
+        password: hashPassword,
+        roleId
       });
       const token = jwt.sign(
-        { userId: user.dataValues.id, email: user.dataValues.email },
+        {
+          userId: user.dataValues.id,
+          email: user.dataValues.email,
+          roleId: user.dataValues.roleId
+        },
         process.env.SECRET_KEY
       );
       const emailBody = await sentEmailTemplate(token);

@@ -10,7 +10,7 @@ const {
   BAD_REQUEST,
   CREATED
 } = constants.statusCode;
-const { Role, UserRoles, RolePermissions, Permission } = models;
+const { Role, RolePermissions, Permission } = models;
 class RoleController {
   static async create(req, res) {
     try {
@@ -46,30 +46,6 @@ class RoleController {
     }
   }
 
-  static async assignRole(req, res) {
-    try {
-      const { userId, roleId } = req.params;
-      const userRole = await UserRoles.create({
-        userId,
-        roleId
-      });
-      return res.status(CREATED).json({
-        message: "Role assigned to User successfully",
-        data: userRole
-      });
-    } catch (error) {
-      if (error.name === "SequelizeUniqueConstraintError") {
-        return res.status(CONFLICT).json({
-          message: "Role already assigned to the user"
-        });
-      } 
-        return res.status(INTERNAL_SERVER_ERROR).json({
-          message:
-            "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-        });
-      
-    }
-  }
 
   static async getOneRole(req, res) {
     try {
@@ -162,33 +138,6 @@ class RoleController {
       const { roleId } = req.params;
       await Role.destroy({
         where: { roleId },
-        truncate: true,
-        cascade: true
-      });
-      return res.status(OK).json({
-        message: "successfully deleted the role"
-      });
-    } catch (error) {
-      return res.status(INTERNAL_SERVER_ERROR).json({
-        message:
-          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
-      });
-    }
-  }
-
-  static async removeRole(req, res) {
-    try {
-      const { id } = req.params;
-      const role = await UserRoles.findOne({
-        where: { id }
-      });
-      if (!role) {
-        return res.status(NOT_FOUND).json({
-          message: "Role not found"
-        });
-      }
-      await UserRoles.destroy({
-        where: { id },
         truncate: true,
         cascade: true
       });

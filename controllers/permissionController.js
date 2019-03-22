@@ -14,20 +14,21 @@ const { Permission, RolePermissions } = models;
 class PermissionController {
   static async create(req, res) {
     try {
-      const { name, description } = req.body;
-      if (isEmpty(name)) {
+      const { resource, create_, read_, update_, delete_ } = req.body;
+      const { roleId } = req.params;
+      if (isEmpty(resource)) {
         return res.status(BAD_REQUEST).json({
-          message: `Name is required`
+          message: `Resource is required`
         });
       }
-      if (!isString(name) || !isString(description)) {
+      if (!isString(resource)) {
         return res.status(BAD_REQUEST).json({
-          message: `{${name}} and {${description}} can only be alphabetic characters`
+          message: `{${resource}} can only be alphabetic characters`
         });
       }
       const permission = await Permission.create({
-        name,
-        description
+        resource,
+        roleId
       });
       return res.status(CREATED).json({
         message: "Permission created",
@@ -139,14 +140,14 @@ class PermissionController {
   static async updatePermission(req, res) {
     try {
       const { permissionId } = req.params;
-      const { name, description } = req.body;
-      if (!name) {
+      const { resource, create, read } = req.body;
+      if (!resource) {
         return res.status(BAD_REQUEST).json({
-          message: "Name is required"
+          message: "Resource is required"
         });
       }
       const permission = await Permission.update(
-        { name, description },
+        { resource, create, read },
         { returning: true, where: { id: permissionId } }
       );
 
@@ -163,10 +164,18 @@ class PermissionController {
   }
 
   static async getAll(req, res) {
-    const permission = await Permission.findAll();
-    return res.status(OK).json({
-      permission
-    });
+    try {
+      const permission = await Permission.findAll();
+      return res.status(OK).json({
+        permission
+      });
+    } catch (error) {
+      console.log(error, "++++++++++++++++");
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
   }
 }
 export default PermissionController;

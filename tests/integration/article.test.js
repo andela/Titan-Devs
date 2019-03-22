@@ -1,34 +1,48 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, users } from "../helpers/testData";
+import { newArticle, users, role, permission } from "../helpers/testData";
 import constants from "../../helpers/constants";
+import models from "../../models";
 
-let token;
+chai.use(chaiHttp);
 
+let token, roleId;
+const { validRole } = role;
+const { Role, Permission } = models;
 const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST } = constants.statusCode;
-chai.use(chaiHttp);
-
-chai.use(chaiHttp);
+const createPermissions = async () => {
+  const newRole = await Role.create(validRole);
+  roleId = newRole.id;
+  return new Promise(resolve => {
+    Object.keys(permission).forEach(async key => {
+      const value = permission[key];
+      await Permission.create({ ...value, roleId });
+    });
+    resolve(true);
+  });
+};
 before(done => {
   const { email, password } = dummyUser;
-  chai
-    .request(app)
-    .post("/api/v1/users")
-    .send(dummyUser)
-    .end(error => {
-      if (!error) {
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email, password })
-          .end((err, res) => {
-            if (!err) ({ token } = res.body);
-            done(err || undefined);
-          });
-      }
-    });
+  createPermissions().then(() => {
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send({ ...dummyUser, roleId })
+      .end(error => {
+        if (!error) {
+          chai
+            .request(app)
+            .post("/api/v1/users/login")
+            .send({ email, password })
+            .end((err, res) => {
+              if (!err) ({ token } = res.body);
+              done();
+            });
+        }
+      });
+  });
 });
 
 describe("Create a new article", () => {

@@ -25,7 +25,7 @@ export default passport => {
           where: {
             id: jwtPayload.id
           },
-          attributes: ["id", "username", "email"]
+          attributes: ["id", "username", "email", "roleId"]
         });
         return user ? done(null, user) : done(null, false);
       } catch (error) {

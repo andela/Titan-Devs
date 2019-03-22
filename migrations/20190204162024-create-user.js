@@ -1,4 +1,3 @@
-"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("users", {
@@ -21,6 +20,11 @@ module.exports = {
       password: {
         type: Sequelize.STRING,
         allowNull: false
+      },
+      roleId: {
+        type: Sequelize.UUID,
+        onDelete: "CASCADE",
+        references: { model: "roles", key: "id" }
       },
       createdAt: {
         allowNull: false,
