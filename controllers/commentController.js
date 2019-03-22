@@ -224,7 +224,6 @@ export default class CommentController {
       }
       res.status(OK).json({ article });
     } catch (error) {
-      console.log(error);
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
   }

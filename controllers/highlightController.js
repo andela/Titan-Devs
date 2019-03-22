@@ -33,17 +33,19 @@ class HighlightController {
         endIndex: end,
         articleId: article.id
       });
-      await highlight.createComment({
-        body: comment,
-        articleId: article.id,
-        userId
-      });
+      if (comment) {
+        await highlight.createComment({
+          body: comment,
+          articleId: article.id,
+          userId
+        });
+      }
+
       res.status(CREATED).json({
         message: "The article has successfully been highlighted",
         highlight: highlight.dataValues
       });
     } catch (error) {
-      console.log(error);
       res
         .status(INTERNAL_SERVER_ERROR)
         .json({ message: INTERNAL_SERVER_ERROR_MESSAGE });
@@ -152,7 +154,6 @@ class HighlightController {
         });
       }
     } catch (error) {
-      console.log(error, "======");
       res
         .status(INTERNAL_SERVER_ERROR)
         .json({ message: INTERNAL_SERVER_ERROR_MESSAGE });

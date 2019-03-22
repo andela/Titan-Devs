@@ -13,7 +13,7 @@ const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCo
 const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
-describe.only("Comment on an article", () => {
+describe("Comment on an article", () => {
   before(done => {
     const { email, password } = dummyUser;
     chai

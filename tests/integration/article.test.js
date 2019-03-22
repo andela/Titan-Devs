@@ -10,7 +10,7 @@ let validSlug;
 
 const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
-const { SERVER_ERROR, UNAUTHORIZED_MESSAGE } = constants.errorMessage;
+const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
 before(done => {
