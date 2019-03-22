@@ -1,23 +1,23 @@
-
+"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable("commentlikes", {
+    return queryInterface.createTable("commentlogs", {
       id: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
+      oldVersion: {
+        type: Sequelize.STRING
+      },
+      newVersion: {
+        type: Sequelize.STRING
+      },
       commentId: {
         allowNull: false,
         type: Sequelize.UUID,
-        onDelete: "CASCADE",
-        references: { model: "comments", key: "id", as: "commentId" }
-      },
-      userId: {
-        allowNull: false,
-        type: Sequelize.UUID,
-        references: { model: "users", key: "id" }
+        references: { model: "comments", key: "id" }
       },
       createdAt: {
         allowNull: false,
@@ -30,6 +30,6 @@ module.exports = {
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable("commentlikes");
+    return queryInterface.dropTable("commentlogs");
   }
 };

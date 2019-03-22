@@ -319,8 +319,8 @@ describe("Fetching all articles", () => {
               expect(page2.body)
                 .to.haveOwnProperty("articlesCount")
                 .to.be.a("number");
-              expect(page2.body.articles.length).to.equal(2);
-              expect(page2.body.articlesCount).to.equal(2);
+              expect(page2.body.articles.length).to.equal(1);
+              expect(page2.body.articlesCount).to.equal(1);
               expect(page1.body.articles).not.to.equal(page2.body.articles);
               done();
             });

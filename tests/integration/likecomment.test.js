@@ -1,7 +1,7 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle } from "../helpers/testData";
+import { newArticle, fakeId } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 let token;
@@ -14,7 +14,7 @@ const newUser = {
   username: "Nick2019"
 };
 
-const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK } = constants.statusCode;
+const { UNAUTHORIZED, CREATED, OK, NOT_FOUND } = constants.statusCode;
 chai.use(chaiHttp);
 
 describe("Liking a comment", () => {
@@ -91,16 +91,14 @@ describe("Liking a comment", () => {
     });
   });
 
-  it("should throw an error of liking a non-existing", done => {
+  it("should throw an error of liking a non-existing comment", done => {
     chai
       .request(app)
-      .post(
-        `/api/v1/articles/${slug}/comments/192c2ff1-5622-419f-aa4b-6a4d7ad89dd4/likes`
-      )
+      .post(`/api/v1/articles/${slug}/comments/${fakeId}/likes`)
       .set("Authorization", `Bearer ${token}`)
       .end((error, res) => {
         if (error) done(error);
-        expect(res.status).equals(BAD_REQUEST);
+        expect(res.status).equals(NOT_FOUND);
         expect(res.body.message).to.contain("You are liking a non-existing comment");
         done();
       });
@@ -130,6 +128,19 @@ describe("Liking a comment", () => {
         if (error) done(error);
         expect(res.status).equals(OK);
         expect(res.body.comment.likes).to.be.an("array");
+        done();
+      });
+  });
+
+  it("should return error of non-existing comment", done => {
+    chai
+      .request(app)
+      .get(`/api/v1/articles/${slug}/comments/${fakeId}/likes`)
+      .set("Authorization", `Bearer ${token}`)
+      .end((error, res) => {
+        if (error) done(error);
+        expect(res.status).equals(NOT_FOUND);
+        expect(res.body.message).eql("There is no comment with that id");
         done();
       });
   });

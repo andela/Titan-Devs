@@ -1,9 +1,15 @@
-import Joi from "joi";
 import models from "../models";
 import constants from "../helpers/constants";
+import validateComment from "../helpers/validators/commentValidator";
 
-const { User, Article, Comment, CommentLike } = models;
-const { CREATED, BAD_REQUEST, OK, INTERNAL_SERVER_ERROR } = constants.statusCode;
+const { User, Article, Comment, CommentLike, Commentlog } = models;
+const {
+  CREATED,
+  BAD_REQUEST,
+  OK,
+  INTERNAL_SERVER_ERROR,
+  NOT_FOUND
+} = constants.statusCode;
 
 /**
  * @class CommentController
@@ -21,11 +27,7 @@ export default class CommentController {
       const { body } = req.body;
       const { slug } = req.params;
       const { id: userId } = req.user;
-      const valid = await Joi.validate(req.body, {
-        body: Joi.string()
-          .trim()
-          .required()
-      });
+      const valid = await validateComment(req.body);
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
       if (user && valid && article) {
@@ -41,8 +43,8 @@ export default class CommentController {
           });
         }
       } else if (!article) {
-        return res.status(BAD_REQUEST).json({
-          status: BAD_REQUEST,
+        return res.status(NOT_FOUND).json({
+          status: NOT_FOUND,
           message: `The article with this slug ${slug} doesn't exist`
         });
       }
@@ -68,21 +70,13 @@ export default class CommentController {
     try {
       const comments = await Comment.findOne({ where: { id: commentId } });
       if (!comments) {
-        throw new Error("You are liking a non-existing comment");
-      }
-    } catch (error) {
-      if (error.message === "You are liking a non-existing comment") {
         return res
-          .status(BAD_REQUEST)
+          .status(NOT_FOUND)
           .json({ message: "You are liking a non-existing comment" });
       }
-      return res.status(INTERNAL_SERVER_ERROR).json({ error: error.message });
-    }
-
-    try {
       const userId = req.user.id;
       const likes = await CommentLike.findAll({ where: { commentId, userId } });
-      if (likes.length === 0) {
+      if (!likes.length) {
         const likeComment = await CommentLike.create({ commentId, userId });
         const updateCommentLikes = await Comment.increment(
           {
@@ -132,23 +126,190 @@ export default class CommentController {
           {
             model: User,
             as: "likes",
-            attributes: ["id", "firstname", "username"]
+            attributes: ["id", "firstName", "username"]
           },
           {
             model: User,
             as: "author",
-            attributes: ["id", "firstname", "username"]
+            attributes: ["id", "firstName", "username"]
           }
         ]
       });
       if (!comment) {
-        res
-          .status(BAD_REQUEST)
+        return res
+          .status(NOT_FOUND)
           .json({ message: "There is no comment with that id" });
       }
       res.status(OK).json({ comment });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({ message: "Sorry, this is not working properly. We now know about this mistake and are working to fix it" });
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
+  }
+
+  /**
+   * @description Allows users to fetch a particular comment of an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+  static async fetch(req, res) {
+    try {
+      const { id: commentId } = req.params;
+      const comment = await Comment.findOne({
+        where: { id: commentId },
+        include: [{ model: User, as: "author", attributes: ["username", "image"] }],
+        attributes: ["like", "body", "createdAt", "updatedAt"]
+      });
+
+      if (!comment) {
+        return res.status(NOT_FOUND).json({ message: "The comment does not exist" });
+      }
+      res.status(OK).json({ comment });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+  }
+
+  /**
+   * @description Allows users to fetch all comments of an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+  static async fetchAllComments(req, res) {
+    try {
+      const { slug } = req.params;
+      let { page } = req.query;
+      if (!page || !Number(page)) {
+        page = 0;
+      }
+      const article = await Article.findOne({
+        where: { slug },
+        include: [
+          {
+            model: Comment,
+            as: "comments",
+            attributes: [
+              "articleId",
+              "body",
+              "id",
+              "createdAt",
+              "updatedAt",
+              "like"
+            ],
+            offset: page,
+            limit: 20,
+            include: [
+              {
+                model: User,
+                as: "author",
+                attributes: ["username", "image", "firstName", "lastName"]
+              }
+            ]
+          }
+        ]
+      });
+
+      if (!article) {
+        return res
+          .status(NOT_FOUND)
+          .json({ message: "There is no article with that slug" });
+      }
+      res.status(OK).json({ article });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+  }
+  /**
+   * @description Allows users to update a comment of an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+
+  static async update(req, res) {
+    try {
+      const { body: newBody } = req.body;
+      const { id: commentId } = req.params;
+      await validateComment(req.body);
+      const oldVersion = await Comment.findOne({
+        where: { id: commentId },
+        attributes: ["body"]
+      });
+      const comment = await Comment.update(
+        { body: newBody },
+        { row: true, returning: true, where: { id: commentId } }
+      );
+
+      if (!comment[0]) {
+        return res.status(NOT_FOUND).json({ message: "The comment does not exist" });
+      }
+      const commentHistory = await Commentlog.create({
+        oldVersion: oldVersion.body,
+        newVersion: newBody,
+        commentId: comment[1][0].dataValues.id
+      });
+      res.status(CREATED).json({
+        message: "Comment updated successfully",
+        comment: commentHistory
+      });
+    } catch (error) {
+      if (error.details[0].message === '"body" is not allowed to be empty') {
+        return res.status(BAD_REQUEST).json({ message: "body should not be empty" });
+      }
+      res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+  }
+
+  /**
+   * @description Allows users to delete a comment of an article.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the request response object.
+   */
+  static async delete(req, res) {
+    try {
+      const { id: commentId } = req.params;
+      const comment = await Comment.destroy({
+        where: { id: commentId },
+        returning: true
+      });
+      if (!comment.length) {
+        return res.status(NOT_FOUND).json({ message: "The comment does not exist" });
+      }
+
+      res.status(OK).json({
+        message: "Comment deleted successfully",
+        comment: comment[0].dataValues
+      });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
+    }
+  }
+
+  static async getEditHistory(req, res) {
+    try {
+      const { commentId } = req.params;
+      const comment = await Comment.findOne({
+        where: { id: commentId },
+        include: [
+          {
+            model: Commentlog,
+            as: "commentHistory",
+            attributes: ["newVersion", "oldVersion", "createdAt"]
+          }
+        ]
+      });
+
+      if (!comment) {
+        return res.status(NOT_FOUND).json({ message: "The comment doesn't exist" });
+      }
+      res.status(OK).json({ comment: comment.dataValues });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
   }
 }

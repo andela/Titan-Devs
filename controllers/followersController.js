@@ -120,7 +120,7 @@ export default class FollowerController {
           {
             model: User,
             as: "followings",
-            attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
+            attributes: ["id", "username", "firstName", "lastName", "image", "bio"]
           }
         ]
       });
@@ -149,7 +149,7 @@ export default class FollowerController {
           {
             model: User,
             as: "followings",
-            attributes: ["id", "username", "firstname", "lastname", "image", "bio"]
+            attributes: ["id", "username", "firstName", "lastName", "image", "bio"]
           }
         ]
       });

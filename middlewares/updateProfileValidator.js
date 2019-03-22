@@ -4,10 +4,10 @@ const Schema = Joi.object().keys({
   username: Joi.string()
     .min(3)
     .max(30),
-  firstname: Joi.string()
+  firstName: Joi.string()
     .min(3)
     .max(30),
-  lastname: Joi.string()
+  lastName: Joi.string()
     .min(3)
     .max(30),
   image: Joi.string()

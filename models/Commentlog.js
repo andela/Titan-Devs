@@ -1,6 +1,6 @@
 module.exports = (sequelize, DataTypes) => {
-  const CommentLike = sequelize.define(
-    "CommentLike",
+  const Commentlog = sequelize.define(
+    "Commentlog",
     {
       id: {
         allowNull: false,
@@ -8,21 +8,18 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.UUID,
         defaultValue: DataTypes.UUIDV4
       },
-      commentId: DataTypes.UUID,
-      userId: DataTypes.UUID
+      oldVersion: DataTypes.STRING,
+      newVersion: DataTypes.STRING
     },
-    {
-      tableName: "commentlikes"
-    }
+    { tableName: "commentlogs", paranoid: true }
   );
 
-  CommentLike.associate = models => {
-    CommentLike.belongsTo(models.Comment, {
+  Commentlog.associate = models => {
+    Commentlog.belongsTo(models.Comment, {
       foreignKey: "commentId",
       onDelete: "CASCADE",
-      as: "likesCount",
       hooks: true
     });
   };
-  return CommentLike;
+  return Commentlog;
 };

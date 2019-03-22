@@ -3,10 +3,10 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.addColumn("users", "firstname", {
+      queryInterface.addColumn("users", "firstName", {
         type: Sequelize.STRING(500)
       }),
-      queryInterface.addColumn("users", "lastname", {
+      queryInterface.addColumn("users", "lastName", {
         type: Sequelize.STRING(100),
         defaultValue: null
       }),
@@ -31,8 +31,8 @@ module.exports = {
 
   down: (queryInterface, Sequelize) => {
     return Promise.all([
-      queryInterface.removeColumn("users", "firstname"),
-      queryInterface.removeColumn("users", "lastname"),
+      queryInterface.removeColumn("users", "firstName"),
+      queryInterface.removeColumn("users", "lastName"),
       queryInterface.removeColumn("users", "gender"),
       queryInterface.removeColumn("users", "following"),
       queryInterface.removeColumn("users", "phone"),

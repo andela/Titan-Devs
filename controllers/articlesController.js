@@ -25,13 +25,13 @@ const articleQuery = {
     {
       model: User,
       as: "author",
-      attributes: ["username", "image", "firstname", "lastname"],
+      attributes: ["username", "image", "firstName", "lastName"],
       include: [{ model: User, as: "followers", attributes: ["id", "username"] }]
     },
     {
       model: User,
       as: "likes",
-      attributes: ["username", "image", "firstname", "lastname"],
+      attributes: ["username", "image", "firstName", "lastName"],
       through: { attributes: [] }
     },
     {
@@ -48,13 +48,13 @@ const articleQuery = {
         {
           model: User,
           as: "author",
-          attributes: ["username", "image", "firstname", "lastname"]
+          attributes: ["username", "image", "firstName", "lastName"]
         },
         {
           model: User,
           as: "likes",
           through: { attributes: [] },
-          attributes: ["username", "image", "firstname", "lastname"]
+          attributes: ["username", "image", "firstName", "lastName"]
         }
       ]
     }
@@ -63,14 +63,14 @@ const articleQuery = {
 
 const orderArticle = (article, id) => {
   const {
-    author: { followers, username, bio, image, firstname, lastname }
+    author: { followers, username, bio, image, firstName, lastName }
   } = article.get();
   const { tagsList, likes, ...artInfo } = article.get();
   const following = !!_.dropWhile(followers, f => f.id !== id).length;
   return {
     ...artInfo,
     likes,
-    author: { following, username, bio, image, firstname, lastname },
+    author: { following, username, bio, image, firstName, lastName },
     liked: !!likes.length,
     likesCount: likes.length,
     tagsList: tagsList.map(t => t.get().name || null)
