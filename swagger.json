@@ -202,6 +202,47 @@
         }
       }
     },
+    "/articles/{author}{favorited}{tag}": {
+      "get": {
+        "tags": ["Articles"],
+        "summary": "Get filtered articles",
+        "description": "This helps the user to fetch and filter articles by different search queries",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "author",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The username of the articles' author"
+          },
+          {
+            "in": "query",
+            "name": "favorited",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The username who liked the articles"
+          },
+          {
+            "in": "query",
+            "name": "tag",
+            "schema": {
+              "type": "string"
+            },
+            "description": "The tag"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Article"
+            }
+          }
+        }
+      }
+    },
     "/articles/{slug}": {
       "put": {
         "tags": ["Articles"],

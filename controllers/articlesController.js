@@ -15,7 +15,7 @@ const {
   INTERNAL_SERVER_ERROR,
   BAD_REQUEST
 } = constants.statusCode;
-const { SERVER_ERROR } = constants.errorMessage;
+const { SERVER_ERROR, NO_ARTICLE_FOUND } = constants.errorMessage;
 
 const articleQuery = {
   order: [["createdAt", "DESC"]],
@@ -138,7 +138,7 @@ export default class ArticleController {
 
       return article
         ? res.status(OK).json({
-            message: "Successful",
+            message: "Article found successfully",
             article: orderArticle(article, id)
           })
         : res.status(NOT_FOUND).json({
@@ -156,26 +156,26 @@ export default class ArticleController {
    * @returns {object} It returns the request's response object
    */
 
-  static async findAll(req, res) {
+  static async findAll(req, res, next) {
     const { user: { id = null } = {} } = req;
-    const { page = 1, limit = 20 } = req.query;
+    const { author, favorited, tag, page = 1, limit = 20 } = req.query;
     try {
       const all = await Article.findAll({
         offset: (Number(page) - 1) * Number(limit),
         limit,
         ...articleQuery
       });
-      if (all.length) {
+      if (all.length > 0) {
         const articles = all.map(each => orderArticle(each, id));
-        const articlesCount = articles.length;
-        return res
-          .status(OK)
-          .json({ message: "Successful", articles, articlesCount });
+        return author || favorited || tag
+          ? next(articles)
+          : res.status(OK).json({
+              message: "Articles retrieved successfully",
+              articles,
+              articlesCount: articles.length
+            });
       }
-      return res.status(NOT_FOUND).json({
-        message:
-          "No more articles found, you can also share your thoughts by creating an article"
-      });
+      return res.status(NOT_FOUND).json({ message: NO_ARTICLE_FOUND });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
@@ -222,7 +222,7 @@ export default class ArticleController {
             author: _.pick(await updated.getAuthor(), ["username", "bio", "image"]),
             tagsList: tags
           },
-          message: `Updated successfully`
+          message: `Article updated successfully`
         });
       }
       return res.status(UNAUTHORIZED).json({
@@ -245,7 +245,9 @@ export default class ArticleController {
   static async deleteOne(req, res) {
     try {
       const { slug } = req.params;
-      const { user: { id: userId } = {} } = req;
+      const {
+        user: { id: userId }
+      } = req;
       const article = await Article.findOne({ where: { slug } });
       if (!article) {
         return res.status(NOT_FOUND).json({
@@ -259,7 +261,7 @@ export default class ArticleController {
       }
       await ArticleTags.destroy({ where: { articleId: article.id } });
       await Article.destroy({ where: { id: article.id } });
-      return res.status(OK).json({ message: "Deleted successfully" });
+      return res.status(OK).json({ message: "Article deleted successfully" });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
