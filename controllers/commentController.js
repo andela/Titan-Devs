@@ -2,7 +2,7 @@ import models from "../models";
 import constants from "../helpers/constants";
 import validateComment from "../helpers/validators/commentValidator";
 
-const { User, Article, Comment, CommentLike, Commentlog } = models;
+const { User, Article, Comment, CommentLike, Commentlog, Highlight } = models;
 const {
   CREATED,
   BAD_REQUEST,
@@ -207,6 +207,10 @@ export default class CommentController {
                 model: User,
                 as: "author",
                 attributes: ["username", "image", "firstName", "lastName"]
+              },
+              {
+                model: Highlight,
+                as: "highlightedText"
               }
             ]
           }
@@ -220,6 +224,7 @@ export default class CommentController {
       }
       res.status(OK).json({ article });
     } catch (error) {
+      console.log(error);
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
   }

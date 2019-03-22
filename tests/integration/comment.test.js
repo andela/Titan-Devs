@@ -13,7 +13,7 @@ const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCo
 const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
-describe("Comment on an article", () => {
+describe.only("Comment on an article", () => {
   before(done => {
     const { email, password } = dummyUser;
     chai
@@ -138,6 +138,7 @@ describe("Comment on an article", () => {
           expect(res.status).equals(OK);
           expect(res.body.article.comments).to.be.a("array");
           expect(res.body.article.comments[0]).to.haveOwnProperty("body");
+          expect(res.body.article.comments[0]).to.haveOwnProperty("highlightedText");
           done();
         });
     });

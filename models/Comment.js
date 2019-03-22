@@ -24,6 +24,12 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+
+    Comment.hasOne(models.Highlight, {
+      as: "highlightedText",
+      foreignKey: "commentId",
+      onDelete: "CASCADE"
+    });
     Comment.belongsTo(models.User, {
       foreignKey: "userId",
       onDelete: "CASCADE",
