@@ -10,6 +10,7 @@ let slug;
 let commentId;
 const { dummyUser } = users;
 const { UNAUTHORIZED, OK, CREATED, NOT_FOUND } = constants.statusCode;
+const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
 describe("Creating history of a comment", () => {
@@ -114,9 +115,7 @@ describe("Creating history of a comment", () => {
       .end((error, history) => {
         if (error) done(error);
         expect(history.status).equals(UNAUTHORIZED);
-        expect(history.body.message).equals(
-          "Please provide a token to perform this action"
-        );
+        expect(history.body.message).equals(UNAUTHORIZED_MESSAGE);
         done();
       });
   });

@@ -13,7 +13,8 @@ export default (sequelize, DataTypes) => {
         allowNull: true,
         type: DataTypes.INTEGER,
         defaultValue: 0
-      }
+      },
+      highlightId: DataTypes.UUID
     },
     { tableName: "comments", paranoid: "true" }
   );
@@ -22,6 +23,12 @@ export default (sequelize, DataTypes) => {
       foreignKey: "articleId",
       onDelete: "CASCADE",
       hooks: true
+    });
+
+    Comment.hasOne(models.Highlight, {
+      as: "highlightedText",
+      foreignKey: "commentId",
+      onDelete: "CASCADE"
     });
     Comment.belongsTo(models.User, {
       foreignKey: "userId",

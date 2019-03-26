@@ -17,13 +17,21 @@
       "description": "API for users in the system"
     }
   ],
-  "schemes": ["http"],
-  "consumes": ["application/json"],
-  "produces": ["application/json"],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "paths": {
     "/users": {
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Create new user in system",
         "parameters": [
           {
@@ -35,7 +43,9 @@
             }
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "New user is created",
@@ -46,7 +56,9 @@
         }
       },
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Get all users in system",
         "responses": {
           "200": {
@@ -69,7 +81,9 @@
         }
       ],
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "summary": "Get user with given ID",
         "responses": {
           "200": {
@@ -82,7 +96,9 @@
       },
       "delete": {
         "summary": "Delete user with given ID",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "responses": {
           "200": {
             "description": "User is deleted",
@@ -94,7 +110,9 @@
       },
       "put": {
         "summary": "Update user with given ID",
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "parameters": [
           {
             "name": "user",
@@ -118,8 +136,12 @@
     "/users/login": {
       "post": {
         "summary": "User login",
-        "tags": ["Users"],
-        "consumes": ["application/json"],
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
         "parameters": [
           {
             "in": "body",
@@ -127,7 +149,10 @@
             "description": "Allows a user to login.",
             "schema": {
               "type": "object",
-              "required": ["email", "password"],
+              "required": [
+                "email",
+                "password"
+              ],
               "properties": {
                 "email": {
                   "type": "string"
@@ -139,7 +164,9 @@
             }
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "User logged in successfully",
@@ -166,7 +193,9 @@
     },
     "/articles": {
       "post": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Create an article",
         "description": "This helps the user to create a new article",
         "parameters": [
@@ -187,115 +216,13 @@
             }
           }
         }
-      },
-      "get": {
-        "tags": ["Articles"],
-        "summary": "Get created articles",
-        "description": "This helps the user to fetch all the created articles",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
-      }
-    },
-    "/articles/{author}{favorited}{tag}": {
-      "get": {
-        "tags": ["Articles"],
-        "summary": "Get filtered articles",
-        "description": "This helps the user to fetch and filter articles by different search queries",
-        "parameters": [
-          {
-            "in": "query",
-            "name": "author",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The username of the articles' author"
-          },
-          {
-            "in": "query",
-            "name": "favorited",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The username who liked the articles"
-          },
-          {
-            "in": "query",
-            "name": "tag",
-            "schema": {
-              "type": "string"
-            },
-            "description": "The tag"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
-      }
-    },
-    "/articles/{slug}": {
-      "put": {
-        "tags": ["Articles"],
-        "summary": "Update an article",
-        "description": "This helps the author to update their article",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "description": "Article slug property",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "CREATED",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
-      },
-      "delete": {
-        "tags": ["Articles"],
-        "summary": "Delete an article",
-        "description": "This helps the author to delete their article",
-        "parameters": [
-          {
-            "name": "slug",
-            "in": "path",
-            "required": true,
-            "description": "Article slug property",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        ],
-        "responses": {
-          "201": {
-            "description": "CREATED",
-            "schema": {
-              "$ref": "#/definitions/Article"
-            }
-          }
-        }
       }
     },
     "/articles/{slug}/comments/{commentID}/likes": {
       "post": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "Like a specific comment",
         "description": "This allows a user to like a specific comment on article.",
         "parameters": [
@@ -321,7 +248,9 @@
             "type": "string"
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "comment liked successfully",
@@ -376,7 +305,9 @@
     },
     "/articles/{slug}/comments/{commentID}": {
       "put": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "update a specific comment",
         "description": "This allows a user to update a specific comment.",
         "parameters": [
@@ -410,7 +341,9 @@
             }
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "201": {
             "description": "comment updated successfully",
@@ -466,7 +399,9 @@
         }
       },
       "delete": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "delete a specific comment",
         "description": "This allows a user to delete a specific comment.",
         "parameters": [
@@ -492,7 +427,9 @@
             "type": "string"
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "comment updated successfully"
@@ -512,7 +449,9 @@
         }
       },
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "get a specific comment",
         "description": "This allows a user to get a specific comment.",
         "parameters": [
@@ -538,7 +477,9 @@
             "type": "string"
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -563,7 +504,9 @@
     },
     "/articles/{slug}/comments/{commentID}/history": {
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "get a specific comment history",
         "description": "This allows a user to get a specific comment history.",
         "parameters": [
@@ -589,7 +532,9 @@
             "type": "string"
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -611,7 +556,9 @@
     },
     "/articles/{slug}/comments": {
       "get": {
-        "tags": ["Articles"],
+        "tags": [
+          "Articles"
+        ],
         "summary": "get comments for a specific article",
         "description": "This allows a user to get article with comments.",
         "parameters": [
@@ -630,7 +577,9 @@
             "type": "string"
           }
         ],
-        "produces": ["application/json"],
+        "produces": [
+          "application/json"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -650,52 +599,371 @@
         }
       }
     },
-    "definitions": {
-      "User": {
-        "type": "object",
-        "properties": {
-          "user": {
-            "type": "object",
-            "properties": {
-              "email": {
-                "type": "string"
+    "/articles/{slug}/highlights/{highlightId}": {
+      "put": {
+        "tags": [
+          "Highlight"
+        ],
+        "summary": "update a specific highlight",
+        "description": "This allows a user to update a specific comment.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "highlightId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a highlight you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "type": "integer",
+            "description": "the start index of the highlight"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "type": "integer",
+            "description": "the end index of the highlight"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "highlight updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Highlight' "
+                }
               }
             }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
           }
         }
       },
-      "Users": {
-        "type": "array",
-        "items": {
+      "delete": {
+        "tags": [
+          "Highlight"
+        ],
+        "summary": "delete a specific highlight",
+        "description": "This allows a user to delete a specific highlight.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "highlightId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a highlight you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "highlight deleted  successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Highlight' "
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Highlight"
+        ],
+        "summary": "get a specific highlight",
+        "description": "This allows a user to get a specific highlight.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "highlightId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a highlight you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "highlight retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Highlight' "
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    },
+    "/articles/{slug}/highlights": {
+      "post": {
+        "tags": [
+          "Highlight"
+        ],
+        "summary": "create a specific highlight",
+        "description": "This allows a user to hightlight a specific article.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "highlightId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a highlight you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "type": "integer",
+            "description": "the start index of the highlight"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "type": "integer",
+            "description": "the end index of the highlight"
+          },
+          {
+            "name": "comment",
+            "in": "body",
+            "type": "integer",
+            "description": "the text to put on the comment"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "201": {
+            "description": "highlight created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Highlight' "
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Highlight"
+        ],
+        "summary": "get all highlights made on an article",
+        "description": "This allows a user to hightlight a specific article.",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "description": "slug to represent a particular article",
+            "type": "string"
+          },
+          {
+            "name": "highlightId",
+            "in": "path",
+            "required": true,
+            "description": "ID for a highlight you want to update",
+            "type": "string"
+          },
+          {
+            "name": "token",
+            "in": "header",
+            "required": true,
+            "description": "A user has to provide the token in order to update a highlight",
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "highlight has been retrieved successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/Highlight' "
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "unauthorized request"
+          },
+          "404": {
+            "description": "resource not found"
+          },
+          "500": {
+            "description": "Internal server error"
+          },
+          "400'": {
+            "description": "bad request"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "User": {
+      "type": "object",
+      "properties": {
+        "user": {
           "type": "object",
           "properties": {
-            "firstName": {
+            "email": {
               "type": "string"
             }
           }
         }
-      },
-      "Article": {
+      }
+    },
+    "Users": {
+      "type": "array",
+      "items": {
         "type": "object",
         "properties": {
-          "title": {
+          "firstName": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "Article": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "example": "An American ate the African chicken"
+        },
+        "body": {
+          "type": "string",
+          "example": "Ever wonder how the guy got his pocket empty because of the meal?"
+        },
+        "description": {
+          "type": "string",
+          "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
+        },
+        "tagsList": {
+          "type": "array",
+          "items": {
             "type": "string",
-            "example": "An American ate the African chicken"
-          },
-          "body": {
-            "type": "string",
-            "example": "Ever wonder how the guy got his pocket empty because of the meal?"
-          },
-          "description": {
-            "type": "string",
-            "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
-          },
-          "tagsList": {
-            "type": "array",
-            "items": {
-              "type": "string",
-              "example": "javaScript"
-            }
+            "example": "javaScript"
           }
         },
         "commnents": {
@@ -703,6 +971,31 @@
           "items": {
             "type": "object"
           }
+        }
+      }
+    },
+    "Highlight": {
+      "type": "object",
+      "properties": {
+        "startIndex": {
+          "type": "number",
+          "example": 1
+        },
+        "endIndex": {
+          "type": "number",
+          "example": 3
+        },
+        "comment": {
+          "type": "string",
+          "example": "I realy like this portion"
+        },
+        "userId": {
+          "type": "string",
+          "example": "f3675d47-2d68-4971-a468-43d31d4e9a2d"
+        },
+        "articleId": {
+          "type": "string",
+          "example": "3e6736d5-7bf3-4119-ad08-b8ae6aaaa624"
         }
       }
     }

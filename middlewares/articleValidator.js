@@ -11,6 +11,9 @@ export default class ArticleValidator {
     req.article = article;
     return article
       ? next()
-      : res.status(NOT_FOUND).json({ message: "Article was not found" });
+      : res.status(NOT_FOUND).json({
+          message:
+            "We are sorry we cannot find the article you are looking for , Please check the id and retry"
+        });
   }
 }

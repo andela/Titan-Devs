@@ -10,6 +10,7 @@ let slug;
 let commentId;
 const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
+const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
 describe("Comment on an article", () => {
@@ -81,7 +82,9 @@ describe("Comment on an article", () => {
       .send(newComment)
       .end((err, res) => {
         expect(res.status).equals(UNAUTHORIZED);
-        expect(res.body.message).to.contain("Please provide a token");
+        expect(res.body.message).to.contain(
+          "We are sorry but we are not able to authenticate you.You have to login to perform this action."
+        );
         done();
       });
   });
@@ -135,6 +138,7 @@ describe("Comment on an article", () => {
           expect(res.status).equals(OK);
           expect(res.body.article.comments).to.be.a("array");
           expect(res.body.article.comments[0]).to.haveOwnProperty("body");
+          expect(res.body.article.comments[0]).to.haveOwnProperty("highlightedText");
           done();
         });
     });
@@ -236,9 +240,7 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain(
-            "Please provide a token to perform this action"
-          );
+          expect(res.body.message).to.contain(UNAUTHORIZED_MESSAGE);
           done();
         });
     });
@@ -277,9 +279,7 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain(
-            "Please provide a token to perform this action"
-          );
+          expect(res.body.message).to.contain(UNAUTHORIZED_MESSAGE);
           done();
         });
     });

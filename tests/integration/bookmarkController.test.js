@@ -30,7 +30,9 @@ describe("POST /articles/:slug/bookmark", () => {
       .post(`/api/v1/articles/${post.slug}/bookmark`)
       .end((err, res) => {
         expect(res.status).equals(UNAUTHORIZED);
-        expect(res.body.message).to.contain("Please provide a token");
+        expect(res.body.message).to.contain(
+          "We are sorry but we are not able to authenticate you.You have to login to perform this action."
+        );
         done();
       });
   });

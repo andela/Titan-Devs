@@ -10,7 +10,7 @@ let validSlug;
 
 const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
-
+const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
 before(done => {
@@ -61,7 +61,7 @@ describe("# Articles endpoints", () => {
         .send(newArticle)
         .end((err, res) => {
           expect(res.status).equals(UNAUTHORIZED);
-          expect(res.body.message).to.contain("Please provide a token");
+          expect(res.body.message).to.contain(UNAUTHORIZED_MESSAGE);
           done();
         });
     });

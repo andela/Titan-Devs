@@ -4,15 +4,18 @@ import profileRouter from "./profile";
 import articleRoutes from "./articles";
 
 import commentRoutes from "./comments";
-import checkAuth from "../middlewares/checkAuth";
 import ratingRouters from "./ratings";
+import highlightRouters from "./highlight";
+import checkAuth from "../middlewares/checkAuth";
 
 const router = Router();
 
 router.use(userRouters);
 router.use(profileRouter);
 router.use(articleRoutes);
-router.use(checkAuth, ratingRouters);
+router.use(checkAuth);
 router.use(commentRoutes);
-
+router.use(articleRoutes);
+router.use(ratingRouters);
+router.use(highlightRouters);
 export default router;
