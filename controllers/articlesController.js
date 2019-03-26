@@ -66,7 +66,7 @@ const orderArticle = (article, id) => {
     author: { followers, username, bio, image, firstName, lastName }
   } = article.get();
   const { tagsList, likes, ...artInfo } = article.get();
-  const following = !!_.dropWhile(followers, f => f.id !== id).length;
+  const following = followers.map(f => f.id).includes(id);
   return {
     ...artInfo,
     likes,

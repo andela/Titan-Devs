@@ -387,7 +387,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
       .to.haveOwnProperty("articlesCount")
       .to.be.a("number");
     response.body.articles.forEach(article =>
-      expect(article.likes).to.include(username)
+      expect(article.likes.map(l => l.username)).to.include(username)
     );
   });
 
@@ -413,7 +413,7 @@ describe("Filtering (filter articles by [author, favorited, tag])", () => {
         response.body.articles.forEach(article => {
           expect(article.tagsList).to.contain(newArticle.tagsList[0]);
           expect(article.author.username).to.equal(username);
-          expect(article.likes).to.include(username);
+          expect(article.likes.map(l => l.username)).to.include(username);
         });
         done();
       });
