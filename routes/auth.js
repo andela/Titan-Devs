@@ -1,44 +1,38 @@
 import { Router } from "express";
 import passport from "passport";
-import passportGoogle from "../controllers/auth/socials/google";
-import passportFacebook from "../controllers/auth/socials/facebook";
-import twitterController from "../controllers/auth/socials/twitterController";
+import socialAuthController from "../controllers/auth/socials/socialAuthController";
 
 const authRouters = Router();
 
 authRouters.get("/auth/google", (request, response, next) => {
-  passportGoogle.authenticate("google", { scope: ["email"] })(
-    request,
-    response,
-    next
-  );
+  passport.authenticate("google", { scope: ["email"] })(request, response, next);
 });
 
 authRouters.get(
   "/auth/google/callback",
-  passportGoogle.authenticate("google", {
+  passport.authenticate("google", {
     failureRedirect: "/login",
     session: false
   }),
   (req, res) => {
-    res.redirect(`/api/v1/profiles/${req.user.username}`);
+    socialAuthController.socialLogin(req, res);
   }
 );
 
 authRouters.get(
   "/auth/facebook",
-  passportFacebook.authenticate("facebook", {
+  passport.authenticate("facebook", {
     scope: ["email"]
   })
 );
 authRouters.get(
   "/auth/facebook/callback",
-  passportFacebook.authenticate("facebook", {
+  passport.authenticate("facebook", {
     failureRedirect: "/login",
     session: false
   }),
   (req, res) => {
-    res.redirect(`/api/v1/profiles/${req.user.username}`);
+    socialAuthController.socialLogin(req, res);
   }
 );
 
@@ -50,7 +44,7 @@ authRouters.get(
     session: false
   }),
   (req, res) => {
-    twitterController.twitterLogin(req, res);
+    socialAuthController.socialLogin(req, res);
   }
 );
 

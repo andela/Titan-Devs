@@ -13,7 +13,7 @@ import swaggerDocument from "./swagger.json";
 import joiValidator from "./middlewares/joiValidator";
 import passportConfig from "./middlewares/passport";
 import constants from "./helpers/constants";
-import "./controllers/auth/socials/twitter";
+import "./controllers/auth/socials/socialAuthStrategies";
 
 const { NOT_FOUND, INTERNAL_SERVER_ERROR } = constants.statusCode;
 
