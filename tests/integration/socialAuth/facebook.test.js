@@ -3,7 +3,7 @@ import chaiHttp from "chai-http";
 import {
   mockSocialAuth,
   mockSocialAuthNonUser,
-  dummyUser
+  dummyProfileGoogle
 } from "../../helpers/socialAuthHelpers";
 
 import app from "../../../index";
@@ -22,7 +22,7 @@ describe("mocking social authentication with facebook", () => {
         expect(res.redirect).to.be.equals(true);
         expect(res.status).to.be.equal(302);
         expect(res.header.location).to.be.equals(
-          `/api/v1/profile/${dummyUser.username}`
+          `/api/v1/profile/${dummyProfileGoogle.username}`
         );
         done();
       });
@@ -36,7 +36,7 @@ describe("mocking social authentication with facebook", () => {
         expect(res.redirect).to.be.equals(true);
         expect(res.status).to.be.equal(302);
         expect(res.header.location).to.be.equals(
-          `/api/v1/profile/${dummyUser.username}`
+          `/api/v1/profile/${dummyProfileGoogle.username}`
         );
         done();
       });

@@ -24,7 +24,7 @@ describe("Comment on an article", () => {
         expect(res.body.comment).to.haveOwnProperty("createdAt");
         expect(res.body.comment).to.haveOwnProperty("author");
         expect(res.body.comment.author).to.haveOwnProperty("username");
-        expect(res.body.comment.author.username).to.contain(user.username);
+        expect(res.body.comment.author.username).to.contain(dummyUser.username);
         done();
       });
   });

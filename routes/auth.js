@@ -1,7 +1,8 @@
 import { Router } from "express";
+import passport from "passport";
 import passportGoogle from "../controllers/auth/socials/google";
 import passportFacebook from "../controllers/auth/socials/facebook";
-import passportTwitter from "../controllers/auth/socials/twitter";
+import twitterController from "../controllers/auth/socials/twitterController";
 
 const authRouters = Router();
 
@@ -41,15 +42,15 @@ authRouters.get(
   }
 );
 
-authRouters.get("/auth/twitter", passportTwitter.authenticate("twitter"));
+authRouters.get("/auth/twitter", passport.authenticate("twitter"));
 authRouters.get(
   "/auth/twitter/callback",
-  passportTwitter.authenticate("twitter", {
+  passport.authenticate("twitter", {
     failureRedirect: "/login",
     session: false
   }),
   (req, res) => {
-    res.redirect(`/api/v1/profiles/${req.user.username}`);
+    twitterController.twitterLogin(req, res);
   }
 );
 

@@ -7,28 +7,25 @@ const { User } = models;
  * @return {User} - a user from the database
  */
 const createUserFromSocial = async profile => {
-  let email;
-  if (profile.emails) {
-    email = profile.emails[0].value;
+  const options = {
+    where: { $or: [{ socialId: profile.id }] },
+    raw: true,
+    defaults: {
+      firstName: profile.displayName,
+      isVerified: true,
+      socialId: profile.id,
+      username: profile.username
+    }
+  };
+  if (profile.provider === "twitter") {
+    options.where.$or.push({ username: profile.username });
+    options.defaults.email = `${profile.username}@ah.com`;
   } else {
-    email = `${profile.id}@ah.com`;
+    options.where.$or.push({ email: profile.emails[0].value });
+    options.defaults.email = profile.emails[0].value;
   }
-  const username =
-    profile.username || `${profile.name.familyName}_${profile.name.givenName}`;
   try {
-    const user = await User.findOrCreate({
-      where: {
-        $or: [{ socialId: profile.id }, { email }]
-      },
-      defaults: {
-        username: `${username} + ${Date.now()}`,
-        firstname: profile.displayName,
-        email,
-        isVerified: true,
-        socialId: profile.id
-      },
-      raw: true
-    });
+    const user = await User.findOrCreate(options);
     return user[0] ? user[0] : false;
   } catch (error) {
     return false;

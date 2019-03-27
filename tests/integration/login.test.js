@@ -5,7 +5,7 @@ import { users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 import { newRole } from "../setups.test";
 
-const { NOT_FOUND, BAD_REQUEST } = constants.statusCode;
+const { BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
 const { dummyUser3 } = users;
 
@@ -131,7 +131,7 @@ describe("POST /api/v1/users/login", () => {
       .send(user)
       .end((error, res) => {
         if (error) done(error.message);
-        res.status.should.be.equal(NOT_FOUND);
+        res.status.should.be.equal(BAD_REQUEST);
         res.body.should.have.property("message").eql("Invalid email or password!");
         done();
       });

@@ -1,6 +1,6 @@
 import joi from "joi";
 import models from "../models";
-import { ratingOne } from "../helpers/ratingValidator";
+import { ratingOne, ratingAll } from "../helpers/ratingValidator";
 import constants from "../helpers/constants";
 
 const { Rating, sequelize } = models;
@@ -92,7 +92,6 @@ class RatingController {
           });
           res.status(OK).json({ ratings: results });
         } catch (error) {
-          console.log(error);
           res
             .status(INTERNAL_SERVER_ERROR)
             .json({ message: "Please Try again later" });

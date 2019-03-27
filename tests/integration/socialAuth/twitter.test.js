@@ -1,55 +1,25 @@
 import chai from "chai";
-import chaiHttp from "chai-http";
-import {
-  mockSocialAuth,
-  mockSocialAuthNonUser,
-  dummyUser
-} from "../../helpers/socialAuthHelpers";
-import app from "../../../index";
+import sinon from "sinon";
+import models from "../../../models";
+import sinonChai from "sinon-chai";
+import { mockRequest, mockResponse } from "mock-req-res";
+import twitterController from "../../../controllers/auth/socials/twitterController";
+import { userFound, dummyProfileTwitter } from "../../helpers/socialAuthHelpers";
 
 const { expect } = chai;
-
-chai.use(chaiHttp);
-
-describe.skip("mocking social authentication with twitter", () => {
-  mockSocialAuth("https://api.twitter.com/");
-  it("should redirect a user to profile page with data", done => {
-    chai
-      .request(app)
-      .get("/api/v1/auth/twitter")
-      .end((err, res) => {
-        expect(res.redirect).to.be.equals(true);
-        expect(res.status).to.be.equal(302);
-        expect(res.header.location).to.be.equals(
-          `/api/v1/profile/${dummyUser.username}`
-        );
-        done();
-      });
-  });
-  it("should redirect when the callback is called", done => {
-    mockSocialAuth("https://api.twitter.com/");
-    chai
-      .request(app)
-      .get("/api/v1/auth/twitter/callback")
-      .end((err, res) => {
-        expect(res.redirect).to.be.equals(true);
-        expect(res.status).to.be.equal(302);
-        expect(res.header.location).to.be.equals(
-          `/api/v1/profile/${dummyUser.username}`
-        );
-        done();
-      });
-  });
-  it("should return error if user object is not available", done => {
-    mockSocialAuthNonUser("https://api.twitter.com/");
-    chai
-      .request(app)
-      .get("/api/v1/auth/twitter")
-      .end((err, res) => {
-        expect(res.body.status).to.be.eql("failed");
-        expect(res.body.msg).to.be.eql("Bad Request");
-        expect(res.body.user).to.be.an("undefined");
-        done();
-      });
+const { User } = models;
+chai.use(sinonChai);
+describe("mocking social authentication with twitter", () => {
+  it("should redirect a user to profile page with data", async () => {
+    const res = mockResponse();
+    const req = mockRequest({ user: dummyProfileTwitter });
+    const stubFindOne = sinon.stub(User, "findOrCreate").returns([userFound]);
+    await twitterController.twitterLogin(req, res);
+    expect(res.redirect).to.have.been.calledWith(
+      sinon.match(`/api/v1/profiles/${userFound.username}`)
+    );
+    sinon.assert.calledOnce(stubFindOne);
+    stubFindOne.restore();
+    res.redirect.resetHistory();
   });
 });

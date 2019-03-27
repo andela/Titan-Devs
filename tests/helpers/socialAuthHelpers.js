@@ -1,6 +1,6 @@
 import nock from "nock";
 
-const dummyUser = {
+const dummyProfileGoogle = {
   id: "113497765187161548343",
   displayName: "Espoir Murhabazi",
   name: { familyName: "Murhabazi", givenName: "Espoir" },
@@ -16,6 +16,20 @@ const dummyUser = {
   username: "espoir_murhabazi"
 };
 
+const userFound = {
+  email: "850855856@ah.com",
+  password: null,
+  username: "espoir_murhabazi",
+  socialId: "850855856",
+  isVerified: true
+};
+
+const dummyProfileTwitter = {
+  id: "850855856",
+  username: "espoir_murhabazi",
+  displayName: "Espoir Murhabazi",
+  provider: "twitter"
+};
 /**
  * @description mock social authentication endpoint with user data
  * @param  {Object} url - The endpoint to mock
@@ -24,11 +38,10 @@ const dummyUser = {
 const mockSocialAuth = url => {
   if (url.indexOf("twitter") !== -1) {
     nock(url)
-      .filteringPath(() => "/")
       .persist()
-      .post("/")
+      .post("/oauth/request_token")
       .reply(302, undefined, {
-        Location: `/api/v1/profile/${dummyUser.username}`
+        Location: `/api/v1/profile/${userFound.username}`
       });
   } else {
     nock(url)
@@ -36,7 +49,7 @@ const mockSocialAuth = url => {
       .persist()
       .get("/")
       .reply(302, undefined, {
-        Location: `/api/v1/profile/${dummyUser.username}`
+        Location: `/api/v1/profile/${userFound.username}`
       });
   }
 };
@@ -68,4 +81,10 @@ const mockSocialAuthNonUser = url => {
       });
   }
 };
-export { dummyUser, mockSocialAuth, mockSocialAuthNonUser };
+export {
+  dummyProfileGoogle,
+  mockSocialAuth,
+  mockSocialAuthNonUser,
+  userFound,
+  dummyProfileTwitter
+};

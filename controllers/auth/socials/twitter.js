@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import passport from "passport";
 import twitterStrategy from "passport-twitter";
-import createUserFromSocial from "./createUserFromSocial";
 
 dotenv.config();
 
@@ -14,13 +13,6 @@ passport.use(
       callbackURL: `${process.env.SERVER_HOST}/auth/twitter/callback`,
       passReqToCallback: true
     },
-    async (request, accessToken, refreshToken, profile, done) => {
-      const user = await createUserFromSocial(profile);
-      return user
-        ? done(null, user)
-        : done(new Error("An error occurs , please try again later"));
-    }
+    async (request, accessToken, refreshToken, profile, done) => done(null, profile)
   )
 );
-
-export default passport;
