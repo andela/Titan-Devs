@@ -4,14 +4,16 @@ export const articleSchema = {
   title: Joi.string()
     .trim()
     .min(10)
+    .max(200)
     .required(),
   description: Joi.string()
     .trim()
-    .required()
     .min(10)
+    .max(255)
     .required(),
   body: Joi.string()
     .trim()
+    .min(100)
     .required(),
   tagsList: Joi.array()
 };

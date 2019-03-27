@@ -42,6 +42,7 @@ describe("# Articles endpoints", () => {
         .set("Authorization", `Bearer ${token}`)
         .send(newArticle)
         .end((err, res) => {
+          console.log(res.body, "========");
           validSlug = res.body.article.slug;
           expect(res.status).equals(CREATED);
           expect(res.body.message).to.contain("Article created");

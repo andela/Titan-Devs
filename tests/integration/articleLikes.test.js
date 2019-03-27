@@ -1,7 +1,7 @@
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-import { article, users } from "../helpers/testData";
+import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 
 const { OK, CREATED, NOT_FOUND, UNAUTHORIZED } = constants.statusCode;
@@ -29,10 +29,8 @@ describe("ArticleLike Controller", () => {
       .request(app)
       .post("/api/v1/articles")
       .set({ Authorization: `Bearer ${token}` })
-      .send({ ...article });
-    ({
-      article: { slug }
-    } = articleResult.body);
+      .send({ ...newArticle });
+    ({ slug } = articleResult.body.article);
   });
 
   describe("article fetch and like", () => {
