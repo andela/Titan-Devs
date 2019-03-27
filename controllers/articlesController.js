@@ -4,9 +4,9 @@ import constants from "../helpers/constants";
 import articleValidator, {
   articleSchema
 } from "../helpers/validators/articleValidators";
-import calculateReadTime from "../helpers/calculateReadTime";
+// import calculateReadTime from "../helpers/calculateReadTime";
 
-const { User, Article, Tag, ArticleTags, Comment } = models;
+const { User, Article, Bookmark, Tag, ArticleTags, Comment } = models;
 const {
   CREATED,
   OK,
@@ -33,6 +33,11 @@ const articleQuery = {
       as: "likes",
       attributes: ["username", "image", "firstName", "lastName"],
       through: { attributes: [] }
+    },
+    {
+      model: Bookmark,
+      as: "bookmarks",
+      attributes: ["userId", "articleId"]
     },
     {
       model: Tag,
@@ -65,11 +70,13 @@ const orderArticle = (article, id) => {
   const {
     author: { followers, username, bio, image, firstName, lastName }
   } = article.get();
-  const { tagsList, likes, ...artInfo } = article.get();
+  const { tagsList, likes, bookmarks, ...artInfo } = article.get();
+  const bookmarked = bookmarks.map(b => b.userId).includes(id);
   const following = followers.map(f => f.id).includes(id);
   return {
     ...artInfo,
     likes,
+    bookmarked,
     author: { following, username, bio, image, firstName, lastName },
     liked: !!likes.length,
     likesCount: likes.length,
@@ -92,11 +99,10 @@ export default class ArticleController {
       const { tagsList = [], ...rest } = req.body;
       const { id: userId } = req.user;
       const valid = await articleValidator(req.body);
-      const readTime = calculateReadTime(req);
       if (req.user && valid) {
         const article = await Article.create({
-          readTime,
           ...rest,
+          readTime: 0,
           slug: "",
           userId
         });
@@ -108,7 +114,7 @@ export default class ArticleController {
         });
         return res.status(CREATED).json({
           message: "Article created",
-          article: { ...article.get(), tagsList }
+          article: { ...article.get(), deletedAt: undefined, tagsList }
         });
       }
     } catch (error) {
@@ -141,7 +147,7 @@ export default class ArticleController {
             article: orderArticle(article, id)
           })
         : res.status(NOT_FOUND).json({
-            message: `No article matching with the ${slug} slug`
+            message: `No article matching with the "${slug}" slug`
           });
     } catch (error) {
       return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
@@ -199,12 +205,16 @@ export default class ArticleController {
           _.pick(articleSchema, Object.keys(allowed))
         );
         const { tagsList = [], ...rest } = valid;
-        if (tagsList.length) {
-          tagsList.map(async t => {
-            const tag = await Tag.findOrCreate({ where: { name: t } }).spread(
-              tg => tg
-            );
-            await article.addTagsList(tag);
+        if (tagsList.length > 0) {
+          await new Promise(async resolve => {
+            await ArticleTags.destroy({ where: { articleId: article.id } });
+            tagsList.forEach(async (name, i) => {
+              const tag = await Tag.findOrCreate({ where: { name } }).spread(
+                tg => tg
+              );
+              await article.addTagsList(tag);
+              if (i + 1 === tagsList.length) return resolve(true);
+            });
           });
         }
         const updated = await article.update(rest, {
@@ -212,14 +222,14 @@ export default class ArticleController {
           returning: true,
           limit: 1
         });
-        const tags = await updated
-          .getTagsList({ attributes: ["name"] })
-          .map(t => t.name || null);
         return res.status(CREATED).json({
           article: {
             ...updated.get(),
+            deletedAt: undefined,
             author: _.pick(await updated.getAuthor(), ["username", "bio", "image"]),
-            tagsList: tags
+            tagsList: await article
+              .getTagsList({ attributes: ["name"] })
+              .map(t => t.name || null)
           },
           message: `Article updated successfully`
         });
@@ -250,7 +260,7 @@ export default class ArticleController {
       const article = await Article.findOne({ where: { slug } });
       if (!article) {
         return res.status(NOT_FOUND).json({
-          message: `Error deleting, article not found`
+          message: `Error while deleting, article not found`
         });
       }
       if (article.userId !== userId) {

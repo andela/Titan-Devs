@@ -19,6 +19,11 @@ export default (sequelize, DataTypes) => {
       onDelete: "CASCADE",
       hooks: true
     });
+    Bookmark.belongsTo(models.User, {
+      foreignKey: "userId",
+      onDelete: "CASCADE",
+      hooks: true
+    });
   };
   return Bookmark;
 };
