@@ -16,7 +16,7 @@ const checkWhoFavoriteArticle = async id => {
         {
           model: User,
           as: "author",
-          attributes: ["email", "id", "allowNotifications"]
+          attributes: ["email", "id", "allowNotifications", "username"]
         }
       ]
     });
@@ -28,7 +28,7 @@ const checkWhoFavoriteArticle = async id => {
         {
           model: User,
           as: "likes",
-          attributes: ["email", "id", "allowNotifications"]
+          attributes: ["email", "id", "allowNotifications", "username"]
         }
       ]
     });
@@ -53,7 +53,7 @@ const checkWhoFavoriteComment = async id => {
         {
           model: User,
           as: "likes",
-          attributes: ["email", "id", "allowNotifications"]
+          attributes: ["email", "id", "allowNotifications", "username"]
         }
       ]
     });

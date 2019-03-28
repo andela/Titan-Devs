@@ -1,6 +1,7 @@
 import sgMail from "@sendgrid/mail";
 import dotenv from "dotenv";
 import recordNotification from "./recordNotification";
+import notificationTemplate from "./notificationTemplate";
 
 dotenv.config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -11,13 +12,18 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
  */
 
 const sendArticleNotifications = async (articleId, message) => {
-  const emailList = await recordNotification.articleFavorites(articleId, message);
+  const emailList = await recordNotification.articleFavorites(
+    articleId,
+    message.message
+  );
+  const emailMessage = await notificationTemplate(message);
+
   if (emailList.length > 0) {
     await sgMail.send({
       to: emailList,
       from: "aheaven@gmail.com",
       subject: "Updates to your favorite article",
-      text: message
+      html: emailMessage
     });
   }
 };
@@ -28,13 +34,19 @@ const sendArticleNotifications = async (articleId, message) => {
  */
 
 const sendCommentNotifications = async (commentId, message) => {
-  const emailList = await recordNotification.notifyCommentator(commentId, message);
+  const emailList = await recordNotification.notifyCommentator(
+    commentId,
+    message.message
+  );
+
+  message.commentId = commentId;
+  const emailMessage = await notificationTemplate(message);
   if (emailList.length > 0) {
     await sgMail.send({
       to: emailList,
       from: "aheaven@gmail.com",
       subject: "Updates to the comment you liked",
-      text: message
+      html: emailMessage
     });
   }
 };
@@ -45,13 +57,18 @@ const sendCommentNotifications = async (commentId, message) => {
  */
 
 const sendFollowersNotifications = async (userId, message) => {
-  const emailList = await recordNotification.notifyFollowers(userId, message);
+  const emailList = await recordNotification.notifyFollowers(
+    userId,
+    message.message
+  );
+
+  const emailMessage = await notificationTemplate(message);
   if (emailList.length > 0) {
     await sgMail.send({
       to: emailList,
       from: "aheaven@gmail.com",
       subject: "Your favorite author created new article",
-      text: message
+      html: emailMessage
     });
   }
 };

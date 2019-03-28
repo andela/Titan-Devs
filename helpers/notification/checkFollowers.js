@@ -18,7 +18,7 @@ const checkFollowers = async userId => {
         {
           model: User,
           as: "followings",
-          attributes: ["email", "id", "allowNotifications"]
+          attributes: ["email", "id", "allowNotifications", "username"]
         }
       ]
     });

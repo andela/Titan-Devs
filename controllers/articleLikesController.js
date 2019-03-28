@@ -33,7 +33,10 @@ export default class ArticleLikesController {
         defaults: { like: true }
       }).spread(async (articleLike, created) => {
         if (created) {
-          const message = "The article you  liked was liked by another user";
+          const message = {
+            message: "The article you  liked was liked by another user",
+            slug: article.slug
+          };
           notification.sendArticleNotifications(article.id, message);
           return res.status(CREATED).json({ message: "Successfully liked" });
         }

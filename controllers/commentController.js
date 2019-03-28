@@ -37,7 +37,10 @@ export default class CommentController {
         const com = await Comment.create({ articleId, userId, body });
         if (com) {
           const { userId: uId, articleId: artId, ...comment } = com.dataValues;
-          const message = "A new user commented on article you reacted on";
+          const message = {
+            message: "A new user commented on article you reacted on",
+            slug
+          };
           notification.sendArticleNotifications(articleId, message);
           return res.status(CREATED).json({
             status: CREATED,
@@ -70,6 +73,7 @@ export default class CommentController {
 
   static async like(req, res) {
     const { commentId } = req.params;
+    const { slug } = req.params;
     try {
       const comments = await Comment.findOne({ where: { id: commentId } });
       if (!comments) {
@@ -81,7 +85,11 @@ export default class CommentController {
       const likes = await CommentLike.findAll({ where: { commentId, userId } });
       if (!likes.length) {
         const likeComment = await CommentLike.create({ commentId, userId });
-        const message = "A new user is liking a comment you liked to";
+        const message = {
+          message: "A new user is liking a comment you reacted to",
+          commentId,
+          slug
+        };
         notification.sendCommentNotifications(commentId, message);
         const updateCommentLikes = await Comment.increment(
           {

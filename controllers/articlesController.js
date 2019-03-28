@@ -101,7 +101,7 @@ export default class ArticleController {
       const { id: userId } = req.user;
       const valid = await articleValidator(req.body);
       if (req.user && valid) {
-        const message = "Your favorite author created a new article";
+        const message = { message: "Your favorite author created a new article" };
         const article = await Article.create({
           ...rest,
           readTime: 0,
@@ -114,6 +114,8 @@ export default class ArticleController {
           );
           await article.addTagsList(tag);
         });
+
+        message.slug = article.get().slug;
         notification.sendFollowersNotifications(userId, message);
         return res.status(CREATED).json({
           message: "Article created",
