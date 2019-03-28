@@ -19,10 +19,11 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(OK);
+            expect(response.status).eql(CREATED);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Disliked successfully");
+            expect(response.body.message).to.be.eql("Successfully liked");
+
             done();
           });
       });
@@ -36,10 +37,11 @@ describe("ArticleLike Controller", () => {
             if (err) {
               return done(err);
             }
-            expect(response.status).eql(CREATED);
+            expect(response.status).eql(OK);
             expect(response.body).to.an("object");
             expect(response.body).to.have.property("message");
-            expect(response.body.message).to.be.eql("Successfully liked");
+            expect(response.body.message).to.be.eql("Disliked successfully");
+
             done();
           });
       });
