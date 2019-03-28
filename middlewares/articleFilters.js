@@ -16,7 +16,13 @@ export default (unfiltered, req, res, next) => {
   const articles = unfiltered
     .filter(art => author === null || art.author.username === author)
     .filter(art => tag === null || art.tagsList.includes(tag))
-    .filter(art => favorited === null || art.likes.includes(favorited));
+    .filter(
+      art => favorited === null || art.likes.map(l => l.username).includes(favorited)
+    );
   const articlesCount = articles.length;
-  return res.status(OK).json({ message: "successful", articles, articlesCount });
+  return res.status(OK).json({
+    message: "Articles retrieved successfully",
+    articles,
+    articlesCount
+  });
 };

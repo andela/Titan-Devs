@@ -7,10 +7,11 @@ dotenv.config();
 
 const { ACCEPTED, INTERNAL_SERVER_ERROR } = constants;
 const newArticle = {
-  title: faker.lorem.words(15),
-  description: faker.lorem.words(50),
-  body: "I set fire to the rain, and that was the last time",
-  tagsList: ["reactjs", "angularjs", "dragons"]
+  body:
+    "Sections 1.10.32 and 1.10.33 from 'de Finibus Bonorum et Malorum' by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
+  description: "I'm your romeo could you be my juliet?",
+  title: "Senior software developer",
+  tagsList: ["music", "politics", "love"]
 };
 const newComment = {
   body: "I like this article however, You should rename the title"
@@ -627,10 +628,10 @@ export {
   newArticle,
   newComment,
   users,
-  fakeToken,
   tokenEmailVerication,
   sendGridResponse,
   article,
   opnResponse,
-  fakeId
+  fakeId,
+  fakeToken
 };

@@ -1,5 +1,7 @@
 import slug from "slug";
 
+const readTime = article => Math.ceil(article.body.split(" ").length / 265);
+
 export default (sequelize, DataTypes) => {
   const Article = sequelize.define(
     "Article",
@@ -29,6 +31,10 @@ export default (sequelize, DataTypes) => {
           article.slug = slug(
             `${article.title}-${(Math.random() * 36 ** 6 || 0).toString(36)}`
           ).toLowerCase();
+          article.readTime = readTime(article);
+        },
+        beforeUpdate(article) {
+          article.readTime = readTime(article);
         }
       }
     }
@@ -57,6 +63,7 @@ export default (sequelize, DataTypes) => {
     });
     Article.hasMany(models.Bookmark, {
       foreignKey: "articleId",
+      as: "bookmarks",
       onDelete: "CASCADE",
       hooks: true
     });
