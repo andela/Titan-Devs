@@ -12,11 +12,8 @@ const validateRequest = async (req, res, next) => {
       .guid()
       .label("Invalid request")
   });
-  const input = {};
-  input.userId = userId;
-  input.notificationId = notificationId;
 
-  const { error } = Joi.validate(input, paramsSchema);
+  const { error } = Joi.validate({ userId, notificationId }, paramsSchema);
   if (error) {
     next(error);
   } else {
