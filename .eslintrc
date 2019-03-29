@@ -8,6 +8,7 @@
   },
   "plugins": ["prettier"],
   "rules": {
+    "no-shadow": "off",
     "parserOptions": {
       "allowImportExportEverywhere": true,
       "sourceType": "module"
@@ -44,11 +45,6 @@
           "ClassDeclaration": false
         }
       }
-    ],
-    "eslintConfig": {
-      "rules": {
-        "no-shadow": "off"
-      }
-    }
+    ]
   }
 }
