@@ -44,6 +44,11 @@
           "ClassDeclaration": false
         }
       }
-    ]
+    ],
+    "eslintConfig": {
+      "rules": {
+        "no-shadow": "off"
+      }
+    }
   }
 }
