@@ -8,7 +8,6 @@
   },
   "plugins": ["prettier"],
   "rules": {
-    "no-shadow": "off",
     "parserOptions": {
       "allowImportExportEverywhere": true,
       "sourceType": "module"
@@ -26,7 +25,7 @@
     "comma-dangle": 0,
     "curly": ["error", "multi-line"],
     "import/no-unresolved": [2, { "commonjs": true }],
-    "no-shadow": ["error", { "allow": ["req", "res", "err"] }],
+    "no-shadow": ["error", { "allow": ["req", "res", "err", "done"] }],
     "valid-jsdoc": [
       "error",
       {
