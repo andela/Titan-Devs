@@ -1,7 +1,8 @@
 import models from "../models";
 import constants from "../helpers/constants";
+import { isString, isEmpty } from "../helpers/funcValidators";
 
-const { NOT_FOUND, INTERNAL_SERVER_ERROR } = constants.statusCode;
+const { NOT_FOUND, INTERNAL_SERVER_ERROR, BAD_REQUEST } = constants.statusCode;
 const { User, Article, Role, Permission } = models;
 
 export default class ModelValidator {
@@ -66,5 +67,20 @@ export default class ModelValidator {
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
       });
     }
+  }
+
+  static validateRole(req, res, next) {
+    const { name, description } = req.body;
+    if (isEmpty(name)) {
+      return res.status(BAD_REQUEST).json({
+        message: `Name is required`
+      });
+    }
+    if (!isString(name) || !isString(description)) {
+      return res.status(BAD_REQUEST).json({
+        message: `{${name}} and {${description}} can only be alphabetic characters`
+      });
+    }
+    next();
   }
 }

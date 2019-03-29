@@ -5,7 +5,7 @@ import errorHandler from "../helpers/errorHandlers";
 
 const role = Router();
 
-role.post("/roles", Roles.create);
+role.post("/roles", validator.validateRole, Roles.create);
 role.get("/roles/:roleId", errorHandler(Roles.getOneRole));
 role.put("/roles/:roleId", validator.checkRole, Roles.updateRole);
 role.delete("/roles/:roleId", validator.checkRole, Roles.deleteRole);

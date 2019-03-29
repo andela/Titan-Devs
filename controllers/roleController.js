@@ -1,6 +1,6 @@
 import models from "../models";
 import constants from "../helpers/constants";
-import { isString, isEmpty } from "../helpers/funcValidators";
+import { isString } from "../helpers/funcValidators";
 
 const {
   OK,
@@ -15,16 +15,6 @@ class RoleController {
   static async create(req, res) {
     try {
       const { name, description } = req.body;
-      if (isEmpty(name)) {
-        return res.status(BAD_REQUEST).json({
-          message: `Name is required`
-        });
-      }
-      if (!isString(name) || !isString(description)) {
-        return res.status(BAD_REQUEST).json({
-          message: `{${name}} and {${description}} can only be alphabetic characters`
-        });
-      }
       const role = await Role.create({
         name: name.toUpperCase(),
         description

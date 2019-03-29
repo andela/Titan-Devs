@@ -245,7 +245,11 @@ class UserController {
       const { username, roleId } = req.params;
       const user = await User.update(
         { roleId },
-        { returning: true, where: { username } }
+        {
+          returning: true,
+          where: { username },
+          attributes: ["email", "password", "username", "id", "roleId"]
+        }
       );
       return res.status(OK).json({
         message: "Role assigned to the user successfully",

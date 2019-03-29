@@ -32,12 +32,6 @@ module.exports = {
           allowNull: false,
           type: Sequelize.DATE
         }
-      })
-      .then(() => {
-        queryInterface.addConstraint("permissions", ["resource", "roleId"], {
-          type: "unique",
-          name: "rolesId_resources_unique_composite_key"
-        });
       });
   },
   down: (queryInterface, Sequelize) => {
