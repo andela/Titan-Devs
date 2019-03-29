@@ -132,7 +132,7 @@ export default (sequelize, DataTypes) => {
       foreignKey: "roleId",
       onDelete: "CASCADE",
       hooks: true
-    })
+    });
   };
   return User;
 };
