@@ -1,7 +1,6 @@
 import chai, { expect } from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-import { newArticle, users } from "../helpers/testData";
 import constants from "../../helpers/constants";
 import { token, post } from "../setups.test";
 

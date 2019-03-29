@@ -225,7 +225,6 @@ const permissionObjects = [
   }
 ];
 
-const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhY2lAZW1haWwuY29tIiwidXNlcm5hbWUiOiJwYWNpIiwiaWQiOiIzNjRlYmFjNy1jYjQ1LTQ5ZDQtODlmNC1lY2Y5MWE5OTczZjIiLCJpYXQiOjE1NTIwMDEwNTB9.mPtpx6r62aXEYWyWFYYkiCdTEPR4ECfZrB1wJ30fXXM`;
 const fakeId = "71840433-e8e4-48dd-89d1-b0a91258da58";
 const testUIID = {
   invalidUUID: "08ecefad-4822-4b49-9b4e-101f873d75a7"
