@@ -10,7 +10,7 @@ const {
   BAD_REQUEST,
   CREATED
 } = constants.statusCode;
-const { Role, Permission, User } = models;
+const { Role, Permission } = models;
 class RoleController {
   static async create(req, res) {
     try {
@@ -123,11 +123,7 @@ class RoleController {
       const deletedRole = await Role.destroy({
         where: { id: roleId }
       });
-      if (deletedRole === 1) {
-        await User.update({ roleId: null }, { where: { roleId } });
-        await Permission.update({ roleId: null }, { where: { roleId } });
-      }
-      if (deletedRole === 0) {
+      if (!deletedRole) {
         return res.status(OK).json({
           message: "Role was not deleted, try again"
         });
