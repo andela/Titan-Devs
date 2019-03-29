@@ -130,7 +130,7 @@ export default (sequelize, DataTypes) => {
     });
     User.belongsTo(models.Role, {
       foreignKey: "roleId",
-      onDelete: "CASCADE",
+      onDelete: "SET NULL",
       hooks: true
     });
   };

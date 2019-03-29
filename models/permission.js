@@ -34,13 +34,14 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         defaultValue: false
       },
-      roleId: { type: DataTypes.UUID}
+      roleId: { type: DataTypes.UUID }
     },
     { tableName: "permissions" }
   );
   Permission.associate = models => {
     Permission.belongsTo(models.Role, {
       foreignKey: "roleId",
+      onDelete: "SET NULL"
     });
   };
   return Permission;
