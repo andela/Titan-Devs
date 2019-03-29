@@ -40,7 +40,7 @@ app.use(
 
 if (!isProduction) app.use(errorhandler());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api/v1/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.use("/api/v1", routers);
 app.use(joiValidator());
 app.use((req, resp, next) => {
