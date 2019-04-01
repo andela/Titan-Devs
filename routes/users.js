@@ -7,7 +7,6 @@ import validateRequest from "../middlewares/requestValidator/validateRequest";
 import checkAuth from "../middlewares/checkAuth";
 import NotificationController from "../controllers/notificationController";
 import validator from "../middlewares/modelValidator";
-import checkAuth from "../middlewares/checkAuth";
 
 
 const userRouters = Router();
