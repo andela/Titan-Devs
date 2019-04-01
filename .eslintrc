@@ -1,13 +1,20 @@
 {
   "root": true,
-  "extends": ["airbnb-base", "prettier"],
+  "extends": ["airbnb", "prettier"],
   "env": {
     "node": true,
+    "browser": true,
     "es6": true,
     "mocha": true
   },
-  "plugins": ["prettier"],
+  "plugins": ["prettier", "react"],
   "rules": {
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".js", ".jsx"]
+      }
+    ],
     "parserOptions": {
       "allowImportExportEverywhere": true,
       "sourceType": "module"
