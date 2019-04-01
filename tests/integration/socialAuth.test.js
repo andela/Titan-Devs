@@ -42,16 +42,6 @@ describe("mocking social authentication with twitter", () => {
     stubFindOne.restore();
   });
 
-  it.skip("send an internal server error when an error occurs", async () => {
-    const stubFindOne = sinon
-      .stub(socialAuthController, "createUserFromSocial")
-      .throws();
-    expect(await socialAuthController.socialLogin(req, res)).to.throws(
-      Error({ message: "Error" })
-    );
-    stubFindOne.restore();
-  });
-
   it("check if a user can be created form social authentication data", async () => {
     const user = await socialAuthController.createUserFromSocial(dummyProfileGoogle);
     expect(user).to.not.be.equals(false);
