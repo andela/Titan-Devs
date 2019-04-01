@@ -7,7 +7,9 @@
     "test": "NODE_ENV=test  yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
-    "db:reset": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all"
+    "db:migrate:seed": "node_modules/.bin/sequelize db:seed:all",
+    "db:reset": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "nyc": {
     "check-coverage": true,
@@ -35,6 +37,7 @@
     "jsonwebtoken": "^8.3.0",
     "lodash": "^4.17.11",
     "method-override": "^2.3.10",
+    "moment": "^2.24.0",
     "morgan": "^1.9.0",
     "nock": "^10.0.6",
     "nodemon": "^1.18.9",
@@ -48,7 +51,10 @@
     "sequelize-cli": "^5.4.0",
     "sinon": "^7.2.4",
     "slug": "^0.9.3",
-    "swagger-ui-express": "^4.0.2"
+    "swagger-ui-express": "^4.0.2",
+    "underscore": "^1.9.1",
+    "uuid": "^3.3.2",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",

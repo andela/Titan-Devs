@@ -3,7 +3,7 @@ import constants from "../helpers/constants";
 
 const { Article, ReportArticle } = models;
 
-const { INTERNAL_SERVER_ERROR, BAD_REQUEST, OK } = constants.statusCode;
+const { INTERNAL_SERVER_ERROR, BAD_REQUEST, OK, CONFLICT } = constants.statusCode;
 
 export default class ReportArticleController {
   /**
@@ -34,7 +34,7 @@ export default class ReportArticleController {
       });
     } catch (error) {
       if (error.name === "SequelizeUniqueConstraintError") {
-        return res.status(OK).json({
+        return res.status(CONFLICT).json({
           message: "Article already reported"
         });
       }

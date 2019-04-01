@@ -4,10 +4,11 @@ import nock from "nock";
 import constants from "../../helpers/constants";
 import app from "../../index";
 import { sendGridResponse } from "../helpers/testData";
+import { newRole } from "../setups.test";
 
 const { CREATED, OK, BAD_REQUEST, CONFLICT } = constants.statusCode;
 const dummyUser = {
-  email: "luc.bayo.test@gmail.com",
+  email: "luc.bayo@gmail.com",
   password: "password",
   username: "luc20179"
 };
@@ -24,7 +25,7 @@ describe("API end point for auth/signup ", () => {
     const response = await chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dummyUser });
+      .send({ ...dummyUser, roleId: newRole.id });
     expect(response.status).eql(CREATED);
     expect(response.body).to.be.an("object");
     expect(response.body).to.have.property("message");
@@ -70,7 +71,7 @@ describe("API end point for auth/signup ", () => {
       .request(app)
       .post("/api/v1/users")
       .send({
-        email: "luc.bayo@gmail.com",
+        email: "luc.bayo.test@gmail.com",
         password: "aabayo7876865",
         username: "jean786"
       });

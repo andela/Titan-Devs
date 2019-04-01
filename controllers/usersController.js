@@ -239,6 +239,29 @@ class UserController {
       });
     }
   }
+
+  static async assignRole(req, res) {
+    try {
+      const { username, roleId } = req.params;
+      const user = await User.update(
+        { roleId },
+        {
+          returning: true,
+          where: { username },
+          attributes: ["email", "password", "username", "id", "roleId"]
+        }
+      );
+      return res.status(OK).json({
+        message: "Role assigned to the user successfully",
+        user
+      });
+    } catch (error) {
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
+  }
 }
 
 export default UserController;

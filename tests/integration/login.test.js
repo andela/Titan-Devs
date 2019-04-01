@@ -1,20 +1,20 @@
 import chai from "chai";
 import chaiHttp from "chai-http";
 import app from "../../index";
-
 import { users } from "../helpers/testData";
 import constants from "../../helpers/constants";
+import { newRole } from "../setups.test";
 
-const {NOT_FOUND, BAD_REQUEST } = constants.statusCode;
+const { NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
-const { dummyUser } = users;
+const { dummyUser3 } = users;
 
 describe("POST /api/v1/users/login", () => {
   before("Create a user in database", done => {
     chai
       .request(app)
       .post("/api/v1/users")
-      .send({ ...dummyUser })
+      .send({ ...dummyUser3, roleId: newRole.id })
       .end(error => {
         if (error) done(error);
         done();
@@ -22,14 +22,13 @@ describe("POST /api/v1/users/login", () => {
   });
 
   it("should return a token", done => {
-    const user = {
-      email: dummyUser.email,
-      password: dummyUser.password
-    };
     chai
       .request(app)
       .post("/api/v1/users/login")
-      .send(user)
+      .send({
+        email: dummyUser3.email,
+        password: dummyUser3.password
+      })
       .end((error, res) => {
         if (error) done(error.message);
         res.body.should.have.property("message").eql("Logged in successfully");
@@ -40,7 +39,7 @@ describe("POST /api/v1/users/login", () => {
 
   it("should return a missing email error ", done => {
     const user = {
-      password: dummyUser.password
+      password: dummyUser3.password
     };
     chai
       .request(app)
@@ -73,7 +72,7 @@ describe("POST /api/v1/users/login", () => {
   it("should return an empty email error", done => {
     const user = {
       email: " ",
-      password: dummyUser.password
+      password: dummyUser3.password
     };
     chai
       .request(app)
@@ -106,7 +105,7 @@ describe("POST /api/v1/users/login", () => {
 
   it("should test a wrong password error", done => {
     const user = {
-      email: dummyUser.email,
+      email: dummyUser3.email,
       password: "passwor"
     };
     chai
@@ -141,7 +140,7 @@ describe("POST /api/v1/users/login", () => {
   it("should test an email of wrong format", done => {
     const user = {
       email: "123.com",
-      password: dummyUser.password
+      password: dummyUser3.password
     };
     chai
       .request(app)

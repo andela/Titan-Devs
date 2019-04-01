@@ -21,13 +21,13 @@ describe("All test related to rating ", () => {
   it("cannot rate if post id is invalid", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/espoir-slug-not-found/rating`)
+      .post(`/api/v1/articles/espoir-slug-not-found/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ rating: 4 })
       .end((err, res) => {
         expect(res.status).to.be.eql(NOT_FOUND);
         expect(res.body.message).to.be.eql(
-          "We are sorry we cannot find the article you are looking for , Please check the id and retry"
+          "Article was not found"
         );
         done();
       });
@@ -35,7 +35,7 @@ describe("All test related to rating ", () => {
   it("cannot rate if rating is undefined", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ rating: undefined })
       .end((err, res) => {
@@ -47,7 +47,7 @@ describe("All test related to rating ", () => {
   it("cannot rate a post if there is no token", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .end((err, res) => {
         expect(res.status).equal(UNAUTHORIZED);
         expect(res.body.message).to.be.eql(
@@ -59,13 +59,13 @@ describe("All test related to rating ", () => {
   it("cannot rate if post id is invalid ", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/espoir-slug-not-found/rating`)
+      .post(`/api/v1/articles/espoir-slug-not-found/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ rating: 4 })
       .end((err, res) => {
         expect(res.status).to.be.eql(NOT_FOUND);
         expect(res.body.message).to.be.eql(
-          "We are sorry we cannot find the article you are looking for , Please check the id and retry"
+          "Article was not found"
         );
         done();
       });
@@ -73,7 +73,7 @@ describe("All test related to rating ", () => {
   it("cannot edit rating if post not found ", done => {
     chai
       .request(app)
-      .put(`/api/v1/article/${post.slug}/rating`)
+      .put(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ rating: 4 })
       .end((err, res) => {
@@ -87,7 +87,7 @@ describe("All test related to rating ", () => {
   it("cannot rate if the rating is undefined", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ rating: undefined })
       .end((err, res) => {
@@ -99,7 +99,7 @@ describe("All test related to rating ", () => {
   it("cannot rate if the rating is less than 1 and more than 5", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ postId: post.id, rating: 10 })
       .end((err, res) => {
@@ -112,7 +112,7 @@ describe("All test related to rating ", () => {
   it("cannot update rate if the rating is less than 1 and more than 5", done => {
     chai
       .request(app)
-      .put(`/api/v1/article/${post.slug}/rating`)
+      .put(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ postId: post.id, rating: 10 })
       .end((err, res) => {
@@ -124,7 +124,7 @@ describe("All test related to rating ", () => {
   it("can rate", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ userId: user.id, articleId: post.id, rating: 4 })
       .end((err, res) => {
@@ -147,7 +147,7 @@ describe("All test related to rating ", () => {
   it("cannot  rate an article twice", done => {
     chai
       .request(app)
-      .post(`/api/v1/article/${post.slug}/rating`)
+      .post(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ userId: user.id, articleId: post.id, rating: 3 })
       .end((err, res) => {
@@ -159,7 +159,7 @@ describe("All test related to rating ", () => {
   it("can get all rating ", done => {
     chai
       .request(app)
-      .get(`/api/v1/article/${post.slug}/rating`)
+      .get(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(OK);
@@ -173,7 +173,7 @@ describe("All test related to rating ", () => {
   it("can edit rating ", done => {
     chai
       .request(app)
-      .put(`/api/v1/article/${post.slug}/rating`)
+      .put(`/api/v1/articles/${post.slug}/rating`)
       .set("Authorization", `Bearer ${token}`)
       .send({ userId: user.id, articleId: post.id, rating: 2 })
       .end((err, res) => {

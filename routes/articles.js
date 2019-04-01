@@ -1,6 +1,6 @@
 import { Router } from "express";
 import Article from "../controllers/articlesController";
-import articleValidator from "../middlewares/articleValidator";
+import articleValidator from "../middlewares/modelValidator";
 import ArticleLikeController from "../controllers/articleLikesController";
 import checkAuth from "../middlewares/checkAuth";
 import optionalAuth from "../middlewares/optionalAuth";

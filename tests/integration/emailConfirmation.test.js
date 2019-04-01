@@ -2,17 +2,15 @@ import chaiHttp from "chai-http";
 import chai, { expect, should } from "chai";
 import nock from "nock";
 import app from "../../index";
-import { users, tokenEmailVerication, sendGridResponse } from "../helpers/testData";
-
+import { tokenEmailVerication, sendGridResponse } from "../helpers/testData";
+import { token, user } from "../setups.test";
 import constants from "../../helpers/constants";
 
-const { CREATED, UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED, BAD_REQUEST } = constants.statusCode;
+const { UNAUTHORIZED, OK, NOT_FOUND, ACCEPTED, BAD_REQUEST } = constants.statusCode;
 
-const { dummyUser3 } = users;
 const { invalidToken, wrongToken, mutatedToken, noUser } = tokenEmailVerication;
 chai.use(chaiHttp);
 should();
-let userToken;
 
 describe("/API end point /users/confirmation/:auth_token", () => {
   before(() => {
@@ -20,50 +18,15 @@ describe("/API end point /users/confirmation/:auth_token", () => {
       .post("/v3/mail/send")
       .reply(OK, { mockResponse: sendGridResponse });
   });
-  it("it is should register user with correct details", async () => {
-    const response = await chai
-      .request(app)
-      .post("/api/v1/users")
-      .send({ ...dummyUser3 });
-    expect(response.status).eql(CREATED);
-    expect(response.body).to.be.an("object");
-    expect(response.body).to.have.property("message");
-    expect(response.body.message).to.be.equals(
-      "We have sent an email with a confirmation link to your email address. Please allow 2-5 minutes for this message to arrive"
-    );
-    expect(response.body.user).to.be.an("object");
-    expect(Object.keys(response.body.user)).to.include.members([
-      "id",
-      "email",
-      "username"
-    ]);
-    userToken = response.body.token;
-  });
-
-  it("should login user with correct details", async () => {
-    const response = await chai
-      .request(app)
-      .post("/api/v1/users/login")
-      .send({
-        email: "fabrice.niyomwungeri@andela.com",
-        password: "password98"
-      });
-    expect(response.status).eql(OK);
-    userToken = response.body.token;
-  });
 
   it("should pass with valid token", async () => {
-    const results = await chai
-      .request(app)
-      .get(`/api/v1/users/confirm/${userToken}`);
+    const results = await chai.request(app).get(`/api/v1/users/confirm/${token}`);
     expect(results.status).equal(OK);
     expect(results.body.message).equal("Email confirmed successfully!");
   });
 
   it("should return a user already verified", async () => {
-    const results = await chai
-      .request(app)
-      .get(`/api/v1/users/confirm/${userToken}`);
+    const results = await chai.request(app).get(`/api/v1/users/confirm/${token}`);
     expect(results.status).equal(ACCEPTED);
     expect(results.body.message).equal("User already verified!");
   });
@@ -112,7 +75,7 @@ describe("/API end point /users/confirmation/:auth_token", () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/resend`)
-      .send({ email: "fabrice.niyomwungeri@andela.com" });
+      .send({ email: user.email });
     expect(results.body.message).to.be.equal("User verified");
     expect(results.body).to.have.property("message");
   });

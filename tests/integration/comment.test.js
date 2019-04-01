@@ -1,76 +1,30 @@
 import chaiHttp from "chai-http";
 import chai, { expect } from "chai";
 import app from "../../index";
-import { newArticle, users, newComment, fakeId } from "../helpers/testData";
-
+import { fakeId } from "../helpers/testData";
+import { dummyComment, post, user, token } from "../setups.test";
 import constants from "../../helpers/constants";
 
-let token;
-let slug;
-let commentId;
-const { dummyUser } = users;
 const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCode;
 const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
-
+let commentId;
 describe("Comment on an article", () => {
-  before(done => {
-    const { email, password } = dummyUser;
-    chai
-      .request(app)
-      .post("/api/v1/users")
-      .send(dummyUser)
-      .end(error => {
-        if (!error) {
-          chai
-            .request(app)
-            .post("/api/v1/users/login")
-            .send({ email, password })
-            .end((err, res) => {
-              if (!err) {
-                const { token: accessToken } = res.body;
-                token = accessToken;
-                chai
-                  .request(app)
-                  .post("/api/v1/articles")
-                  .set("Authorization", `Bearer ${token}`)
-                  .send(newArticle)
-                  .end((err, res) => {
-                    if (error) done(error);
-                    const { slug: artSlug } = res.body.article;
-                    slug = artSlug;
-                    chai
-                      .request(app)
-                      .post(`/api/v1/articles/${slug}/comments`)
-                      .set("Authorization", `Bearer ${token}`)
-                      .send(newComment)
-                      .end((er, res) => {
-                        if (!er) {
-                          commentId = res.body.comment.id;
-                        }
-
-                        done(er || undefined);
-                      });
-                  });
-              }
-            });
-        }
-      });
-  });
   it("should create the comment and return the success message", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments`)
+      .post(`/api/v1/articles/${post.slug}/comments`)
       .set("Authorization", `Bearer ${token}`)
-      .send(newComment)
+      .send(dummyComment)
       .end((err, res) => {
+        commentId = res.body.comment.id;
         expect(res.status).equals(CREATED);
         expect(res.body.message).to.contain("Comment created");
         expect(res.body).to.haveOwnProperty("comment");
         expect(res.body.comment).to.haveOwnProperty("createdAt");
         expect(res.body.comment).to.haveOwnProperty("author");
         expect(res.body.comment.author).to.haveOwnProperty("username");
-        expect(res.body.comment.author.username).to.contain(dummyUser.username);
+        expect(res.body.comment.author.username).to.contain(user.username);
         done();
       });
   });
@@ -78,8 +32,8 @@ describe("Comment on an article", () => {
   it("should deny the request if no access-token provided", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments`)
-      .send(newComment)
+      .post(`/api/v1/articles/${post.slug}/comments`)
+      .send(dummyComment)
       .end((err, res) => {
         expect(res.status).equals(UNAUTHORIZED);
         expect(res.body.message).to.contain(
@@ -92,7 +46,7 @@ describe("Comment on an article", () => {
   it("should decline creating the article if no body provided", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments`)
+      .post(`/api/v1/articles/${post.slug}/comments`)
       .set("Authorization", `Bearer ${token}`)
       .send({})
       .end((err, res) => {
@@ -105,9 +59,9 @@ describe("Comment on an article", () => {
   it("should decline creating the comment if provided other properties than {body}", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}/comments`)
+      .post(`/api/v1/articles/${post.slug}/comments`)
       .set("Authorization", `Bearer ${token}`)
-      .send({ ...newComment, name: "pacifique" })
+      .send({ ...dummyComment, name: "pacifique" })
       .end((err, res) => {
         expect(res.status).equals(BAD_REQUEST);
         expect(res.body.message).to.contain('"name" is not allowed');
@@ -115,12 +69,12 @@ describe("Comment on an article", () => {
       });
   });
 
-  it("should decline creating the comment if article with provided slug doesn't exist", done => {
+  it("should decline creating the comment if article with provided post.slug doesn't exist", done => {
     chai
       .request(app)
-      .post(`/api/v1/articles/${slug}s/comments`)
+      .post(`/api/v1/articles/${post.slug}s/comments`)
       .set("Authorization", `Bearer ${token}`)
-      .send(newComment)
+      .send(dummyComment)
       .end((err, res) => {
         expect(res.status).equals(NOT_FOUND);
         expect(res.body.message).to.contain("The article with this slug");
@@ -131,7 +85,7 @@ describe("Comment on an article", () => {
     it("should return all comments related to article", done => {
       chai
         .request(app)
-        .get(`/api/v1/articles/${slug}/comments`)
+        .get(`/api/v1/articles/${post.slug}/comments`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -146,7 +100,7 @@ describe("Comment on an article", () => {
     it("should return no article error", done => {
       chai
         .request(app)
-        .get(`/api/v1/articles/${slug}s/comments`)
+        .get(`/api/v1/articles/${post.slug}s/comments`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -159,7 +113,7 @@ describe("Comment on an article", () => {
     it("should return a particular comment", done => {
       chai
         .request(app)
-        .get(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .get(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -178,7 +132,7 @@ describe("Comment on an article", () => {
     it("should return a non-existing comment error", done => {
       chai
         .request(app)
-        .get(`/api/v1/articles/${slug}/comments/${fakeId}`)
+        .get(`/api/v1/articles/${post.slug}/comments/${fakeId}`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -193,7 +147,7 @@ describe("Comment on an article", () => {
     it("should return comment updated successfully", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .put(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}`)
         .send({ body: "Hello world" })
         .end((error, res) => {
@@ -208,7 +162,7 @@ describe("Comment on an article", () => {
     it("should return invalid comment", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .put(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}`)
         .send({ body: " " })
         .end((error, res) => {
@@ -221,7 +175,7 @@ describe("Comment on an article", () => {
     it("should return updating non-existing comment", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${fakeId}`)
+        .put(`/api/v1/articles/${post.slug}/comments/${fakeId}`)
         .set("Authorization", `Bearer ${token}`)
         .send({ body: "Helllo world" })
         .end((error, res) => {
@@ -234,7 +188,7 @@ describe("Comment on an article", () => {
     it("should return unauthorized request", done => {
       chai
         .request(app)
-        .put(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .put(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}s`)
         .send({ body: "Hello world " })
         .end((error, res) => {
@@ -249,7 +203,7 @@ describe("Comment on an article", () => {
     it("should return comment deleted successfully", done => {
       chai
         .request(app)
-        .delete(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .delete(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -262,7 +216,7 @@ describe("Comment on an article", () => {
     it("should return deleting non-existing comment", done => {
       chai
         .request(app)
-        .delete(`/api/v1/articles/${slug}/comments/${fakeId}`)
+        .delete(`/api/v1/articles/${post.slug}/comments/${fakeId}`)
         .set("Authorization", `Bearer ${token}`)
         .end((error, res) => {
           if (error) done(error);
@@ -274,7 +228,7 @@ describe("Comment on an article", () => {
     it("should return unauthorized request", done => {
       chai
         .request(app)
-        .delete(`/api/v1/articles/${slug}/comments/${commentId}`)
+        .delete(`/api/v1/articles/${post.slug}/comments/${commentId}`)
         .set("Authorization", `Bearer ${token}s`)
         .end((error, res) => {
           if (error) done(error);

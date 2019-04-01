@@ -6,6 +6,8 @@ import SignupValidation from "../middlewares/signupValidator";
 import validateRequest from "../middlewares/requestValidator/validateRequest";
 import checkAuth from "../middlewares/checkAuth";
 import NotificationController from "../controllers/notificationController";
+import validator from "../middlewares/modelValidator";
+
 
 const userRouters = Router();
 
@@ -26,6 +28,13 @@ userRouters
     "/users/:token/password",
     SignupValidation.validatePassword,
     UserController.updatePassword
+  )
+  .put(
+    "/users/:username/roles/:roleId",
+    checkAuth,
+    validator.checkUser,
+    validator.checkRole,
+    UserController.assignRole
   );
 userRouters
   .route("/users/:id/notifications/:notificationId", checkAuth)
