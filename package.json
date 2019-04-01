@@ -3,14 +3,26 @@
   "version": "1.0.0",
   "description": "A Social platform for the creative at heart",
   "main": "index.js",
+  "babel": {
+    "presets": [
+      "@babel/preset-env",
+      "@babel/preset-react"
+    ]
+  },
   "scripts": {
     "test": "NODE_ENV=test  yarn run db:migrate && NODE_ENV=test  nyc --reporter=text --reporter=lcov mocha --require babel-polyfill --require @babel/register tests/*  --timeout 10000 --exit",
     "start": "NODE_ENV=development nodemon --exec babel-node index.js",
     "db:migrate": "node_modules/.bin/sequelize db:migrate",
     "db:migrate:seed": "node_modules/.bin/sequelize db:seed:all",
     "db:reset": "NODE_ENV=test node_modules/.bin/sequelize db:migrate:undo:all",
-    "coveralls": "nyc report --reporter=text-lcov | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "build": "webpack-dev-server --open",
+    "transpile": "webpack"
   },
+  "keywords": [
+    "sass",
+    "react"
+  ],
   "nyc": {
     "check-coverage": true,
     "lines": 80,
@@ -54,7 +66,9 @@
     "swagger-ui-express": "^4.0.2",
     "underscore": "^1.9.1",
     "uuid": "^3.3.2",
-    "validator": "^10.11.0"
+    "validator": "^10.11.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -68,7 +82,16 @@
     "faker": "^4.1.0",
     "mocha": "^5.2.0",
     "nyc": "^13.2.0",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "html-webpack-plugin": "^3.2.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
   },
   "production": {
     "use_env_variable": "DATABASE_URL"
