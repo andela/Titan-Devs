@@ -88,7 +88,6 @@ const dummyComment = {
 };
 
 const createTestData = async () => {
-  try {
     nock("https://api.sendgrid.com")
       .persist()
       .post("/v3/mail/send")
@@ -150,9 +149,6 @@ const createTestData = async () => {
     post = article.dataValues;
     post2 = article2.dataValues;
     post3 = article3.dataValues;
-  } catch (error) {
-    console.log(error, "==================");
-  }
 };
 
 before(createTestData);
