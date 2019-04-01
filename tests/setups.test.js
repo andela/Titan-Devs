@@ -92,12 +92,9 @@ const createTestData = async () => {
       .persist()
       .post("/v3/mail/send")
       .reply(OK, { mockResponse: sendGridResponse });
-    // user = await User.create({ ...dummyUser });
-    // create role
     newRole = await Role.create(validRole);
     newRole2 = await Role.create(validRole2);
     roleId = newRole.id;
-    // assign permission to the role
     await permissionObjects.map(async p => {
       const perm = await Permission.findOrCreate({
         where: { ...p, roleId }
@@ -105,7 +102,6 @@ const createTestData = async () => {
       permission = perm;
       return perm;
     });
-    // create a user
     user = await User.create({
       ...dummyUser,
       password: await hashedPassword(dummyUser.password),
@@ -113,7 +109,6 @@ const createTestData = async () => {
     });
     user2 = await User.create({ ...dummyUser2, roleId });
     user3 = await User.create({ ...dummyUser3, roleId });
-    // sign a token
     token = jwt.sign(
       {
         email: user.email,
@@ -135,11 +130,9 @@ const createTestData = async () => {
 
     user.token = token;
     const userId = user.id;
-    // crate an article
     const article = await Article.create({ ...dummyArticle, userId });
     const article2 = await Article.create({ ...dummyArticle2, userId });
     const article3 = await Article.create({ ...dummyArticle3, userId });
-    // create a comment
     const comment = await Comment.create({
       articleId: article.id,
       userId,
