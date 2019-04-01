@@ -15,7 +15,7 @@ describe("isEmpty function validator", () => {
     expect(isEmpty(text)).eql(true);
   });
 
-  it("It should return false for non empty vairable", () => {
+  it("It should return false for non empty variable", () => {
     const name = "Luc";
     const number = 8;
     const lastName = "Jean Luc";
@@ -30,7 +30,7 @@ describe("isEmpty function validator", () => {
 });
 
 describe("Function for checking valid email", () => {
-  it("It should return true for valide email", () => {
+  it("It should return true for valid email", () => {
     const emails = [
       "something@something.com",
       "something@something.com",
@@ -40,7 +40,7 @@ describe("Function for checking valid email", () => {
     expect(isEmailValid(emails[1])).eql(true);
     expect(isEmailValid(emails[2])).eql(true);
   });
-  it("It should return false for invalide email", () => {
+  it("It should return false for invalid email", () => {
     const emails = [
       "someone@127.0.0.1",
       "wo..oly@example.com",

@@ -1,10 +1,14 @@
 /* eslint-disable import/no-mutable-exports */
 import assert from "assert";
 import jwt from "jsonwebtoken";
+import nock from "nock";
 import db from "../models";
+import { sendGridResponse } from "./helpers/testData";
+import constants from "../helpers/constants";
 
 global.assert = assert;
 /* eslint-disable import/no-mutable-exports */
+const { OK } = constants.statusCode;
 let token;
 const { Article, User } = db;
 const dummyArticle = {
@@ -23,6 +27,10 @@ const dummyUser = {
 let user;
 let post;
 const createTestData = async () => {
+  nock("https://api.sendgrid.com")
+    .persist()
+    .post("/v3/mail/send")
+    .reply(OK, { mockResponse: sendGridResponse });
   user = await User.create({ ...dummyUser });
   token = jwt.sign(
     {

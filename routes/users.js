@@ -3,6 +3,9 @@ import Login from "../controllers/auth/loginController";
 import SignUpController from "../controllers/auth/signupController";
 import UserController from "../controllers/usersController";
 import SignupValidation from "../middlewares/signupValidator";
+import validateRequest from "../middlewares/requestValidator/validateRequest";
+import checkAuth from "../middlewares/checkAuth";
+import NotificationController from "../controllers/notificationController";
 
 const userRouters = Router();
 
@@ -24,4 +27,14 @@ userRouters
     SignupValidation.validatePassword,
     UserController.updatePassword
   );
+userRouters
+  .route("/users/:id/notifications/:notificationId", checkAuth)
+  .delete(validateRequest, NotificationController.delete)
+  .get(validateRequest, NotificationController.fetchOne);
+userRouters.get(
+  "/users/:id/notifications",
+  checkAuth,
+  validateRequest,
+  NotificationController.fetchAll
+);
 export default userRouters;

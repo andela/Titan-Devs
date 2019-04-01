@@ -1,5 +1,6 @@
 import models from "../models";
 import constants from "../helpers/constants";
+import notification from "../helpers/notification/sendNotification";
 
 const { ArticleLike, Article, User } = models;
 const { OK, CREATED, INTERNAL_SERVER_ERROR, NOT_FOUND } = constants.statusCode;
@@ -32,6 +33,11 @@ export default class ArticleLikesController {
         defaults: { like: true }
       }).spread(async (articleLike, created) => {
         if (created) {
+          const message = {
+            message: "The article you  liked was liked by another user",
+            slug: article.slug
+          };
+          notification.sendArticleNotifications(article.id, message);
           return res.status(CREATED).json({ message: "Successfully liked" });
         }
         if (articleLike.like) {

@@ -30,7 +30,8 @@ const Schema = Joi.object().keys({
     .max(30),
   email: Joi.string()
     .min(3)
-    .max(30)
+    .max(30),
+  allowNotifications: Joi.boolean()
 });
 const validateInputs = newInfo => {
   const newUser = {};

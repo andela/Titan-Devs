@@ -23,7 +23,7 @@ describe("Reset Password", () => {
       .post("/v3/mail/send")
       .reply(OK, { mockResponse: sendGridResponse });
   });
-  it("should send password rest link", async () => {
+  it("should send password reset link", async () => {
     const results = await chai
       .request(app)
       .post("/api/v1/users/reset_password")

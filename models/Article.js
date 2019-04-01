@@ -84,5 +84,6 @@ export default (sequelize, DataTypes) => {
       foreignKey: "articleId"
     });
   };
+
   return Article;
 };

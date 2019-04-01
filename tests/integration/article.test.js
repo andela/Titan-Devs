@@ -13,27 +13,26 @@ const { UNAUTHORIZED, CREATED, BAD_REQUEST, OK, NOT_FOUND } = constants.statusCo
 const { UNAUTHORIZED_MESSAGE } = constants.errorMessage;
 chai.use(chaiHttp);
 
-before(done => {
-  const { email, password } = dummyUser;
-  chai
-    .request(app)
-    .post("/api/v1/users")
-    .send(dummyUser)
-    .end(error => {
-      if (!error) {
-        chai
-          .request(app)
-          .post("/api/v1/users/login")
-          .send({ email, password })
-          .end((err, res) => {
-            if (!err) ({ token } = res.body);
-            done(err || undefined);
-          });
-      }
-    });
-});
-
 describe("# Articles endpoints", () => {
+  before(done => {
+    const { email, password } = dummyUser;
+    chai
+      .request(app)
+      .post("/api/v1/users")
+      .send(dummyUser)
+      .end(error => {
+        if (!error) {
+          chai
+            .request(app)
+            .post("/api/v1/users/login")
+            .send({ email, password })
+            .end((err, res) => {
+              if (!err) ({ token } = res.body);
+              done(err || undefined);
+            });
+        }
+      });
+  });
   describe("Create a new article", () => {
     it("should create the article and return the success message", done => {
       chai

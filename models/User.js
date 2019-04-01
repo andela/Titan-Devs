@@ -59,6 +59,11 @@ export default (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: false
+      },
+      allowNotifications: {
+        allowNull: false,
+        type: DataTypes.BOOLEAN,
+        defaultValue: true
       }
     },
     { tableName: "users" }
@@ -115,6 +120,12 @@ export default (sequelize, DataTypes) => {
     User.hasMany(models.Bookmark, {
       foreignKey: "userId",
       onDelete: "CASCADE"
+    });
+    User.hasMany(models.Notification, {
+      foreignKey: "userId",
+      as: "notifications",
+      onDelete: "CASCADE",
+      hooks: true
     });
   };
   return User;

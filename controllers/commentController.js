@@ -1,6 +1,7 @@
 import models from "../models";
 import constants from "../helpers/constants";
 import validateComment from "../helpers/validators/commentValidator";
+import notification from "../helpers/notification/sendNotification";
 
 const { User, Article, Comment, CommentLike, Commentlog, Highlight } = models;
 const {
@@ -36,6 +37,11 @@ export default class CommentController {
         const com = await Comment.create({ articleId, userId, body });
         if (com) {
           const { userId: uId, articleId: artId, ...comment } = com.dataValues;
+          const message = {
+            message: "A new user commented on article you reacted on",
+            slug
+          };
+          notification.sendArticleNotifications(articleId, message);
           return res.status(CREATED).json({
             status: CREATED,
             message: "Comment created",
@@ -67,6 +73,7 @@ export default class CommentController {
 
   static async like(req, res) {
     const { commentId } = req.params;
+    const { slug } = req.params;
     try {
       const comments = await Comment.findOne({ where: { id: commentId } });
       if (!comments) {
@@ -78,6 +85,12 @@ export default class CommentController {
       const likes = await CommentLike.findAll({ where: { commentId, userId } });
       if (!likes.length) {
         const likeComment = await CommentLike.create({ commentId, userId });
+        const message = {
+          message: "A new user is liking a comment you reacted to",
+          commentId,
+          slug
+        };
+        notification.sendCommentNotifications(commentId, message);
         const updateCommentLikes = await Comment.increment(
           {
             like: 1
@@ -182,10 +195,7 @@ export default class CommentController {
   static async fetchAllComments(req, res) {
     try {
       const { slug } = req.params;
-      let { page } = req.query;
-      if (!page || !Number(page)) {
-        page = 0;
-      }
+      const { page } = req.query;
       const article = await Article.findOne({
         where: { slug },
         include: [
