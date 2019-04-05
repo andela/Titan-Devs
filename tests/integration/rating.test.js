@@ -163,7 +163,6 @@ describe("All test related to rating ", () => {
       .set("Authorization", `Bearer ${token}`)
       .end((err, res) => {
         expect(res.status).to.be.eql(OK);
-        expect(res.body).to.have.property("averageRating");
         expect(res.body)
           .to.have.property("ratings")
           .to.be.an("array");

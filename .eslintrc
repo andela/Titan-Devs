@@ -35,6 +35,12 @@
         "requireReturnDescription": true
       }
     ],
+    "no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
     "require-jsdoc": [
       "error",
       {

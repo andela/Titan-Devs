@@ -37,7 +37,7 @@ class LoginController {
       .then(result => {
         if (!result) {
           return res
-            .status(NOT_FOUND)
+            .status(BAD_REQUEST)
             .json({ message: "Invalid email or password!" });
         }
         bcrypt.compare(password, result.dataValues.password, (error, response) => {

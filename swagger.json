@@ -1425,44 +1425,33 @@
         "user": {
           "type": "object",
           "properties": {
-            "email": {
+            "firstName": {
               "type": "string"
             }
           }
         }
-      }
-    },
-    "Users": {
-      "type": "array",
-      "items": {
+      },
+      "Article": {
         "type": "object",
         "properties": {
-          "firstName": {
-            "type": "string"
-          }
-        }
-      }
-    },
-    "Article": {
-      "type": "object",
-      "properties": {
-        "title": {
-          "type": "string",
-          "example": "An American ate the African chicken"
-        },
-        "body": {
-          "type": "string",
-          "example": "Ever wonder how the guy got his pocket empty because of the meal?"
-        },
-        "description": {
-          "type": "string",
-          "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
-        },
-        "tagsList": {
-          "type": "array",
-          "items": {
+          "title": {
             "type": "string",
-            "example": "javaScript"
+            "example": "An American ate the African chicken"
+          },
+          "body": {
+            "type": "string",
+            "example": "Ever wonder how the guy got his pocket empty because of the meal?"
+          },
+          "description": {
+            "type": "string",
+            "example": "'It was so delicious'. said the white man who ate the African chicken for his first time in Rwanda."
+          },
+          "tagsList": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "example": "javaScript"
+            }
           }
         },
         "commnents": {
