@@ -1,11 +1,13 @@
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 import constants from "../../../helpers/constants";
 import models from "../../../models";
 
-const { INTERNAL_SERVER_ERROR } = constants.statusCode;
+const { INTERNAL_SERVER_ERROR, OK } = constants.statusCode;
 const { SERVER_ERROR } = constants.errorMessage;
 
 const { User } = models;
-
+dotenv.config();
 class socialAuthController {
   /**
    * @description create a user from social authentication profile
@@ -48,7 +50,19 @@ class socialAuthController {
   static async socialLogin(req, res) {
     const user = await this.createUserFromSocial(req.user);
     if (user) {
-      return res.redirect(`/api/v1/profiles/${user.username}`);
+      const token = jwt.sign(
+        {
+          email: user.email,
+          username: user.username,
+          id: user.id,
+          roleId: user.roleId
+        },
+        process.env.SECRET_KEY
+      );
+      return res.status(OK).send({
+        message: "Logged in successfully",
+        token
+      });
     }
     return res.status(INTERNAL_SERVER_ERROR).json({
       message: SERVER_ERROR
