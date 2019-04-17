@@ -27,7 +27,7 @@ export default class CommentController {
     try {
       const { body } = req.body;
       const { slug } = req.params;
-      const { id: userId } = req.user;
+      const { id: userId, username: uname } = req.user;
       const valid = await validateComment(req.body);
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
@@ -37,11 +37,11 @@ export default class CommentController {
         const com = await Comment.create({ articleId, userId, body });
         if (com) {
           const { userId: uId, articleId: artId, ...comment } = com.dataValues;
-          const message = {
-            message: "A new user commented on article you reacted on",
-            slug
-          };
-          notification.sendArticleNotifications(articleId, message);
+          notification.sendArticleNotifications(articleId, {
+            message: `${uname} commented on article you reacted on`,
+            slug,
+            ref: slug
+          });
           return res.status(CREATED).json({
             status: CREATED,
             message: "Comment created",

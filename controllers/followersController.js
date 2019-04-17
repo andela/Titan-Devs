@@ -1,5 +1,6 @@
 import models from "../models";
 import constants from "../helpers/constants";
+import formatFollowers from "../helpers/formatFollowers";
 
 const {
   CREATED,
@@ -101,9 +102,10 @@ export default class FollowerController {
           }
         ]
       });
+
       return res.status(OK).json({
         message: "Followers retrieved successfully",
-        followers
+        followers: formatFollowers(followers)
       });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });

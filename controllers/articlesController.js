@@ -98,10 +98,9 @@ export default class ArticleController {
   static async create(req, res) {
     try {
       const { tagsList = [], ...rest } = req.body;
-      const { id: userId } = req.user;
+      const { id: userId, username } = req.user;
       const valid = await articleValidator(req.body);
       if (req.user && valid) {
-        const message = { message: "Your favorite author created a new article" };
         const article = await Article.create({
           ...rest,
           readTime: 0,
@@ -114,9 +113,11 @@ export default class ArticleController {
           );
           await article.addTagsList(tag);
         });
-
-        message.slug = article.get().slug;
-        notification.sendFollowersNotifications(userId, message);
+        notification.sendFollowersNotifications(userId, {
+          message: `${username} has created a new article`,
+          slug: article.get().slug,
+          ref: article.get().slug
+        });
         return res.status(CREATED).json({
           message: "Article created",
           article: { ...article.get(), deletedAt: undefined, tagsList }

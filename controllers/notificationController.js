@@ -25,7 +25,7 @@ class NotificationController {
         include: {
           model: Notification,
           as: "notifications",
-          attributes: ["message", "status", "id"],
+          attributes: ["message", "ref", "status", "id"],
           where: { id: notificationId }
         },
         attributes: ["username", "firstName", "lastName"]
@@ -70,10 +70,9 @@ class NotificationController {
           {
             model: Notification,
             as: "notifications",
-            attributes: ["message", "userId", "id", "createdAt", "status"],
+            attributes: ["message", "ref", "userId", "id", "createdAt", "status"],
             order: [["createdAt", "DESC"]],
-            offset: page,
-            limit: 20
+            offset: page
           }
         ]
       });

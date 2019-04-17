@@ -18,6 +18,7 @@ export default class ArticleLikesController {
 
   static async like(req, res) {
     const { slug } = req.params;
+    const { username } = req.user;
     try {
       const article = await Article.findOne({ where: { slug } });
       if (!article) {
@@ -33,11 +34,11 @@ export default class ArticleLikesController {
         defaults: { like: true }
       }).spread(async (articleLike, created) => {
         if (created) {
-          const message = {
-            message: "The article you  liked was liked by another user",
-            slug: article.slug
-          };
-          notification.sendArticleNotifications(article.id, message);
+          notification.sendArticleNotifications(article.id, {
+            message: `${username} liked an article you recently liked`,
+            slug: article.slug,
+            ref: article.slug
+          });
           return res.status(CREATED).json({ message: "Successfully liked" });
         }
         if (articleLike.like) {
