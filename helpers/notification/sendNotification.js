@@ -11,12 +11,12 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
  * @param {string} message message explaining what is happening
  */
 
-const sendArticleNotifications = async (articleId, message) => {
+const sendArticleNotifications = async (articleId, notification = {}) => {
   const emailList = await recordNotification.articleFavorites(
     articleId,
-    message.message
+    notification
   );
-  const emailMessage = await notificationTemplate(message);
+  const emailMessage = await notificationTemplate(notification.message);
 
   if (emailList.length > 0) {
     await sgMail.send({
@@ -56,13 +56,10 @@ const sendCommentNotifications = async (commentId, message) => {
  * @param {string} message message explaining the updates
  */
 
-const sendFollowersNotifications = async (userId, message) => {
-  const emailList = await recordNotification.notifyFollowers(
-    userId,
-    message.message
-  );
+const sendFollowersNotifications = async (userId, notification = {}) => {
+  const emailList = await recordNotification.notifyFollowers(userId, notification);
 
-  const emailMessage = await notificationTemplate(message);
+  const emailMessage = await notificationTemplate(notification.message);
   if (emailList.length > 0) {
     await sgMail.send({
       to: emailList,

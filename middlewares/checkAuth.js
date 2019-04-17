@@ -31,6 +31,9 @@ export default (req, res, next) => {
       }
       return allow;
     });
+    if (originalUrl === "/api/v1/users/current" && req.method === "GET") {
+      allow = true;
+    }
     if (allow) next();
     else return res.status(FORBIDDEN).send({ message: "Access not Granted" });
   })(req, res, next);

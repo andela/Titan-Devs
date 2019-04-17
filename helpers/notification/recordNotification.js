@@ -9,7 +9,7 @@ const { Notification } = models;
  * @param {string} message explaining the reaction happening
  */
 
-const articleFavorites = async (id, message) => {
+const articleFavorites = async (id, notification = {}) => {
   const emailList = new Set();
   const notifications = [];
   const usersFavoriteArticle = await checkFavorite.checkWhoFavoriteArticle(id);
@@ -26,7 +26,7 @@ const articleFavorites = async (id, message) => {
     } else {
       ({ email, id: userId } = users.dataValues);
     }
-    const user = { email, userId, message };
+    const user = { email, userId, ...notification };
     if (allowNotifications) {
       emailList.add(email);
     }
@@ -60,7 +60,7 @@ const notifyCommentator = async (id, message) => {
   return emailList;
 };
 
-const notifyFollowers = async (id, message) => {
+const notifyFollowers = async (id, notification) => {
   const emailList = [];
   const followers = await checkFollowers(id);
   const notifications = [];
@@ -72,7 +72,7 @@ const notifyFollowers = async (id, message) => {
       id: userId,
       allowNotifications
     } = follower.dataValues.followings.dataValues;
-    const user = { email, userId, message };
+    const user = { email, userId, ...notification };
 
     if (allowNotifications) {
       emailList.push(email);

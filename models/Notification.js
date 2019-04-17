@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       userId: DataTypes.UUID,
       message: DataTypes.STRING,
+      ref: DataTypes.STRING,
       status: DataTypes.STRING
     },
     { tableName: "notifications" }

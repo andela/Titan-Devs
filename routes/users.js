@@ -3,14 +3,15 @@ import Login from "../controllers/auth/loginController";
 import SignUpController from "../controllers/auth/signupController";
 import UserController from "../controllers/usersController";
 import SignupValidation from "../middlewares/signupValidator";
-import validateRequest from "../middlewares/requestValidator/validateRequest";
 import checkAuth from "../middlewares/checkAuth";
 import NotificationController from "../controllers/notificationController";
+import validateRequest from "../middlewares/requestValidator/validateRequest";
 import validator from "../middlewares/modelValidator";
 
 const userRouters = Router();
 
 userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.get("/users/current", checkAuth, UserController.current);
 userRouters.put("/users/resend", UserController.resendVerificationEmail);
 userRouters.post("/users/login", Login.signIn);
 userRouters
@@ -42,13 +43,10 @@ userRouters
     UserController.assignRole
   );
 userRouters
-  .route("/users/:id/notifications/:notificationId", checkAuth)
+  .route("/users/notifications/:notificationId", checkAuth)
   .delete(validateRequest, NotificationController.delete)
-  .get(validateRequest, NotificationController.fetchOne);
-userRouters.get(
-  "/users/:id/notifications",
-  checkAuth,
-  validateRequest,
-  NotificationController.fetchAll
-);
+  .put(validateRequest, NotificationController.update)
+  .get(NotificationController.fetchOne);
+userRouters.get("/users/notifications", checkAuth, NotificationController.fetchAll);
+
 export default userRouters;

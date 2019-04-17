@@ -62,7 +62,6 @@ if (!isProduction) {
   // eslint-disable-next-line no-console
   // eslint-disable-next-line no-unused-vars
   app.use((err, req, res, next) => {
-    console.log(err.stack);
     res.status(err.status || INTERNAL_SERVER_ERROR);
 
     res.json({
