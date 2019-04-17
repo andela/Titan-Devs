@@ -261,6 +261,36 @@ class UserController {
       });
     }
   }
+
+  static async current(req, res) {
+    try {
+      const { id } = req.user;
+      const user = await User.findOne({
+        where: {
+          id
+        }
+      });
+
+      if (!user) {
+        return res.status(NOT_FOUND).json({
+          message: "Unauthorized"
+        });
+      }
+      return res.status(OK).json({
+        user: {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          roleId: user.roleId
+        }
+      });
+    } catch (err) {
+      return res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
+  }
 }
 
 export default UserController;

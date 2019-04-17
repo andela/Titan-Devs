@@ -5,7 +5,11 @@ import socialAuthController from "../controllers/auth/socials/socialAuthControll
 const authRouters = Router();
 
 authRouters.get("/auth/google", (request, response, next) => {
-  passport.authenticate("google", { scope: ["email"] })(request, response, next);
+  passport.authenticate("google", { scope: ["profile", "email"] })(
+    request,
+    response,
+    next
+  );
 });
 
 authRouters.get(

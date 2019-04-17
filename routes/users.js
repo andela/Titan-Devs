@@ -8,10 +8,10 @@ import checkAuth from "../middlewares/checkAuth";
 import NotificationController from "../controllers/notificationController";
 import validator from "../middlewares/modelValidator";
 
-
 const userRouters = Router();
 
 userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
+userRouters.get("/users/current", checkAuth, UserController.current);
 userRouters.put("/users/resend", UserController.resendVerificationEmail);
 userRouters.post("/users/login", Login.signIn);
 userRouters

@@ -5,7 +5,7 @@ import models from "../../models";
 import validate from "../../helpers/validators/loginValidators";
 import constants from "../../helpers/constants";
 
-const { INTERNAL_SERVER_ERROR, NOT_FOUND, BAD_REQUEST, OK } = constants.statusCode;
+const { INTERNAL_SERVER_ERROR, BAD_REQUEST, OK } = constants.statusCode;
 dotenv.config();
 
 const { User } = models;
