@@ -45,14 +45,14 @@ class UserController {
         }
       }).then(async response => {
         if (!response) {
-          return res.status(NOT_FOUND).json({ message: "User not found" });
+          return res.status(NOT_FOUND).json({ message: "Invalid email" });
         }
         const token = await jwt.sign(req.body.email, process.env.SECRET_KEY);
         const user = await response.update(
           { resetToken: token },
           { returning: true }
         );
-        const { id, email, resetToken } = user.dataValues;
+        const { email } = user.dataValues;
         const emailBody = await resetPwdTemplate(token);
         const emailResponse = await sendEmail(email, "Password Reset", emailBody);
 
@@ -61,13 +61,13 @@ class UserController {
           emailResponse[emailResponse.length - 1].mockResponse
         ) {
           res.json({
-            message: "Mail delivered",
-            user: { id, email, resetToken }
+            message:
+              "Password reset instructions have been sent to your account's primary email address."
           });
         } else {
           res
             .status(INTERNAL_SERVER_ERROR)
-            .json({ message: "Error while sending email", data: emailResponse });
+            .json({ message: "Error while sending email", errors: emailResponse });
         }
       });
     } catch (error) {
@@ -213,9 +213,8 @@ class UserController {
               .json({ message: "Token is invalid or expired, try again" });
           }
           const verifiedUser = await User.findOne({
-            where: { id: user.id, email: user.email }
+            where: { id: user.userId, email: user.email }
           });
-
           if (!verifiedUser) {
             return res
               .status(NOT_FOUND)
