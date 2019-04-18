@@ -19,6 +19,7 @@ passport.use(
       const user = {
         socialId: profile.id,
         username: profile.username,
+        isVerified: true,
         image: profile.photos[0] ? profile.photos[0].value : null,
         email: `${profile.username}.twitter@ah.com`
       };
@@ -41,6 +42,7 @@ passport.use(
         username: profile.emails ? profile.emails[0].value : null,
         firstName: profile.name.familyName,
         lastName: profile.name.givenName,
+        isVerified: true,
         email: profile.emails ? profile.emails[0].value : null,
         image: profile.photos[0] ? profile.photos[0].value : null
       };
