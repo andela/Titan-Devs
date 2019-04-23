@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import Sequelize from "sequelize";
 import constants from "../../../helpers/constants";
 import models from "../../../models";
 
@@ -50,8 +51,9 @@ class socialAuthController {
    */
   static async socialLogin(req, res) {
     const profile = req.user;
+    const { Op } = Sequelize;
     User.findOrCreate({
-      where: { socialId: profile.socialId },
+      where: { [Op.or]: [{ socialId: profile.socialId }, { email: profile.email }] },
       defaults: { ...profile }
     })
       .then(([user, _created]) => {
