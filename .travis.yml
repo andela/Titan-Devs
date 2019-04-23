@@ -5,7 +5,7 @@ services:
   - postgresql
 notifications:
   email: false
-  slack: andela:m0fSBLRd944nk3Gme63A9OgD
+  slack: true
 rvm:
   - 2.2.0
 before_script:
@@ -16,5 +16,4 @@ before_script:
   - ./cc-test-reporter before-build
 after_script:
   - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
-after_success: 
-  npm run coverage
+after_success: npm run coverage
