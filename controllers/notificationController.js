@@ -3,7 +3,7 @@ import constants from "../helpers/constants";
 
 const { Notification, User } = models;
 
-const { OK, NOT_FOUND, INTERNAL_SERVER_ERROR } = constants.statusCode;
+const { OK, NOT_FOUND, CREATED, INTERNAL_SERVER_ERROR } = constants.statusCode;
 /**
  *@class Notification controller
  */
@@ -61,7 +61,7 @@ class NotificationController {
 
   static async fetchAll(req, res) {
     try {
-      const { id: userId } = req.params;
+      const { id: userId } = req.user;
       const { page } = req.query;
       const user = await User.findOne({
         where: { id: userId },
@@ -71,19 +71,18 @@ class NotificationController {
             model: Notification,
             as: "notifications",
             attributes: ["message", "ref", "userId", "id", "createdAt", "status"],
-            order: [["createdAt", "DESC"]],
+            order: [["createdAt", "ASC"]],
             offset: page
           }
         ]
       });
-
-      if (!user) {
-        return res.status(NOT_FOUND).json({ message: "Not found" });
-      }
-
-      res.status(OK).json({ user });
+      return !user
+        ? res.status(NOT_FOUND).json({
+            message: "Can't find Notifications for you"
+          })
+        : res.status(OK).json({ user });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR);
+      return res.status(INTERNAL_SERVER_ERROR);
     }
   }
 
@@ -97,17 +96,57 @@ class NotificationController {
   static async delete(req, res) {
     try {
       const { notificationId } = req.params;
-
       const deletedNotification = await Notification.destroy({
         where: { id: notificationId },
         returning: true
       });
-      if (!deletedNotification) {
-        return res.status(NOT_FOUND).json({ message: "Not found" });
-      }
-      res.status(OK).json({ notification: deletedNotification });
+      return !deletedNotification
+        ? res.status(NOT_FOUND).json({
+            message: "There was a problem while deleting this notification"
+          })
+        : res.status(OK).json({ message: "Notification deleted successfully" });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR);
+    }
+  }
+
+  /**
+   * @description It allows a user to delete a specific notification.
+   * @param  {Object} req - The request object.
+   * @param  {Object} res - The response object.
+   * @returns {Object} - It returns the response object.
+   */
+
+  static async update(req, res) {
+    try {
+      const { notificationId } = req.params;
+      const { status = "read" } = req.body;
+      const notification = await Notification.findOne({
+        where: { id: notificationId }
+      });
+      if (!notification) {
+        return res.status(NOT_FOUND).json({
+          message: "That notification exists no more"
+        });
+      }
+      const updated = await notification.update(
+        { status },
+        {
+          where: { id: notificationId },
+          returning: true,
+          limit: 1
+        }
+      );
+      return !updated
+        ? res.status(NOT_FOUND).json({
+            message: "There was a problem while updating this notification"
+          })
+        : res.status(CREATED).json({
+            message: "Notification updated successfully",
+            notification: updated
+          });
+    } catch (error) {
+      return res.status(INTERNAL_SERVER_ERROR);
     }
   }
 }
