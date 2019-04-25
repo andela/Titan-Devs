@@ -69,12 +69,12 @@ class socialAuthController {
           `${process.env.FRONT_END_SERVER_HOST}/social_auth?token=${token}`
         );
       })
-      .catch(error => {
-        return res.status(INTERNAL_SERVER_ERROR).json({
+      .catch(error =>
+        res.status(INTERNAL_SERVER_ERROR).json({
           message: SERVER_ERROR,
           errors: error
-        });
-      });
+        })
+      );
   }
 }
 
