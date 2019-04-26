@@ -10,7 +10,12 @@ profileRouter
   .get("/profiles/:username", Profile.getProfile)
   .get("/profiles", Profile.getAllProfiles)
   .delete("/profiles/:username", checkAuth, Profile.delete)
-  .post("/profiles/:username/follow", checkAuth, FollowerController.followUser)
+  .post(
+    "/profiles/:username/follow",
+    checkAuth,
+    FollowerController.followUser,
+    FollowerController.unFollow
+  )
   .delete("/profiles/:username/follow", checkAuth, FollowerController.unFollow)
   .get(
     "/profiles/:username/followers",

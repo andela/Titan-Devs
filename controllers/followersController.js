@@ -24,7 +24,7 @@ export default class FollowerController {
    * @returns {Object} - It returns the response object.
    */
 
-  static async followUser(req, res) {
+  static async followUser(req, res, next) {
     const { id } = req.user;
     const { username } = req.params;
     try {
@@ -38,9 +38,10 @@ export default class FollowerController {
         if (created) {
           return res.status(CREATED).json({ message: "Follow successful" });
         }
-        return res.status(CONFLICT).json({
-          message: "You are already following this author"
-        });
+        return next();
+        // return res.status(CONFLICT).json({
+        //   message: "You are already following this author"
+        // });
       });
     } catch (error) {
       res.status().json({ message: SERVER_ERROR });
