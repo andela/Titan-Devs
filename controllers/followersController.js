@@ -7,7 +7,6 @@ const {
   NOT_FOUND,
   OK,
   ACCEPTED,
-  CONFLICT,
   INTERNAL_SERVER_ERROR
 } = constants.statusCode;
 const { User, Follower } = models;
@@ -24,7 +23,7 @@ export default class FollowerController {
    * @returns {Object} - It returns the response object.
    */
 
-  static async followUser(req, res) {
+  static async followUser(req, res, next) {
     const { id } = req.user;
     const { username } = req.params;
     try {
@@ -35,12 +34,9 @@ export default class FollowerController {
       await Follower.findOrCreate({
         where: { followingId: user.id, followerId: id }
       }).spread((follower, created) => {
-        if (created) {
-          return res.status(CREATED).json({ message: "Follow successful" });
-        }
-        return res.status(CONFLICT).json({
-          message: "You are already following this author"
-        });
+        return created
+          ? res.status(CREATED).json({ message: "Follow successful" })
+          : next();
       });
     } catch (error) {
       res.status().json({ message: SERVER_ERROR });
@@ -74,7 +70,7 @@ export default class FollowerController {
         message: "You have unfollowed this author"
       });
     } catch (error) {
-      res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
+      return res.status(INTERNAL_SERVER_ERROR).json({ message: SERVER_ERROR });
     }
   }
 

@@ -62,7 +62,7 @@ class NotificationController {
   static async fetchAll(req, res) {
     try {
       const { id: userId } = req.user;
-      const { page } = req.query;
+      const { page = 1, limit = 20, status = ["read", "unread"] } = req.query;
       const user = await User.findOne({
         where: { id: userId },
         attributes: ["username", "firstName", "lastName"],
@@ -72,7 +72,9 @@ class NotificationController {
             as: "notifications",
             attributes: ["message", "ref", "userId", "id", "createdAt", "status"],
             order: [["createdAt", "ASC"]],
-            offset: page
+            where: { status },
+            offset: (Number(page) - 1) * Number(limit),
+            limit
           }
         ]
       });
