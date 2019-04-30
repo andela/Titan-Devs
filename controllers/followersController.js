@@ -7,7 +7,6 @@ const {
   NOT_FOUND,
   OK,
   ACCEPTED,
-  CONFLICT,
   INTERNAL_SERVER_ERROR
 } = constants.statusCode;
 const { User, Follower } = models;
