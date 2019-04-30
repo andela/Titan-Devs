@@ -8,7 +8,6 @@ import checkAuth from "../middlewares/checkAuth";
 import NotificationController from "../controllers/notificationController";
 import validator from "../middlewares/modelValidator";
 
-
 const userRouters = Router();
 
 userRouters.get("/users/confirm/:auth_token", UserController.confirmation);
@@ -28,6 +27,12 @@ userRouters
     "/users/:token/password",
     SignupValidation.validatePassword,
     UserController.updatePassword
+  )
+  .put(
+    "/users/password/:username/change",
+    checkAuth,
+    SignupValidation.validateNewPassword,
+    UserController.changePassword
   )
   .put(
     "/users/:username/roles/:roleId",
