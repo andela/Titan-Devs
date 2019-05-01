@@ -112,7 +112,7 @@ class UserController {
           }
           const newPWdMatchCurrent = await compareSync(
             req.body.password,
-            response.password
+            response.password || ""
           );
           if (newPWdMatchCurrent) {
             return res.status(BAD_REQUEST).json({
