@@ -25,7 +25,12 @@ export default class SignupValidator {
   }
 
   static validateNewPassword(req, res, next) {
-    const { newPassword } = req.body;
+    const { newPassword, currentPassword } = req.body;
+    if (newPassword === null || currentPassword === null) {
+      return res.status(BAD_REQUEST).json({
+        message: "Null values are not allowed!"
+      });
+    }
     const isPassword = isAlphanumeric(newPassword) && newPassword.trim().length >= 8;
     return isPassword
       ? next()
