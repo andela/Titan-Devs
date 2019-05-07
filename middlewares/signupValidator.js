@@ -26,11 +26,6 @@ export default class SignupValidator {
 
   static validateNewPassword(req, res, next) {
     const { newPassword, currentPassword } = req.body;
-    if (newPassword === null || currentPassword === null) {
-      return res.status(BAD_REQUEST).json({
-        message: "Null values are not allowed!"
-      });
-    }
     if (!currentPassword || !newPassword) {
       return res.status(BAD_REQUEST).json({
         message: "Current and new password are required fields"

@@ -33,7 +33,9 @@ describe("Change Password", () => {
       .set("Authorization", `Bearer ${token}`)
       .send({ newPassword: null, currentPassword: null });
     expect(results.status).equal(BAD_REQUEST);
-    expect(results.body.message).equal("Null values are not allowed!");
+    expect(results.body.message).equal(
+      "Current and new password are required fields"
+    );
   });
 
   it("should fail on non alphanumeric password", async () => {
