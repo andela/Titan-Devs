@@ -57,13 +57,24 @@ describe("Change Password", () => {
 
     expect(results.status).equal(UNAUTHORIZED);
   });
+  it("should require both new and current password", async () => {
+    const results = await chai
+      .request(app)
+      .put(`/api/v1/users/password/${user.username}/change`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({});
+
+    expect(results.status).equal(BAD_REQUEST);
+    expect(results.body.message).equal(
+      "Current and new password are required fields"
+    );
+  });
   it("should update password", async () => {
     const results = await chai
       .request(app)
       .put(`/api/v1/users/password/${user.username}/change`)
       .set("Authorization", `Bearer ${token}`)
       .send({ newPassword: "jdkskkfksk343", currentPassword: "password78t67" });
-
     expect(results.status).equal(OK);
     expect(results.body.message).equal("Password updated successfully");
   });

@@ -31,6 +31,11 @@ export default class SignupValidator {
         message: "Null values are not allowed!"
       });
     }
+    if (!currentPassword || !newPassword) {
+      return res.status(BAD_REQUEST).json({
+        message: "Current and new password are required fields"
+      });
+    }
     const isPassword = isAlphanumeric(newPassword) && newPassword.trim().length >= 8;
     return isPassword
       ? next()

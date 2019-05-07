@@ -281,7 +281,7 @@ class UserController {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       if (usernameFromToken !== username) {
-        return res.status(UNAUTHORIZED).json({ error: "Not authorized" });
+        return res.status(UNAUTHORIZED).json({ message: "Not authorized" });
       }
       const newPWdMatchCurrent = await compareSync(
         currentPassword,
