@@ -265,22 +265,24 @@ class UserController {
 
   static async changePassword(req, res) {
     try {
-      const { newPassword, currentPassword } = req.body;
-      const usernameFromToken = req.user.username;
-      const { username } = req.params;
+      const {
+        body: { newPassword, currentPassword },
+        user: { username: usernameFromToken },
+        params: { username }
+      } = req;
       const salt = await genSaltSync(
         parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
       );
       const response = await User.findOne({ where: { username } });
 
       const newHashedPassword = await hashSync(newPassword, salt);
-     
+
       if (!response) {
         return res.status(NOT_FOUND).json({ message: "User not found" });
       }
       if (usernameFromToken !== username) {
         return res.status(UNAUTHORIZED).json({ error: "Not authorized" });
-      }  
+      }
       const newPWdMatchCurrent = await compareSync(
         currentPassword,
         response.password
