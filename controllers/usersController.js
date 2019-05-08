@@ -296,8 +296,7 @@ class UserController {
       return res.status(OK).json({ message: "Password updated successfully" });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({
-        message: "Password update failed",
-        errors:
+        message:
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
       });
     }
