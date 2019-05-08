@@ -270,9 +270,8 @@ class UserController {
         user: { username: usernameFromToken },
         params: { username }
       } = req;
-      const salt = await genSaltSync(
-        parseFloat(process.env.BCRYPT_HASH_ROUNDS) || 10
-      );
+      const { BCRYPT_HASH_ROUNDS } = process.env;
+      const salt = await genSaltSync(parseFloat(BCRYPT_HASH_ROUNDS) || 10);
       const response = await User.findOne({ where: { username } });
 
       const newHashedPassword = await hashSync(newPassword, salt);

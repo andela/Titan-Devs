@@ -29,7 +29,7 @@ userRouters
     UserController.updatePassword
   )
   .put(
-    "/users/password/:username/change",
+    "/users/:username/password/change",
     checkAuth,
     SignupValidation.validateNewPassword,
     UserController.changePassword
