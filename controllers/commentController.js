@@ -212,7 +212,7 @@ export default class CommentController {
               "like"
             ],
             offset: page,
-            limit: 20,
+            limit: 10,
             include: [
               {
                 model: User,
