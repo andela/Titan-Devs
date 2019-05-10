@@ -233,7 +233,6 @@ export default class CommentController {
           .status(NOT_FOUND)
           .json({ message: "There is no article with that slug" });
       }
-      console.log(article.comments.length, "======");
       res.status(OK).json({ article });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
