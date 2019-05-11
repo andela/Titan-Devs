@@ -195,14 +195,14 @@ export default class CommentController {
   static async fetchAllComments(req, res) {
     try {
       const { slug } = req.params;
-      const { page } = req.query;
+      const { pageNumber = 1, limit = 3 } = req.query;
       const article = await Article.findOne({
         where: { slug },
-        order: [["createdAt", "DESC"]],
         include: [
           {
             model: Comment,
             as: "comments",
+            order: [["createdAt", "DESC"]],
             attributes: [
               "articleId",
               "body",
@@ -211,8 +211,8 @@ export default class CommentController {
               "updatedAt",
               "like"
             ],
-            offset: page,
-            limit: 10,
+            offset: (Number(pageNumber) - 1) * Number(limit),
+            limit: Number(limit),
             include: [
               {
                 model: User,
@@ -233,7 +233,7 @@ export default class CommentController {
           .status(NOT_FOUND)
           .json({ message: "There is no article with that slug" });
       }
-      res.status(OK).json({ article });
+      res.status(OK).json({ article, commentsLength: article.comments.length });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
