@@ -195,7 +195,7 @@ export default class CommentController {
   static async fetchAllComments(req, res) {
     try {
       const { slug } = req.params;
-      const { pageNumber = 1, limit = 3 } = req.query;
+      const { pageNumber = 1, limit = 10 } = req.query;
       const article = await Article.findOne({
         where: { slug },
         include: [
