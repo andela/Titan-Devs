@@ -32,7 +32,14 @@ export default class CommentController {
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
       if (user && valid && article) {
-        const { username, bio, image, following = false } = user;
+        const {
+          username,
+          firstName,
+          lastName,
+          bio,
+          image,
+          following = false
+        } = user;
         const { id: articleId } = article.dataValues;
         const com = await Comment.create({ articleId, userId, body });
         if (com) {
@@ -45,7 +52,10 @@ export default class CommentController {
           return res.status(CREATED).json({
             status: CREATED,
             message: "Comment created",
-            comment: { ...comment, author: { username, bio, image, following } }
+            comment: {
+              ...comment,
+              author: { username, firstName, lastName, bio, image, following }
+            }
           });
         }
       } else if (!article) {
