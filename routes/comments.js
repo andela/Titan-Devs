@@ -4,20 +4,23 @@ import validateRequest from "../middlewares/requestValidator/validateRequest";
 import checkAuth from "../middlewares/checkAuth";
 
 const comment = Router();
-comment.use(checkAuth);
+
 comment
-  .route("/articles/:slug/comments")
-  .post(Comment.create)
-  .get(validateRequest, Comment.fetchAllComments);
-comment
-  .route("/articles/:slug/comments/:id")
-  .get(Comment.fetch)
-  .put(Comment.update)
-  .delete(Comment.delete);
-comment
-  .route("/articles/:slug/comments/:commentId/likes")
-  .post(Comment.like)
-  .get(Comment.getCommentLikes);
-comment.get("/articles/:slug/comments/:commentId/history", Comment.getEditHistory);
+  .get("/articles/:slug/comments", validateRequest, Comment.fetchAllComments)
+  .get("/articles/:slug/comments/:id", Comment.fetch)
+  .post("/articles/:slug/comments", checkAuth, Comment.create)
+  .put("/articles/:slug/comments/:id", checkAuth, Comment.update)
+  .delete("/articles/:slug/comments/:id", checkAuth, Comment.delete)
+  .post("/articles/:slug/comments/:commentId/likes", checkAuth, Comment.like)
+  .get(
+    "/articles/:slug/comments/:commentId/likes",
+    checkAuth,
+    Comment.getCommentLikes
+  )
+  .get(
+    "/articles/:slug/comments/:commentId/history",
+    checkAuth,
+    Comment.getEditHistory
+  );
 
 export default comment;
