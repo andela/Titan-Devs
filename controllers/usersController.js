@@ -262,6 +262,44 @@ class UserController {
       });
     }
   }
+
+  static async changePassword(req, res) {
+    try {
+      const {
+        body: { newPassword, currentPassword },
+        user: { username: usernameFromToken },
+        params: { username }
+      } = req;
+      const { BCRYPT_HASH_ROUNDS } = process.env;
+      const salt = await genSaltSync(parseFloat(BCRYPT_HASH_ROUNDS) || 10);
+      const response = await User.findOne({ where: { username } });
+
+      const newHashedPassword = await hashSync(newPassword, salt);
+
+      if (!response) {
+        return res.status(NOT_FOUND).json({ message: "User not found" });
+      }
+      if (usernameFromToken !== username) {
+        return res.status(UNAUTHORIZED).json({ message: "Not authorized" });
+      }
+      const newPWdMatchCurrent = await compareSync(
+        currentPassword,
+        response.password
+      );
+      if (!newPWdMatchCurrent) {
+        return res.status(BAD_REQUEST).json({
+          message: "Invalid Current Password"
+        });
+      }
+      await User.update({ password: newHashedPassword }, { where: { username } });
+      return res.status(OK).json({ message: "Password updated successfully" });
+    } catch (error) {
+      res.status(INTERNAL_SERVER_ERROR).json({
+        message:
+          "Sorry, this is not working properly. We now know about this mistake and are working to fix it"
+      });
+    }
+  }
 }
 
 export default UserController;

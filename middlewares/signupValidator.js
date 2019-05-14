@@ -24,6 +24,22 @@ export default class SignupValidator {
       : res.status(BAD_REQUEST).json({ message: "Invalid email" });
   }
 
+  static validateNewPassword(req, res, next) {
+    const { newPassword, currentPassword } = req.body;
+    if (!currentPassword || !newPassword) {
+      return res.status(BAD_REQUEST).json({
+        message: "Current and new password are required fields"
+      });
+    }
+    const isPassword = isAlphanumeric(newPassword) && newPassword.trim().length >= 8;
+    return isPassword
+      ? next()
+      : res.status(BAD_REQUEST).json({
+          message:
+            "The password should be an alphanumeric with at least 8 characters"
+        });
+  }
+
   static validatePassword(req, res, next) {
     const { password } = req.body;
     const isPassword = isAlphanumeric(password) && password.trim().length >= 8;
