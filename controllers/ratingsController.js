@@ -3,7 +3,7 @@ import models from "../models";
 import { ratingOne, ratingAll } from "../helpers/ratingValidator";
 import constants from "../helpers/constants";
 
-const { Rating, sequelize, Article } = models;
+const { Rating, sequelize } = models;
 const {
   NOT_FOUND,
   OK,
