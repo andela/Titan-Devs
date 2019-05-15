@@ -4,7 +4,6 @@ import sinonChai from "sinon-chai";
 import { mockRequest, mockResponse } from "mock-req-res";
 import socialAuthController from "../../controllers/auth/socials/socialAuthController";
 import {
-  userFound,
   dummyProfileTwitter,
   dummyProfileGoogle
 } from "../helpers/socialAuthHelpers";
