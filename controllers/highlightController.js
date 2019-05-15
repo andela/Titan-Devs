@@ -25,19 +25,39 @@ class HighlightController {
     const { article, highlightedText } = req;
     const { id: userId } = req.user;
     try {
-      const highlight = await Highlight.create({
-        slug,
-        userId,
-        highlightedText,
-        startIndex: start,
-        endIndex: end,
-        articleId: article.id
-      });
+      let highlight;
       if (comment) {
-        await highlight.createComment({
-          body: comment,
-          articleId: article.id,
-          userId
+        highlight = await Highlight.create(
+          {
+            slug,
+            userId,
+            highlightedText,
+            startIndex: start,
+            endIndex: end,
+            articleId: article.id,
+            comment: {
+              body: comment,
+              articleId: article.id,
+              userId
+            }
+          },
+          {
+            include: [
+              {
+                model: Comment,
+                as: "comment"
+              }
+            ]
+          }
+        );
+      } else {
+        highlight = await Highlight.create({
+          slug,
+          userId,
+          highlightedText,
+          startIndex: start,
+          endIndex: end,
+          articleId: article.id
         });
       }
 
@@ -46,6 +66,7 @@ class HighlightController {
         highlight: highlight.dataValues
       });
     } catch (error) {
+      console.error(error);
       res
         .status(INTERNAL_SERVER_ERROR)
         .json({ message: INTERNAL_SERVER_ERROR_MESSAGE });

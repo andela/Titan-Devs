@@ -220,7 +220,7 @@ export default class CommentController {
               },
               {
                 model: Highlight,
-                as: "highlightedText"
+                as: "highlight"
               }
             ]
           }
