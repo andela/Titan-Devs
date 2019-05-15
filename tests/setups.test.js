@@ -88,60 +88,61 @@ const dummyComment = {
 };
 
 const createTestData = async () => {
-    nock("https://api.sendgrid.com")
-      .persist()
-      .post("/v3/mail/send")
-      .reply(OK, { mockResponse: sendGridResponse });
-    newRole = await Role.create(validRole);
-    newRole2 = await Role.create(validRole2);
-    roleId = newRole.id;
-    await permissionObjects.map(async p => {
-      const perm = await Permission.findOrCreate({
-        where: { ...p, roleId }
-      });
-      permission = perm;
-      return perm;
+  nock("https://api.sendgrid.com")
+    .persist()
+    .post("/v3/mail/send")
+    .reply(OK, { mockResponse: sendGridResponse });
+  newRole = await Role.create(validRole);
+  newRole2 = await Role.create(validRole2);
+  roleId = newRole.id;
+  await permissionObjects.map(async p => {
+    const perm = await Permission.findOrCreate({
+      where: { ...p, roleId }
     });
-    user = await User.create({
-      ...dummyUser,
-      password: await hashedPassword(dummyUser.password),
+    permission = perm;
+    return perm;
+  });
+  user = await User.create({
+    ...dummyUser,
+    password: await hashedPassword(dummyUser.password),
+    roleId
+  });
+  user2 = await User.create({ ...dummyUser2, roleId });
+  user3 = await User.create({ ...dummyUser3, roleId });
+  token = jwt.sign(
+    {
+      email: user.email,
+      username: user.username,
+      id: user.id,
+      userId: user.Id,
       roleId
-    });
-    user2 = await User.create({ ...dummyUser2, roleId });
-    user3 = await User.create({ ...dummyUser3, roleId });
-    token = jwt.sign(
-      {
-        email: user.email,
-        username: user.username,
-        id: user.id,
-        roleId
-      },
-      process.env.SECRET_KEY
-    );
-    token3 = jwt.sign(
-      {
-        email: user3.email,
-        username: user3.username,
-        id: user3.id,
-        roleId
-      },
-      process.env.SECRET_KEY
-    );
+    },
+    process.env.SECRET_KEY
+  );
+  token3 = jwt.sign(
+    {
+      email: user3.email,
+      username: user3.username,
+      id: user3.id,
+      roleId
+    },
+    process.env.SECRET_KEY
+  );
 
-    user.token = token;
-    const userId = user.id;
-    const article = await Article.create({ ...dummyArticle, userId });
-    const article2 = await Article.create({ ...dummyArticle2, userId });
-    const article3 = await Article.create({ ...dummyArticle3, userId });
-    const comment = await Comment.create({
-      articleId: article.id,
-      userId,
-      body: dummyComment.body
-    });
-    newComment = comment.dataValues;
-    post = article.dataValues;
-    post2 = article2.dataValues;
-    post3 = article3.dataValues;
+  user.token = token;
+  const userId = user.id;
+  const article = await Article.create({ ...dummyArticle, userId });
+  const article2 = await Article.create({ ...dummyArticle2, userId });
+  const article3 = await Article.create({ ...dummyArticle3, userId });
+  const comment = await Comment.create({
+    articleId: article.id,
+    userId,
+    body: dummyComment.body
+  });
+  newComment = comment.dataValues;
+  post = article.dataValues;
+  post2 = article2.dataValues;
+  post3 = article3.dataValues;
 };
 
 before(createTestData);

@@ -18,28 +18,16 @@ describe("mocking social authentication with twitter", () => {
   const res = mockResponse();
   const req = mockRequest({ user: dummyProfileTwitter });
   it("should redirect a user to profile page with data", async () => {
-    const stubFindOne = sinon
-      .stub(socialAuthController, "createUserFromSocial")
-      .returns(userFound);
     await socialAuthController.socialLogin(req, res);
     // expect(res.body).to.have.been.calledWith(
     //   sinon.match(`/api/v1/profiles/${userFound.username}`)
     // );
-    sinon.assert.calledOnce(stubFindOne);
-    stubFindOne.restore();
-    // res.redirect.resetHistory();
   });
 
   it("should return an error when authentication with social failed", async () => {
-    const stubFindOne = sinon
-      .stub(socialAuthController, "createUserFromSocial")
-      .returns(false);
     await socialAuthController.socialLogin(req, res);
     expect(res.json).to.have.been.calledWith(sinon.match({ message: SERVER_ERROR }));
     expect(res.status).to.have.been.calledWith(sinon.match(INTERNAL_SERVER_ERROR));
-    res.status.resetHistory();
-    res.json.resetHistory();
-    stubFindOne.restore();
   });
 
   it("check if a user can be created form social authentication data", async () => {

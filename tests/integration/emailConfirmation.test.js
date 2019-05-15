@@ -76,7 +76,9 @@ describe("/API end point /users/confirmation/:auth_token", () => {
       .request(app)
       .put(`/api/v1/users/resend`)
       .send({ email: user.email });
-    expect(results.body.message).to.be.equal("User verified");
+    expect(results.body.message).to.be.equal(
+      "We have re-sent an email with a confirmation link to your email address. Please allow 2-5 minutes for this message to arrive"
+    );
     expect(results.body).to.have.property("message");
   });
 

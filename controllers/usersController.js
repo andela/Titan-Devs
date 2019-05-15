@@ -232,6 +232,7 @@ class UserController {
         }
       );
     } catch (error) {
+      console.log(error);
       return res.status(INTERNAL_SERVER_ERROR).json({
         message:
           "Sorry, this is not working properly. We now know about this mistake and are working to fix it"

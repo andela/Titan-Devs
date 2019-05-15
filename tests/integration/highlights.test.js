@@ -139,6 +139,7 @@ describe(" create highlight tests", () => {
             "articleId",
             "updatedAt",
             "commentId",
+            "comment",
             "highlightedText"
           ]);
           expect(res.body.highlight.startIndex).to.be.eqls(startIndex);
