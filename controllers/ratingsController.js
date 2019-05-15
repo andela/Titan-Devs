@@ -3,7 +3,7 @@ import models from "../models";
 import { ratingOne, ratingAll } from "../helpers/ratingValidator";
 import constants from "../helpers/constants";
 
-const { Rating, sequelize } = models;
+const { Rating, sequelize, Article } = models;
 const {
   NOT_FOUND,
   OK,
@@ -84,11 +84,10 @@ class RatingController {
             raw: true,
             where: { articleId: article.id },
             attributes: [
-              "id",
-              "rating",
+              "articleId",
               [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
             ],
-            group: ["Rating.id"]
+            group: ["Rating.articleId"]
           });
           res.status(OK).json({ ratings: results });
         } catch (error) {
