@@ -9,7 +9,7 @@ import defaultPermissions from "../../helpers/defaultPermissions";
 
 const { ACCEPTED, INTERNAL_SERVER_ERROR, CREATED, CONFLICT } = constants.statusCode;
 
-const { User} = models;
+const { User } = models;
 dotenv.config();
 
 export default class SignUpController {
