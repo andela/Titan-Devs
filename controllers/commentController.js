@@ -32,7 +32,14 @@ export default class CommentController {
       const user = await User.findOne({ where: { id: userId } });
       const article = await Article.findOne({ where: { slug } });
       if (user && valid && article) {
-        const { username, bio, image, following = false } = user;
+        const {
+          username,
+          firstName,
+          lastName,
+          bio,
+          image,
+          following = false
+        } = user;
         const { id: articleId } = article.dataValues;
         const com = await Comment.create({ articleId, userId, body });
         if (com) {
@@ -45,7 +52,10 @@ export default class CommentController {
           return res.status(CREATED).json({
             status: CREATED,
             message: "Comment created",
-            comment: { ...comment, author: { username, bio, image, following } }
+            comment: {
+              ...comment,
+              author: { username, firstName, lastName, bio, image, following }
+            }
           });
         }
       } else if (!article) {
@@ -195,13 +205,14 @@ export default class CommentController {
   static async fetchAllComments(req, res) {
     try {
       const { slug } = req.params;
-      const { page } = req.query;
+      const { pageNumber = 1, limit = 10 } = req.query;
       const article = await Article.findOne({
         where: { slug },
         include: [
           {
             model: Comment,
             as: "comments",
+            order: [["createdAt", "DESC"]],
             attributes: [
               "articleId",
               "body",
@@ -210,13 +221,19 @@ export default class CommentController {
               "updatedAt",
               "like"
             ],
-            offset: page,
-            limit: 20,
+            offset: (Number(pageNumber) - 1) * Number(limit),
+            limit: Number(limit),
             include: [
               {
                 model: User,
                 as: "author",
                 attributes: ["username", "image", "firstName", "lastName"]
+              },
+              {
+                model: User,
+                as: "likes",
+                through: { attributes: [] },
+                attributes: ["id", "username", "image", "firstName", "lastName"]
               },
               {
                 model: Highlight,
@@ -232,7 +249,19 @@ export default class CommentController {
           .status(NOT_FOUND)
           .json({ message: "There is no article with that slug" });
       }
-      res.status(OK).json({ article });
+      let { comments } = article;
+      const { user } = req;
+      comments = comments.map(comment => ({
+        ...comment.get(),
+        liked:
+          user &&
+          comment
+            .get()
+            .likes.map(like => like.get().id)
+            .includes(user.id)
+      }));
+
+      res.status(OK).json({ comments, commentsLength: article.comments.length });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }
