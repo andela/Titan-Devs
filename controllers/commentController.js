@@ -253,12 +253,12 @@ export default class CommentController {
       const { user } = req;
       comments = comments.map(comment => ({
         ...comment.get(),
-        liked: user
-          ? comment
-              .get()
-              .likes.map(like => like.get().id)
-              .includes(user.id)
-          : false
+        liked:
+          user &&
+          comment
+            .get()
+            .likes.map(like => like.get().id)
+            .includes(user.id)
       }));
 
       res.status(OK).json({ comments, commentsLength: article.comments.length });
