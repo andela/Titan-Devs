@@ -84,11 +84,10 @@ class RatingController {
             raw: true,
             where: { articleId: article.id },
             attributes: [
-              "id",
-              "rating",
+              "articleId",
               [sequelize.fn("AVG", sequelize.col("rating")), "averageRating"]
             ],
-            group: ["Rating.id"]
+            group: ["Rating.articleId"]
           });
           res.status(OK).json({ ratings: results });
         } catch (error) {
