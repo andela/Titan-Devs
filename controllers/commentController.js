@@ -230,6 +230,12 @@ export default class CommentController {
                 attributes: ["username", "image", "firstName", "lastName"]
               },
               {
+                model: User,
+                as: "likes",
+                through: { attributes: [] },
+                attributes: ["id", "username", "image", "firstName", "lastName"]
+              },
+              {
                 model: Highlight,
                 as: "highlightedText"
               }
@@ -243,7 +249,19 @@ export default class CommentController {
           .status(NOT_FOUND)
           .json({ message: "There is no article with that slug" });
       }
-      res.status(OK).json({ article, commentsLength: article.comments.length });
+      let { comments } = article;
+      const { user } = req;
+      comments = comments.map(comment => ({
+        ...comment.get(),
+        liked: user
+          ? comment
+              .get()
+              .likes.map(like => like.get().id)
+              .includes(user.id)
+          : false
+      }));
+
+      res.status(OK).json({ comments, commentsLength: article.comments.length });
     } catch (error) {
       res.status(INTERNAL_SERVER_ERROR).json({ message: error.message });
     }

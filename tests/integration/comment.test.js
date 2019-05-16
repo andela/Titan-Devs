@@ -90,9 +90,9 @@ describe("Comment on an article", () => {
         .end((error, res) => {
           if (error) done(error);
           expect(res.status).equals(OK);
-          expect(res.body.article.comments).to.be.a("array");
-          expect(res.body.article.comments[0]).to.haveOwnProperty("body");
-          expect(res.body.article.comments[0]).to.haveOwnProperty("highlightedText");
+          expect(res.body.comments).to.be.a("array");
+          expect(res.body.comments[0]).to.haveOwnProperty("body");
+          expect(res.body.comments[0]).to.haveOwnProperty("highlightedText");
           done();
         });
     });
