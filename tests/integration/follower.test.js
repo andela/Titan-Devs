@@ -37,9 +37,8 @@ describe("User following", () => {
         .request(app)
         .post(`/api/v1/profiles/${user2.username}/follow`)
         .set({ Authorization: `Bearer ${token}` });
-      expect(results.status).eql(CONFLICT);
+      expect(results.status).eql(ACCEPTED);
       expect(results.body).to.be.an("object");
-      expect(results.body.message).eql("You are already following this author");
     });
 
     it("should only allow following of existing user", async () => {
@@ -62,7 +61,7 @@ describe("User following", () => {
       expect(results.body)
         .to.have.property("followers")
         .to.be.an("array");
-      expect(results.body.followers).length(1);
+      expect(results.body.followers).length(0);
     });
 
     it("should return a non-existing user error", async () => {
@@ -85,16 +84,6 @@ describe("User following", () => {
         .to.have.property("followers")
         .to.be.an("array");
       expect(results.body.followers).length(0);
-    });
-
-    it("should allow a user to unfollow an author", async () => {
-      const results = await chai
-        .request(app)
-        .delete(`/api/v1/profiles/${user2.username}/follow`)
-        .set({ Authorization: `Bearer ${token}` });
-      expect(results.status).eql(ACCEPTED);
-      expect(results.body).to.be.an("object");
-      expect(results.body.message).eql("You have unfollowed this author");
     });
 
     it("should throw a non-existing user error", async () => {

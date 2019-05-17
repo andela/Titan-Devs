@@ -5,6 +5,7 @@ import app from "../../index";
 import { sendGridResponse } from "../helpers/testData";
 import constants from "../../helpers/constants";
 import { user } from "../setups.test";
+import models from "../../models";
 
 const { OK, NOT_FOUND, BAD_REQUEST } = constants.statusCode;
 chai.use(chaiHttp);
@@ -24,14 +25,13 @@ describe("Reset Password", () => {
       .send({
         email: user.email
       });
-    pwdResetToken = results.body.user.resetToken;
     expect(results.status).equal(OK);
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
-      .eql("Mail delivered");
-    expect(results.body.user).to.be.an("object");
-    expect(results.body.user).to.have.property("resetToken");
+      .eql(
+        "Password reset instructions have been sent to your account's primary email address."
+      );
   });
 
   it("should return an email required error", async () => {
@@ -57,10 +57,16 @@ describe("Reset Password", () => {
     expect(results.body).to.be.an("object");
     expect(results.body)
       .to.have.property("message")
-      .eql("User not found");
+      .eql("Invalid email");
   });
 
   it("should fail on non alphanumeric password", async () => {
+    const userReset = await models.User.findOne({
+      where: {
+        email: user.email
+      }
+    });
+    pwdResetToken = userReset.resetToken;
     const results = await chai
       .request(app)
       .put(`/api/v1/users/${pwdResetToken}/password`)

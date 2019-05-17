@@ -1,4 +1,3 @@
-"use strict";
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable("notifications", {
@@ -12,6 +11,7 @@ module.exports = {
         type: Sequelize.UUID,
         references: { model: "users", key: "id" }
       },
+      ref: Sequelize.STRING,
       message: {
         type: Sequelize.STRING
       },

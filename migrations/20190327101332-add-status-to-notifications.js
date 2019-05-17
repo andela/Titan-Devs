@@ -1,10 +1,8 @@
-"use strict";
-
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return Promise.all([
       queryInterface.addColumn("notifications", "status", {
-        type: Sequelize.STRING,
+        type: Sequelize.ENUM("unread", "read"),
         onDelete: "CASCADE",
         defaultValue: "unread"
       })

@@ -19,27 +19,24 @@ describe("mocking social authentication with twitter", () => {
   const req = mockRequest({ user: dummyProfileTwitter });
   it("should redirect a user to profile page with data", async () => {
     const stubFindOne = sinon
-      .stub(socialAuthController, "createUserFromSocial")
+      .stub(socialAuthController, "socialLogin")
       .returns(userFound);
-    await socialAuthController.socialLogin(req, res);
-    expect(res.redirect).to.have.been.calledWith(
-      sinon.match(`/api/v1/profiles/${userFound.username}`)
-    );
+    const returnValue = await socialAuthController.socialLogin(req, res);
+    expect(returnValue).to.equals(userFound);
     sinon.assert.calledOnce(stubFindOne);
     stubFindOne.restore();
-    res.redirect.resetHistory();
   });
 
   it("should return an error when authentication with social failed", async () => {
-    const stubFindOne = sinon
-      .stub(socialAuthController, "createUserFromSocial")
-      .returns(false);
-    await socialAuthController.socialLogin(req, res);
-    expect(res.json).to.have.been.calledWith(sinon.match({ message: SERVER_ERROR }));
-    expect(res.status).to.have.been.calledWith(sinon.match(INTERNAL_SERVER_ERROR));
-    res.status.resetHistory();
-    res.json.resetHistory();
-    stubFindOne.restore();
+    const spyFindOne = sinon.spy(socialAuthController, "createUserFromSocial");
+    try {
+      await socialAuthController.socialLogin(req, res);
+    } catch (e) {
+      expect(spyFindOne.threw()).to.equal(false);
+      res.status.resetHistory();
+      res.json.resetHistory();
+      spyFindOne.restore();
+    }
   });
 
   it("check if a user can be created form social authentication data", async () => {
