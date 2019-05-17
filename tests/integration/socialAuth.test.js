@@ -25,18 +25,18 @@ describe("mocking social authentication with twitter", () => {
     expect(returnValue).to.equals(userFound);
     sinon.assert.calledOnce(stubFindOne);
     stubFindOne.restore();
-    // res.redirect.resetHistory();
   });
 
   it("should return an error when authentication with social failed", async () => {
     const spyFindOne = sinon.spy(socialAuthController, "createUserFromSocial");
     try {
       await socialAuthController.socialLogin(req, res);
-    } catch (e) {}
-    expect(spyFindOne.threw()).to.equal(false);
-    res.status.resetHistory();
-    res.json.resetHistory();
-    spyFindOne.restore();
+    } catch (e) {
+      expect(spyFindOne.threw()).to.equal(false);
+      res.status.resetHistory();
+      res.json.resetHistory();
+      spyFindOne.restore();
+    }
   });
 
   it("check if a user can be created form social authentication data", async () => {
