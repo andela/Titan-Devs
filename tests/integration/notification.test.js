@@ -14,7 +14,7 @@ let slug;
 let commentId;
 let commentId2;
 let notificationId;
-const { OK, NOT_FOUND, BAD_REQUEST, UNAUTHORIZED } = constants.statusCode;
+const { OK, NOT_FOUND, UNAUTHORIZED } = constants.statusCode;
 
 describe("Notifications", () => {
   before(done => {
